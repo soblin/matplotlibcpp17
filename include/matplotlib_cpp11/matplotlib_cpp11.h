@@ -5,29 +5,13 @@
 
 namespace matplotlib_cpp11 {
 
-static bool g_imported = false;
+#include "common.h"
 
-#define LOAD_ATTR(attr_, mod_)                                                 \
-  do {                                                                         \
-    attr_ = mod_.attr(#attr_);                                                 \
-  } while (0)
-
+#include "text.h"
 #include "axes.h"
 #include "figure.h"
+#include "gridspec.h"
 #include "pyplot.h"
-
-static pyplot &import() {
-  static pyplot g_pyplot;
-  static Figure g_figure;
-  static Axes g_axes;
-  if (not g_imported) {
-    g_imported = true;
-    // pyplot singleton
-    auto mod = pybind11::module::import("matplotlib.pyplot");
-    g_pyplot = pyplot(mod);
-  }
-  return g_pyplot;
-}
 
 } // namespace matplotlib_cpp11
 

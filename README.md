@@ -9,3 +9,11 @@ This project aims to replace [matplotlibcpp](https://github.com/lava/matplotlib-
 ## Usage
 
 Just add include path to `include` directory of this project.
+
+## Demos
+
+`gallery` folder contains corresponding examples from [the official website of matplotlib](https://matplotlib.org/stable/gallery) with the same structure.
+
+## Contributing
+
+Contributions to this project are welcome if you could add or want/need more modules :)

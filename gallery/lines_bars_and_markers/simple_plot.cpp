@@ -16,8 +16,9 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
   int N = static_cast<int>((end - start) / h);
   std::vector<T> xs(N);
   T val = start;
-  while (val <= end) {
-    xs.push_back(val);
+  for (int i = 0; i < N; ++i) {
+    xs[i] = val;
+    ;
     val += h;
   }
   return xs;
@@ -26,7 +27,7 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
 using namespace std;
 
 int main() {
-  py::scoped_interpreter guard{};
+  py::initialize_interpreter();
   auto plt = matplotlib_cpp11::import();
   auto t = arange(0.0, 2.0, 0.01);
   decltype(t) s;

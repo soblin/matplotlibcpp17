@@ -1,3 +1,4 @@
+project(matplotlib-cpp11)
 cmake_minimum_required(VERSION 3.0)
 
 find_package(PythonLibs 3 REQUIRED)
@@ -16,7 +17,9 @@ endfunction()
 
 if(${ADD_DEMO})
   set(CMAKE_CXX_STANDARD 17)
+  set(CMAKE_CXX_FLAGS "-Wall -g")
   add_demo(simple_plot gallery/lines_bars_and_markers/simple_plot.cpp)
+  add_demo(align_labels_demo gallery/subplots_axes_and_figures/align_labels_demo.cpp)
 endif()
 
 if(NOT DEFINED DO_TEST)

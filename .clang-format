@@ -4,3 +4,4 @@ NamespaceIndentation: None
 Language: Cpp
 Standard: Auto
 ColumnLimit: 80
+SortIncludes: false

@@ -9,6 +9,8 @@ struct __attribute__((visibility("hidden"))) pyplot {
     LOAD_ATTR(show, mod);
     subplot_attr = mod.attr("subplot");
     subplots_attr = mod.attr("subplots");
+    LOAD_ATTR(figure, mod);
+    LOAD_ATTR(axes, mod);
   }
   pybind11::module mod;
   pybind11::object plot;
@@ -22,6 +24,19 @@ struct __attribute__((visibility("hidden"))) pyplot {
     pybind11::object fig = ret[0], ax = ret[1];
     return {Figure(fig), Axes(ax)};
   }
-  Figure figure() { return Figure(mod); }
-  Axes axes() { return Axes(mod); }
+  pybind11::object figure;
+  pybind11::object axes;
 };
+
+static bool g_imported = false;
+
+static pyplot &import() {
+  static pyplot g_pyplot;
+  if (not g_imported) {
+    g_imported = true;
+    // pyplot singleton
+    auto mod = pybind11::module::import("matplotlib.pyplot");
+    g_pyplot = pyplot(mod);
+  }
+  return g_pyplot;
+}
