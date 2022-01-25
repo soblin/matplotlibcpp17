@@ -1,6 +1,8 @@
 #ifndef MATPLOTLIBCPP_11
 #define MATPLOTLIBCPP_11
 
+#include <pybind11/pybind11.h>
+
 namespace matplotlib_cpp11 {
 
 static bool g_imported = false;
