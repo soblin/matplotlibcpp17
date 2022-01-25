@@ -5,33 +5,27 @@ namespace matplotlib_cpp11 {
 
 static bool g_imported = false;
 
-class pyplot {
-private:
-  // functions
-  pybind11::object plot_;
-  pybind11::object show_;
+// class Figure {};
+// class Axes {};
 
-public:
-  template <class... Args> void plot(Args... args) { plot_(args...); }
-  template <class... Args> void show(Args... args) { show_(args...); }
-
-  // singleton class pattern
-private:
-  pyplot() = default;
-  pybind11::module plt;
-
-public:
-  static pyplot &import() {
-    static pyplot instance;
-    if (not g_imported) {
-      instance.plt = pybind11::module::import("matplotlib.pyplot");
-      g_imported = true;
-      instance.plot_ = instance.plt.attr("plot"); // TODO macro
-      instance.show_ = instance.plt.attr("show");
-    }
-    return instance;
-  }
+struct __attribute__((visibility("hidden"))) PyPlot {
+  pybind11::module pyplot;
+  pybind11::object plot;
+  pybind11::object show;
+  // Figure figure();
+  // Axes axes();
 };
+
+static PyPlot &import() {
+  static PyPlot instance;
+  if (not g_imported) {
+    instance.pyplot = pybind11::module::import("matplotlib.pyplot");
+    g_imported = true;
+    instance.plot = instance.pyplot.attr("plot");
+    instance.show = instance.pyplot.attr("show");
+  }
+  return instance;
+}
 
 } // namespace matplotlib_cpp11
 

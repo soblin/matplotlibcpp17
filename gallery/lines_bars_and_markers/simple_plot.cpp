@@ -21,15 +21,14 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
 }
 
 using namespace std;
-using namespace matplotlib_cpp11;
 
 int main() {
   py::scoped_interpreter guard{};
-  auto plt = pyplot::import();
+  auto plt = matplotlib_cpp11::import();
   auto t = arange(0.0, 2.0, 0.01);
   decltype(t) s;
   for_each(t.begin(), t.end(),
            [&](auto val) { s.push_back(1.0 + sin(2 * M_PI * val)); });
-  plt.plot(t, s);
+  plt.plot(t, s, "color"_a = "red", "linewidth"_a = 1.5);
   plt.show();
 }
