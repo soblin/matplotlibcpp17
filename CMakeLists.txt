@@ -19,6 +19,7 @@ if(${ADD_DEMO})
   set(CMAKE_CXX_STANDARD 17)
   set(CMAKE_CXX_FLAGS "-Wall -g")
   add_demo(simple_plot gallery/lines_bars_and_markers/simple_plot.cpp)
+  add_demo(fill_between_demo gallery/lines_bars_and_markers/fill_between_demo.cpp)
   add_demo(align_labels_demo gallery/subplots_axes_and_figures/align_labels_demo.cpp)
 endif()
 
