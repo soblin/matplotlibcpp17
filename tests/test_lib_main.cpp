@@ -5,6 +5,6 @@
 namespace py = pybind11;
 
 int main() {
-  py::scoped_interpreter guard{};
+  py::initialize_interpreter();
   func();
 }

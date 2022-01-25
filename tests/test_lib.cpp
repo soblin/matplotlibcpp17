@@ -23,15 +23,18 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
 }
 
 using namespace std;
+namespace pyplot = matplotlib_cpp11;
 
 void func() {
-  auto plt = matplotlib_cpp11::import();
+  auto plt = pyplot::import();
   auto t = arange(0.0, 2.0, 0.01);
   decltype(t) s;
   for_each(t.begin(), t.end(),
            [&](auto val) { s.push_back(1.0 + sin(2 * M_PI * val)); });
 
-  auto [fig, ax] = plt.subplots();
+  auto [figs, axes] = plt.subplots();
+  auto fig = figs[0];
+  auto ax = axes[0];
   ax.plot(t, s, "color"_a = "blue", "linewidth"_a = 1.0);
   ax.set("xlabel"_a = "time (s)", "ylabel"_a = "voltage (mV)",
          "title"_a = "About as simple as it gets, folks");

@@ -18,13 +18,8 @@ struct __attribute__((visibility("hidden"))) pyplot {
   pybind11::object subplot_attr;
   pybind11::object subplots_attr;
   Axes subplot() { return Axes(subplot_attr()); }
-  std::tuple<Figure, Axes> subplots() {
-    pybind11::list ret = subplots_attr();
-    pybind11::object fig = ret[0], ax = ret[1];
-    return {Figure(fig), Axes(ax)};
-  }
   std::tuple<std::vector<Figure>, std::vector<Axes>>
-  subplots(int n, int m, pybind11::dict args) {
+  subplots(int n = 1, int m = 1, pybind11::dict args = pybind11::dict()) {
     pybind11::list ret = subplots_attr(n, m, **args);
     std::vector<Figure> figures;
     std::vector<Axes> axes;
