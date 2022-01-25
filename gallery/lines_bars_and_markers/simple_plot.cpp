@@ -1,3 +1,6 @@
+// example from
+// https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html#sphx-glr-gallery-lines-bars-and-markers-simple-plot-py
+
 #include <pybind11/embed.h>
 #include <pybind11/stl.h>
 
@@ -29,6 +32,13 @@ int main() {
   decltype(t) s;
   for_each(t.begin(), t.end(),
            [&](auto val) { s.push_back(1.0 + sin(2 * M_PI * val)); });
-  plt.plot(t, s, "color"_a = "red", "linewidth"_a = 1.5);
+
+  auto [fig, ax] = plt.subplots();
+  ax.plot(t, s, "color"_a = "blue", "linewidth"_a = 1.0);
+  ax.set("xlabel"_a = "time (s)", "ylabel"_a = "voltage (mV)",
+         "title"_a = "About as simple as it gets, folks");
+  ax.grid();
+
+  fig.savefig("test.png");
   plt.show();
 }
