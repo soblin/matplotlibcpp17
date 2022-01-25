@@ -1,12 +1,19 @@
-struct __attribute__((visibility("hidden"))) axes {
-  // TODO: For "hidden" class does ctor/dtor works ?
-  void init(pybind11::object instance_) {
-    instance = instance_;
-    plot = instance.attr("plot");
-    set = instance.attr("set");
-    grid = instance.attr("grid");
+struct __attribute__((visibility("hidden"))) Axes {
+  Axes() {}
+  Axes(pybind11::object axes) {
+    self = axes;
+    load_attrs();
   }
-  pybind11::object instance;
+  Axes(pybind11::module mod) {
+    self = mod.attr("axes");
+    load_attrs();
+  }
+  void load_attrs() {
+    LOAD_ATTR(plot, self);
+    LOAD_ATTR(set, self);
+    LOAD_ATTR(grid, self);
+  }
+  pybind11::object self;
   pybind11::object plot;
   pybind11::object set;
   pybind11::object grid;
