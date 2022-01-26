@@ -1,4 +1,9 @@
-#define LOAD_ATTR(attr_, mod_)                                                 \
+#define LOAD_VOID_ATTR(obj, mod)                                               \
   do {                                                                         \
-    attr_ = mod_.attr(#attr_);                                                 \
+    obj = mod.attr(#obj);                                                      \
+  } while (0)
+
+#define LOAD_NONVOID_ATTR(obj, mod)                                            \
+  do {                                                                         \
+    obj##_attr = mod.attr(#obj);                                               \
   } while (0)

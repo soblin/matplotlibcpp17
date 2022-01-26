@@ -28,7 +28,6 @@ using namespace std;
 namespace pyplot = matplotlib_cpp11;
 
 int main1() {
-  py::initialize_interpreter();
   auto plt = pyplot::import();
 
   const auto x = arange(0.0, 2.0, 0.01);
@@ -37,12 +36,13 @@ int main1() {
            [&](auto val) { y1.push_back(sin(2 * M_PI * val)); });
   for_each(x.begin(), x.end(),
            [&](auto val) { y2.push_back(0.8 * sin(4 * M_PI * val)); });
-  auto [figs, axes] =
-      plt.subplots(3, 1,
-                   pybind11::dict("sharex"_a = true,
-                                  "figsize"_a = pybind11::make_tuple(6, 6)));
+  auto [figs, axes] = plt.subplots(
+      3, 1, py::dict("sharex"_a = true, "figsize"_a = py::make_tuple(6, 6)));
   plt.show();
   return 0;
 }
 
-int main() { main1(); }
+int main() {
+  py::initialize_interpreter();
+  main1();
+}
