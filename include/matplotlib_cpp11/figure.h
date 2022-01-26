@@ -12,7 +12,7 @@ struct __attribute__((visibility("hidden"))) Figure {
   pybind11::object self;
 
   // add_subplot
-  Axes add_subplot(pybind11::object arg);
+  Axes add_subplot(const pybind11::tuple &args, const pybind11::dict &kwargs);
   pybind11::object add_subplot_attr;
 
   // align_labels
@@ -26,7 +26,8 @@ struct __attribute__((visibility("hidden"))) Figure {
 };
 
 // add_subplot
-Axes Figure::add_subplot(pybind11::object arg) {
-  pybind11::object obj = add_subplot_attr(arg);
+Axes Figure::add_subplot(const pybind11::tuple &args,
+                         const pybind11::dict &kwargs) {
+  pybind11::object obj = add_subplot_attr(*args, **kwargs);
   return Axes(obj);
 }

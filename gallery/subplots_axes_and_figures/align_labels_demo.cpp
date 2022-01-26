@@ -33,16 +33,16 @@ int main() {
   auto plt = pyplot::import();
   auto fig = plt.figure(py::dict("tight_layout"_a = true));
   auto gs = pyplot::GridSpec(2, 2);
-  auto ax = fig.add_subplot(gs(0, -1));
+  auto ax = fig.add_subplot(py::make_tuple(gs(0, -1)), {});
   ax.plot(arange(0, 1000000, 10000));
   ax.set_ylabel("YLabel0");
   ax.set_xlabel("XLabel0");
   for (auto i : {0, 1}) {
-    ax = fig.add_subplot(gs(1, i));
+    ax = fig.add_subplot(py::make_tuple(gs(1, i)), {});
     auto ys = arange(1.0, 0.0, -0.1);
     decltype(ys) xs;
-    std::for_each(ys.begin(), ys.end(),
-                  [&](auto val) { xs.push_back(val * 2000); });
+    transform(ys.begin(), ys.end(), back_inserter(xs),
+              [](double x) { return x * 2000; });
     ax.plot(xs, ys);
     ax.set_ylabel(string("YLabel1 " + to_string(i)));
     ax.set_xlabel(string("XLabel1 " + to_string(i)));

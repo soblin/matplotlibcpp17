@@ -29,12 +29,10 @@ void func() {
   auto plt = pyplot::import();
   auto t = arange(0.0, 2.0, 0.01);
   decltype(t) s;
-  for_each(t.begin(), t.end(),
-           [&](auto val) { s.push_back(1.0 + sin(2 * M_PI * val)); });
+  transform(t.begin(), t.end(), back_inserter(s),
+            [](double x) { return 1.0 + sin(2 * M_PI * x); });
 
-  auto [figs, axes] = plt.subplots();
-  auto fig = figs[0];
-  auto ax = axes[0];
+  auto [fig, ax] = plt.subplots();
   ax.plot(t, s, "color"_a = "blue", "linewidth"_a = 1.0);
   ax.set("xlabel"_a = "time (s)", "ylabel"_a = "voltage (mV)",
          "title"_a = "About as simple as it gets, folks");

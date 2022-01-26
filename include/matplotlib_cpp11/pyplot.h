@@ -35,8 +35,9 @@ struct __attribute__((visibility("hidden"))) pyplot {
   pybind11::object subplot_attr;
 
   // subplots
-  std::tuple<std::vector<Figure>, std::vector<Axes>>
-  subplots(int n, int m, const pybind11::dict &kwargs);
+  std::tuple<Figure, Axes> subplots(const pybind11::dict &kwargs);
+  std::tuple<Figure, std::vector<Axes>> subplots(int r, int c,
+                                                 const pybind11::dict &kwargs);
   pybind11::object subplots_attr;
 };
 
@@ -58,22 +59,22 @@ Axes pyplot::subplot(const pybind11::dict &kwargs = pybind11::dict()) {
 }
 
 // subplots
-std::tuple<std::vector<Figure>, std::vector<Axes>>
-pyplot::subplots(int n = 1, int m = 1,
-                 const pybind11::dict &args = pybind11::dict()) {
-  pybind11::list ret = subplots_attr(n, m, **args);
-  std::vector<Figure> figures;
+std::tuple<Figure, Axes>
+pyplot::subplots(const pybind11::dict &kwargs = pybind11::dict()) {
+  pybind11::list ret = subplots_attr(**kwargs);
+  pybind11::object fig = ret[0];
+  pybind11::object ax = ret[1];
+  return {Figure(fig), Axes(ax)};
+}
+
+std::tuple<Figure, std::vector<Axes>>
+pyplot::subplots(int r, int c, const pybind11::dict &kargs = pybind11::dict()) {
+  pybind11::tuple args = pybind11::make_tuple(r, c);
+  pybind11::list ret = subplots_attr(*args, **args);
   std::vector<Axes> axes;
-  if (m == 1) {
-    pybind11::object fig = ret[0];
-    figures.push_back(Figure(fig));
-  } else {
-    pybind11::list figs = ret[0];
-    for (pybind11::size_t i = 0; i < figs.size(); ++i) {
-      figures.push_back(Figure(figs[i]));
-    }
-  }
-  if (n == 1) {
+  pybind11::object fig = ret[0];
+  Figure figure(fig);
+  if (r == 1 and c == 1) {
     pybind11::object ax = ret[1];
     axes.push_back(Axes(ax));
   } else {
@@ -82,7 +83,7 @@ pyplot::subplots(int n = 1, int m = 1,
       axes.push_back(Axes(axs[i]));
     }
   }
-  return {figures, axes};
+  return {figure, axes};
 }
 
 static bool g_imported = false;
