@@ -7,6 +7,7 @@ struct __attribute__((visibility("hidden"))) Figure {
     LOAD_NONVOID_ATTR(add_subplot, self);
     LOAD_VOID_ATTR(align_labels, self);
     LOAD_VOID_ATTR(savefig, self);
+    LOAD_VOID_ATTR(tight_layout, self);
   }
   pybind11::object self;
 
@@ -19,6 +20,9 @@ struct __attribute__((visibility("hidden"))) Figure {
 
   // savefig
   pybind11::object savefig;
+
+  // tight_layout
+  pybind11::object tight_layout;
 };
 
 // add_subplot
