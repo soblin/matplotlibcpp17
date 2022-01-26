@@ -6,26 +6,58 @@ struct __attribute__((visibility("hidden"))) Axes {
     load_attrs();
   }
   void load_attrs() {
-    LOAD_ATTR(plot, self);
-    LOAD_ATTR(set, self);
-    LOAD_ATTR(grid, self);
-    LOAD_ATTR(set_xlabel, self);
-    LOAD_ATTR(set_ylabel, self);
-    get_xticklabels_attr = self.attr("get_xticklabels");
+    LOAD_VOID_ATTR(axhline, self);
+    LOAD_VOID_ATTR(fill_between, self);
+    LOAD_VOID_ATTR(get_xaxis_transform, self);
+    LOAD_NONVOID_ATTR(get_xticklabels, self);
+    LOAD_VOID_ATTR(grid, self);
+    LOAD_VOID_ATTR(plot, self);
+    LOAD_VOID_ATTR(set, self);
+    LOAD_VOID_ATTR(set_title, self);
+    LOAD_VOID_ATTR(set_xlabel, self);
+    LOAD_VOID_ATTR(set_ylabel, self);
   }
   pybind11::object self;
-  pybind11::object plot;
-  pybind11::object set;
-  pybind11::object grid;
-  pybind11::object set_xlabel;
-  pybind11::object set_ylabel;
+
+  // axhline
+  pybind11::object axhline;
+
+  // fill_between
+  pybind11::object fill_between;
+
+  // get_xaxis_transform
+  /// TODO: currently returns py::object
+  pybind11::object get_xaxis_transform;
+
+  // get_xticklabels
+  std::vector<Text> get_xticklabels();
   pybind11::object get_xticklabels_attr;
-  std::vector<Text> get_xticklabels() {
-    pybind11::list ret = get_xticklabels_attr();
-    std::vector<Text> texts;
-    for (pybind11::size_t i = 0; i < ret.size(); ++i) {
-      texts.push_back(Text(ret[i]));
-    }
-    return texts;
-  }
+
+  // grid
+  pybind11::object grid;
+
+  // plot
+  pybind11::object plot;
+
+  // set
+  pybind11::object set;
+
+  // set_title
+  pybind11::object set_title;
+
+  // set_xtabel
+  pybind11::object set_xlabel;
+
+  // set_ylabel
+  pybind11::object set_ylabel;
 };
+
+// get_xticklabels
+std::vector<Text> Axes::get_xticklabels() {
+  pybind11::list ret = get_xticklabels_attr();
+  std::vector<Text> texts;
+  for (pybind11::size_t i = 0; i < ret.size(); ++i) {
+    texts.push_back(Text(ret[i]));
+  }
+  return texts;
+}
