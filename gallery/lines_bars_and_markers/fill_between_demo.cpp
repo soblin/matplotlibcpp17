@@ -82,6 +82,7 @@ int main2() {
                    "alpha"_a = 0.3, "interpolate"_a = true);
   fig.tight_layout();
   plt.show();
+  return 0;
 }
 
 int main3() {
@@ -100,6 +101,7 @@ int main3() {
   ax.fill_between(x, 0, 1, "where"_a = where, "color"_a = "green",
                   "alpha"_a = 0.5, "transform"_a = ax.get_xaxis_transform());
   plt.show();
+  return 0;
 }
 
 int main() {

@@ -7,10 +7,14 @@ struct __attribute__((visibility("hidden"))) pyplot {
   void load_attrs() {
     LOAD_NONVOID_ATTR(axes, mod);
     LOAD_NONVOID_ATTR(figure, mod);
+    LOAD_VOID_ATTR(legend, mod);
     LOAD_VOID_ATTR(plot, mod);
+    LOAD_VOID_ATTR(scatter, mod);
     LOAD_VOID_ATTR(show, mod);
     LOAD_NONVOID_ATTR(subplot, mod);
     LOAD_NONVOID_ATTR(subplots, mod);
+    LOAD_VOID_ATTR(xlabel, mod);
+    LOAD_VOID_ATTR(ylabel, mod);
   }
   pybind11::module mod;
 
@@ -22,10 +26,16 @@ struct __attribute__((visibility("hidden"))) pyplot {
   Figure figure(const pybind11::dict &kwargs);
   pybind11::object figure_attr;
 
+  // legend
+  pybind11::object legend;
+
   // plot
   /// TODO: should implement overloaded functions for plot like plot(x, y,
   /// **kwargs) and plot(x, **kwargs) and set plot_attr?
   pybind11::object plot;
+
+  // scatter
+  pybind11::object scatter;
 
   // show
   pybind11::object show;
@@ -39,6 +49,12 @@ struct __attribute__((visibility("hidden"))) pyplot {
   std::tuple<Figure, std::vector<Axes>> subplots(int r, int c,
                                                  const pybind11::dict &kwargs);
   pybind11::object subplots_attr;
+
+  // xlabel
+  pybind11::object xlabel;
+
+  // ylabel
+  pybind11::object ylabel;
 };
 
 // axes
