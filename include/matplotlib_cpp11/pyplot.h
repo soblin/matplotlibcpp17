@@ -1,6 +1,6 @@
-struct __attribute__((visibility("hidden"))) pyplot {
-  pyplot() {}
-  pyplot(pybind11::module mod_) {
+struct __attribute__((visibility("hidden"))) PyPlot {
+  PyPlot() {}
+  PyPlot(pybind11::module mod_) {
     mod = mod_;
     load_attrs();
   }
@@ -58,25 +58,25 @@ struct __attribute__((visibility("hidden"))) pyplot {
 };
 
 // axes
-Axes pyplot::axes(const pybind11::dict &kwargs = pybind11::dict()) {
+Axes PyPlot::axes(const pybind11::dict &kwargs = pybind11::dict()) {
   pybind11::object ax_obj = axes_attr(**kwargs);
   return Axes(ax_obj);
 }
 
 // figure
-Figure pyplot::figure(const pybind11::dict &kwargs = pybind11::dict()) {
+Figure PyPlot::figure(const pybind11::dict &kwargs = pybind11::dict()) {
   pybind11::object fig_obj = figure_attr(**kwargs);
   return Figure(fig_obj);
 }
 
 // subplot
-Axes pyplot::subplot(const pybind11::dict &kwargs = pybind11::dict()) {
+Axes PyPlot::subplot(const pybind11::dict &kwargs = pybind11::dict()) {
   return Axes(subplot_attr(**kwargs));
 }
 
 // subplots
 std::tuple<Figure, Axes>
-pyplot::subplots(const pybind11::dict &kwargs = pybind11::dict()) {
+PyPlot::subplots(const pybind11::dict &kwargs = pybind11::dict()) {
   pybind11::list ret = subplots_attr(**kwargs);
   pybind11::object fig = ret[0];
   pybind11::object ax = ret[1];
@@ -84,7 +84,7 @@ pyplot::subplots(const pybind11::dict &kwargs = pybind11::dict()) {
 }
 
 std::tuple<Figure, std::vector<Axes>>
-pyplot::subplots(int r, int c, const pybind11::dict &kargs = pybind11::dict()) {
+PyPlot::subplots(int r, int c, const pybind11::dict &kargs = pybind11::dict()) {
   pybind11::tuple args = pybind11::make_tuple(r, c);
   pybind11::list ret = subplots_attr(*args, **args);
   std::vector<Axes> axes;
@@ -104,13 +104,13 @@ pyplot::subplots(int r, int c, const pybind11::dict &kargs = pybind11::dict()) {
 
 static bool g_imported = false;
 
-static pyplot &import() {
-  static pyplot g_pyplot;
+static PyPlot &import() {
+  static PyPlot g_pyplot;
   if (not g_imported) {
     g_imported = true;
     // pyplot singleton
     auto mod = pybind11::module::import("matplotlib.pyplot");
-    g_pyplot = pyplot(mod);
+    g_pyplot = PyPlot(mod);
   }
   return g_pyplot;
 }
