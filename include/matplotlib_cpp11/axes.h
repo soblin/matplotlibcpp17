@@ -9,6 +9,7 @@ struct __attribute__((visibility("hidden"))) Axes {
     LOAD_VOID_ATTR(axhline, self);
     LOAD_VOID_ATTR(fill, self);
     LOAD_VOID_ATTR(fill_between, self);
+    LOAD_VOID_ATTR(fill_betweenx, self);
     LOAD_VOID_ATTR(get_xaxis_transform, self);
     LOAD_NONVOID_ATTR(get_xticklabels, self);
     LOAD_VOID_ATTR(grid, self);
@@ -28,6 +29,9 @@ struct __attribute__((visibility("hidden"))) Axes {
 
   // fill_between
   pybind11::object fill_between;
+
+  // fill_betweenx
+  pybind11::object fill_betweenx;
 
   // get_xaxis_transform
   /// TODO: currently returns py::object

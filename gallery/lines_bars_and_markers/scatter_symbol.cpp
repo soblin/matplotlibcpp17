@@ -1,5 +1,5 @@
 // example from
-// https://matplotlib.org/stable/gallery/lines_bars_and_markers/scatter_symbol.html#sphx-glr-gallery-lines-bars-and-markers-scatter-symbol-py
+// https://matplotlib.org/stable/gallery/lines_bars_and_markers/scatter_symbol.html
 
 #include <pybind11/embed.h>
 #include <pybind11/stl.h>

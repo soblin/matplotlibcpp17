@@ -26,8 +26,8 @@ struct __attribute__((visibility("hidden"))) Figure {
 };
 
 // add_subplot
-Axes Figure::add_subplot(const pybind11::tuple &args,
-                         const pybind11::dict &kwargs) {
+Axes Figure::add_subplot(const pybind11::tuple &args = pybind11::tuple(),
+                         const pybind11::dict &kwargs = pybind11::dict()) {
   pybind11::object obj = add_subplot_attr(*args, **kwargs);
   return Axes(obj);
 }

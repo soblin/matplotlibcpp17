@@ -1,5 +1,5 @@
 // example from
-// https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html#sphx-glr-gallery-lines-bars-and-markers-simple-plot-py
+// https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html
 
 #include <pybind11/embed.h>
 #include <pybind11/stl.h>

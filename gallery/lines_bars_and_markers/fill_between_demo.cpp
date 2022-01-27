@@ -1,5 +1,5 @@
 // example from
-// https://matplotlib.org/stable/gallery/lines_bars_and_markers/fill_between_demo.html#sphx-glr-gallery-lines-bars-and-markers-fill-between-demo-py
+// https://matplotlib.org/stable/gallery/lines_bars_and_markers/fill_between_demo.html
 
 #include <pybind11/embed.h>
 #include <pybind11/stl.h>

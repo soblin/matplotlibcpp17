@@ -1,5 +1,5 @@
 // example from
-// https://matplotlib.org/stable/gallery/subplots_axes_and_figures/align_labels_demo.html#sphx-glr-gallery-subplots-axes-and-figures-align-labels-demo-py
+// https://matplotlib.org/stable/gallery/subplots_axes_and_figures/align_labels_demo.html
 
 #include <pybind11/embed.h>
 #include <pybind11/stl.h>
@@ -19,7 +19,6 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
   T val = start;
   for (int i = 0; i < N; ++i) {
     xs[i] = val;
-    ;
     val += h;
   }
   return xs;
@@ -33,12 +32,16 @@ int main() {
   auto plt = pyplot::import();
   auto fig = plt.figure(py::dict("tight_layout"_a = true));
   auto gs = pyplot::GridSpec(2, 2);
-  auto ax = fig.add_subplot(py::make_tuple(gs(0, -1)), {});
+  // instead of gs[0, :], use gs(0, -1) for slicing
+  auto ax = fig.add_subplot(py::make_tuple(gs(0, -1)));
   ax.plot(arange(0, 1000000, 10000));
   ax.set_ylabel("YLabel0");
   ax.set_xlabel("XLabel0");
   for (auto i : {0, 1}) {
-    ax = fig.add_subplot(py::make_tuple(gs(1, i)), {});
+    // TODO: in the future gs(r, c) are supposed to return `class SubplotSpec`
+    // So `.object()` method will be necessary for all wrapper classes to be
+    // passed to the interpreter as internal python objects.
+    ax = fig.add_subplot(py::make_tuple(gs(1, i)));
     auto ys = arange(1.0, 0.0, -0.1);
     decltype(ys) xs;
     transform(ys.begin(), ys.end(), back_inserter(xs),
