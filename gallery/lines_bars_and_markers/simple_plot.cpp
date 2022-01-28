@@ -25,11 +25,10 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
 }
 
 using namespace std;
-namespace pyplot = matplotlib_cpp11;
 
 int main() {
   py::initialize_interpreter();
-  auto plt = pyplot::import();
+  auto plt = matplotlib_cpp11::pyplot::import();
   vector<double> t = arange(0.0, 2.0, 0.01);
   decltype(t) s;
   transform(t.begin(), t.end(), back_inserter(s),

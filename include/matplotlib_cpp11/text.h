@@ -1,3 +1,5 @@
+namespace text {
+
 struct __attribute__((visibility("hidden"))) Text {
   Text(pybind11::object text) {
     self = text;
@@ -7,3 +9,5 @@ struct __attribute__((visibility("hidden"))) Text {
   pybind11::object self;
   pybind11::object set_rotation;
 };
+
+} // namespace text

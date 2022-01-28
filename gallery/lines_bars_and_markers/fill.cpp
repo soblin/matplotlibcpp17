@@ -13,7 +13,6 @@ namespace py = pybind11;
 using namespace py::literals;
 
 using namespace std;
-namespace pyplot = matplotlib_cpp11;
 
 int main() {
   const double scale = 10;
@@ -30,7 +29,7 @@ int main() {
             });
 
   py::initialize_interpreter();
-  auto plt = pyplot::import();
+  auto plt = matplotlib_cpp11::pyplot::import();
   auto [fig, axes] =
       plt.subplots(1, 3,
                    py::dict("figsize"_a = py::make_tuple(9, 3),

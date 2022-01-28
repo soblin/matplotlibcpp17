@@ -1,4 +1,4 @@
-#include <vector>
+namespace axes {
 
 struct __attribute__((visibility("hidden"))) Axes {
   Axes(pybind11::object axes) {
@@ -38,7 +38,7 @@ struct __attribute__((visibility("hidden"))) Axes {
   pybind11::object get_xaxis_transform;
 
   // get_xticklabels
-  std::vector<Text> get_xticklabels();
+  std::vector<text::Text> get_xticklabels();
   pybind11::object get_xticklabels_attr;
 
   // grid
@@ -61,11 +61,13 @@ struct __attribute__((visibility("hidden"))) Axes {
 };
 
 // get_xticklabels
-std::vector<Text> Axes::get_xticklabels() {
+std::vector<text::Text> Axes::get_xticklabels() {
   pybind11::list ret = get_xticklabels_attr();
-  std::vector<Text> texts;
+  std::vector<text::Text> texts;
   for (pybind11::size_t i = 0; i < ret.size(); ++i) {
-    texts.push_back(Text(ret[i]));
+    texts.push_back(text::Text(ret[i]));
   }
   return texts;
 }
+
+} // namespace axes

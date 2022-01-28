@@ -1,3 +1,5 @@
+namespace gridspec {
+
 struct __attribute__((visibility("hidden"))) GridSpec {
   GridSpec(int nrow_, int ncol_) {
     nrow = nrow_;
@@ -27,3 +29,5 @@ struct __attribute__((visibility("hidden"))) GridSpec {
   pybind11::object self;
   pybind11::object gridspec_attr;
 };
+
+} // namespace gridspec
