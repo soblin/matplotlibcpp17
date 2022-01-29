@@ -25,14 +25,14 @@ From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.co
 
 ```cpp
   // plt object(singleton object)
-  auto plt = pyplot::import();
+  auto plt = matplotlib_cpp11::pyplot::import();
 
   // non-void function: capsulate args and kwargs in py::tuple and py::dict
   /// you can call `auto fig = plt.figure()` with default empty arguments :)
   auto fig = plt.figure(py::dict("tight_layout"_a = true));
 
   // wrapper classes for returned value are implemented in this library
-  auto gs = pyplot::GridSpec(2, 2);
+  auto gs = GridSpec(2, 2);
 
   // non-void function: capsulate args and kwargs in py::tuple and py::dict
   auto ax = fig.add_subplot(py::make_tuple(gs(0, -1)));

@@ -25,13 +25,13 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
 }
 
 using namespace std;
-namespace pyplot = matplotlib_cpp11;
+using matplotlib_cpp11::gridspec::GridSpec;
 
 int main() {
   py::initialize_interpreter();
-  auto plt = pyplot::import();
+  auto plt = matplotlib_cpp11::pyplot::import();
   auto fig = plt.figure(py::dict("tight_layout"_a = true));
-  auto gs = pyplot::GridSpec(2, 2);
+  auto gs = GridSpec(2, 2);
   // instead of gs[0, :], use gs(0, -1) for slicing
   auto ax = fig.add_subplot(py::make_tuple(gs(0, -1)));
   ax.plot(arange(0, 1000000, 10000));

@@ -15,7 +15,6 @@ namespace py = pybind11;
 using namespace py::literals;
 
 using namespace std;
-namespace pyplot = matplotlib_cpp11;
 
 int main1() {
   const int N = 5;
@@ -26,7 +25,7 @@ int main1() {
   vector<int> ind = {0, 1, 2, 3, 4}; // the x locations for the groups
   const double width =
       0.35; // the width of the bars: can also be len(x) sequence
-  auto plt = pyplot::import();
+  auto plt = matplotlib_cpp11::pyplot::import();
   auto [fig, ax] = plt.subplots();
   auto p1 = ax.bar(py::make_tuple(ind, menMeans, width),
                    py::dict("yerr"_a = menStd, "label"_a = "Men"));
@@ -54,7 +53,7 @@ int main2() {
                                 8.66745522, 12.77785333};
   vector<double> error = {0.70633485, 0.24791576, 0.15788335, 0.69769852,
                           0.71995667};
-  auto plt = pyplot::import();
+  auto plt = matplotlib_cpp11::pyplot::import();
   auto [fig, ax] = plt.subplots();
   auto hbars = ax.barh(py::make_tuple(y_pos, performance),
                        py::dict("xerr"_a = error, "align"_a = "center"));
@@ -77,7 +76,7 @@ int main3() {
                                 8.66745522, 12.77785333};
   vector<double> error = {0.70633485, 0.24791576, 0.15788335, 0.69769852,
                           0.71995667};
-  auto plt = pyplot::import();
+  auto plt = matplotlib_cpp11::pyplot::import();
   auto [fig, ax] = plt.subplots();
   auto hbars = ax.barh(py::make_tuple(y_pos, performance),
                        py::dict("xerr"_a = error, "align"_a = "center"));
