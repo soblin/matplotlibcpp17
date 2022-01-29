@@ -28,6 +28,8 @@ int main() {
   - exception: `subplots`, 
   - conversion: Wrapper classes of matplotlibcpp17 like [::container::BarContainer](https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h) need to be passed to python interpreter using `unwrap()` method in *args* and *kwargs*.
 
+## Examples
+
 ### minimal example
 
 ```cpp
