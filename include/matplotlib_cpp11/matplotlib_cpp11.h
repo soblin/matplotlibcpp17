@@ -8,6 +8,7 @@ namespace matplotlib_cpp11 {
 #include "common.h"
 
 #include "text.h"
+#include "container.h"
 #include "axes.h"
 #include "figure.h"
 #include "gridspec.h"
