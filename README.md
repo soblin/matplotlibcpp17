@@ -32,7 +32,12 @@ int main() {
 
 ```cpp
 g++ hello_world.cpp -std=c++17 -I./include -I/usr/include/python3.x -I<path to pybind11> -lpython3.x
+./a.out
 ```
+
+gives
+
+![minimal example](https://github.com/soblin/matplotlibcpp17/blob/master/hello_world.png)
 
 ### example1
 
