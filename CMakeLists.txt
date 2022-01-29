@@ -1,4 +1,4 @@
-project(matplotlib-cpp11)
+project(matplotlibcpp17)
 cmake_minimum_required(VERSION 3.0)
 
 find_package(PythonLibs 3 REQUIRED)
@@ -9,22 +9,19 @@ if(NOT DEFINED ADD_DEMO)
   set(ADD_DEMO ON)
 endif()
 
+set(matplotlibcpp17_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include")
+
 function(add_demo name path)
   add_executable(${name} ${path})
-  target_include_directories(${name} PUBLIC ${pybind11_INCLUDE_DIR} ${PYTHON_INCLUDE_DIRS} include/)
+  target_include_directories(${name} PUBLIC ${pybind11_INCLUDE_DIR} ${PYTHON_INCLUDE_DIRS} ${matplotlibcpp17_INCLUDE_DIRS})
   target_link_libraries(${name} ${PYTHON_LIBRARY} pybind11::embed)
 endfunction()
 
 if(${ADD_DEMO})
   set(CMAKE_CXX_STANDARD 17)
   set(CMAKE_CXX_FLAGS "-Wall -g")
-  add_demo(bar_label_demo gallery/lines_bars_and_markers/bar_label_demo.cpp)
-  add_demo(fill gallery/lines_bars_and_markers/fill.cpp)
-  add_demo(simple_plot gallery/lines_bars_and_markers/simple_plot.cpp)
-  add_demo(scatter_symbol gallery/lines_bars_and_markers/scatter_symbol.cpp)
-  add_demo(fill_between_demo gallery/lines_bars_and_markers/fill_between_demo.cpp)
-  add_demo(fill_betweenx_demo gallery/lines_bars_and_markers/fill_betweenx_demo.cpp)
-  add_demo(align_labels_demo gallery/subplots_axes_and_figures/align_labels_demo.cpp)
+  add_subdirectory(gallery/lines_bars_and_markers)
+  add_subdirectory(gallery/subplots_axes_and_figures)
 endif()
 
 if(NOT DEFINED DO_TEST)

@@ -1,9 +1,9 @@
 // example from
-// https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html#sphx-glr-gallery-lines-bars-and-markers-simple-plot-py
+// https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html
 
 #include <pybind11/stl.h>
 
-#include <matplotlib_cpp11/matplotlib_cpp11.h>
+#include <matplotlibcpp17/matplotlibcpp17.h>
 
 #include <algorithm>
 #include <vector>
@@ -25,7 +25,7 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
 using namespace std;
 
 void func() {
-  auto plt = matplotlib_cpp11::pyplot::import();
+  auto plt = matplotlibcpp17::pyplot::import();
   auto t = arange(0.0, 2.0, 0.01);
   decltype(t) s;
   transform(t.begin(), t.end(), back_inserter(s),

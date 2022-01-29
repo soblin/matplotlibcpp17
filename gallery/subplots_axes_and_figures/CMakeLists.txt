@@ -1,0 +1,1 @@
+add_demo(align_labels_demo align_labels_demo.cpp)

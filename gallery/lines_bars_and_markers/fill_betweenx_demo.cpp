@@ -4,7 +4,7 @@
 #include <pybind11/embed.h>
 #include <pybind11/stl.h>
 
-#include <matplotlib_cpp11/matplotlib_cpp11.h>
+#include <matplotlibcpp17/matplotlibcpp17.h>
 
 #include <algorithm>
 #include <vector>
@@ -26,7 +26,7 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
 using namespace std;
 
 int main1() {
-  auto plt = matplotlib_cpp11::pyplot::import();
+  auto plt = matplotlibcpp17::pyplot::import();
   vector<double> y = arange(0.0, 2.0, 0.01);
   vector<double> x1, x2;
   transform(y.begin(), y.end(), back_inserter(x1),

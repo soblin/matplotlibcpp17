@@ -1,31 +1,48 @@
-# matplotlib-cpp11
+# matplotlibcpp17
 
 This project aims to replace [matplotlibcpp](https://github.com/lava/matplotlib-cpp) using [pybind11](https://github.com/pybind/pybind11) as backend.
 
 ## Dependencies
 
-- pybind11(https://github.com/pybind/pybind11) >= version2.9.0
+- pybind11(https://github.com/pybind/pybind11) >= 2.9.0
 - compatible with matplotlib(https://matplotlib.org/stable/index.html) == 3.5.1 as of now
 
 ## Usage
 
 Just add include path to `include` directory of this project.
 
+In `main()` function the following lines must be called (otherwise the program will crash).
+
+```cpp
+int main() {
+  pybind11::initialize_interpreter();
+  auto plt = matplotlibcpp17::pyplot::import();
+  /// user code
+}
+```
+
 ## Syntax
 
 - `void` functions can be called in almost the same way as python code (remind yourself to append `_a` literal to keyword arguments).
-- (**tentative**) For `non-void` functions that return some objects, basically the user will need to capsulate *arguments* in `pybind11::tuple` and *keyword arguments* in `pybind11::dict("k1"_a = v1, "k2"_a = v2, ...)`. The returned value is a corresponding wrapper class. Please refer to the examples below.
+- For `non-void` functions that return some objects, basically the user will need to capsulate *arguments* in `pybind11::tuple` and *keyword arguments* in `pybind11::dict("k1"_a = v1, "k2"_a = v2, ...)`. The returned value is a corresponding wrapper class. Please refer to the examples below.
   - exception: `subplots`, 
+  - conversion: Wrapper classes of matplotlibcpp17 like [::container::BarContainer](https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h) need to be passed to python interpreter using `unwrap()` method in *args* and *kwargs*.
+
+### minimal example
+
+```cpp
+g++ hello_world.cpp -std=c++17 -I./include -I/usr/include/python3.x -I<path to pybind11> -lpython3.x
+```
 
 ### example1
 
-From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.com/soblin/matplotlib-cpp11/blob/master/gallery/subplots_axes_and_figures/align_labels_demo.cpp).
+From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/subplots_axes_and_figures/align_labels_demo.cpp).
 
 - [original python code](https://matplotlib.org/stable/gallery/subplots_axes_and_figures/align_labels_demo.html)
 
 ```cpp
   // plt object(singleton object)
-  auto plt = matplotlib_cpp11::pyplot::import();
+  auto plt = matplotlibcpp17::pyplot::import();
 
   // non-void function: capsulate args and kwargs in py::tuple and py::dict
   /// you can call `auto fig = plt.figure()` with default empty arguments :)
@@ -45,26 +62,43 @@ From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.co
 
 ### example2
 
-From [gallery/lines_bars_and_markers/fill_between_demo.cpp](https://github.com/soblin/matplotlib-cpp11/blob/master/gallery/lines_bars_and_markers/fill_between_demo.cpp).
+From [gallery/lines_bars_and_markers/bar_label_demo.cpp](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/lines_bars_and_markers/bar_label_demo.cpp). Here `subplots()` returns `tuple<Figure, Axes>`.
 
-- [original python code](https://matplotlib.org/stable/gallery/lines_bars_and_markers/fill_between_demo.html)
+- [original python code](https://matplotlib.org/stable/gallery/lines_bars_and_markers/bar_label_demo.html)
 
 ```cpp
+  auto [fig, ax] = plt.subplots();
   // non-void function: capsulate args and kwargs in py::tuple and py::dict
-  /// subplot returns different types depending on the argument value, so this function is overloaded (see pyplot.h).
-  auto [fig, axs] = plt.subplots(2, 1, py::dict("sharex"_a = true));
-  auto ax1 = axs[0], ax2 = axs[1];
+  auto p1 = ax.bar(py::make_tuple(ind, menMeans, width),
+                   py::dict("yerr"_a = menStd, "label"_a = "Men"));
+  auto p2 = ax.bar(py::make_tuple(ind, womenMeans, width),
+                   py::dict("bottom"_a = menMeans, "yerr"_a = womenStd,
+                            "label"_a = "Women"));
+  ax.axhline(0, "color"_a = "grey", "linewidth"_a = 0.8);
+  ax.set_ylabel("Scores");
+  ax.set_title("Scores by group and gender");
+  ax.set_xticks(ind, py::make_tuple("G1", "G2", "G3", "G4", "G5"));
+  ax.legend();
 
-  // void function: no need to capsulate args and kwargs
-  ax1.set_title("interpolation=False");
-  ax1.plot(x, y1, "o--");
-  ax1.plot(x, y2, "o--");
-  vector<bool> where = {true, true, false, false};
-  ax1.fill_between(x, y1, y2, "where"_a = where, "color"_a = "C0",
-                   "alpha"_a = 0.3);
-  where = {false, false, true, true};
-  ax1.fill_between(x, y1, y2, "where"_a = where, "color"_a = "C1",
-                   "alpha"_a = 0.3);
+  // pass wrapper classes like p1 of ::container::BarContainer to the interpreter using .unwrap() method as python object
+  ax.bar_label(p1.unwrap(), "label_type"_a = "center");
+  ax.bar_label(p2.unwrap(), "label_type"_a = "center");
+  ax.bar_label(p2.unwrap());
+  plt.show();
+```
+
+### example3
+
+Fucntions like `subplots`, `TBD`s are overloaded because they return different types depending on the arguments. Here `subplots()` returns `tuple<Figure, vector<Axes>>`.
+
+From [gallery/lines_bars_and_markers](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/lines_bars_and_markers/fill.cpp)
+
+```cpp
+  auto [fig, axes] =
+      plt.subplots(1, 3,
+                   py::dict("figsize"_a = py::make_tuple(9, 3),
+                            "subplot_kw"_a = py::dict("aspect"_a = "equal")));
+  auto ax1 = axes[0], ax2 = axes[1], ax3 = axes[2];
 ```
 
 ## Demos

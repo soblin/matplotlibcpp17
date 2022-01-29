@@ -1,9 +1,9 @@
-#ifndef MATPLOTLIBCPP_11_H
-#define MATPLOTLIBCPP_11_H
+#ifndef MATPLOTLIBCPP_17_H
+#define MATPLOTLIBCPP_17_H
 
 #include <pybind11/pybind11.h>
 
-namespace matplotlib_cpp11 {
+namespace matplotlibcpp17 {
 
 #include "common.h"
 
@@ -14,6 +14,6 @@ namespace matplotlib_cpp11 {
 #include "gridspec.h"
 #include "pyplot.h"
 
-} // namespace matplotlib_cpp11
+} // namespace matplotlibcpp17
 
-#endif /* MATPLOTLIBCPP_11_H */
+#endif /* MATPLOTLIBCPP_17_H */

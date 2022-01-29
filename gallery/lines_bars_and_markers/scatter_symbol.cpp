@@ -4,7 +4,7 @@
 #include <pybind11/embed.h>
 #include <pybind11/stl.h>
 
-#include <matplotlib_cpp11/matplotlib_cpp11.h>
+#include <matplotlibcpp17/matplotlibcpp17.h>
 
 #include <algorithm>
 #include <vector>
@@ -28,7 +28,7 @@ using namespace std;
 
 int main() {
   py::initialize_interpreter();
-  auto plt = matplotlib_cpp11::pyplot::import();
+  auto plt = matplotlibcpp17::pyplot::import();
   vector<double> x = {0.,  2.,  4.,  6.,  8.,  10., 12., 14., 16.,
                       18., 20., 22., 24., 26., 28., 30., 32., 34.,
                       36., 38., 40., 42., 44., 46., 48.};

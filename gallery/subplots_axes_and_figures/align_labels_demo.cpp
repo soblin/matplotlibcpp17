@@ -4,7 +4,7 @@
 #include <pybind11/embed.h>
 #include <pybind11/stl.h>
 
-#include <matplotlib_cpp11/matplotlib_cpp11.h>
+#include <matplotlibcpp17/matplotlibcpp17.h>
 
 #include <algorithm>
 #include <iostream>
@@ -25,11 +25,11 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
 }
 
 using namespace std;
-using matplotlib_cpp11::gridspec::GridSpec;
+using matplotlibcpp17::gridspec::GridSpec;
 
 int main() {
   py::initialize_interpreter();
-  auto plt = matplotlib_cpp11::pyplot::import();
+  auto plt = matplotlibcpp17::pyplot::import();
   auto fig = plt.figure(py::dict("tight_layout"_a = true));
   auto gs = GridSpec(2, 2);
   // instead of gs[0, :], use gs(0, -1) for slicing

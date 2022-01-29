@@ -4,7 +4,7 @@
 #include <pybind11/embed.h>
 #include <pybind11/stl.h>
 
-#include <matplotlib_cpp11/matplotlib_cpp11.h>
+#include <matplotlibcpp17/matplotlibcpp17.h>
 
 #include <algorithm>
 #include <vector>
@@ -29,7 +29,7 @@ int main() {
             });
 
   py::initialize_interpreter();
-  auto plt = matplotlib_cpp11::pyplot::import();
+  auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, axes] =
       plt.subplots(1, 3,
                    py::dict("figsize"_a = py::make_tuple(9, 3),

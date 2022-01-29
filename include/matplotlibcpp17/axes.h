@@ -36,14 +36,16 @@ struct __attribute__((visibility("hidden"))) Axes {
   pybind11::object axhline;
 
   // bar
-  BarContainer bar(const pybind11::tuple &args, const pybind11::dict &kwargs);
+  container::BarContainer bar(const pybind11::tuple &args,
+                              const pybind11::dict &kwargs);
   pybind11::object bar_attr;
 
   // bar_label
   pybind11::object bar_label;
 
   // barh
-  BarContainer barh(const pybind11::tuple &args, const pybind11::dict &kwargs);
+  container::BarContainer barh(const pybind11::tuple &args,
+                               const pybind11::dict &kwargs);
   pybind11::object barh_attr;
 
   // fill
@@ -98,17 +100,17 @@ struct __attribute__((visibility("hidden"))) Axes {
 };
 
 // bar
-BarContainer Axes::bar(const pybind11::tuple &args,
-                       const pybind11::dict &kwargs) {
+container::BarContainer Axes::bar(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
   pybind11::object obj = bar_attr(*args, **kwargs);
-  return BarContainer(obj);
+  return container::BarContainer(obj);
 }
 
 // barh
-BarContainer Axes::barh(const pybind11::tuple &args,
-                        const pybind11::dict &kwargs) {
+container::BarContainer Axes::barh(const pybind11::tuple &args,
+                                   const pybind11::dict &kwargs) {
   pybind11::object obj = barh_attr(*args, **kwargs);
-  return BarContainer(obj);
+  return container::BarContainer(obj);
 }
 
 // get_xticklabels

@@ -1,0 +1,6 @@
+add_demo(bar_label_demo bar_label_demo.cpp)
+add_demo(fill fill.cpp)
+add_demo(simple_plot simple_plot.cpp)
+add_demo(scatter_symbol scatter_symbol.cpp)
+add_demo(fill_between_demo fill_between_demo.cpp)
+add_demo(fill_betweenx_demo fill_betweenx_demo.cpp)
