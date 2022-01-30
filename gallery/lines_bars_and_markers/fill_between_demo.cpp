@@ -104,7 +104,7 @@ int main3() {
 }
 
 int main() {
-  py::initialize_interpreter();
+  py::scoped_interpreter gurad{};
   main1();
   main2();
   main3();

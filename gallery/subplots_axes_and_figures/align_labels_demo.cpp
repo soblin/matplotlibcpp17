@@ -28,7 +28,7 @@ using namespace std;
 using matplotlibcpp17::gridspec::GridSpec;
 
 int main() {
-  py::initialize_interpreter();
+  py::scoped_interpreter gurad{};
   auto plt = matplotlibcpp17::pyplot::import();
   auto fig = plt.figure(py::dict("tight_layout"_a = true));
   auto gs = GridSpec(2, 2);

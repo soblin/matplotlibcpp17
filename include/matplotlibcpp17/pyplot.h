@@ -104,16 +104,10 @@ PyPlot::subplots(int r, int c, const pybind11::dict &kargs = pybind11::dict()) {
   return {figure, axes};
 }
 
-static bool g_imported = false;
-
-static PyPlot &import() {
-  static PyPlot g_pyplot;
-  if (not g_imported) {
-    g_imported = true;
-    // PyPlot singleton
-    auto mod = pybind11::module::import("matplotlib.pyplot");
-    g_pyplot = PyPlot(mod);
-  }
+PyPlot import() {
+  // PyPlot singleton
+  auto mod = pybind11::module::import("matplotlib.pyplot");
+  auto g_pyplot = PyPlot(mod);
   return g_pyplot;
 }
 
