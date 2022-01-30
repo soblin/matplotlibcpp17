@@ -14,7 +14,7 @@ Just add include path to `include` directory of this project.
 ## Syntax
 
 - `void` functions can be called in almost the same way as python code (remind yourself to append `_a` literal to keyword arguments).
-- For `non-void` functions that return some objects, basically the user will need to capsulate *arguments* in `pybind11::tuple` and *keyword arguments* in `pybind11::dict("k1"_a = v1, "k2"_a = v2, ...)`. The returned value is a corresponding wrapper class. Please refer to the examples below.
+- For `non-void` functions that return some objects, basically the user will need to capsulate *arguments* in `::util::args_(arg1, arg2, ...) == pybind11:tuple` and *keyword arguments* in `::util::kwargs_("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict`. The returned value is a corresponding wrapper class. Please refer to the examples below.
   - exception: `subplots`, 
   - conversion: Wrapper classes of matplotlibcpp17 like [::container::BarContainer](https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h) need to be passed to python interpreter using `unwrap()` method in *args* and *kwargs*.
 
@@ -42,13 +42,13 @@ From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.co
 
   // non-void function: capsulate args and kwargs in py::tuple and py::dict
   /// you can call `auto fig = plt.figure()` with default empty arguments :)
-  auto fig = plt.figure(py::dict("tight_layout"_a = true));
+   auto ax = fig.add_subplot(args_(gs(0, py::slice(0, 2, 1)).unwrap()));
 
   // wrapper classes for returned value are implemented in this library
   auto gs = GridSpec(2, 2);
 
   // non-void function: capsulate args and kwargs in py::tuple and py::dict
-  auto ax = fig.add_subplot(py::make_tuple(gs(0, py::slice(0, 2, 1)).unwrap()));
+  auto ax = fig.add_subplot(args_(gs(0, py::slice(0, 2, 1)).unwrap()));
 
   // void function: no need to capsulate args and kwargs
   ax.plot(arange(0, 1000000, 10000));
@@ -65,11 +65,11 @@ From [gallery/lines_bars_and_markers/bar_label_demo.cpp](https://github.com/sobl
 ```cpp
   auto [fig, ax] = plt.subplots();
   // non-void function: capsulate args and kwargs in py::tuple and py::dict
-  auto p1 = ax.bar(py::make_tuple(ind, menMeans, width),
-                   py::dict("yerr"_a = menStd, "label"_a = "Men"));
-  auto p2 = ax.bar(py::make_tuple(ind, womenMeans, width),
-                   py::dict("bottom"_a = menMeans, "yerr"_a = womenStd,
-                            "label"_a = "Women"));
+  auto p1 = ax.bar(args_(ind, menMeans, width),
+                   kwargs_("yerr"_a = menStd, "label"_a = "Men"));
+  auto p2 = ax.bar(
+      args_(ind, womenMeans, width),
+      kwargs_("bottom"_a = menMeans, "yerr"_a = womenStd, "label"_a = "Women"));
   ax.axhline(0, "color"_a = "grey", "linewidth"_a = 0.8);
   ax.set_ylabel("Scores");
   ax.set_title("Scores by group and gender");
@@ -92,8 +92,8 @@ From [gallery/lines_bars_and_markers](https://github.com/soblin/matplotlibcpp17/
 ```cpp
   auto [fig, axes] =
       plt.subplots(1, 3,
-                   py::dict("figsize"_a = py::make_tuple(9, 3),
-                            "subplot_kw"_a = py::dict("aspect"_a = "equal")));
+                   kwargs_("figsize"_a = py::make_tuple(9, 3),
+                           "subplot_kw"_a = py::dict("aspect"_a = "equal")));
   auto ax1 = axes[0], ax2 = axes[1], ax3 = axes[2];
 ```
 

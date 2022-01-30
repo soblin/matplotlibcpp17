@@ -25,6 +25,8 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
 
 using namespace std;
 
+using namespace matplotlibcpp17::util;
+
 int main1() {
   auto plt = matplotlibcpp17::pyplot::import();
 
@@ -35,7 +37,7 @@ int main1() {
   transform(x.begin(), x.end(), back_inserter(y2),
             [](double t) { return 0.8 * sin(4 * M_PI * t); });
   auto [fig, axes] = plt.subplots(
-      3, 1, py::dict("sharex"_a = true, "figsize"_a = py::make_tuple(6, 6)));
+      3, 1, kwargs_("sharex"_a = true, "figsize"_a = py::make_tuple(6, 6)));
   auto ax1 = axes[0], ax2 = axes[1], ax3 = axes[2];
   ax1.fill_between(x, y1);
   ax1.set_title("fill between y1 and 0");
@@ -57,7 +59,7 @@ int main2() {
   vector<double> x = {0, 1, 2, 3};
   vector<double> y1 = {0.8, 0.8, 0.2, 0.2};
   vector<double> y2 = {0, 0, 1, 1};
-  auto [fig, axs] = plt.subplots(2, 1, py::dict("sharex"_a = true));
+  auto [fig, axs] = plt.subplots(2, 1, kwargs_("sharex"_a = true));
   auto ax1 = axs[0], ax2 = axs[1];
 
   ax1.set_title("interpolation=False");

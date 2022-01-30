@@ -13,6 +13,7 @@ namespace py = pybind11;
 using namespace py::literals;
 
 using namespace std;
+using namespace matplotlibcpp17::util;
 
 int main() {
   const double scale = 10;
@@ -32,8 +33,8 @@ int main() {
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, axes] =
       plt.subplots(1, 3,
-                   py::dict("figsize"_a = py::make_tuple(9, 3),
-                            "subplot_kw"_a = py::dict("aspect"_a = "equal")));
+                   kwargs_("figsize"_a = py::make_tuple(9, 3),
+                           "subplot_kw"_a = py::dict("aspect"_a = "equal")));
   auto ax1 = axes[0], ax2 = axes[1], ax3 = axes[2];
   ax1.fill(x, y);
   ax2.fill(x, y, "facecolor"_a = "lightsalmon", "edgecolor"_a = "orangered",

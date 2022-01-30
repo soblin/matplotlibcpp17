@@ -13,6 +13,7 @@ namespace matplotlibcpp17 {
 #include "figure.h"
 #include "gridspec.h"
 #include "pyplot.h"
+#include "util.h"
 
 } // namespace matplotlibcpp17
 

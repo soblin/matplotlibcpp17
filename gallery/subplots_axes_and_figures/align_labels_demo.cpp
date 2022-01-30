@@ -25,20 +25,22 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
 }
 
 using namespace std;
+
 using matplotlibcpp17::gridspec::GridSpec;
+using namespace matplotlibcpp17::util;
 
 int main() {
   py::scoped_interpreter gurad{};
   auto plt = matplotlibcpp17::pyplot::import();
-  auto fig = plt.figure(py::dict("tight_layout"_a = true));
+  auto fig = plt.figure(kwargs_("tight_layout"_a = true));
   auto gs = GridSpec(2, 2);
   // instead of gs[0, :]
-  auto ax = fig.add_subplot(py::make_tuple(gs(0, py::slice(0, 2, 1)).unwrap()));
+  auto ax = fig.add_subplot(args_(gs(0, py::slice(0, 2, 1)).unwrap()));
   ax.plot(arange(0, 1000000, 10000));
   ax.set_ylabel("YLabel0");
   ax.set_xlabel("XLabel0");
   for (auto i : {0, 1}) {
-    ax = fig.add_subplot(py::make_tuple(gs(1, i).unwrap()));
+    ax = fig.add_subplot(args_(gs(1, i).unwrap()));
     auto ys = arange(1.0, 0.0, -0.1);
     decltype(ys) xs;
     transform(ys.begin(), ys.end(), back_inserter(xs),
