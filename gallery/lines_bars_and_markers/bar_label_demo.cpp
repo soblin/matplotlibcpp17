@@ -102,7 +102,7 @@ int main3() {
 }
 
 int main() {
-  py::scoped_interpreter gurad{};
+  py::scoped_interpreter guard{};
   main1();
   main2();
   main3();

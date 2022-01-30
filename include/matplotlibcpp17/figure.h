@@ -1,6 +1,6 @@
 namespace figure {
 
-struct __attribute__((visibility("hidden"))) Figure {
+struct DECL_STRUCT_ATTR Figure {
   Figure(pybind11::object figure) {
     self = figure;
     load_attrs();

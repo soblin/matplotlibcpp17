@@ -9,6 +9,8 @@ namespace matplotlibcpp17 {
 
 #include "text.h"
 #include "container.h"
+#include "collections.h"
+#include "legend.h"
 #include "axes.h"
 #include "figure.h"
 #include "gridspec.h"

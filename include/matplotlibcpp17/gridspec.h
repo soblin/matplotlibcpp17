@@ -1,12 +1,12 @@
 namespace gridspec {
 
-struct __attribute__((visibility("hidden"))) SubplotSpec {
+struct DECL_STRUCT_ATTR SubplotSpec {
   SubplotSpec(pybind11::object subplotspec) { self = subplotspec; }
   pybind11::object self;
   pybind11::object unwrap() { return self; }
 };
 
-struct __attribute__((visibility("hidden"))) GridSpec {
+struct DECL_STRUCT_ATTR GridSpec {
   GridSpec(int nrow_, int ncol_,
            const pybind11::dict &kwargs = pybind11::dict()) {
     nrow = nrow_;

@@ -54,6 +54,6 @@ int main1() {
 }
 
 int main() {
-  py::scoped_interpreter gurad{};
+  py::scoped_interpreter guard{};
   main1();
 }

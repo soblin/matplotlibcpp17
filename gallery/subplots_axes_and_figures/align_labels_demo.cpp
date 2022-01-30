@@ -30,7 +30,7 @@ using matplotlibcpp17::gridspec::GridSpec;
 using namespace matplotlibcpp17::util;
 
 int main() {
-  py::scoped_interpreter gurad{};
+  py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
   auto fig = plt.figure(kwargs_("tight_layout"_a = true));
   auto gs = GridSpec(2, 2);
