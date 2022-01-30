@@ -26,6 +26,8 @@ struct __attribute__((visibility("hidden"))) Axes {
     LOAD_VOID_ATTR(set_xticks, self);
     LOAD_VOID_ATTR(set_ylabel, self);
     LOAD_VOID_ATTR(set_yticks, self);
+    LOAD_VOID_ATTR(text, self);
+    LOAD_VOID_ATTR(tick_params, self);
   }
   pybind11::object self;
 
@@ -97,6 +99,12 @@ struct __attribute__((visibility("hidden"))) Axes {
 
   // set_yticks
   pybind11::object set_yticks;
+
+  // text
+  pybind11::object text;
+
+  // tick_params
+  pybind11::object tick_params;
 };
 
 // bar

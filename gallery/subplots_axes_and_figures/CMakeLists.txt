@@ -1,1 +1,2 @@
 add_demo(align_labels_demo align_labels_demo.cpp)
+add_demo(gridspec_multicolumn gridspec_multicolumn.cpp)

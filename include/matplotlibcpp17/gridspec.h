@@ -7,16 +7,16 @@ struct __attribute__((visibility("hidden"))) SubplotSpec {
 };
 
 struct __attribute__((visibility("hidden"))) GridSpec {
-  GridSpec(int nrow_, int ncol_) {
+  GridSpec(int nrow_, int ncol_,
+           const pybind11::dict &kwargs = pybind11::dict()) {
     nrow = nrow_;
     ncol = ncol_;
-    load_attrs();
-  }
-  void load_attrs() {
     gridspec_attr =
         pybind11::module::import("matplotlib.gridspec").attr("GridSpec");
-    self = gridspec_attr(nrow, ncol);
+    self = gridspec_attr(nrow, ncol, **kwargs);
+    load_attrs();
   }
+  void load_attrs() { return; }
   template <typename Rows, typename Cols>
   SubplotSpec operator()(const Rows &r, const Cols &c) {
     pybind11::object obj = self[pybind11::make_tuple(r, c)];
