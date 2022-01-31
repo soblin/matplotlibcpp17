@@ -48,7 +48,7 @@ From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.co
   auto gs = GridSpec(2, 2);
 
   // non-void function: capsulate args and kwargs in py::tuple and py::dict
-  auto ax = fig.add_subplot(py::make_tuple(gs(0, -1)));
+  auto ax = fig.add_subplot(py::make_tuple(gs(0, py::slice(0, 2, 1)).unwrap()));
 
   // void function: no need to capsulate args and kwargs
   ax.plot(arange(0, 1000000, 10000));

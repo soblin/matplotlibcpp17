@@ -9,9 +9,13 @@ struct __attribute__((visibility("hidden"))) Figure {
     LOAD_NONVOID_ATTR(add_subplot, self);
     LOAD_VOID_ATTR(align_labels, self);
     LOAD_VOID_ATTR(savefig, self);
+    LOAD_VOID_ATTR(suptitle, self);
     LOAD_VOID_ATTR(tight_layout, self);
   }
   pybind11::object self;
+
+  // for passing as python object
+  pybind11::object unwrap() { return self; }
 
   // add_subplot
   axes::Axes add_subplot(const pybind11::tuple &args,
@@ -23,6 +27,9 @@ struct __attribute__((visibility("hidden"))) Figure {
 
   // savefig
   pybind11::object savefig;
+
+  // suptitle
+  pybind11::object suptitle;
 
   // tight_layout
   pybind11::object tight_layout;

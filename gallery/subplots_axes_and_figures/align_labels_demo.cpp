@@ -32,16 +32,13 @@ int main() {
   auto plt = matplotlibcpp17::pyplot::import();
   auto fig = plt.figure(py::dict("tight_layout"_a = true));
   auto gs = GridSpec(2, 2);
-  // instead of gs[0, :], use gs(0, -1) for slicing
-  auto ax = fig.add_subplot(py::make_tuple(gs(0, -1)));
+  // instead of gs[0, :]
+  auto ax = fig.add_subplot(py::make_tuple(gs(0, py::slice(0, 2, 1)).unwrap()));
   ax.plot(arange(0, 1000000, 10000));
   ax.set_ylabel("YLabel0");
   ax.set_xlabel("XLabel0");
   for (auto i : {0, 1}) {
-    // TODO: in the future gs(r, c) are supposed to return `class SubplotSpec`
-    // So `.object()` method will be necessary for all wrapper classes to be
-    // passed to the interpreter as internal python objects.
-    ax = fig.add_subplot(py::make_tuple(gs(1, i)));
+    ax = fig.add_subplot(py::make_tuple(gs(1, i).unwrap()));
     auto ys = arange(1.0, 0.0, -0.1);
     decltype(ys) xs;
     transform(ys.begin(), ys.end(), back_inserter(xs),
