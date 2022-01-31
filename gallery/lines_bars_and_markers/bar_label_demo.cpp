@@ -16,6 +16,8 @@ using namespace py::literals;
 
 using namespace std;
 
+using namespace matplotlibcpp17::util;
+
 int main1() {
   const int N = 5;
   auto menMeans = py::make_tuple(20, 35, 30, 35, -27);
@@ -27,11 +29,11 @@ int main1() {
       0.35; // the width of the bars: can also be len(x) sequence
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, ax] = plt.subplots();
-  auto p1 = ax.bar(py::make_tuple(ind, menMeans, width),
-                   py::dict("yerr"_a = menStd, "label"_a = "Men"));
-  auto p2 = ax.bar(py::make_tuple(ind, womenMeans, width),
-                   py::dict("bottom"_a = menMeans, "yerr"_a = womenStd,
-                            "label"_a = "Women"));
+  auto p1 = ax.bar(args_(ind, menMeans, width),
+                   kwargs_("yerr"_a = menStd, "label"_a = "Men"));
+  auto p2 = ax.bar(
+      args_(ind, womenMeans, width),
+      kwargs_("bottom"_a = menMeans, "yerr"_a = womenStd, "label"_a = "Women"));
   ax.axhline(0, "color"_a = "grey", "linewidth"_a = 0.8);
   ax.set_ylabel("Scores");
   ax.set_title("Scores by group and gender");
@@ -55,8 +57,8 @@ int main2() {
                           0.71995667};
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, ax] = plt.subplots();
-  auto hbars = ax.barh(py::make_tuple(y_pos, performance),
-                       py::dict("xerr"_a = error, "align"_a = "center"));
+  auto hbars = ax.barh(args_(y_pos, performance),
+                       kwargs_("xerr"_a = error, "align"_a = "center"));
   ax.set_yticks(y_pos, "labels"_a = people);
   ax.invert_yaxis(); // labels read top-to-bottom
   ax.set_xlabel("Performance");
@@ -78,8 +80,8 @@ int main3() {
                           0.71995667};
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, ax] = plt.subplots();
-  auto hbars = ax.barh(py::make_tuple(y_pos, performance),
-                       py::dict("xerr"_a = error, "align"_a = "center"));
+  auto hbars = ax.barh(args_(y_pos, performance),
+                       kwargs_("xerr"_a = error, "align"_a = "center"));
   ax.set_yticks(y_pos, "labels"_a = people);
   ax.invert_yaxis(); // labels read top-to-bottom
   ax.set_xlabel("Performance");
