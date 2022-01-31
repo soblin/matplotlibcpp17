@@ -11,16 +11,6 @@ This project aims to replace [matplotlibcpp](https://github.com/lava/matplotlib-
 
 Just add include path to `include` directory of this project.
 
-In `main()` function the following lines must be called (otherwise the program will crash).
-
-```cpp
-int main() {
-  pybind11::initialize_interpreter();
-  auto plt = matplotlibcpp17::pyplot::import();
-  /// user code
-}
-```
-
 ## Syntax
 
 - `void` functions can be called in almost the same way as python code (remind yourself to append `_a` literal to keyword arguments).
@@ -48,7 +38,6 @@ From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.co
 - [original python code](https://matplotlib.org/stable/gallery/subplots_axes_and_figures/align_labels_demo.html)
 
 ```cpp
-  // plt object(singleton object)
   auto plt = matplotlibcpp17::pyplot::import();
 
   // non-void function: capsulate args and kwargs in py::tuple and py::dict

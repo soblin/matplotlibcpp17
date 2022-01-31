@@ -52,6 +52,6 @@ int main1() {
 }
 
 int main() {
-  py::initialize_interpreter();
+  py::scoped_interpreter gurad{};
   main1();
 }
