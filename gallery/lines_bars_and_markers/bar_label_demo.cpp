@@ -19,7 +19,6 @@ using namespace std;
 using namespace matplotlibcpp17::util;
 
 int main1() {
-  const int N = 5;
   auto menMeans = py::make_tuple(20, 35, 30, 35, -27);
   auto womenMeans = py::make_tuple(25, 32, 34, 20, -25);
   auto menStd = py::make_tuple(2, 3, 4, 1, 2);

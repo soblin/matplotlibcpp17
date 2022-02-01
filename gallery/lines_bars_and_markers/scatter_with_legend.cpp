@@ -36,6 +36,7 @@ int main1() {
   ax.legend();
   ax.grid(true);
   plt.show();
+  return 0;
 }
 
 int main2() {
