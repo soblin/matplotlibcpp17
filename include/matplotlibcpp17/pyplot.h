@@ -86,9 +86,10 @@ PyPlot::subplots(const pybind11::dict &kwargs = pybind11::dict()) {
 }
 
 std::tuple<figure::Figure, std::vector<axes::Axes>>
-PyPlot::subplots(int r, int c, const pybind11::dict &kargs = pybind11::dict()) {
+PyPlot::subplots(int r, int c,
+                 const pybind11::dict &kwargs = pybind11::dict()) {
   pybind11::tuple args = pybind11::make_tuple(r, c);
-  pybind11::list ret = subplots_attr(*args, **args);
+  pybind11::list ret = subplots_attr(*args, **kwargs);
   std::vector<axes::Axes> axes;
   pybind11::object fig = ret[0];
   figure::Figure figure(fig);

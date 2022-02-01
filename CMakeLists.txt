@@ -22,6 +22,7 @@ if(${ADD_DEMO})
   set(CMAKE_CXX_FLAGS "-Wall -g")
   add_subdirectory(gallery/lines_bars_and_markers)
   add_subdirectory(gallery/subplots_axes_and_figures)
+  add_subdirectory(gallery/statistics)
 endif()
 
 if(NOT DEFINED DO_TEST)

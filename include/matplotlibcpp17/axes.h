@@ -17,6 +17,7 @@ struct DECL_STRUCT_ATTR Axes {
     LOAD_VOID_ATTR(get_xaxis_transform, self);
     LOAD_NONVOID_ATTR(get_xticklabels, self);
     LOAD_VOID_ATTR(grid, self);
+    LOAD_VOID_ATTR(hist, self);
     LOAD_VOID_ATTR(invert_yaxis, self);
     LOAD_NONVOID_ATTR(legend, self);
     LOAD_VOID_ATTR(plot, self);
@@ -75,6 +76,8 @@ struct DECL_STRUCT_ATTR Axes {
   // grid
   pybind11::object grid;
 
+  // hist
+  pybind11::object hist;
   // invert_yaxis
   pybind11::object invert_yaxis;
 
