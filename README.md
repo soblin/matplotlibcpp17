@@ -41,7 +41,6 @@ From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.co
   auto plt = matplotlibcpp17::pyplot::import();
 
   // non-void function: capsulate args and kwargs in py::tuple and py::dict
-  /// you can call `auto fig = plt.figure()` with default empty arguments :)
    auto ax = fig.add_subplot(args_(gs(0, py::slice(0, 2, 1)).unwrap()));
 
   // wrapper classes for returned value are implemented in this library
