@@ -58,6 +58,7 @@ int main3() {
   ax1.hist2d(dist1, dist2, "bins"_a = 40);
   // TODO: more examples
   plt.show();
+  return 0;
 }
 
 int main() {

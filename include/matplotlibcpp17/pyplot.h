@@ -32,8 +32,6 @@ struct DECL_STRUCT_ATTR PyPlot {
   pybind11::object legend;
 
   // plot
-  /// TODO: should implement overloaded functions for plot like plot(x, y,
-  /// **kwargs) and plot(x, **kwargs) and set plot_attr?
   pybind11::object plot;
 
   // scatter

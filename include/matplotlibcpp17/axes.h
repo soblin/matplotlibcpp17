@@ -80,11 +80,11 @@ struct DECL_STRUCT_ATTR Axes {
   // hist
   std::tuple<std::vector<double>, std::vector<double>, container::BarContainer>
   hist(const pybind11::tuple &args, const pybind11::dict &kwargs);
+  pybind11::object hist_attr;
 
   // hist2d
   pybind11::object hist2d;
 
-  pybind11::object hist_attr;
   // invert_yaxis
   pybind11::object invert_yaxis;
 
