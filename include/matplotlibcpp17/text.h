@@ -1,6 +1,6 @@
 namespace text {
 
-struct __attribute__((visibility("hidden"))) Text {
+struct DECL_STRUCT_ATTR Text {
   Text(pybind11::object text) {
     self = text;
     load_attrs();

@@ -8,7 +8,7 @@
 using namespace pybind11::literals;
 
 int main() {
-  pybind11::scoped_interpreter gurad{};
+  pybind11::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
   /// user code
   plt.plot(std::vector<int>({1, 3, 2, 4}), "color"_a = "blue",

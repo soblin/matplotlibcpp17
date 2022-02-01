@@ -1,6 +1,6 @@
 namespace pyplot {
 
-struct __attribute__((visibility("hidden"))) PyPlot {
+struct DECL_STRUCT_ATTR PyPlot {
   PyPlot() {}
   PyPlot(pybind11::module mod_) {
     mod = mod_;

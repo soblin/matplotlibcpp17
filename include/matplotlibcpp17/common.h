@@ -7,3 +7,5 @@
   do {                                                                         \
     obj##_attr = mod.attr(#obj);                                               \
   } while (0)
+
+#define DECL_STRUCT_ATTR __attribute__((visibility("hidden")))

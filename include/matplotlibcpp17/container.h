@@ -1,6 +1,6 @@
 namespace container {
 
-struct __attribute__((visibility("hidden"))) BarContainer {
+struct DECL_STRUCT_ATTR BarContainer {
   BarContainer(pybind11::object bar_container) { self = bar_container; }
 
   pybind11::object self;

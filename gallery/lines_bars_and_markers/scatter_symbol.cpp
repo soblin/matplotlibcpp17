@@ -27,7 +27,7 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
 using namespace std;
 
 int main() {
-  py::scoped_interpreter gurad{};
+  py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
   vector<double> x = {0.,  2.,  4.,  6.,  8.,  10., 12., 14., 16.,
                       18., 20., 22., 24., 26., 28., 30., 32., 34.,

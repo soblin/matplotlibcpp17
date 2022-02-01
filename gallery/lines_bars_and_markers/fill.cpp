@@ -29,7 +29,7 @@ int main() {
               return scale / sqrt(3.0) * sin(angle / 360.0 * 2 * M_PI);
             });
 
-  py::scoped_interpreter gurad{};
+  py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, axes] =
       plt.subplots(1, 3,

@@ -1,11 +1,12 @@
 namespace axes {
 
-struct __attribute__((visibility("hidden"))) Axes {
+struct DECL_STRUCT_ATTR Axes {
   Axes(pybind11::object axes) {
     self = axes;
     load_attrs();
   }
   void load_attrs() {
+    LOAD_VOID_ATTR(add_artist, self);
     LOAD_VOID_ATTR(axhline, self);
     LOAD_NONVOID_ATTR(bar, self);
     LOAD_VOID_ATTR(bar_label, self);
@@ -17,8 +18,9 @@ struct __attribute__((visibility("hidden"))) Axes {
     LOAD_NONVOID_ATTR(get_xticklabels, self);
     LOAD_VOID_ATTR(grid, self);
     LOAD_VOID_ATTR(invert_yaxis, self);
-    LOAD_VOID_ATTR(legend, self);
+    LOAD_NONVOID_ATTR(legend, self);
     LOAD_VOID_ATTR(plot, self);
+    LOAD_NONVOID_ATTR(scatter, self);
     LOAD_VOID_ATTR(set, self);
     LOAD_VOID_ATTR(set_title, self);
     LOAD_VOID_ATTR(set_xlabel, self);
@@ -33,6 +35,9 @@ struct __attribute__((visibility("hidden"))) Axes {
 
   // for passing as python object
   pybind11::object unwrap() { return self; }
+
+  // add_artist
+  pybind11::object add_artist;
 
   // axhline
   pybind11::object axhline;
@@ -74,10 +79,18 @@ struct __attribute__((visibility("hidden"))) Axes {
   pybind11::object invert_yaxis;
 
   // legend
-  pybind11::object legend;
+  legend::Legend legend(const pybind11::tuple &args,
+                        const pybind11::dict &kwargs);
+
+  pybind11::object legend_attr;
 
   // plot
   pybind11::object plot;
+
+  // scatter
+  collections::PathCollection scatter(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs);
+  pybind11::object scatter_attr;
 
   // set
   pybind11::object set;
@@ -129,6 +142,21 @@ std::vector<text::Text> Axes::get_xticklabels() {
     texts.push_back(text::Text(ret[i]));
   }
   return texts;
+}
+
+// legend
+legend::Legend Axes::legend(const pybind11::tuple &args = pybind11::tuple(),
+                            const pybind11::dict &kwargs = pybind11::dict()) {
+  pybind11::object obj = legend_attr(*args, **kwargs);
+  return legend::Legend(obj);
+}
+
+// scatter
+collections::PathCollection
+Axes::scatter(const pybind11::tuple &args = pybind11::tuple(),
+              const pybind11::dict &kwargs = pybind11::dict()) {
+  pybind11::object obj = scatter_attr(*args, **kwargs);
+  return collections::PathCollection(obj);
 }
 
 } // namespace axes
