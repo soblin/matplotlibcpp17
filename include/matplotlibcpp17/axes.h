@@ -17,6 +17,8 @@ struct DECL_STRUCT_ATTR Axes {
     LOAD_VOID_ATTR(get_xaxis_transform, self);
     LOAD_NONVOID_ATTR(get_xticklabels, self);
     LOAD_VOID_ATTR(grid, self);
+    LOAD_NONVOID_ATTR(hist, self);
+    LOAD_VOID_ATTR(hist2d, self);
     LOAD_VOID_ATTR(invert_yaxis, self);
     LOAD_NONVOID_ATTR(legend, self);
     LOAD_VOID_ATTR(plot, self);
@@ -75,6 +77,14 @@ struct DECL_STRUCT_ATTR Axes {
   // grid
   pybind11::object grid;
 
+  // hist
+  std::tuple<std::vector<double>, std::vector<double>, container::BarContainer>
+  hist(const pybind11::tuple &args, const pybind11::dict &kwargs);
+
+  // hist2d
+  pybind11::object hist2d;
+
+  pybind11::object hist_attr;
   // invert_yaxis
   pybind11::object invert_yaxis;
 
@@ -142,6 +152,23 @@ std::vector<text::Text> Axes::get_xticklabels() {
     texts.push_back(text::Text(ret[i]));
   }
   return texts;
+}
+
+// hist
+std::tuple<std::vector<double>, std::vector<double>, container::BarContainer>
+Axes::hist(const pybind11::tuple &args, const pybind11::dict &kwargs) {
+  pybind11::list ret = hist_attr(*args, **kwargs);
+  // parse N, bins, patches
+  pybind11::list N_obj = ret[0], bins_obj = ret[1];
+  pybind11::object patches_obj = ret[2];
+  std::vector<double> N, bins;
+  for (auto it = N_obj.begin(); it != N_obj.end(); it++) {
+    N.push_back(it->cast<double>());
+  }
+  for (auto it = bins_obj.begin(); it != bins_obj.end(); it++) {
+    bins.push_back(it->cast<double>());
+  }
+  return {N, bins, container::BarContainer(patches_obj)};
 }
 
 // legend
