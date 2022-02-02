@@ -93,6 +93,8 @@ Fucntions like `subplots`, `TBD`s are overloaded because they return different t
 
 From [gallery/lines_bars_and_markers](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/lines_bars_and_markers/fill.cpp)
 
+- [original python code](https://matplotlib.org/stable/gallery/lines_bars_and_markers/fill.html)
+
 ```cpp
   auto [fig, axes] =
       plt.subplots(1, 3,
@@ -103,9 +105,44 @@ From [gallery/lines_bars_and_markers](https://github.com/soblin/matplotlibcpp17/
 
 ![fill](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/lines_bars_and_markers/fill.png)
 
+### example4
+
+Use `.unwrap()` method to pass wrapper class of matplotlibcpp17 to plotting functions.
+
+From [gallery/images_contours_and_fields/quiver_demo.cpp](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images_contours_and_fields/quiver_demo.cpp)
+
+- [original python code](https://matplotlib.org/stable/gallery/images_contours_and_fields/quiver_demo.html)
+
+```cpp
+  auto plt = matplotlibcpp17::pyplot::import();
+  auto [fig1, ax1] = plt.subplots();
+  ax1.set_title("pivot='tip'; scales with x view");
+  auto Q = ax1.quiver(args_(X, Y, U, V, M),
+                      kwargs_("units"_a = "x", "pivot"_a = "tip",
+                              "width"_a = 0.022, "scale"_a = 1.0 / 0.15));
+  auto qk =
+      ax1.quiverkey(args_(Q.unwrap(), 0.9, 0.9, 1, R"($1 \frac{m}{s}$)"),
+                    kwargs_("labelpos"_a = "E", "coordinates"_a = "figure"));
+  ax1.scatter(args_(X, Y), kwargs_("color"_a = "0.5", "s"_a = 1));
+```
+
+![quiver_demo3](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images_contours_and_fields/quiver_demo_3.png)
+
 ## Demos
 
 `gallery` folder contains corresponding examples from [the official website of matplotlib](https://matplotlib.org/stable/gallery) with the same structure.
+
+### Run the demos
+
+```bash
+mkdir build; cd build; cmake .. ; make -j
+```
+
+If you want to see the demo with `plt.show()`, add `-DUSE_GUI=ON` (by default it is `OFF`). Otherwise the executables will `plt.savefig()` to each source directory. Then `make <gallery directory name>` runs all executables under that directory.
+
+```bash
+make lines_bars_and_markers
+```
 
 ## Contributing
 
