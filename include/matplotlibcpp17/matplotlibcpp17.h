@@ -11,6 +11,7 @@ namespace matplotlibcpp17 {
 #include "container.h"
 #include "collections.h"
 #include "legend.h"
+#include "quiver.h"
 #include "axes.h"
 #include "gridspec.h"
 #include "figure.h"

@@ -22,6 +22,8 @@ struct DECL_STRUCT_ATTR Axes {
     LOAD_VOID_ATTR(invert_yaxis, self);
     LOAD_NONVOID_ATTR(legend, self);
     LOAD_VOID_ATTR(plot, self);
+    LOAD_NONVOID_ATTR(quiver, self);
+    LOAD_NONVOID_ATTR(quiverkey, self);
     LOAD_NONVOID_ATTR(scatter, self);
     LOAD_VOID_ATTR(set, self);
     LOAD_VOID_ATTR(set_title, self);
@@ -96,6 +98,16 @@ struct DECL_STRUCT_ATTR Axes {
 
   // plot
   pybind11::object plot;
+
+  // quiver
+  quiver::Quiver quiver(const pybind11::tuple &args,
+                        const pybind11::dict &kwargs);
+  pybind11::object quiver_attr;
+
+  // quiverkey
+  quiver::QuiverKey quiverkey(const pybind11::tuple &args,
+                              const pybind11::dict &kwargs);
+  pybind11::object quiverkey_attr;
 
   // scatter
   collections::PathCollection scatter(const pybind11::tuple &args,
@@ -176,6 +188,21 @@ legend::Legend Axes::legend(const pybind11::tuple &args = pybind11::tuple(),
                             const pybind11::dict &kwargs = pybind11::dict()) {
   pybind11::object obj = legend_attr(*args, **kwargs);
   return legend::Legend(obj);
+}
+
+// quiver
+quiver::Quiver Axes::quiver(const pybind11::tuple &args = pybind11::tuple(),
+                            const pybind11::dict &kwargs = pybind11::dict()) {
+  pybind11::object obj = quiver_attr(*args, **kwargs);
+  return quiver::Quiver(obj);
+}
+
+// quiverkey
+quiver::QuiverKey
+Axes::quiverkey(const pybind11::tuple &args = pybind11::tuple(),
+                const pybind11::dict &kwargs = pybind11::dict()) {
+  pybind11::object obj = quiverkey_attr(*args, **kwargs);
+  return quiver::QuiverKey(obj);
 }
 
 // scatter
