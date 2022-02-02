@@ -75,9 +75,11 @@ int main2() {
     ax.add_artist(legend1.unwrap());
   }
   {
-    auto [handels, labels] = scatter.legend_elements(kwargs_("prop"_a = "sizes", "alpha"_a = 0.6));
-    auto legend2 = ax.legend(args_(handels, labels),
-                             kwargs_("loc"_a = "upper right", "title"_a = "Sizes"));
+    auto [handles, labels] =
+        scatter.legend_elements(kwargs_("prop"_a = "sizes", "alpha"_a = 0.6));
+    auto legend2 =
+        ax.legend(args_(handles, labels),
+                  kwargs_("loc"_a = "upper right", "title"_a = "Sizes"));
   }
   plt.show();
   return 0;
