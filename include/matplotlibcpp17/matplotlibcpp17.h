@@ -12,8 +12,8 @@ namespace matplotlibcpp17 {
 #include "collections.h"
 #include "legend.h"
 #include "axes.h"
-#include "figure.h"
 #include "gridspec.h"
+#include "figure.h"
 #include "pyplot.h"
 #include "util.h"
 
