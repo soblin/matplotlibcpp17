@@ -6,6 +6,7 @@ struct DECL_STRUCT_ATTR Figure {
     load_attrs();
   }
   void load_attrs() {
+    LOAD_NONVOID_ATTR(add_axes, self);
     LOAD_NONVOID_ATTR(add_subplot, self);
     LOAD_VOID_ATTR(align_labels, self);
     LOAD_VOID_ATTR(savefig, self);
@@ -16,6 +17,11 @@ struct DECL_STRUCT_ATTR Figure {
 
   // for passing as python object
   pybind11::object unwrap() { return self; }
+
+  // add_axes
+  axes::Axes add_axes(const pybind11::tuple &args,
+                      const pybind11::dict &kwargs);
+  pybind11::object add_axes_attr;
 
   // add_subplot
   axes::Axes add_subplot(const pybind11::tuple &args,
@@ -34,6 +40,13 @@ struct DECL_STRUCT_ATTR Figure {
   // tight_layout
   pybind11::object tight_layout;
 };
+
+// add_axes
+axes::Axes Figure::add_axes(const pybind11::tuple &args = pybind11::tuple(),
+                            const pybind11::dict &kwargs = pybind11::dict()) {
+  pybind11::object obj = add_axes_attr(*args, **kwargs);
+  return axes::Axes(obj);
+}
 
 // add_subplot
 axes::Axes
