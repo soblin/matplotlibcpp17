@@ -21,7 +21,6 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
   T val = start;
   for (int i = 0; i < N; ++i) {
     xs[i] = val;
-    ;
     val += h;
   }
   return xs;
@@ -39,6 +38,7 @@ int main() {
   }
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
+  // cell1
   {
     const double left = 0.1, width = 0.65;
     const double bottom = 0.1, height = 0.65;
@@ -72,6 +72,7 @@ int main() {
                   kwargs_("bins"_a = bins, "orientation"_a = "horizontal"));
     plt.show();
   }
+  // cell2
   {
     auto fig = plt.figure(kwargs_("figsize"_a = py::make_tuple(8, 8)));
     auto gs = fig.add_gridspec(2, 2,
