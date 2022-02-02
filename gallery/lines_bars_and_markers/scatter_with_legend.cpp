@@ -35,7 +35,11 @@ int main1() {
   }
   ax.legend();
   ax.grid(true);
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("scatter_with_legend1.png");
+#endif
   return 0;
 }
 
@@ -75,13 +79,17 @@ int main2() {
     ax.add_artist(legend1.unwrap());
   }
   {
-    auto [handles, labels] =
-        scatter.legend_elements(kwargs_("prop"_a = "sizes", "alpha"_a = 0.6));
+    auto [handles, labels] = scatter.legend_elements(
+        py::tuple(), kwargs_("prop"_a = "sizes", "alpha"_a = 0.6));
     auto legend2 =
         ax.legend(args_(handles, labels),
                   kwargs_("loc"_a = "upper right", "title"_a = "Sizes"));
   }
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("scatter_with_legend2.png");
+#endif
   return 0;
 }
 

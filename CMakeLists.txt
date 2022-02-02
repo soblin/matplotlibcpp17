@@ -9,6 +9,10 @@ if(NOT DEFINED ADD_DEMO)
   set(ADD_DEMO ON)
 endif()
 
+if(NOT DEFINED USE_GUI)
+  set(USE_GUI OFF)
+endif()
+
 set(matplotlibcpp17_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 function(add_demo name path)
@@ -19,7 +23,7 @@ endfunction()
 
 if(${ADD_DEMO})
   set(CMAKE_CXX_STANDARD 17)
-  set(CMAKE_CXX_FLAGS "-Wall -g")
+  set(CMAKE_CXX_FLAGS "-Wall -g -DUSE_GUI=${USE_GUI}")
   add_subdirectory(gallery/lines_bars_and_markers)
   add_subdirectory(gallery/subplots_axes_and_figures)
   add_subdirectory(gallery/statistics)

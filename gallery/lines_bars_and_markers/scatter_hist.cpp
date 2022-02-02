@@ -70,7 +70,11 @@ int main() {
     ax_histx.hist(args_(x), kwargs_("bins"_a = bins));
     ax_histy.hist(args_(y),
                   kwargs_("bins"_a = bins, "orientation"_a = "horizontal"));
+#if USE_GUI
     plt.show();
+#else
+    plt.savefig("scatter_hist1.png");
+#endif
   }
   // cell2
   {
@@ -102,7 +106,11 @@ int main() {
     ax_histx.hist(args_(x), kwargs_("bins"_a = bins));
     ax_histy.hist(args_(y),
                   kwargs_("bins"_a = bins, "orientation"_a = "horizontal"));
+#if USE_GUI
     plt.show();
+#else
+    plt.savefig("scatter_hist2.png");
+#endif
   }
   return 0;
 }

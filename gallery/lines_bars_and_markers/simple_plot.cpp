@@ -40,6 +40,10 @@ int main() {
          "title"_a = "About as simple as it gets, folks");
   ax.grid();
 
-  fig.savefig("test.png");
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("simple_plot.png");
+#endif
+  return 0;
 }

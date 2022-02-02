@@ -41,6 +41,10 @@ int main() {
            "linewidth"_a = 3);
   ax3.fill(x, y, "facecolor"_a = "none", "edgecolor"_a = "purple",
            "linewidth"_a = 3);
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("fill.png");
+#endif
   return 0;
 }

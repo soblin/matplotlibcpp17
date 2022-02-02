@@ -12,6 +12,7 @@ struct DECL_STRUCT_ATTR PyPlot {
     LOAD_VOID_ATTR(legend, mod);
     LOAD_VOID_ATTR(plot, mod);
     LOAD_VOID_ATTR(quiver, mod);
+    LOAD_VOID_ATTR(savefig, mod);
     LOAD_VOID_ATTR(scatter, mod);
     LOAD_VOID_ATTR(show, mod);
     LOAD_NONVOID_ATTR(subplot, mod);
@@ -37,6 +38,9 @@ struct DECL_STRUCT_ATTR PyPlot {
 
   // quiver
   pybind11::object quiver;
+
+  // savefig
+  pybind11::object savefig;
 
   // scatter
   pybind11::object scatter;

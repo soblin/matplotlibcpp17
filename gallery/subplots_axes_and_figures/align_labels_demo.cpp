@@ -54,5 +54,9 @@ int main() {
     }
   }
   fig.align_labels();
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("align_labels_demo.png");
+#endif
 }
