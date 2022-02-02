@@ -56,6 +56,8 @@ From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.co
   ax.set_xlabel("XLabel0");
 ```
 
+![subplots_axes_and_figures](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/subplots_axes_and_figures/align_labels_demo.png)
+
 ### example2
 
 From [gallery/lines_bars_and_markers/bar_label_demo.cpp](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/lines_bars_and_markers/bar_label_demo.cpp). Here `subplots()` returns `tuple<Figure, Axes>`.
@@ -83,6 +85,8 @@ From [gallery/lines_bars_and_markers/bar_label_demo.cpp](https://github.com/sobl
   plt.show();
 ```
 
+![bar_label_demo1](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/lines_bars_and_markers/bar_label_demo1.png)
+
 ### example3
 
 Fucntions like `subplots`, `TBD`s are overloaded because they return different types depending on the arguments. Here `subplots()` returns `tuple<Figure, vector<Axes>>`.
@@ -96,6 +100,8 @@ From [gallery/lines_bars_and_markers](https://github.com/soblin/matplotlibcpp17/
                            "subplot_kw"_a = py::dict("aspect"_a = "equal")));
   auto ax1 = axes[0], ax2 = axes[1], ax3 = axes[2];
 ```
+
+![fill](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/lines_bars_and_markers/fill.png)
 
 ## Demos
 
