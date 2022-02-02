@@ -39,5 +39,9 @@ int main() {
     cnt++;
   }
 
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("gridspec_multicolumn.png");
+#endif
 }

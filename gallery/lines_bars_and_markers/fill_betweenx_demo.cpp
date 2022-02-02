@@ -49,7 +49,11 @@ int main1() {
   ax3.fill_betweenx(y, x1, x2);
   ax3.set_title("between (x1, x2)");
 
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("fill_betweenx_demo.png");
+#endif
   return 0;
 }
 

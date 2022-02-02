@@ -49,7 +49,11 @@ int main1() {
   ax3.set_title("fill between y1 and y2");
   ax3.set_xlabel("x");
   fig.tight_layout();
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("fill_between_demo_1.png");
+#endif
   return 0;
 }
 
@@ -82,7 +86,11 @@ int main2() {
   ax2.fill_between(x, y1, y2, "where"_a = where, "color"_a = "C1",
                    "alpha"_a = 0.3, "interpolate"_a = true);
   fig.tight_layout();
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("fill_between_demo_2.png");
+#endif
   return 0;
 }
 
@@ -101,7 +109,11 @@ int main3() {
             [&threshold](double y) { return y > threshold; });
   ax.fill_between(x, 0, 1, "where"_a = where, "color"_a = "green",
                   "alpha"_a = 0.5, "transform"_a = ax.get_xaxis_transform());
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("fill_between_demo_3.png");
+#endif
   return 0;
 }
 

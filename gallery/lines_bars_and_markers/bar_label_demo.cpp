@@ -43,7 +43,11 @@ int main1() {
   ax.bar_label(p1.unwrap(), "label_type"_a = "center");
   ax.bar_label(p2.unwrap(), "label_type"_a = "center");
   ax.bar_label(p2.unwrap());
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("bar_label_demo1.png");
+#endif
   return 0;
 }
 
@@ -66,7 +70,11 @@ int main2() {
   // Label with specially formatted floats
   ax.bar_label(hbars.unwrap(), "fmt"_a = "%.2f");
   ax.set_xlim("right"_a = 15); // adjust xlim to fit labels
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("bar_label_demo2.png");
+#endif
   return 0;
 }
 
@@ -96,7 +104,11 @@ int main3() {
   ax.bar_label(hbars.unwrap(), "labels"_a = labels, "padding"_a = 8,
                "color"_a = "b", "fontsize"_a = 14);
   ax.set_xlim("right"_a = 15); // adjust xlim to fit labels
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("bar_label_demo3.png");
+#endif
   return 0;
 }
 

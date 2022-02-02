@@ -49,6 +49,10 @@ int main() {
   plt.xlabel("Leprechauns");
   plt.ylabel("Gold");
   plt.legend("loc"_a = "upper left");
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("scatter_symbol.png");
+#endif
   return 0;
 }

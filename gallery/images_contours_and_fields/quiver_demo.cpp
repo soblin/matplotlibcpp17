@@ -35,7 +35,11 @@ int main1() {
   auto qk =
       ax1.quiverkey(args_(Q.unwrap(), 0.9, 0.9, 2, R"($2 \frac{m}{s}$)"),
                     kwargs_("labelpos"_a = "E", "coordinates"_a = "figure"));
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("quiver_demo_1.png");
+#endif
   return 0;
 }
 
@@ -61,7 +65,12 @@ int main2() {
       ax1.quiverkey(args_(Q.unwrap(), 0.9, 0.9, 1, R"($1 \frac{m}{s}$)"),
                     kwargs_("labelpos"_a = "E", "coordinates"_a = "figure"));
   ax1.scatter(args_(X, Y), kwargs_("color"_a = "r", "s"_a = 5));
+
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("quiver_demo_2.png");
+#endif
   return 0;
 }
 
@@ -91,7 +100,13 @@ int main3() {
       ax1.quiverkey(args_(Q.unwrap(), 0.9, 0.9, 1, R"($1 \frac{m}{s}$)"),
                     kwargs_("labelpos"_a = "E", "coordinates"_a = "figure"));
   ax1.scatter(args_(X, Y), kwargs_("color"_a = "0.5", "s"_a = 1));
+
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("quiver_demo_3.png");
+#endif
+
   return 0;
 }
 

@@ -30,7 +30,11 @@ int main1() {
   auto [N, bins, patches] = ax1.hist(args_(dist1), kwargs_("bins"_a = n_bins));
   // TODO: patches.patches are list of patches::Rectangle.
   ax2.hist(args_(dist2), kwargs_("bins"_a = n_bins));
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("hist1.png");
+#endif
   return 0;
 }
 
@@ -57,7 +61,11 @@ int main3() {
   // We can increase the number of bins on each axis
   ax1.hist2d(dist1, dist2, "bins"_a = 40);
   // TODO: more examples
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("hist3.png");
+#endif
   return 0;
 }
 
