@@ -2,6 +2,8 @@
 
 This project aims to replace [matplotlibcpp](https://github.com/lava/matplotlib-cpp) using [pybind11](https://github.com/pybind/pybind11) as backend.
 
+It is supposed to provide the user with almost full access to matplotlib features in C++, by implementing as many *wrapper classes* of matplotlib module as possible (like `axes::Axes`, `figure::Figure`). And its primary advantage over conventional matplotlibcpp is that the user can pass a variety of arguments as in the form of *args* and *kwargs* thanks to pybind11, without the need for coversion to `map<string, string>`, thus leading to more flexibility.
+
 ## Dependencies
 
 - pybind11(https://github.com/pybind/pybind11) >= 2.9.0
@@ -16,7 +18,7 @@ Just add include path to `include` directory of this project.
 - `void` functions can be called in almost the same way as python code (remind yourself to append `_a` literal to keyword arguments).
 - For `non-void` functions that return some objects, basically the user will need to capsulate *arguments* in `::util::args_(arg1, arg2, ...) == pybind11:tuple` and *keyword arguments* in `::util::kwargs_("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict`. The returned value is a corresponding wrapper class. Please refer to the examples below.
   - exception: `subplots`, 
-  - conversion: Wrapper classes of matplotlibcpp17 like [::container::BarContainer](https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h) need to be passed to python interpreter using `unwrap()` method in *args* and *kwargs*.
+  - conversion: Wrapper class of matplotlibcpp17 like [::container::BarContainer](https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h) needs to be passed to python interpreter using `unwrap()` method in *args* and *kwargs*.
 
 ## Examples
 
@@ -40,13 +42,12 @@ From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.co
 ```cpp
   auto plt = matplotlibcpp17::pyplot::import();
 
-  // non-void function: capsulate args and kwargs in py::tuple and py::dict
-  auto ax = fig.add_subplot(args_(gs(0, py::slice(0, 2, 1)).unwrap()));
-
-  // wrapper classes for returned value are implemented in this library
+  // corresponding wrapper class for returned value is implemented in this library
+  /// gs is of type gridspec::GridSpec
   auto gs = GridSpec(2, 2);
 
   // non-void function: capsulate args and kwargs in py::tuple and py::dict
+  /// pass wrapper class object like gs[0, :] of ::gridspec::SubplotSpec to the interpreter using .unwrap() method as python object
   auto ax = fig.add_subplot(args_(gs(0, py::slice(0, 2, 1)).unwrap()));
 
   // void function: no need to capsulate args and kwargs
@@ -75,7 +76,7 @@ From [gallery/lines_bars_and_markers/bar_label_demo.cpp](https://github.com/sobl
   ax.set_xticks(ind, py::make_tuple("G1", "G2", "G3", "G4", "G5"));
   ax.legend();
 
-  // pass wrapper classes like p1 of ::container::BarContainer to the interpreter using .unwrap() method as python object
+  // pass wrapper class object like p1 of ::container::BarContainer to the interpreter using .unwrap() method as python object
   ax.bar_label(p1.unwrap(), "label_type"_a = "center");
   ax.bar_label(p2.unwrap(), "label_type"_a = "center");
   ax.bar_label(p2.unwrap());
