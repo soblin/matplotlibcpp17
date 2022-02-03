@@ -3,6 +3,8 @@ namespace gridspec {
 struct DECL_STRUCT_ATTR SubplotSpec {
   SubplotSpec(pybind11::object subplotspec) { self = subplotspec; }
   pybind11::object self;
+
+  // for passing as python object
   pybind11::object unwrap() { return self; }
 };
 

@@ -10,6 +10,7 @@ struct DECL_STRUCT_ATTR Figure {
     LOAD_NONVOID_ATTR(add_gridspec, self);
     LOAD_NONVOID_ATTR(add_subplot, self);
     LOAD_VOID_ATTR(align_labels, self);
+    LOAD_VOID_ATTR(colorbar, self);
     LOAD_VOID_ATTR(savefig, self);
     LOAD_VOID_ATTR(suptitle, self);
     LOAD_VOID_ATTR(tight_layout, self);
@@ -36,6 +37,9 @@ struct DECL_STRUCT_ATTR Figure {
 
   // align_labels
   pybind11::object align_labels;
+
+  // colorbar
+  pybind11::object colorbar;
 
   // savefig
   pybind11::object savefig;
