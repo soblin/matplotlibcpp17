@@ -7,6 +7,7 @@ struct DECL_STRUCT_ATTR Axes {
   }
   void load_attrs() {
     LOAD_VOID_ATTR(add_artist, self);
+    LOAD_VOID_ATTR(add_patch, self);
     LOAD_VOID_ATTR(axhline, self);
     LOAD_NONVOID_ATTR(bar, self);
     LOAD_VOID_ATTR(bar_label, self);
@@ -26,6 +27,7 @@ struct DECL_STRUCT_ATTR Axes {
     LOAD_NONVOID_ATTR(quiverkey, self);
     LOAD_NONVOID_ATTR(scatter, self);
     LOAD_VOID_ATTR(set, self);
+    LOAD_VOID_ATTR(set_aspect, self);
     LOAD_VOID_ATTR(set_title, self);
     LOAD_VOID_ATTR(set_xlabel, self);
     LOAD_VOID_ATTR(set_xlim, self);
@@ -42,6 +44,9 @@ struct DECL_STRUCT_ATTR Axes {
 
   // add_artist
   pybind11::object add_artist;
+
+  // add_patch
+  pybind11::object add_patch;
 
   // axhline
   pybind11::object axhline;
@@ -118,6 +123,9 @@ struct DECL_STRUCT_ATTR Axes {
 
   // set
   pybind11::object set;
+
+  // set
+  pybind11::object set_aspect;
 
   // set_title
   pybind11::object set_title;

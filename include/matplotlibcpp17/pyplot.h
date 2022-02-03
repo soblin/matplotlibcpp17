@@ -8,6 +8,7 @@ struct DECL_STRUCT_ATTR PyPlot {
   }
   void load_attrs() {
     LOAD_NONVOID_ATTR(axes, mod);
+    LOAD_VOID_ATTR(axis, mod);
     LOAD_VOID_ATTR(clf, mod);
     LOAD_NONVOID_ATTR(figure, mod);
     LOAD_NONVOID_ATTR(gca, mod);
@@ -28,6 +29,9 @@ struct DECL_STRUCT_ATTR PyPlot {
   // axes
   axes::Axes axes(const pybind11::dict &kwargs);
   pybind11::object axes_attr;
+
+  // axis
+  pybind11::object axis;
 
   // clf
   pybind11::object clf;

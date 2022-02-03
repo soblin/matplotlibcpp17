@@ -9,6 +9,7 @@ struct DECL_STRUCT_ATTR Legend {
 
   pybind11::object self;
 
+  // for passing as python object
   pybind11::object unwrap() { return self; }
 };
 } // namespace legend
