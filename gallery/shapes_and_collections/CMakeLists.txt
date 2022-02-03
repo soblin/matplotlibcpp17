@@ -6,5 +6,5 @@ add_custom_target(shapes_and_collections
   COMMAND patch_collection
   COMMAND patches_circle_rectangle
   COMMENT "running shapes_and_collections"
-  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+  WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../images"
 )

@@ -19,5 +19,5 @@ add_custom_target(lines_bars_and_markers
   COMMAND scatter_with_legend
   COMMAND scatter_hist
   COMMENT "running lines_bars_and_markers"
-  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+  WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../images"
 )
