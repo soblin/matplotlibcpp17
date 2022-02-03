@@ -97,6 +97,7 @@ struct DECL_STRUCT_ATTR Axes {
   pybind11::object legend_attr;
 
   // plot
+  // TODO: should return `artists` for gif?
   pybind11::object plot;
 
   // quiver
@@ -110,6 +111,7 @@ struct DECL_STRUCT_ATTR Axes {
   pybind11::object quiverkey_attr;
 
   // scatter
+  // TODO: should return `artist` for gif?
   collections::PathCollection scatter(const pybind11::tuple &args,
                                       const pybind11::dict &kwargs);
   pybind11::object scatter_attr;

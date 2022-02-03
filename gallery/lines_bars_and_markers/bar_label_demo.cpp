@@ -19,10 +19,10 @@ using namespace std;
 using namespace matplotlibcpp17::util;
 
 int main1() {
-  auto menMeans = py::make_tuple(20, 35, 30, 35, -27);
-  auto womenMeans = py::make_tuple(25, 32, 34, 20, -25);
-  auto menStd = py::make_tuple(2, 3, 4, 1, 2);
-  auto womenStd = py::make_tuple(3, 5, 2, 3, 3);
+  vector<int> menMeans = {20, 35, 30, 35, -27};
+  vector<int> womenMeans = {25, 32, 34, 20, -25};
+  vector<int> menStd = {2, 3, 4, 1, 2};
+  vector<int> womenStd = {3, 5, 2, 3, 3};
   vector<int> ind = {0, 1, 2, 3, 4}; // the x locations for the groups
   const double width =
       0.35; // the width of the bars: can also be len(x) sequence
