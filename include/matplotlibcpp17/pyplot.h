@@ -9,6 +9,7 @@ struct DECL_STRUCT_ATTR PyPlot {
   void load_attrs() {
     LOAD_NONVOID_ATTR(axes, mod);
     LOAD_NONVOID_ATTR(figure, mod);
+    LOAD_NONVOID_ATTR(gca, mod);
     LOAD_VOID_ATTR(legend, mod);
     LOAD_VOID_ATTR(plot, mod);
     LOAD_VOID_ATTR(quiver, mod);
@@ -27,8 +28,13 @@ struct DECL_STRUCT_ATTR PyPlot {
   pybind11::object axes_attr;
 
   // figure
-  figure::Figure figure(const pybind11::dict &kwargs);
+  figure::Figure figure(const pybind11::tuple &args,
+                        const pybind11::dict &kwargs);
   pybind11::object figure_attr;
+
+  // gca
+  axes::Axes gca(const pybind11::tuple &args, const pybind11::dict &kwargs);
+  pybind11::object gca_attr;
 
   // legend
   pybind11::object legend;
@@ -51,6 +57,7 @@ struct DECL_STRUCT_ATTR PyPlot {
 
   // subplot
   axes::Axes subplot(const pybind11::dict &kwargs);
+  axes::Axes subplot(int cri);
   pybind11::object subplot_attr;
 
   // subplots
@@ -73,14 +80,27 @@ axes::Axes PyPlot::axes(const pybind11::dict &kwargs = pybind11::dict()) {
 }
 
 // figure
-figure::Figure PyPlot::figure(const pybind11::dict &kwargs = pybind11::dict()) {
-  pybind11::object fig_obj = figure_attr(**kwargs);
+figure::Figure PyPlot::figure(const pybind11::tuple &args = pybind11::tuple(),
+                              const pybind11::dict &kwargs = pybind11::dict()) {
+  pybind11::object fig_obj = figure_attr(*args, **kwargs);
   return figure::Figure(fig_obj);
+}
+
+// gca
+axes::Axes PyPlot::gca(const pybind11::tuple &args = pybind11::tuple(),
+                       const pybind11::dict &kwargs = pybind11::dict()) {
+  pybind11::object obj = gca_attr(*args, **kwargs);
+  return axes::Axes(obj);
 }
 
 // subplot
 axes::Axes PyPlot::subplot(const pybind11::dict &kwargs = pybind11::dict()) {
   return axes::Axes(subplot_attr(**kwargs));
+}
+
+axes::Axes PyPlot::subplot(int cri) {
+  pybind11::object obj = subplot_attr(cri);
+  return axes::Axes(obj);
 }
 
 // subplots
