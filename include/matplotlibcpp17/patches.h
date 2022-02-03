@@ -44,4 +44,18 @@ struct DECL_STRUCT_ATTR Rectangle {
   pybind11::object rectangle_attr;
 };
 
+struct DECL_STRUCT_ATTR Wedge {
+  Wedge(const pybind11::tuple &args = pybind11::tuple(),
+        const pybind11::dict &kwargs = pybind11::dict()) {
+    wedge_attr = pybind11::module::import("matplotlib.patches").attr("Wedge");
+    self = wedge_attr(*args, **kwargs);
+  }
+  pybind11::object self;
+
+  // for passing as python object
+  pybind11::object unwrap() { return self; }
+
+  pybind11::object wedge_attr;
+};
+
 } // namespace patches

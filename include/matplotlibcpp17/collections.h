@@ -1,11 +1,21 @@
 namespace collections {
 
 struct DECL_STRUCT_ATTR PathCollection {
+  PathCollection(const pybind11::tuple &args = pybind11::tuple(),
+                 const pybind11::dict &kwargs = pybind11::dict()) {
+    pybind11::object attr = pybind11::module::import("matplotlib.collections")
+                                .attr("PathCollection");
+    self = attr(*args, **kwargs);
+    load_attrs();
+  }
   PathCollection(pybind11::object pathcollection) {
     self = pathcollection;
     load_attrs();
   }
-  void load_attrs() { LOAD_NONVOID_ATTR(legend_elements, self); }
+  void load_attrs() {
+    LOAD_NONVOID_ATTR(legend_elements, self);
+    LOAD_VOID_ATTR(set_array, self);
+  }
   pybind11::object self;
 
   pybind11::object unwrap() { return self; }
@@ -14,6 +24,9 @@ struct DECL_STRUCT_ATTR PathCollection {
   pybind11::object legend_elements_attr;
   std::pair<pybind11::object, pybind11::object>
   legend_elements(const pybind11::tuple &args, const pybind11::dict &kwargs);
+
+  // set_array
+  pybind11::object set_array;
 };
 
 // legend_elements
