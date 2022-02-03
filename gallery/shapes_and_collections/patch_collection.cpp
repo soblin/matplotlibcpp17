@@ -58,10 +58,10 @@ int main() {
                             75.06071403, 11.37844527};
   py::list colors = py::cast(colors_);
   auto p =
-      collections::PathCollection(args_(patches), kwargs_("alpha"_a = 0.4));
+      collections::PatchCollection(args_(patches), kwargs_("alpha"_a = 0.4));
   p.set_array(colors);
-  ax.add_collection(p.unwrap()); // erroneous
-  // fig.colorbar(p.unwrap(), "ax"_a = ax.unwrap());
+  ax.add_collection(p.unwrap());
+  fig.colorbar(p.unwrap(), "ax"_a = ax.unwrap());
   plt.show();
   return 0;
 }
