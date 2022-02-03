@@ -34,6 +34,7 @@ struct DECL_STRUCT_ATTR PyPlot {
   pybind11::object legend;
 
   // plot
+  // TODO: should return `artists` for gif?
   pybind11::object plot;
 
   // quiver
