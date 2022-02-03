@@ -62,6 +62,10 @@ int main() {
   p.set_array(colors);
   ax.add_collection(p.unwrap());
   fig.colorbar(p.unwrap(), "ax"_a = ax.unwrap());
+#if USE_GUI
   plt.show();
+#else
+  plt.savefig("patch_collection.png");
+#endif
   return 0;
 }
