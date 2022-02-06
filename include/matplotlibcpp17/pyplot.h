@@ -9,11 +9,13 @@ struct DECL_STRUCT_ATTR PyPlot {
   void load_attrs() {
     LOAD_NONVOID_ATTR(axes, mod);
     LOAD_VOID_ATTR(axis, mod);
+    LOAD_VOID_ATTR(cla, mod);
     LOAD_VOID_ATTR(clf, mod);
     LOAD_NONVOID_ATTR(figure, mod);
     LOAD_NONVOID_ATTR(gca, mod);
     LOAD_NONVOID_ATTR(gcf, mod);
     LOAD_VOID_ATTR(legend, mod);
+    LOAD_VOID_ATTR(pause, mod);
     LOAD_VOID_ATTR(plot, mod);
     LOAD_VOID_ATTR(quiver, mod);
     LOAD_VOID_ATTR(savefig, mod);
@@ -22,7 +24,9 @@ struct DECL_STRUCT_ATTR PyPlot {
     LOAD_NONVOID_ATTR(subplot, mod);
     LOAD_NONVOID_ATTR(subplots, mod);
     LOAD_VOID_ATTR(xlabel, mod);
+    LOAD_VOID_ATTR(xlim, mod);
     LOAD_VOID_ATTR(ylabel, mod);
+    LOAD_VOID_ATTR(ylim, mod);
   }
   pybind11::module mod;
 
@@ -32,6 +36,9 @@ struct DECL_STRUCT_ATTR PyPlot {
 
   // axis
   pybind11::object axis;
+
+  // cla
+  pybind11::object cla;
 
   // clf
   pybind11::object clf;
@@ -51,6 +58,9 @@ struct DECL_STRUCT_ATTR PyPlot {
 
   // legend
   pybind11::object legend;
+
+  // pause
+  pybind11::object pause;
 
   // plot
   // TODO: should return `artists` for gif?
@@ -82,8 +92,14 @@ struct DECL_STRUCT_ATTR PyPlot {
   // xlabel
   pybind11::object xlabel;
 
+  // xlim
+  pybind11::object xlim;
+
   // ylabel
   pybind11::object ylabel;
+
+  // ylim
+  pybind11::object ylim;
 };
 
 // axes
