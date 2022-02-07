@@ -27,7 +27,7 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
 using namespace std;
 
 using matplotlibcpp17::gridspec::GridSpec;
-using namespace matplotlibcpp17::util;
+using namespace matplotlibcpp17;
 
 int main() {
   py::scoped_interpreter guard{};

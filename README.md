@@ -16,7 +16,7 @@ Just add include path to `include` directory of this project.
 ## Syntax
 
 - `void` functions can be called in almost the same way as python code (remind yourself to append `_a` literal to keyword arguments).
-- For `non-void` functions that return some objects, basically the user will need to capsulate *arguments* in `::util::args_(arg1, arg2, ...) == pybind11:tuple` and *keyword arguments* in `::util::kwargs_("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict`. The returned value is a corresponding wrapper class. Please refer to the examples below.
+- For `non-void` functions that return some objects, basically the user will need to capsulate *arguments* in `args_(arg1, arg2, ...) == pybind11:tuple` and *keyword arguments* in `kwargs_("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict`. The returned value is a corresponding wrapper class. Please refer to the examples below.
   - exception: `subplots`, 
   - conversion: Wrapper class of matplotlibcpp17 like [::container::BarContainer](https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h) needs to be passed to python interpreter using `unwrap()` method in *args* and *kwargs*.
 

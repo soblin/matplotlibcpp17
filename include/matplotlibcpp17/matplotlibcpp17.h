@@ -18,7 +18,12 @@ namespace matplotlibcpp17 {
 #include "figure.h"
 #include "patches.h"
 #include "pyplot.h"
-#include "util.h"
+
+template <typename... Args> pybind11::tuple args_(Args &&... args) {
+  return pybind11::make_tuple(std::forward<Args>(args)...);
+}
+
+using kwargs_ = pybind11::dict;
 
 } // namespace matplotlibcpp17
 

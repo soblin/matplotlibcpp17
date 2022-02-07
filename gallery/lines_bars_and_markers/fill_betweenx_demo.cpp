@@ -25,7 +25,7 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
 
 using namespace std;
 
-using namespace matplotlibcpp17::util;
+using namespace matplotlibcpp17;
 
 int main1() {
   auto plt = matplotlibcpp17::pyplot::import();
