@@ -1,4 +1,13 @@
-namespace collections {
+#ifndef MATPLOTLIBCPP17_COLLECTIONS_H
+#define MATPLOTLIBCPP17_COLLECTIONS_H
+
+#include <utility>
+
+#include <matplotlibcpp17/common.h>
+
+#include <pybind11/pybind11.h>
+
+namespace matplotlibcpp17::collections {
 
 struct DECL_STRUCT_ATTR PathCollection {
   PathCollection(pybind11::object pathcollection) {
@@ -47,4 +56,6 @@ struct DECL_STRUCT_ATTR PatchCollection {
   pybind11::object set_array;
 };
 
-} // namespace collections
+} // namespace matplotlibcpp17::collections
+
+#endif /* MATPLOTLIBCPP17_COLLECTIONS_H */

@@ -10,7 +10,7 @@ if(NOT DEFINED ADD_DEMO)
 endif()
 
 if(NOT DEFINED USE_GUI)
-  set(USE_GUI OFF)
+  set(USE_GUI 0)
 endif()
 
 set(matplotlibcpp17_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include")

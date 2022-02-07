@@ -1,4 +1,13 @@
-namespace figure {
+#ifndef MATPLOTLIBCPP17_FIGURE_H
+#define MATPLOTLIBCPP17_FIGURE_H
+
+#include <matplotlibcpp17/common.h>
+#include <matplotlibcpp17/axes.h>
+#include <matplotlibcpp17/gridspec.h>
+
+#include <pybind11/pybind11.h>
+
+namespace matplotlibcpp17::figure {
 
 struct DECL_STRUCT_ATTR Figure {
   Figure(pybind11::object figure) {
@@ -72,4 +81,6 @@ Figure::add_subplot(const pybind11::tuple &args = pybind11::tuple(),
   pybind11::object obj = add_subplot_attr(*args, **kwargs);
   return axes::Axes(obj);
 }
-} // namespace figure
+} // namespace matplotlibcpp17::figure
+
+#endif /* MATPLOTLIBCPP17_FIGURE_H */

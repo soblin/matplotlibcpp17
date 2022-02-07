@@ -1,4 +1,11 @@
-namespace gridspec {
+#ifndef MATPLOTLIBCPP17_GRIDSPEC_H
+#define MATPLOTLIBCPP17_GRIDSPEC_H
+
+#include <matplotlibcpp17/common.h>
+
+#include <pybind11/pybind11.h>
+
+namespace matplotlibcpp17::gridspec {
 
 struct DECL_STRUCT_ATTR SubplotSpec {
   SubplotSpec(pybind11::object subplotspec) { self = subplotspec; }
@@ -29,4 +36,6 @@ struct DECL_STRUCT_ATTR GridSpec {
   pybind11::object gridspec_attr;
 };
 
-} // namespace gridspec
+} // namespace matplotlibcpp17::gridspec
+
+#endif /* MATPLOTLIBCPP17_GRIDSPEC_H */
