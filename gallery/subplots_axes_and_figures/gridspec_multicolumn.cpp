@@ -14,7 +14,7 @@ using namespace py::literals;
 using namespace std;
 
 using matplotlibcpp17::gridspec::GridSpec;
-using namespace matplotlibcpp17::util;
+using namespace matplotlibcpp17;
 
 int main() {
   py::scoped_interpreter guard{};

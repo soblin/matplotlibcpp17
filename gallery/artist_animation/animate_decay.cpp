@@ -13,7 +13,7 @@
 namespace py = pybind11;
 using namespace py::literals;
 using namespace std;
-using namespace matplotlibcpp17::util;
+using namespace matplotlibcpp17;
 using matplotlibcpp17::animation::ArtistAnimation;
 
 int main() {
