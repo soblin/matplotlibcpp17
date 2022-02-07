@@ -17,6 +17,7 @@ struct DECL_STRUCT_ATTR Axes {
     LOAD_VOID_ATTR(fill_between, self);
     LOAD_VOID_ATTR(fill_betweenx, self);
     LOAD_VOID_ATTR(get_xaxis_transform, self);
+    LOAD_NONVOID_ATTR(get_xlim, self);
     LOAD_NONVOID_ATTR(get_xticklabels, self);
     LOAD_VOID_ATTR(grid, self);
     LOAD_NONVOID_ATTR(hist, self);
@@ -34,6 +35,7 @@ struct DECL_STRUCT_ATTR Axes {
     LOAD_VOID_ATTR(set_xlim, self);
     LOAD_VOID_ATTR(set_xticks, self);
     LOAD_VOID_ATTR(set_ylabel, self);
+    LOAD_VOID_ATTR(set_ylim, self);
     LOAD_VOID_ATTR(set_yticks, self);
     LOAD_VOID_ATTR(text, self);
     LOAD_VOID_ATTR(tick_params, self);
@@ -80,6 +82,10 @@ struct DECL_STRUCT_ATTR Axes {
   // get_xaxis_transform
   /// TODO: currently returns py::object
   pybind11::object get_xaxis_transform;
+
+  // get_xlim
+  std::tuple<double, double> get_xlim();
+  pybind11::object get_xlim_attr;
 
   // get_xticklabels
   std::vector<text::Text> get_xticklabels();
@@ -146,6 +152,9 @@ struct DECL_STRUCT_ATTR Axes {
   // set_ylabel
   pybind11::object set_ylabel;
 
+  // set_ylim
+  pybind11::object set_ylim;
+
   // set_yticks
   pybind11::object set_yticks;
 
@@ -168,6 +177,14 @@ container::BarContainer Axes::barh(const pybind11::tuple &args,
                                    const pybind11::dict &kwargs) {
   pybind11::object obj = barh_attr(*args, **kwargs);
   return container::BarContainer(obj);
+}
+
+// get_xlim
+std::tuple<double, double> Axes::get_xlim() {
+  pybind11::list ret = get_xlim_attr();
+  double x1 = ret[0].cast<double>();
+  double x2 = ret[1].cast<double>();
+  return {x1, x2};
 }
 
 // get_xticklabels

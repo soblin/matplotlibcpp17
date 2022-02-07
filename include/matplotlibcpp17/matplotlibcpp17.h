@@ -7,6 +7,7 @@ namespace matplotlibcpp17 {
 
 #include "common.h"
 
+#include "animation.h"
 #include "text.h"
 #include "container.h"
 #include "collections.h"
