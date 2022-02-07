@@ -1,3 +1,8 @@
+/**
+ * @file axes.h
+ * @brief corresponding header for matplotlib.axes
+ **/
+
 #ifndef MATPLOTLIBCPP17_AXES_H
 #define MATPLOTLIBCPP17_AXES_H
 
@@ -15,6 +20,9 @@
 
 namespace matplotlibcpp17::axes {
 
+/**
+ * @brief A wrapper class for matplotlib.axes.Axes
+ **/
 struct DECL_STRUCT_ATTR Axes {
   Axes(pybind11::object axes) {
     self = axes;
@@ -58,13 +66,20 @@ struct DECL_STRUCT_ATTR Axes {
   }
   pybind11::object self;
 
-  // for passing as python object
+  /**
+   * @fn unwrap()
+   * @brief return python object for passing this wrapper class to plotting function
+   **/
   pybind11::object unwrap() { return self; }
 
-  // add_artist
+  /**
+   * @fn add_artist(*args, **kwargs)
+   **/
   pybind11::object add_artist;
 
-  // add_collection
+  /**
+   * @fn add_collection(*args, **kwargs)
+   **/
   pybind11::object add_collection;
 
   // add_patch
