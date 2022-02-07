@@ -1,4 +1,11 @@
-namespace animation {
+#ifndef MATPLOTLIBCPP17_ANIMATION_H
+#define MATPLOTLIBCPP17_ANIMATION_H
+
+#include <pybind11/pybind11.h>
+
+#include <matplotlibcpp17/common.h>
+
+namespace matplotlibcpp17::animation {
 
 struct DECL_STRUCT_ATTR ArtistAnimation {
   ArtistAnimation(const pybind11::tuple &args, const pybind11::dict &kwargs) {
@@ -14,4 +21,6 @@ struct DECL_STRUCT_ATTR ArtistAnimation {
   pybind11::object save;
 };
 
-} // namespace animation
+} // namespace matplotlibcpp17::animation
+
+#endif /* MATPLOTLIBCPP17_ANIMATION_H */

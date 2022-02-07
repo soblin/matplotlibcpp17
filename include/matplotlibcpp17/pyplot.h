@@ -1,4 +1,15 @@
-namespace pyplot {
+#ifndef MATPLOTLIBCPP17_PYPLOT_H
+#define MATPLOTLIBCPP17_PYPLOT_H
+
+#include <tuple>
+
+#include <matplotlibcpp17/common.h>
+#include <matplotlibcpp17/axes.h>
+#include <matplotlibcpp17/figure.h>
+
+#include <pybind11/pybind11.h>
+
+namespace matplotlibcpp17::pyplot {
 
 struct DECL_STRUCT_ATTR PyPlot {
   PyPlot() {}
@@ -175,4 +186,6 @@ PyPlot import() {
   return g_pyplot;
 }
 
-} // namespace pyplot
+} // namespace matplotlibcpp17::pyplot
+
+#endif /* MATPLOTLIBCPP17_PYPLOT_H */

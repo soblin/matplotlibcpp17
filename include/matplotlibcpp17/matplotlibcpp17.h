@@ -1,23 +1,17 @@
 #ifndef MATPLOTLIBCPP_17_H
 #define MATPLOTLIBCPP_17_H
 
-#include <pybind11/pybind11.h>
+#include <matplotlibcpp17/animation.h>
+#include <matplotlibcpp17/axes.h>
+#include <matplotlibcpp17/collections.h>
+#include <matplotlibcpp17/figure.h>
+#include <matplotlibcpp17/gridspec.h>
+#include <matplotlibcpp17/legend.h>
+#include <matplotlibcpp17/patches.h>
+#include <matplotlibcpp17/pyplot.h>
+#include <matplotlibcpp17/quiver.h>
 
 namespace matplotlibcpp17 {
-
-#include "common.h"
-
-#include "animation.h"
-#include "text.h"
-#include "container.h"
-#include "collections.h"
-#include "legend.h"
-#include "quiver.h"
-#include "axes.h"
-#include "gridspec.h"
-#include "figure.h"
-#include "patches.h"
-#include "pyplot.h"
 
 template <typename... Args> pybind11::tuple args_(Args &&... args) {
   return pybind11::make_tuple(std::forward<Args>(args)...);

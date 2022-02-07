@@ -1,4 +1,11 @@
-namespace patches {
+#ifndef MATPLOTLIBCPP17_PATCHES_H
+#define MATPLOTLIBCPP17_PATCHES_H
+
+#include <matplotlibcpp17/common.h>
+
+#include <pybind11/pybind11.h>
+
+namespace matplotlibcpp17::patches {
 
 struct DECL_STRUCT_ATTR Circle {
   Circle(const pybind11::tuple &args = pybind11::tuple(),
@@ -58,4 +65,6 @@ struct DECL_STRUCT_ATTR Wedge {
   pybind11::object wedge_attr;
 };
 
-} // namespace patches
+} // namespace matplotlibcpp17::patches
+
+#endif /* MATPLOTLIBCPP17_PATCHES_H */

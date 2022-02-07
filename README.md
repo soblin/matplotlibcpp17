@@ -148,7 +148,9 @@ From [gallery/artist_animation/random_walk.cpp](https://github.com/soblin/matplo
 mkdir build; cd build; cmake .. ; make -j
 ```
 
-If you want to see the demo with `plt.show()`, add `-DUSE_GUI=ON` (by default it is `OFF`). Otherwise the executables will `plt.savefig()` to each source directory. Then `make <gallery directory name>` runs all executables under that directory.
+If you want to see the demo with `plt.show()`, add `-DUSE_GUI=1` (by default it is `0`). Otherwise the executables will `plt.savefig()` to `gallery/images` directory.
+
+`make <gallery directory name>` runs all executables under that directory.
 
 ```bash
 make lines_bars_and_markers

@@ -1,4 +1,19 @@
-namespace axes {
+#ifndef MATPLOTLIBCPP17_AXES_H
+#define MATPLOTLIBCPP17_AXES_H
+
+#include <vector>
+#include <tuple>
+
+#include <matplotlibcpp17/common.h>
+#include <matplotlibcpp17/collections.h>
+#include <matplotlibcpp17/container.h>
+#include <matplotlibcpp17/legend.h>
+#include <matplotlibcpp17/quiver.h>
+#include <matplotlibcpp17/text.h>
+
+#include <pybind11/pybind11.h>
+
+namespace matplotlibcpp17::axes {
 
 struct DECL_STRUCT_ATTR Axes {
   Axes(pybind11::object axes) {
@@ -248,4 +263,6 @@ Axes::scatter(const pybind11::tuple &args = pybind11::tuple(),
   return collections::PathCollection(obj);
 }
 
-} // namespace axes
+} // namespace matplotlibcpp17::axes
+
+#endif /* MATPLOTLIBCPP17_AXES_H */
