@@ -128,6 +128,16 @@ From [gallery/images_contours_and_fields/quiver_demo.cpp](https://github.com/sob
 
 ![quiver_demo3](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images/quiver_demo_3.png)
 
+### example5 - gif
+
+Currently only `ArtistAnimation` is supported. `FuncAnimation` interface maybe implemented in the future.
+
+From [gallery/artist_animation/random_walk.cpp](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/artist_animation/random_walk.cpp)
+
+- [original python code](https://matplotlib.org/stable/gallery/animation/random_walk.html)
+
+![random_walk](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images/random_walk.gif)
+
 ## Demos
 
 `gallery` folder contains corresponding examples from [the official website of matplotlib](https://matplotlib.org/stable/gallery) with the same structure.

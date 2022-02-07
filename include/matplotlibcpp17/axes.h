@@ -16,6 +16,7 @@ struct DECL_STRUCT_ATTR Axes {
     LOAD_VOID_ATTR(fill, self);
     LOAD_VOID_ATTR(fill_between, self);
     LOAD_VOID_ATTR(fill_betweenx, self);
+    LOAD_VOID_ATTR(get_lines, self);
     LOAD_VOID_ATTR(get_xaxis_transform, self);
     LOAD_NONVOID_ATTR(get_xlim, self);
     LOAD_NONVOID_ATTR(get_xticklabels, self);
@@ -78,6 +79,9 @@ struct DECL_STRUCT_ATTR Axes {
 
   // fill_betweenx
   pybind11::object fill_betweenx;
+
+  // get_lines
+  pybind11::object get_lines;
 
   // get_xaxis_transform
   /// TODO: currently returns py::object

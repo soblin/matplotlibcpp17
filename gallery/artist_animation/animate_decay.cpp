@@ -38,6 +38,10 @@ int main() {
   }
   auto ani = ArtistAnimation(args_(fig.unwrap(), artist_list),
                              kwargs_("interval"_a = 10));
+#if USE_GUI
   plt.show();
+#else
+  ani.save("animate_decay.gif", "writer"_a = "pillow");
+#endif
   return 0;
 }
