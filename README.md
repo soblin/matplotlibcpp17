@@ -33,7 +33,7 @@ gives
 
 ![minimal example](https://github.com/soblin/matplotlibcpp17/blob/master/hello_world.png)
 
-### example1
+### example1 - subplots
 
 From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/subplots_axes_and_figures/align_labels_demo.cpp).
 
@@ -58,7 +58,7 @@ From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.co
 
 ![subplots_axes_and_figures](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images/align_labels_demo.png)
 
-### example2
+### example2 - bar plot
 
 From [gallery/lines_bars_and_markers/bar_label_demo.cpp](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/lines_bars_and_markers/bar_label_demo.cpp). Here `subplots()` returns `tuple<Figure, Axes>`.
 
@@ -87,7 +87,7 @@ From [gallery/lines_bars_and_markers/bar_label_demo.cpp](https://github.com/sobl
 
 ![bar_label_demo1](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images/bar_label_demo1.png)
 
-### example3
+### example3 - fill
 
 Fucntions like `subplots`, `TBD`s are overloaded because they return different types depending on the arguments. Here `subplots()` returns `tuple<Figure, vector<Axes>>`.
 
@@ -105,7 +105,7 @@ From [gallery/lines_bars_and_markers](https://github.com/soblin/matplotlibcpp17/
 
 ![fill](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images/fill.png)
 
-### example4
+### example4 - quiver
 
 Use `.unwrap()` method to pass wrapper class of matplotlibcpp17 to plotting functions.
 
@@ -142,7 +142,7 @@ From [gallery/artist_animation/random_walk.cpp](https://github.com/soblin/matplo
 
 `gallery` folder contains corresponding examples from [the official website of matplotlib](https://matplotlib.org/stable/gallery) with the same structure.
 
-### Run the demos
+### build
 
 ```bash
 mkdir build; cd build; cmake .. ; make -j
