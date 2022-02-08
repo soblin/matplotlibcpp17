@@ -1,0 +1,9 @@
+@media screen and (max-width: 767px) {
+    .github-corner svg {
+        width: 55px;
+        height: 55px;
+    }
+    #projectnumber {
+        margin-right: 22px;
+    }
+}
