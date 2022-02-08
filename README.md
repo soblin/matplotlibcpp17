@@ -31,7 +31,7 @@ g++ hello_world.cpp -std=c++17 -I./include -I/usr/include/python3.x -I<path to p
 
 gives
 
-![minimal example](https://github.com/soblin/matplotlibcpp17/blob/master/hello_world.png)
+![minimal example](./gallery/images/hello_world.png)
 
 ### example1 - subplots
 
@@ -56,7 +56,7 @@ From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.co
   ax.set_xlabel("XLabel0");
 ```
 
-![subplots_axes_and_figures](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images/align_labels_demo.png)
+![subplots_axes_and_figures](./gallery/images/align_labels_demo.png)
 
 ### example2 - bar plot
 
@@ -85,7 +85,7 @@ From [gallery/lines_bars_and_markers/bar_label_demo.cpp](https://github.com/sobl
   plt.show();
 ```
 
-![bar_label_demo1](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images/bar_label_demo1.png)
+![bar_label_demo1](./gallery/images/bar_label_demo1.png)
 
 ### example3 - fill
 
@@ -103,7 +103,7 @@ From [gallery/lines_bars_and_markers](https://github.com/soblin/matplotlibcpp17/
   auto ax1 = axes[0], ax2 = axes[1], ax3 = axes[2];
 ```
 
-![fill](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images/fill.png)
+![fill](./gallery/images/fill.png)
 
 ### example4 - quiver
 
@@ -126,7 +126,7 @@ From [gallery/images_contours_and_fields/quiver_demo.cpp](https://github.com/sob
   ax1.scatter(args_(X, Y), kwargs_("color"_a = "0.5", "s"_a = 1));
 ```
 
-![quiver_demo3](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images/quiver_demo_3.png)
+![quiver_demo3](./gallery/images/quiver_demo_3.png)
 
 ### example5 - gif
 
@@ -136,7 +136,7 @@ From [gallery/artist_animation/random_walk.cpp](https://github.com/soblin/matplo
 
 - [original python code](https://matplotlib.org/stable/gallery/animation/random_walk.html)
 
-![random_walk](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images/random_walk.gif)
+![random_walk](./gallery/images/random_walk.gif)
 
 ## Demos
 
