@@ -20,6 +20,9 @@
 
 namespace matplotlibcpp17::axes {
 
+using HistType = std::tuple<std::vector<double>, std::vector<double>,
+                            container::BarContainer>;
+
 /**
  * @brief A wrapper class for matplotlib.axes.Axes
  **/
@@ -99,9 +102,8 @@ public:
                         const pybind11::dict &kwargs = pybind11::dict());
 
   // hist
-  std::tuple<std::vector<double>, std::vector<double>, container::BarContainer>
-  hist(const pybind11::tuple &args = pybind11::tuple(),
-       const pybind11::dict &kwargs = pybind11::dict());
+  HistType hist(const pybind11::tuple &args = pybind11::tuple(),
+                const pybind11::dict &kwargs = pybind11::dict());
 
   // hist2d
   pybind11::object hist2d(const pybind11::tuple &args = pybind11::tuple(),

@@ -15,7 +15,7 @@ Just add include path to `include` directory of this project.
 
 ## Syntax
 
-The user will need to capsulate *arguments* in `args_(arg1, arg2, ...) == pybind11:tuple` and *keyword arguments* in `kwargs_("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict`. The returned value is either a `pybind11::object` or corresponding wrapper class. Please refer to the reference and examples below.
+The user will need to capsulate *arguments* in `args_(arg1, arg2, ...) == pybind11:tuple` and *keyword arguments* in `kwargs_("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict`. The returned value is either a `pybind11::object` or a corresponding wrapper class. Please refer to the reference and examples below.
 - exception: `subplots`, `TBD`s
 - conversion: Wrapper class of matplotlibcpp17 like [::container::BarContainer](https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h) needs to be passed to python interpreter using `unwrap()` method in *args* and *kwargs*.
 
