@@ -19,7 +19,7 @@ public:
     load_attrs();
   }
   // axes
-  axes::Axes axes(const pybind11::dict &kwargs);
+  axes::Axes axes(const pybind11::dict &kwargs = pybind11::dict());
 
   // axis
   pybind11::object axis(const pybind11::tuple &args = pybind11::tuple(),
