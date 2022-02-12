@@ -38,30 +38,30 @@ int main() {
             [](double x) { return sin(4 * M_PI * x); });
   plt.figure(args_(1));
   plt.subplot(211);
-  plt.plot(t, s1);
+  plt.plot(args_(t, s1));
   plt.subplot(212);
-  plt.plot(t, s2);
+  plt.plot(args_(t, s2));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("multiple_figs_demo1.png");
+  plt.savefig(args_("multiple_figs_demo1.png"));
 #endif
   plt.figure(args_(2));
-  plt.plot(t, s2);
+  plt.plot(args_(t, s2));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("multiple_figs_demo2.png");
+  plt.savefig(args_("multiple_figs_demo2.png"));
 #endif
   plt.figure(args_(2));
   plt.subplot(211);
-  plt.plot(t, s2, "s");
+  plt.plot(args_(t, s2, "s"));
   auto ax = plt.gca();
-  ax.set_xticks(args_());
+  ax.set_xticklabels(args_(py::list()));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("multiple_figs_demo3.png");
+  plt.savefig(args_("multiple_figs_demo3.png"));
 #endif
   return 0;
 }
