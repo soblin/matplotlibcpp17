@@ -15,7 +15,7 @@ struct DECL_STRUCT_ATTR PathCollection {
     load_attrs();
   }
   void load_attrs() {
-    LOAD_NONVOID_ATTR(legend_elements, self);
+    LOAD_FUNC_ATTR(legend_elements, self);
   }
   pybind11::object self;
 
@@ -47,7 +47,7 @@ struct DECL_STRUCT_ATTR PatchCollection {
     self = attr(*args, **kwargs);
     load_attrs();
   }
-  void load_attrs() { LOAD_VOID_ATTR(set_array, self); }
+  void load_attrs() { LOAD_FUNC_ATTR(set_array, self); }
   pybind11::object self;
 
   pybind11::object unwrap() { return self; }

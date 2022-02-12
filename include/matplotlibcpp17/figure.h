@@ -15,14 +15,14 @@ struct DECL_STRUCT_ATTR Figure {
     load_attrs();
   }
   void load_attrs() {
-    LOAD_NONVOID_ATTR(add_axes, self);
-    LOAD_NONVOID_ATTR(add_gridspec, self);
-    LOAD_NONVOID_ATTR(add_subplot, self);
-    LOAD_VOID_ATTR(align_labels, self);
-    LOAD_VOID_ATTR(colorbar, self);
-    LOAD_VOID_ATTR(savefig, self);
-    LOAD_VOID_ATTR(suptitle, self);
-    LOAD_VOID_ATTR(tight_layout, self);
+    LOAD_FUNC_ATTR(add_axes, self);
+    LOAD_FUNC_ATTR(add_gridspec, self);
+    LOAD_FUNC_ATTR(add_subplot, self);
+    LOAD_FUNC_ATTR(align_labels, self);
+    LOAD_FUNC_ATTR(colorbar, self);
+    LOAD_FUNC_ATTR(savefig, self);
+    LOAD_FUNC_ATTR(suptitle, self);
+    LOAD_FUNC_ATTR(tight_layout, self);
   }
   pybind11::object self;
 

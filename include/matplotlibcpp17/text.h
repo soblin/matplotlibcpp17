@@ -12,7 +12,7 @@ struct DECL_STRUCT_ATTR Text {
     self = text;
     load_attrs();
   }
-  void load_attrs() { LOAD_VOID_ATTR(set_rotation, self); }
+  void load_attrs() { LOAD_FUNC_ATTR(set_rotation, self); }
   pybind11::object self;
   pybind11::object set_rotation;
 };

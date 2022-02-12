@@ -14,7 +14,7 @@ struct DECL_STRUCT_ATTR ArtistAnimation {
     self = attr(*args, **kwargs);
     load_attrs();
   }
-  void load_attrs() { LOAD_VOID_ATTR(save, self); }
+  void load_attrs() { LOAD_FUNC_ATTR(save, self); }
   pybind11::object self;
 
   // save
