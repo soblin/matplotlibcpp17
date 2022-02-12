@@ -106,7 +106,7 @@ Usage</h1>
 <p >Just add include path to <code>include</code> directory of this project.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Syntax</h1>
-<p >The user will need to capsulate <em>arguments</em> in <code>args_(arg1, arg2, ...) == pybind11:tuple</code> and <em>keyword arguments</em> in <code>kwargs_("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict</code>. The returned value is a corresponding wrapper class. Please refer to the reference and examples below.</p><ul>
+<p >The user will need to capsulate <em>arguments</em> in <code>args_(arg1, arg2, ...) == pybind11:tuple</code> and <em>keyword arguments</em> in <code>kwargs_("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict</code>. The returned value is either a <code>pybind11::object</code> or a corresponding wrapper class. Please refer to the reference and examples below.</p><ul>
 <li>exception: <code>subplots</code>, <code>TBD</code>s</li>
 <li>conversion: Wrapper class of matplotlibcpp17 like <a href="https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h">::container::BarContainer</a> needs to be passed to python interpreter using <code>unwrap()</code> method in <em>args</em> and <em>kwargs</em>.</li>
 </ul>
