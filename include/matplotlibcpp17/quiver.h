@@ -8,18 +8,22 @@
 namespace matplotlibcpp17::quiver {
 
 struct DECL_STRUCT_ATTR Quiver {
+public:
   Quiver(pybind11::object q) { self = q; }
-  pybind11::object self;
 
   pybind11::object unwrap() { return self; }
+
+private:
+  pybind11::object self;
 };
 
 struct DECL_STRUCT_ATTR QuiverKey {
   QuiverKey(pybind11::object qk) { self = qk; }
-  pybind11::object self;
 
-  // for passing as python object
   pybind11::object unwrap() { return self; }
+
+private:
+  pybind11::object self;
 };
 
 } // namespace matplotlibcpp17::quiver
