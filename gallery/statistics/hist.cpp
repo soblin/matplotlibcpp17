@@ -33,7 +33,7 @@ int main1() {
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("hist1.png");
+  plt.savefig(args_("hist1.png"));
 #endif
   return 0;
 }
@@ -59,12 +59,12 @@ int main3() {
   auto ax1 = axs[0];
   ;
   // We can increase the number of bins on each axis
-  ax1.hist2d(dist1, dist2, "bins"_a = 40);
+  ax1.hist2d(args_(dist1, dist2), kwargs_("bins"_a = 40));
   // TODO: more examples
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("hist3.png");
+  plt.savefig(args_("hist3.png"));
 #endif
   return 0;
 }

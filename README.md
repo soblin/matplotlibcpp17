@@ -15,10 +15,9 @@ Just add include path to `include` directory of this project.
 
 ## Syntax
 
-- `void` functions can be called in almost the same way as python code (remind yourself to append `_a` literal to keyword arguments).
-- For `non-void` functions that return some objects, basically the user will need to capsulate *arguments* in `args_(arg1, arg2, ...) == pybind11:tuple` and *keyword arguments* in `kwargs_("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict`. The returned value is a corresponding wrapper class. Please refer to the examples below.
-  - exception: `subplots`, 
-  - conversion: Wrapper class of matplotlibcpp17 like [::container::BarContainer](https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h) needs to be passed to python interpreter using `unwrap()` method in *args* and *kwargs*.
+The user will need to capsulate *arguments* in `args_(arg1, arg2, ...) == pybind11:tuple` and *keyword arguments* in `kwargs_("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict`. The returned value is a corresponding wrapper class. Please refer to the reference and examples below.
+- exception: `subplots`, `TBD`s
+- conversion: Wrapper class of matplotlibcpp17 like [::container::BarContainer](https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h) needs to be passed to python interpreter using `unwrap()` method in *args* and *kwargs*.
 
 ## Examples
 
@@ -46,14 +45,12 @@ From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.co
   /// gs is of type gridspec::GridSpec
   auto gs = GridSpec(2, 2);
 
-  // non-void function: capsulate args and kwargs in py::tuple and py::dict
   /// pass wrapper class object like gs[0, :] of ::gridspec::SubplotSpec to the interpreter using .unwrap() method as python object
   auto ax = fig.add_subplot(args_(gs(0, py::slice(0, 2, 1)).unwrap()));
 
-  // void function: no need to capsulate args and kwargs
-  ax.plot(arange(0, 1000000, 10000));
-  ax.set_ylabel("YLabel0");
-  ax.set_xlabel("XLabel0");
+  ax.plot(args_(arange(0, 1000000, 10000)));
+  ax.set_ylabel(args_("YLabel0"));
+  ax.set_xlabel(args_("XLabel0"));
 ```
 
 ![subplots_axes_and_figures](./gallery/images/align_labels_demo.png)
@@ -66,22 +63,22 @@ From [gallery/lines_bars_and_markers/bar_label_demo.cpp](https://github.com/sobl
 
 ```cpp
   auto [fig, ax] = plt.subplots();
-  // non-void function: capsulate args and kwargs in py::tuple and py::dict
   auto p1 = ax.bar(args_(ind, menMeans, width),
                    kwargs_("yerr"_a = menStd, "label"_a = "Men"));
   auto p2 = ax.bar(
       args_(ind, womenMeans, width),
       kwargs_("bottom"_a = menMeans, "yerr"_a = womenStd, "label"_a = "Women"));
-  ax.axhline(0, "color"_a = "grey", "linewidth"_a = 0.8);
-  ax.set_ylabel("Scores");
-  ax.set_title("Scores by group and gender");
-  ax.set_xticks(ind, py::make_tuple("G1", "G2", "G3", "G4", "G5"));
+  ax.axhline(args_(0), kwargs_("color"_a = "grey", "linewidth"_a = 0.8));
+  ax.set_ylabel(args_("Scores"));
+  ax.set_title(args_("Scores by group and gender"));
+
+  ax.set_xticks(args_(ind, py::make_tuple("G1", "G2", "G3", "G4", "G5")));
   ax.legend();
 
   // pass wrapper class object like p1 of ::container::BarContainer to the interpreter using .unwrap() method as python object
-  ax.bar_label(p1.unwrap(), "label_type"_a = "center");
-  ax.bar_label(p2.unwrap(), "label_type"_a = "center");
-  ax.bar_label(p2.unwrap());
+  ax.bar_label(args_(p1.unwrap()), kwargs_("label_type"_a = "center"));
+  ax.bar_label(args_(p2.unwrap()), kwargs_("label_type"_a = "center"));
+  ax.bar_label(args_(p2.unwrap()));
   plt.show();
 ```
 
@@ -116,7 +113,7 @@ From [gallery/images_contours_and_fields/quiver_demo.cpp](https://github.com/sob
 ```cpp
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig1, ax1] = plt.subplots();
-  ax1.set_title("pivot='tip'; scales with x view");
+  ax1.set_title(args_("Arrows scale with plot width, not view"));
   auto Q = ax1.quiver(args_(X, Y, U, V, M),
                       kwargs_("units"_a = "x", "pivot"_a = "tip",
                               "width"_a = 0.022, "scale"_a = 1.0 / 0.15));
