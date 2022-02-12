@@ -22,8 +22,8 @@ int main() {
   const int N = 200;
   vector<double> ts, ys;
   auto [fig, ax] = plt.subplots();
-  ax.set_xlim(0, 10);
-  ax.set_ylim(-1.1, 1.1);
+  ax.set_xlim(args_(0, 10));
+  ax.set_ylim(args_(-1.1, 1.1));
   py::list artist_list;
   for (int i = 0; i < N; ++i) {
     double t = i * 1.0 / 10;
@@ -32,8 +32,9 @@ int main() {
     ys.push_back(y);
     auto [xmin, xmax] = ax.get_xlim();
     if (t >= xmax)
-      ax.set_xlim(xmin, 2 * xmax);
-    py::object line = ax.plot(ts, ys, "color"_a = "blue", "lw"_a = 1);
+      ax.set_xlim(args_(xmin, 2 * xmax));
+    py::object line =
+        ax.plot(args_(ts, ys), kwargs_("color"_a = "blue", "lw"_a = 1));
     artist_list.append(line);
   }
   auto ani = ArtistAnimation(args_(fig.unwrap(), artist_list),
@@ -41,7 +42,7 @@ int main() {
 #if USE_GUI
   plt.show();
 #else
-  ani.save("animate_decay.gif", "writer"_a = "pillow");
+  ani.save(args_("animate_decay.gif"), kwargs_("writer"_a = "pillow"));
 #endif
   return 0;
 }

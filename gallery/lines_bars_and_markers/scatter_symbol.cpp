@@ -25,10 +25,11 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
 }
 
 using namespace std;
+using namespace matplotlibcpp17;
 
 int main() {
   py::scoped_interpreter guard{};
-  auto plt = matplotlibcpp17::pyplot::import();
+  auto plt = pyplot::import();
   vector<double> x = {0.,  2.,  4.,  6.,  8.,  10., 12., 14., 16.,
                       18., 20., 22., 24., 26., 28., 30., 32., 34.,
                       36., 38., 40., 42., 44., 46., 48.};
@@ -44,15 +45,15 @@ int main() {
       1126.45270023, 1278.31780809, 886.56768427,  769.13688434, 953.93522899,
       538.35320778,  811.14962318,  1225.04291605, 628.81456741, 1094.89690779,
       1006.37932941, 759.34401418,  1237.90122592, 689.78115093, 1159.15645671};
-  plt.scatter(x, y, s, "c"_a = "g", "alpha"_a = 0.5,
-              "marker"_a = R"($\clubsuit$)", "label"_a = "Luck");
-  plt.xlabel("Leprechauns");
-  plt.ylabel("Gold");
-  plt.legend("loc"_a = "upper left");
+  plt.scatter(args_(x, y, s), kwargs_("c"_a = "g", "alpha"_a = 0.5,
+              "marker"_a = R"($\clubsuit$)", "label"_a = "Luck"));
+  plt.xlabel(args_("Leprechauns"));
+  plt.ylabel(args_("Gold"));
+  plt.legend(kwargs_("loc"_a = "upper left"));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("scatter_symbol.png");
+  plt.savefig(args_("scatter_symbol.png"));
 #endif
   return 0;
 }

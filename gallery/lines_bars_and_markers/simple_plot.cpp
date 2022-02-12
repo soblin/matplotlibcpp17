@@ -25,25 +25,26 @@ template <typename T> std::vector<T> arange(T start, T end, T h) {
 }
 
 using namespace std;
+using namespace matplotlibcpp17;
 
 int main() {
   py::scoped_interpreter guard{};
-  auto plt = matplotlibcpp17::pyplot::import();
+  auto plt = pyplot::import();
   vector<double> t = arange(0.0, 2.0, 0.01);
   decltype(t) s;
   transform(t.begin(), t.end(), back_inserter(s),
             [](double x) { return 1.0 + sin(2 * M_PI * x); });
 
   auto [fig, ax] = plt.subplots();
-  ax.plot(t, s, "color"_a = "blue", "linewidth"_a = 1.0);
-  ax.set("xlabel"_a = "time (s)", "ylabel"_a = "voltage (mV)",
-         "title"_a = "About as simple as it gets, folks");
+  ax.plot(args_(t, s), kwargs_("color"_a = "blue", "linewidth"_a = 1.0));
+  ax.set(args_(), kwargs_("xlabel"_a = "time (s)", "ylabel"_a = "voltage (mV)",
+         "title"_a = "About as simple as it gets, folks"));
   ax.grid();
 
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("simple_plot.png");
+  plt.savefig(args_("simple_plot.png"));
 #endif
   return 0;
 }

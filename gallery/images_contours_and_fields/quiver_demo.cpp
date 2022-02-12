@@ -30,7 +30,7 @@ int main1() {
             [](double y) { return sin(y); });
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig1, ax1] = plt.subplots();
-  ax1.set_title("Arrows scale with plot width, not view");
+  ax1.set_title(args_("Arrows scale with plot width, not view"));
   auto Q = ax1.quiver(args_(X, Y, U, V), kwargs_("units"_a = "width"));
   auto qk =
       ax1.quiverkey(args_(Q.unwrap(), 0.9, 0.9, 2, R"($2 \frac{m}{s}$)"),
@@ -38,7 +38,7 @@ int main1() {
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("quiver_demo_1.png");
+  plt.savefig(args_("quiver_demo_1.png"));
 #endif
   return 0;
 }
@@ -58,7 +58,7 @@ int main2() {
             [](double y) { return sin(y); });
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig1, ax1] = plt.subplots();
-  ax1.set_title("pivot='mid'; every third arrow; units='inches'");
+  ax1.set_title(args_("pivot='mid'; every third arrow; units='inches'"));
   auto Q = ax1.quiver(args_(X, Y, U, V),
                       kwargs_("pivot"_a = "mid", "units"_a = "inches"));
   auto qk =
@@ -69,7 +69,7 @@ int main2() {
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("quiver_demo_2.png");
+  plt.savefig(args_("quiver_demo_2.png"));
 #endif
   return 0;
 }
@@ -92,7 +92,7 @@ int main3() {
   }
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig1, ax1] = plt.subplots();
-  ax1.set_title("pivot='tip'; scales with x view");
+  ax1.set_title(args_("pivot='tip'; scales with x view"));
   auto Q = ax1.quiver(args_(X, Y, U, V, M),
                       kwargs_("units"_a = "x", "pivot"_a = "tip",
                               "width"_a = 0.022, "scale"_a = 1.0 / 0.15));
@@ -104,7 +104,7 @@ int main3() {
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("quiver_demo_3.png");
+  plt.savefig(args_("quiver_demo_3.png"));
 #endif
 
   return 0;
