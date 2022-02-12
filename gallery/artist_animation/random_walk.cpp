@@ -34,7 +34,7 @@ int main() {
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
   auto fig = plt.figure();
-  auto ax = fig.add_subplot(py::tuple(), kwargs_("projection"_a = "3d"));
+  auto ax = fig.add_subplot(py::make_tuple(), kwargs_("projection"_a = "3d"));
   py::list artist_list;
   const int M = 4;
   const int N = 30;
@@ -55,7 +55,7 @@ int main() {
                  ys.push_back(pos[1]);
                  zs.push_back(pos[2]);
                });
-      ax.plot(xs, ys, zs, "color"_a = colors[i]);
+      ax.plot(args_(xs, ys, zs), kwargs_("color"_a = colors[i]));
     }
     artist_list.append(ax.get_lines());
   }
@@ -64,7 +64,7 @@ int main() {
 #if USE_GUI
   plt.show();
 #else
-  ani.save("random_walk.gif", "writer"_a = "pillow");
+  ani.save(args_("random_walk.gif"), kwargs_("writer"_a = "pillow"));
 #endif
   return 0;
 }

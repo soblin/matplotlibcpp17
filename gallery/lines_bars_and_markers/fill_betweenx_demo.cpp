@@ -39,20 +39,20 @@ int main1() {
       1, 3, kwargs_("sharey"_a = true, "figsize"_a = py::make_tuple(6, 6)));
   auto ax1 = axes[0], ax2 = axes[1], ax3 = axes[2];
 
-  ax1.fill_betweenx(y, 0, x1);
-  ax1.set_title("between (x1, 0)");
+  ax1.fill_betweenx(args_(y, 0, x1));
+  ax1.set_title(args_("between (x1, 0)"));
 
-  ax2.fill_betweenx(y, x1, 1);
-  ax2.set_title("between (x1, 1)");
-  ax2.set_xlabel("x");
-
-  ax3.fill_betweenx(y, x1, x2);
-  ax3.set_title("between (x1, x2)");
+  ax2.fill_betweenx(args_(y, x1, 1));
+  ax2.set_title(args_("between (x1, 1)"));
+  ax2.set_xlabel(args_("x"));
+  
+  ax3.fill_betweenx(args_(y, x1, x2));
+  ax3.set_title(args_("between (x1, x2)"));
 
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("fill_betweenx_demo.png");
+  plt.savefig(args_("fill_betweenx_demo.png"));
 #endif
   return 0;
 }

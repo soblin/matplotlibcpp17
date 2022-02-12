@@ -59,13 +59,13 @@ int main() {
   py::list colors = py::cast(colors_);
   auto p =
       collections::PatchCollection(args_(patches), kwargs_("alpha"_a = 0.4));
-  p.set_array(colors);
-  ax.add_collection(p.unwrap());
-  fig.colorbar(p.unwrap(), "ax"_a = ax.unwrap());
+  p.set_array(args_(colors));
+  ax.add_collection(args_(p.unwrap()));
+  fig.colorbar(args_(p.unwrap()), kwargs_("ax"_a = ax.unwrap()));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("patch_collection.png");
+  plt.savefig(args_("patch_collection.png"));
 #endif
   return 0;
 }
