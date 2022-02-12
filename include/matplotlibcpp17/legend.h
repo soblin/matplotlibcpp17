@@ -8,17 +8,17 @@
 namespace matplotlibcpp17::legend {
 
 struct DECL_STRUCT_ATTR Legend {
+public:
   Legend(pybind11::object obj) {
     self = obj;
-    load_attrs();
   }
-  void load_attrs() { return; }
 
-  pybind11::object self;
-
-  // for passing as python object
   pybind11::object unwrap() { return self; }
+
+private:
+  pybind11::object self;
 };
+
 } // namespace matplotlibcpp17::legend
 
 #endif /* MATPLOTLIBCPP17_LEGEND_H */
