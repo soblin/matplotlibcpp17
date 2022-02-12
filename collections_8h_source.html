@@ -105,56 +105,66 @@ $(document).ready(function(){initNavTree('collections_8h_source.html',''); initR
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span>matplotlibcpp17::collections {</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="structmatplotlibcpp17_1_1collections_1_1_path_collection.html">   12</a></span><span class="keyword">struct </span>DECL_STRUCT_ATTR <a class="code hl_struct" href="structmatplotlibcpp17_1_1collections_1_1_path_collection.html">PathCollection</a> {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <a class="code hl_struct" href="structmatplotlibcpp17_1_1collections_1_1_path_collection.html">PathCollection</a>(pybind11::object pathcollection) {</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">self</span> = pathcollection;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    load_attrs();</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  }</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keywordtype">void</span> load_attrs() {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    LOAD_NONVOID_ATTR(legend_elements, <span class="keyword">self</span>);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  }</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  pybind11::object <span class="keyword">self</span>;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  pybind11::object unwrap() { <span class="keywordflow">return</span> <span class="keyword">self</span>; }</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="comment">// legend_elements</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  pybind11::object legend_elements_attr;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  std::pair&lt;pybind11::object, pybind11::object&gt;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  legend_elements(<span class="keyword">const</span> pybind11::tuple &amp;args, <span class="keyword">const</span> pybind11::dict &amp;kwargs);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">// legend_elements</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structmatplotlibcpp17_1_1collections_1_1_path_collection.html#a56061fcf9c87096d32ddcceebaa65f3b">   33</a></span><span class="comment"></span>std::pair&lt;pybind11::object, pybind11::object&gt; <a class="code hl_function" href="structmatplotlibcpp17_1_1collections_1_1_path_collection.html#a56061fcf9c87096d32ddcceebaa65f3b">PathCollection::legend_elements</a>(</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">const</span> pybind11::tuple &amp;args = pybind11::tuple(),</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">const</span> pybind11::dict &amp;kwargs = pybind11::dict()) {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  pybind11::list ret = legend_elements_attr(*args, **kwargs);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  pybind11::object handles = ret[0];</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  pybind11::object labels = ret[1];</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordflow">return</span> {handles, labels};</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structmatplotlibcpp17_1_1collections_1_1_patch_collection.html">   42</a></span><span class="keyword">struct </span>DECL_STRUCT_ATTR <a class="code hl_struct" href="structmatplotlibcpp17_1_1collections_1_1_patch_collection.html">PatchCollection</a> {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <a class="code hl_struct" href="structmatplotlibcpp17_1_1collections_1_1_patch_collection.html">PatchCollection</a>(<span class="keyword">const</span> pybind11::tuple &amp;args = pybind11::tuple(),</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                  <span class="keyword">const</span> pybind11::dict &amp;kwargs = pybind11::dict()) {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    pybind11::object attr = pybind11::module::import(<span class="stringliteral">&quot;matplotlib.collections&quot;</span>)</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                                .attr(<span class="stringliteral">&quot;PatchCollection&quot;</span>);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">self</span> = attr(*args, **kwargs);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    load_attrs();</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  }</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keywordtype">void</span> load_attrs() { LOAD_VOID_ATTR(set_array, <span class="keyword">self</span>); }</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  pybind11::object <span class="keyword">self</span>;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  pybind11::object unwrap() { <span class="keywordflow">return</span> <span class="keyword">self</span>; }</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="comment">// set_array</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  pybind11::object set_array;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>};</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>} <span class="comment">// namespace matplotlibcpp17::collections</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#endif </span><span class="comment">/* MATPLOTLIBCPP17_COLLECTIONS_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="astructmatplotlibcpp17_1_1collections_1_1_patch_collection_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1collections_1_1_patch_collection.html">matplotlibcpp17::collections::PatchCollection</a></div><div class="ttdef"><b>Definition:</b> collections.h:42</div></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <a class="code hl_struct" href="structmatplotlibcpp17_1_1collections_1_1_path_collection.html">PathCollection</a>(pybind11::object pathcollection) {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">self</span> = pathcollection;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    load_attrs();</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  }</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  pybind11::object unwrap() { <span class="keywordflow">return</span> <span class="keyword">self</span>; }</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="comment">// legend_elements</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  std::pair&lt;pybind11::object, pybind11::object&gt;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  legend_elements(<span class="keyword">const</span> pybind11::tuple &amp;args = pybind11::tuple(),</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                  <span class="keyword">const</span> pybind11::dict &amp;kwargs = pybind11::dict());</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keywordtype">void</span> load_attrs() { LOAD_FUNC_ATTR(legend_elements, <span class="keyword">self</span>); }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  pybind11::object <span class="keyword">self</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  pybind11::object legend_elements_attr;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>};</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// legend_elements</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment"></span>std::pair&lt;pybind11::object, pybind11::object&gt;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structmatplotlibcpp17_1_1collections_1_1_path_collection.html#a48a25aaf96f415ef0f411d266f7aca3f">   35</a></span><a class="code hl_function" href="structmatplotlibcpp17_1_1collections_1_1_path_collection.html#a48a25aaf96f415ef0f411d266f7aca3f">PathCollection::legend_elements</a>(<span class="keyword">const</span> pybind11::tuple &amp;args,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                                <span class="keyword">const</span> pybind11::dict &amp;kwargs) {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  pybind11::list ret = legend_elements_attr(*args, **kwargs);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  pybind11::object handles = ret[0];</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  pybind11::object labels = ret[1];</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keywordflow">return</span> {handles, labels};</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structmatplotlibcpp17_1_1collections_1_1_patch_collection.html">   43</a></span><span class="keyword">struct </span>DECL_STRUCT_ATTR <a class="code hl_struct" href="structmatplotlibcpp17_1_1collections_1_1_patch_collection.html">PatchCollection</a> {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <a class="code hl_struct" href="structmatplotlibcpp17_1_1collections_1_1_patch_collection.html">PatchCollection</a>(<span class="keyword">const</span> pybind11::tuple &amp;args = pybind11::tuple(),</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                  <span class="keyword">const</span> pybind11::dict &amp;kwargs = pybind11::dict()) {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    pybind11::object attr = pybind11::module::import(<span class="stringliteral">&quot;matplotlib.collections&quot;</span>)</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                                .attr(<span class="stringliteral">&quot;PatchCollection&quot;</span>);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">self</span> = attr(*args, **kwargs);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    load_attrs();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  pybind11::object unwrap() { <span class="keywordflow">return</span> <span class="keyword">self</span>; }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="comment">// set_array</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  pybind11::object set_array(<span class="keyword">const</span> pybind11::tuple &amp;args = pybind11::tuple(),</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                             <span class="keyword">const</span> pybind11::dict &amp;kwargs = pybind11::dict());</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keywordtype">void</span> load_attrs() { LOAD_FUNC_ATTR(set_array, <span class="keyword">self</span>); }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  pybind11::object <span class="keyword">self</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  pybind11::object set_array_attr;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>};</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>pybind11::object PatchCollection::set_array(<span class="keyword">const</span> pybind11::tuple &amp;args,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                                            <span class="keyword">const</span> pybind11::dict &amp;kwargs) {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  pybind11::object ret = set_array_attr(*args, **kwargs);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>}</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>} <span class="comment">// namespace matplotlibcpp17::collections</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">#endif </span><span class="comment">/* MATPLOTLIBCPP17_COLLECTIONS_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="astructmatplotlibcpp17_1_1collections_1_1_patch_collection_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1collections_1_1_patch_collection.html">matplotlibcpp17::collections::PatchCollection</a></div><div class="ttdef"><b>Definition:</b> collections.h:43</div></div>
 <div class="ttc" id="astructmatplotlibcpp17_1_1collections_1_1_path_collection_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1collections_1_1_path_collection.html">matplotlibcpp17::collections::PathCollection</a></div><div class="ttdef"><b>Definition:</b> collections.h:12</div></div>
-<div class="ttc" id="astructmatplotlibcpp17_1_1collections_1_1_path_collection_html_a56061fcf9c87096d32ddcceebaa65f3b"><div class="ttname"><a href="structmatplotlibcpp17_1_1collections_1_1_path_collection.html#a56061fcf9c87096d32ddcceebaa65f3b">matplotlibcpp17::collections::PathCollection::legend_elements</a></div><div class="ttdeci">std::pair&lt; pybind11::object, pybind11::object &gt; legend_elements(const pybind11::tuple &amp;args, const pybind11::dict &amp;kwargs)</div><div class="ttdef"><b>Definition:</b> collections.h:33</div></div>
+<div class="ttc" id="astructmatplotlibcpp17_1_1collections_1_1_path_collection_html_a48a25aaf96f415ef0f411d266f7aca3f"><div class="ttname"><a href="structmatplotlibcpp17_1_1collections_1_1_path_collection.html#a48a25aaf96f415ef0f411d266f7aca3f">matplotlibcpp17::collections::PathCollection::legend_elements</a></div><div class="ttdeci">std::pair&lt; pybind11::object, pybind11::object &gt; legend_elements(const pybind11::tuple &amp;args=pybind11::tuple(), const pybind11::dict &amp;kwargs=pybind11::dict())</div><div class="ttdef"><b>Definition:</b> collections.h:35</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.17-->
