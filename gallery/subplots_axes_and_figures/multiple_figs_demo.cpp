@@ -57,7 +57,7 @@ int main() {
   plt.subplot(211);
   plt.plot(t, s2, "s");
   auto ax = plt.gca();
-  ax.set_xticks(py::tuple());
+  ax.set_xticks(args_());
 #if USE_GUI
   plt.show();
 #else

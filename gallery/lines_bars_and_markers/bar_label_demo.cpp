@@ -33,20 +33,20 @@ int main1() {
   auto p2 = ax.bar(
       args_(ind, womenMeans, width),
       kwargs_("bottom"_a = menMeans, "yerr"_a = womenStd, "label"_a = "Women"));
-  ax.axhline(0, "color"_a = "grey", "linewidth"_a = 0.8);
-  ax.set_ylabel("Scores");
-  ax.set_title("Scores by group and gender");
-  ax.set_xticks(ind, py::make_tuple("G1", "G2", "G3", "G4", "G5"));
+  ax.axhline(args_(0), kwargs_("color"_a = "grey", "linewidth"_a = 0.8));
+  ax.set_ylabel(args_("Scores"));
+  ax.set_title(args_("Scores by group and gender"));
+  ax.set_xticks(args_(ind, py::make_tuple("G1", "G2", "G3", "G4", "G5")));
   ax.legend();
 
   // Label with label_type 'center' instead of the default 'edge'
-  ax.bar_label(p1.unwrap(), "label_type"_a = "center");
-  ax.bar_label(p2.unwrap(), "label_type"_a = "center");
-  ax.bar_label(p2.unwrap());
+  ax.bar_label(args_(p1.unwrap()), kwargs_("label_type"_a = "center"));
+  ax.bar_label(args_(p2.unwrap()), kwargs_("label_type"_a = "center"));
+  ax.bar_label(args_(p2.unwrap()));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("bar_label_demo1.png");
+  plt.savefig(args_("bar_label_demo1.png"));
 #endif
   return 0;
 }
@@ -62,18 +62,18 @@ int main2() {
   auto [fig, ax] = plt.subplots();
   auto hbars = ax.barh(args_(y_pos, performance),
                        kwargs_("xerr"_a = error, "align"_a = "center"));
-  ax.set_yticks(y_pos, "labels"_a = people);
+  ax.set_yticks(args_(y_pos), kwargs_("labels"_a = people));
   ax.invert_yaxis(); // labels read top-to-bottom
-  ax.set_xlabel("Performance");
-  ax.set_title("How fast do you want to go today?");
+  ax.set_xlabel(args_("Performance"));
+  ax.set_title(args_("How fast do you want to go today?"));
 
   // Label with specially formatted floats
-  ax.bar_label(hbars.unwrap(), "fmt"_a = "%.2f");
-  ax.set_xlim("right"_a = 15); // adjust xlim to fit labels
+  ax.bar_label(args_(hbars.unwrap()), kwargs_("fmt"_a = "%.2f"));
+  ax.set_xlim(args_(), kwargs_("right"_a = 15)); // adjust xlim to fit labels
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("bar_label_demo2.png");
+  plt.savefig(args_("bar_label_demo2.png"));
 #endif
   return 0;
 }
@@ -89,10 +89,10 @@ int main3() {
   auto [fig, ax] = plt.subplots();
   auto hbars = ax.barh(args_(y_pos, performance),
                        kwargs_("xerr"_a = error, "align"_a = "center"));
-  ax.set_yticks(y_pos, "labels"_a = people);
+  ax.set_yticks(args_(y_pos), kwargs_("labels"_a = people));
   ax.invert_yaxis(); // labels read top-to-bottom
-  ax.set_xlabel("Performance");
-  ax.set_title("How fast do you want to go today?");
+  ax.set_xlabel(args_("Performance"));
+  ax.set_title(args_("How fast do you want to go today?"));
 
   // Label with specially formatted floats
   vector<string> labels;
@@ -101,13 +101,13 @@ int main3() {
     stm << std::fixed << std::setprecision(2) << e;
     return "±" + stm.str();
   });
-  ax.bar_label(hbars.unwrap(), "labels"_a = labels, "padding"_a = 8,
-               "color"_a = "b", "fontsize"_a = 14);
-  ax.set_xlim("right"_a = 15); // adjust xlim to fit labels
+  ax.bar_label(args_(hbars.unwrap()), kwargs_("labels"_a = labels, "padding"_a = 8,
+               "color"_a = "b", "fontsize"_a = 14));
+  ax.set_xlim(args_(), kwargs_("right"_a = 15)); // adjust xlim to fit labels
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("bar_label_demo3.png");
+  plt.savefig(args_("bar_label_demo3.png"));
 #endif
   return 0;
 }

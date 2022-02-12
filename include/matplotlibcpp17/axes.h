@@ -328,6 +328,13 @@ pybind11::object Axes::get_lines(const pybind11::tuple &args,
   return ret;
 }
 
+// get_xaxis_transform
+pybind11::object Axes::get_xaxis_transform(const pybind11::tuple &args,
+                                           const pybind11::dict &kwargs) {
+  pybind11::object ret = get_xaxis_transform_attr(*args, **kwargs);
+  return ret;  
+}
+
 // get_xlim
 std::tuple<double, double> Axes::get_xlim() {
   pybind11::list ret = get_xlim_attr();

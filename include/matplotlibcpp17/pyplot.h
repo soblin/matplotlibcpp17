@@ -221,6 +221,13 @@ pybind11::object PyPlot::quiver(const pybind11::tuple &args,
   return ret;
 }
 
+// scatter
+pybind11::object PyPlot::scatter(const pybind11::tuple &args,
+                                 const pybind11::dict &kwargs) {
+  pybind11::object ret = scatter_attr(*args, **kwargs);
+  return ret;
+}
+
 // savefig
 pybind11::object PyPlot::savefig(const pybind11::tuple &args,
                                  const pybind11::dict &kwargs) {

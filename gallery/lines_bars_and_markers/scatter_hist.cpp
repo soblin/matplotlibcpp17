@@ -48,14 +48,14 @@ int main() {
                                        0.2};
     const vector<double> rect_histy = {left + width + spacing, bottom, 0.2,
                                        height};
-    auto fig = plt.figure(kwargs_("figsize"_a = py::make_tuple(8, 8)));
+    auto fig = plt.figure(args_(), kwargs_("figsize"_a = py::make_tuple(8, 8)));
     auto ax = fig.add_axes(args_(rect_scatter));
     auto ax_histx =
         fig.add_axes(args_(rect_histx), kwargs_("sharex"_a = ax.unwrap()));
     auto ax_histy =
         fig.add_axes(args_(rect_histy), kwargs_("sharey"_a = ax.unwrap()));
-    ax_histx.tick_params("axis"_a = "x", "labelbottom"_a = false);
-    ax_histy.tick_params("axis"_a = "y", "labelleft"_a = false);
+    ax_histx.tick_params(args_(), kwargs_("axis"_a = "x", "labelbottom"_a = false));
+    ax_histy.tick_params(args_(), kwargs_("axis"_a = "y", "labelleft"_a = false));
     ax.scatter(args_(x, y));
     const double binwidth = 0.25;
     auto abx_max = [](const vector<double> &v) -> double {
@@ -73,12 +73,12 @@ int main() {
 #if USE_GUI
     plt.show();
 #else
-    plt.savefig("scatter_hist1.png");
+    plt.savefig(args_("scatter_hist1.png"));
 #endif
   }
   // cell2
   {
-    auto fig = plt.figure(kwargs_("figsize"_a = py::make_tuple(8, 8)));
+    auto fig = plt.figure(args_(), kwargs_("figsize"_a = py::make_tuple(8, 8)));
     auto gs = fig.add_gridspec(2, 2,
                                kwargs_("width_ratios"_a = py::make_tuple(7, 2),
                                        "height_ratios"_a = py::make_tuple(2, 7),
@@ -90,8 +90,8 @@ int main() {
                                     kwargs_("sharex"_a = ax.unwrap()));
     auto ax_histy = fig.add_subplot(args_(gs(1, 1).unwrap()),
                                     kwargs_("sharey"_a = ax.unwrap()));
-    ax_histx.tick_params("axis"_a = "x", "labelbottom"_a = false);
-    ax_histy.tick_params("axis"_a = "y", "labelleft"_a = false);
+    ax_histx.tick_params(args_(), kwargs_("axis"_a = "x", "labelbottom"_a = false));
+    ax_histy.tick_params(args_(), kwargs_("axis"_a = "y", "labelleft"_a = false));
     ax.scatter(args_(x, y));
     const double binwidth = 0.25;
     auto abx_max = [](const vector<double> &v) -> double {
@@ -109,7 +109,7 @@ int main() {
 #if USE_GUI
     plt.show();
 #else
-    plt.savefig("scatter_hist2.png");
+    plt.savefig(args_("scatter_hist2.png"));
 #endif
   }
   return 0;

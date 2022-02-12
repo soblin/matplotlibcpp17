@@ -34,11 +34,11 @@ int main1() {
                        "alpha"_a = 0.3, "edgecolors"_a = "none"));
   }
   ax.legend();
-  ax.grid(true);
+  ax.grid(args_(true));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("scatter_with_legend1.png");
+  plt.savefig(args_("scatter_with_legend1.png"));
 #endif
   return 0;
 }
@@ -76,11 +76,10 @@ int main2() {
     auto legend1 =
         ax.legend(args_(handles, labels),
                   kwargs_("loc"_a = "lower left", "title"_a = "Classes"));
-    ax.add_artist(legend1.unwrap());
+    ax.add_artist(args_(legend1.unwrap()));
   }
   {
-    auto [handles, labels] = scatter.legend_elements(
-        py::tuple(), kwargs_("prop"_a = "sizes", "alpha"_a = 0.6));
+    auto [handles, labels] = scatter.legend_elements(args_(), kwargs_("prop"_a = "sizes", "alpha"_a = 0.6));
     auto legend2 =
         ax.legend(args_(handles, labels),
                   kwargs_("loc"_a = "upper right", "title"_a = "Sizes"));
@@ -88,7 +87,7 @@ int main2() {
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig("scatter_with_legend2.png");
+  plt.savefig(args_("scatter_with_legend2.png"));
 #endif
   return 0;
 }
