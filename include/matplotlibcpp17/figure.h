@@ -1,3 +1,8 @@
+/**
+ * @file figure.h
+ * @brief corresponding header for matplotlib.figure
+ **/
+
 #ifndef MATPLOTLIBCPP17_FIGURE_H
 #define MATPLOTLIBCPP17_FIGURE_H
 
@@ -9,6 +14,9 @@
 
 namespace matplotlibcpp17::figure {
 
+/**
+ * @brief A wrapper class for matplotlib.figure.Figure
+ **/
 struct DECL_STRUCT_ATTR Figure {
 public:
   Figure(pybind11::object figure) {
@@ -16,6 +24,11 @@ public:
     load_attrs();
   }
 
+  /**
+   * @fn unwrap()
+   * @brief return python object for passing this wrapper class to plotting
+   *function
+   **/
   pybind11::object unwrap() { return self; }
 
   // add_axes

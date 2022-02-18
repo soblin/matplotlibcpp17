@@ -1,3 +1,8 @@
+/**
+ * @file pathces.h
+ * @brief corresponding header for matplotlib.patches
+ **/
+
 #ifndef MATPLOTLIBCPP17_PATCHES_H
 #define MATPLOTLIBCPP17_PATCHES_H
 
@@ -7,6 +12,9 @@
 
 namespace matplotlibcpp17::patches {
 
+/**
+ * @brief A wrapper class for matplotlib.patches.Circle
+ **/
 struct DECL_STRUCT_ATTR Circle {
 public:
   Circle(const pybind11::tuple &args = pybind11::tuple(),
@@ -22,6 +30,9 @@ private:
   pybind11::object circle_attr;
 };
 
+/**
+ * @brief A wrapper class for matplotlib.patches.Ellipse
+ **/
 struct DECL_STRUCT_ATTR Ellipse {
 public:
   Ellipse(const pybind11::tuple &args = pybind11::tuple(),
@@ -38,6 +49,9 @@ private:
   pybind11::object ellipse_attr;
 };
 
+/**
+ * @brief A wrapper class for matplotlib.patches.Rectangle
+ **/
 struct DECL_STRUCT_ATTR Rectangle {
 public:
   Rectangle(const pybind11::tuple &args = pybind11::tuple(),
@@ -54,6 +68,9 @@ private:
   pybind11::object rectangle_attr;
 };
 
+/**
+ * @brief A wrapper class for matplotlib.patches.Wedge
+ **/
 struct DECL_STRUCT_ATTR Wedge {
 public:
   Wedge(const pybind11::tuple &args = pybind11::tuple(),

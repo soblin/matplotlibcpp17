@@ -1,3 +1,8 @@
+/**
+ * @file collections.h
+ * @brief corresponding header for matplotlib.collections
+ **/
+
 #ifndef MATPLOTLIBCPP17_COLLECTIONS_H
 #define MATPLOTLIBCPP17_COLLECTIONS_H
 
@@ -9,6 +14,9 @@
 
 namespace matplotlibcpp17::collections {
 
+/**
+ * @brief A wrapper class for matplotlib.collections.PathCollection
+ **/
 struct DECL_STRUCT_ATTR PathCollection {
 public:
   PathCollection(pybind11::object pathcollection) {
@@ -40,6 +48,9 @@ PathCollection::legend_elements(const pybind11::tuple &args,
   return {handles, labels};
 }
 
+/**
+ * @brief A wrapper class for matplotlib.collections.PatchCollection
+ **/
 struct DECL_STRUCT_ATTR PatchCollection {
 public:
   PatchCollection(const pybind11::tuple &args = pybind11::tuple(),
@@ -49,6 +60,11 @@ public:
     self = attr(*args, **kwargs);
     load_attrs();
   }
+  /**
+   * @fn unwrap()
+   * @brief return python object for passing this wrapper class to plotting
+   *function
+   **/
   pybind11::object unwrap() { return self; }
 
   // set_array
