@@ -17,13 +17,12 @@ namespace matplotlibcpp17::collections {
 /**
  * @brief A wrapper class for matplotlib.collections.PathCollection
  **/
-struct DECL_STRUCT_ATTR PathCollection {
+struct DECL_STRUCT_ATTR PathCollection : public BaseWrapper {
 public:
   PathCollection(pybind11::object pathcollection) {
     self = pathcollection;
     load_attrs();
   }
-  pybind11::object unwrap() { return self; }
 
   // legend_elements
   std::pair<pybind11::object, pybind11::object>
@@ -32,7 +31,6 @@ public:
 
 private:
   void load_attrs() { LOAD_FUNC_ATTR(legend_elements, self); }
-  pybind11::object self;
   pybind11::object legend_elements_attr;
 };
 
@@ -51,7 +49,7 @@ PathCollection::legend_elements(const pybind11::tuple &args,
 /**
  * @brief A wrapper class for matplotlib.collections.PatchCollection
  **/
-struct DECL_STRUCT_ATTR PatchCollection {
+struct DECL_STRUCT_ATTR PatchCollection : public BaseWrapper {
 public:
   PatchCollection(const pybind11::tuple &args = pybind11::tuple(),
                   const pybind11::dict &kwargs = pybind11::dict()) {
@@ -60,12 +58,6 @@ public:
     self = attr(*args, **kwargs);
     load_attrs();
   }
-  /**
-   * @fn unwrap()
-   * @brief return python object for passing this wrapper class to plotting
-   *function
-   **/
-  pybind11::object unwrap() { return self; }
 
   // set_array
   pybind11::object set_array(const pybind11::tuple &args = pybind11::tuple(),
@@ -73,7 +65,6 @@ public:
 
 private:
   void load_attrs() { LOAD_FUNC_ATTR(set_array, self); }
-  pybind11::object self;
   pybind11::object set_array_attr;
 };
 

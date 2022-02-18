@@ -15,7 +15,7 @@ namespace matplotlibcpp17::patches {
 /**
  * @brief A wrapper class for matplotlib.patches.Circle
  **/
-struct DECL_STRUCT_ATTR Circle {
+struct DECL_STRUCT_ATTR Circle : public BaseWrapper {
 public:
   Circle(const pybind11::tuple &args = pybind11::tuple(),
          const pybind11::dict &kwargs = pybind11::dict()) {
@@ -23,17 +23,14 @@ public:
     self = circle_attr(*args, **kwargs);
   }
 
-  pybind11::object unwrap() { return self; }
-
 private:
-  pybind11::object self;
   pybind11::object circle_attr;
 };
 
 /**
  * @brief A wrapper class for matplotlib.patches.Ellipse
  **/
-struct DECL_STRUCT_ATTR Ellipse {
+struct DECL_STRUCT_ATTR Ellipse : public BaseWrapper {
 public:
   Ellipse(const pybind11::tuple &args = pybind11::tuple(),
           const pybind11::dict &kwargs = pybind11::dict()) {
@@ -42,17 +39,14 @@ public:
     self = ellipse_attr(*args, **kwargs);
   }
 
-  pybind11::object unwrap() { return self; }
-
 private:
-  pybind11::object self;
   pybind11::object ellipse_attr;
 };
 
 /**
  * @brief A wrapper class for matplotlib.patches.Rectangle
  **/
-struct DECL_STRUCT_ATTR Rectangle {
+struct DECL_STRUCT_ATTR Rectangle : public BaseWrapper {
 public:
   Rectangle(const pybind11::tuple &args = pybind11::tuple(),
             const pybind11::dict &kwargs = pybind11::dict()) {
@@ -61,17 +55,14 @@ public:
     self = rectangle_attr(*args, **kwargs);
   }
 
-  pybind11::object unwrap() { return self; }
-
 private:
-  pybind11::object self;
   pybind11::object rectangle_attr;
 };
 
 /**
  * @brief A wrapper class for matplotlib.patches.Wedge
  **/
-struct DECL_STRUCT_ATTR Wedge {
+struct DECL_STRUCT_ATTR Wedge : public BaseWrapper {
 public:
   Wedge(const pybind11::tuple &args = pybind11::tuple(),
         const pybind11::dict &kwargs = pybind11::dict()) {
@@ -79,10 +70,7 @@ public:
     self = wedge_attr(*args, **kwargs);
   }
 
-  pybind11::object unwrap() { return self; }
-
 private:
-  pybind11::object self;
   pybind11::object wedge_attr;
 };
 

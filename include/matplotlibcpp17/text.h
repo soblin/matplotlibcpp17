@@ -1,3 +1,8 @@
+/**
+ * @file axes.h
+ * @brief corresponding header for matplotlib.text
+ **/
+
 #ifndef MATPLOTLIBCPP17_TEXT_H
 #define MATPLOTLIBCPP17_TEXT_H
 
@@ -7,7 +12,7 @@
 
 namespace matplotlibcpp17::text {
 
-struct DECL_STRUCT_ATTR Text {
+struct DECL_STRUCT_ATTR Text : public BaseWrapper {
 public:
   Text(pybind11::object text) {
     self = text;
@@ -20,7 +25,6 @@ public:
 
 private:
   void load_attrs() { LOAD_FUNC_ATTR(set_rotation, self); }
-  pybind11::object self;
   pybind11::object set_rotation_attr;
 };
 

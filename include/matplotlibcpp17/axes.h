@@ -26,18 +26,12 @@ using HistType = std::tuple<std::vector<double>, std::vector<double>,
 /**
  * @brief A wrapper class for matplotlib.axes.Axes
  **/
-struct DECL_STRUCT_ATTR Axes {
+struct DECL_STRUCT_ATTR Axes : public BaseWrapper {
 public:
   Axes(pybind11::object axes) {
     self = axes;
     load_attrs();
   }
-  /**
-   * @fn unwrap()
-   * @brief return python object for passing this wrapper class to plotting
-   *function
-   **/
-  pybind11::object unwrap() { return self; }
 
   // add_artist
   pybind11::object add_artist(const pybind11::tuple &args = pybind11::tuple(),
@@ -222,7 +216,6 @@ private:
     LOAD_FUNC_ATTR(text, self);
     LOAD_FUNC_ATTR(tick_params, self);
   }
-  pybind11::object self;
   pybind11::object add_artist_attr;
   pybind11::object add_collection_attr;
   pybind11::object add_patch_attr;

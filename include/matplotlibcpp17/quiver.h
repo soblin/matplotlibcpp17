@@ -1,3 +1,8 @@
+/**
+ * @file axes.h
+ * @brief corresponding header for matplotlib.quiver
+ **/
+
 #ifndef MATPLOTLIBCPP17_QUIVER_H
 #define MATPLOTLIBCPP17_QUIVER_H
 
@@ -7,23 +12,19 @@
 
 namespace matplotlibcpp17::quiver {
 
-struct DECL_STRUCT_ATTR Quiver {
+/**
+ * @brief A wrapper class for matplotlib.quiver.Quiver
+ **/
+struct DECL_STRUCT_ATTR Quiver : public BaseWrapper {
 public:
   Quiver(pybind11::object q) { self = q; }
-
-  pybind11::object unwrap() { return self; }
-
-private:
-  pybind11::object self;
 };
 
-struct DECL_STRUCT_ATTR QuiverKey {
+/**
+ * @brief A wrapper class for matplotlib.quiver.QuiverKey
+ **/
+struct DECL_STRUCT_ATTR QuiverKey : public BaseWrapper {
   QuiverKey(pybind11::object qk) { self = qk; }
-
-  pybind11::object unwrap() { return self; }
-
-private:
-  pybind11::object self;
 };
 
 } // namespace matplotlibcpp17::quiver

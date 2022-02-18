@@ -15,25 +15,15 @@ namespace matplotlibcpp17::gridspec {
 /**
  * @brief A wrapper class for matplotlib.gridspec.SubplotSpec
  **/
-struct DECL_STRUCT_ATTR SubplotSpec {
+struct DECL_STRUCT_ATTR SubplotSpec : public BaseWrapper {
 public:
   SubplotSpec(pybind11::object subplotspec) { self = subplotspec; }
-
-  /**
-   * @fn unwrap()
-   * @brief return python object for passing this wrapper class to plotting
-   *function
-   **/
-  pybind11::object unwrap() { return self; }
-
-private:
-  pybind11::object self;
 };
 
 /**
- * @brief A wrapper class for matplotlib.gridspec.Gridspec
+ * @brief A wrapper class for matplotlib.gridspec.GridSpec
  **/
-struct DECL_STRUCT_ATTR GridSpec {
+struct DECL_STRUCT_ATTR GridSpec : public BaseWrapper {
 public:
   GridSpec(int nrow_, int ncol_,
            const pybind11::dict &kwargs = pybind11::dict()) {
@@ -51,7 +41,6 @@ public:
 
 private:
   int nrow, ncol;
-  pybind11::object self;
   pybind11::object gridspec_attr;
 };
 

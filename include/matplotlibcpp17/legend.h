@@ -15,21 +15,11 @@ namespace matplotlibcpp17::legend {
 /**
  * @brief A wrapper class for matplotlib.legend.Legend
  **/
-struct DECL_STRUCT_ATTR Legend {
+struct DECL_STRUCT_ATTR Legend : public BaseWrapper {
 public:
   Legend(pybind11::object obj) {
     self = obj;
   }
-
-  /**
-   * @fn unwrap()
-   * @brief return python object for passing this wrapper class to plotting
-   *function
-   **/
-  pybind11::object unwrap() { return self; }
-
-private:
-  pybind11::object self;
 };
 
 } // namespace matplotlibcpp17::legend

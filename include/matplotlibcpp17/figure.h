@@ -17,19 +17,12 @@ namespace matplotlibcpp17::figure {
 /**
  * @brief A wrapper class for matplotlib.figure.Figure
  **/
-struct DECL_STRUCT_ATTR Figure {
+struct DECL_STRUCT_ATTR Figure : public BaseWrapper {
 public:
   Figure(pybind11::object figure) {
     self = figure;
     load_attrs();
   }
-
-  /**
-   * @fn unwrap()
-   * @brief return python object for passing this wrapper class to plotting
-   *function
-   **/
-  pybind11::object unwrap() { return self; }
 
   // add_axes
   axes::Axes add_axes(const pybind11::tuple &args = pybind11::tuple(),
@@ -77,7 +70,6 @@ private:
     LOAD_FUNC_ATTR(suptitle, self);
     LOAD_FUNC_ATTR(tight_layout, self);
   }
-  pybind11::object self;
   pybind11::object add_axes_attr;
   pybind11::object add_gridspec_attr;
   pybind11::object add_subplot_attr;
