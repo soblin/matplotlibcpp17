@@ -9,13 +9,12 @@
 
 namespace matplotlibcpp17::collections {
 
-struct DECL_STRUCT_ATTR PathCollection {
+struct DECL_STRUCT_ATTR PathCollection : public BaseWrapper {
 public:
   PathCollection(pybind11::object pathcollection) {
     self = pathcollection;
     load_attrs();
   }
-  pybind11::object unwrap() { return self; }
 
   // legend_elements
   std::pair<pybind11::object, pybind11::object>
@@ -24,7 +23,6 @@ public:
 
 private:
   void load_attrs() { LOAD_FUNC_ATTR(legend_elements, self); }
-  pybind11::object self;
   pybind11::object legend_elements_attr;
 };
 

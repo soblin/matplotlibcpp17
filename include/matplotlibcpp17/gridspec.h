@@ -7,17 +7,12 @@
 
 namespace matplotlibcpp17::gridspec {
 
-struct DECL_STRUCT_ATTR SubplotSpec {
+struct DECL_STRUCT_ATTR SubplotSpec : public BaseWrapper {
 public:
   SubplotSpec(pybind11::object subplotspec) { self = subplotspec; }
-
-  pybind11::object unwrap() { return self; }
-
-private:
-  pybind11::object self;
 };
 
-struct DECL_STRUCT_ATTR GridSpec {
+struct DECL_STRUCT_ATTR GridSpec : public BaseWrapper {
 public:
   GridSpec(int nrow_, int ncol_,
            const pybind11::dict &kwargs = pybind11::dict()) {
@@ -35,7 +30,6 @@ public:
 
 private:
   int nrow, ncol;
-  pybind11::object self;
   pybind11::object gridspec_attr;
 };
 
