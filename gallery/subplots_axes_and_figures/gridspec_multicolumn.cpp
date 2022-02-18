@@ -43,6 +43,6 @@ int main() {
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("gridspec_multicolumn.png)");
+  plt.savefig(args_("gridspec_multicolumn.png"));
 #endif
 }
