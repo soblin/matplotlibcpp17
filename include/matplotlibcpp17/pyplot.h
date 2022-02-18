@@ -1,3 +1,8 @@
+/**
+ * @file pyplot.h
+ * @brief corresponding header for matplotlib.pyplot
+ **/
+
 #ifndef MATPLOTLIBCPP17_PYPLOT_H
 #define MATPLOTLIBCPP17_PYPLOT_H
 
@@ -11,6 +16,9 @@
 
 namespace matplotlibcpp17::pyplot {
 
+/**
+ * @brief A class corresponding to pyplot module
+ **/
 struct DECL_STRUCT_ATTR PyPlot {
 public:
   PyPlot() {}

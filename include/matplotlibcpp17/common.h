@@ -12,6 +12,9 @@
 
 namespace matplotlibcpp17 {
 
+/**
+ * @brief A base class for python wrapper classes
+ **/
 struct DECL_STRUCT_ATTR BaseWrapper {
 public:
   pybind11::object unwrap() { return self; }

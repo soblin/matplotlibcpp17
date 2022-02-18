@@ -1,5 +1,5 @@
 /**
- * @file axes.h
+ * @file quiver.h
  * @brief corresponding header for matplotlib.quiver
  **/
 

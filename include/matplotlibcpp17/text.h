@@ -1,5 +1,5 @@
 /**
- * @file axes.h
+ * @file text.h
  * @brief corresponding header for matplotlib.text
  **/
 
@@ -10,6 +10,9 @@
 
 #include <pybind11/pybind11.h>
 
+/**
+ * @brief A wrapper class for matplotlib.text.Text
+ **/
 namespace matplotlibcpp17::text {
 
 struct DECL_STRUCT_ATTR Text : public BaseWrapper {

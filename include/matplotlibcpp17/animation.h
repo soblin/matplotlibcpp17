@@ -1,3 +1,8 @@
+/**
+ * @file animation.h
+ * @brief corresponding header for matplotlib.animation
+ **/
+
 #ifndef MATPLOTLIBCPP17_ANIMATION_H
 #define MATPLOTLIBCPP17_ANIMATION_H
 
@@ -7,6 +12,9 @@
 
 namespace matplotlibcpp17::animation {
 
+/**
+ * @brief A wrapper class for matplotlib.animation.ArtistAnimation
+ **/
 struct DECL_STRUCT_ATTR ArtistAnimation {
 public:
   ArtistAnimation(const pybind11::tuple &args, const pybind11::dict &kwargs) {
