@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structmatplotlibcpp17_1_1_base_wrapper.html" title=" " alt="" coords="5,470,203,497"/>
+<area shape="rect" id="node1" href="$structmatplotlibcpp17_1_1_base_wrapper.html" title="A base class for python wrapper classes." alt="" coords="5,470,203,497"/>
 <area shape="rect" id="node2" href="$structmatplotlibcpp17_1_1axes_1_1_axes.html" title="A wrapper class for matplotlib.axes.Axes." alt="" coords="268,5,415,47"/>
 <area shape="rect" id="node3" href="$structmatplotlibcpp17_1_1collections_1_1_patch_collection.html" title="A wrapper class for matplotlib.collections.PatchCollection." alt="" coords="251,71,432,112"/>
 <area shape="rect" id="node4" href="$structmatplotlibcpp17_1_1collections_1_1_path_collection.html" title="A wrapper class for matplotlib.collections.PathCollection." alt="" coords="251,136,432,177"/>

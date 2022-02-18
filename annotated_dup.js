@@ -1,6 +1,6 @@
 var annotated_dup =
 [
-    [ "matplotlibcpp17", "namespacematplotlibcpp17.html", [
+    [ "matplotlibcpp17", null, [
       [ "animation", null, [
         [ "ArtistAnimation", "structmatplotlibcpp17_1_1animation_1_1_artist_animation.html", null ]
       ] ],
