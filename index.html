@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">matplotlibcpp17 </div></div>
+  <div class="headertitle"><div class="title"><a class="el" href="namespacematplotlibcpp17.html" title="A base class for python wrapper classes.">matplotlibcpp17</a> </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p ><a class="anchor" id="md__github_workspace_README"></a> This project aims to replace <a href="https://github.com/lava/matplotlib-cpp">matplotlibcpp</a> using <a href="https://github.com/pybind/pybind11">pybind11</a> as backend.</p>
@@ -108,7 +108,7 @@ Usage</h1>
 Syntax</h1>
 <p >The user will need to capsulate <em>arguments</em> in <code>args_(arg1, arg2, ...) == pybind11:tuple</code> and <em>keyword arguments</em> in <code>kwargs_("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict</code>. The returned value is either a <code>pybind11::object</code> or a corresponding wrapper class. Please refer to the reference and examples below.</p><ul>
 <li>exception: <code>subplots</code>, <code>TBD</code>s</li>
-<li>conversion: Wrapper class of matplotlibcpp17 like <a href="https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h">::container::BarContainer</a> needs to be passed to python interpreter using <code>unwrap()</code> method in <em>args</em> and <em>kwargs</em>.</li>
+<li>conversion: Wrapper class of <a class="el" href="namespacematplotlibcpp17.html" title="A base class for python wrapper classes.">matplotlibcpp17</a> like <a href="https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h">::container::BarContainer</a> needs to be passed to python interpreter using <code>unwrap()</code> method in <em>args</em> and <em>kwargs</em>.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md4"></a>
 Examples</h1>
@@ -175,7 +175,7 @@ example3 - fill</h2>
 </div><!-- fragment --><p ><img src="fill.png" alt="" class="inline" title="fill"/></p>
 <h2><a class="anchor" id="autotoc_md9"></a>
 example4 - quiver</h2>
-<p >Use <code>.unwrap()</code> method to pass wrapper class of matplotlibcpp17 to plotting functions.</p>
+<p >Use <code>.unwrap()</code> method to pass wrapper class of <a class="el" href="namespacematplotlibcpp17.html" title="A base class for python wrapper classes.">matplotlibcpp17</a> to plotting functions.</p>
 <p >From <a href="https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images_contours_and_fields/quiver_demo.cpp">gallery/images_contours_and_fields/quiver_demo.cpp</a></p>
 <ul>
 <li><a href="https://matplotlib.org/stable/gallery/images_contours_and_fields/quiver_demo.html">original python code</a></li>

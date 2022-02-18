@@ -1,11 +1,11 @@
 var annotated_dup =
 [
-    [ "matplotlibcpp17", null, [
+    [ "matplotlibcpp17", "namespacematplotlibcpp17.html", [
       [ "animation", null, [
         [ "ArtistAnimation", "structmatplotlibcpp17_1_1animation_1_1_artist_animation.html", null ]
       ] ],
       [ "axes", null, [
-        [ "Axes", "structmatplotlibcpp17_1_1axes_1_1_axes.html", "structmatplotlibcpp17_1_1axes_1_1_axes" ]
+        [ "Axes", "structmatplotlibcpp17_1_1axes_1_1_axes.html", null ]
       ] ],
       [ "collections", null, [
         [ "PatchCollection", "structmatplotlibcpp17_1_1collections_1_1_patch_collection.html", null ],
@@ -37,8 +37,9 @@ var annotated_dup =
         [ "Quiver", "structmatplotlibcpp17_1_1quiver_1_1_quiver.html", null ],
         [ "QuiverKey", "structmatplotlibcpp17_1_1quiver_1_1_quiver_key.html", null ]
       ] ],
-      [ "text", null, [
+      [ "text", "namespacematplotlibcpp17_1_1text.html", [
         [ "Text", "structmatplotlibcpp17_1_1text_1_1_text.html", null ]
-      ] ]
+      ] ],
+      [ "BaseWrapper", "structmatplotlibcpp17_1_1_base_wrapper.html", null ]
     ] ]
 ];
