@@ -1,7 +1,7 @@
 var hierarchy =
 [
-    [ "matplotlibcpp17::animation::ArtistAnimation", "structmatplotlibcpp17_1_1animation_1_1_artist_animation.html", null ],
     [ "matplotlibcpp17::BaseWrapper", "structmatplotlibcpp17_1_1_base_wrapper.html", [
+      [ "matplotlibcpp17::animation::ArtistAnimation", "structmatplotlibcpp17_1_1animation_1_1_artist_animation.html", null ],
       [ "matplotlibcpp17::axes::Axes", "structmatplotlibcpp17_1_1axes_1_1_axes.html", null ],
       [ "matplotlibcpp17::collections::PatchCollection", "structmatplotlibcpp17_1_1collections_1_1_patch_collection.html", null ],
       [ "matplotlibcpp17::collections::PathCollection", "structmatplotlibcpp17_1_1collections_1_1_path_collection.html", null ],
