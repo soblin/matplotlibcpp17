@@ -20,6 +20,9 @@
 
 namespace matplotlibcpp17::axes {
 
+/**
+ * @brief Return type for hist()
+ **/
 using HistType = std::tuple<std::vector<double>, std::vector<double>,
                             container::BarContainer>;
 

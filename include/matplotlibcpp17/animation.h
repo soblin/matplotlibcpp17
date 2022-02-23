@@ -15,7 +15,7 @@ namespace matplotlibcpp17::animation {
 /**
  * @brief A wrapper class for matplotlib.animation.ArtistAnimation
  **/
-struct DECL_STRUCT_ATTR ArtistAnimation {
+struct DECL_STRUCT_ATTR ArtistAnimation : public BaseWrapper {
 public:
   ArtistAnimation(const pybind11::tuple &args, const pybind11::dict &kwargs) {
     pybind11::object attr = pybind11::module::import("matplotlib.animation")
