@@ -94,32 +94,34 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <div class="headertitle"><div class="title">matplotlibcpp17 </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md__github_workspace_README"></a> This project aims to replace <a href="https://github.com/lava/matplotlib-cpp">matplotlibcpp</a> using <a href="https://github.com/pybind/pybind11">pybind11</a> as backend.</p>
+<div class="textblock"><p ><a class="anchor" id="md__github_workspace_README"></a> A C++ header-only plotting library based on pybind11 and matplotlib</p>
+<hr  />
+<p >This project aims to replace <a href="https://github.com/lava/matplotlib-cpp">matplotlibcpp</a> using <a href="https://github.com/pybind/pybind11">pybind11</a> as backend.</p>
 <p >It is supposed to provide the user with almost full access to matplotlib features in C++, by implementing as many <em>wrapper classes</em> of matplotlib module as possible (like <code>axes::Axes</code>, <code>figure::Figure</code>). And its primary advantage over conventional matplotlibcpp is that the user can pass a variety of arguments as in the form of <em>args</em> and <em>kwargs</em> thanks to pybind11, without the need for coversion to <code>map&lt;string, string&gt;</code>, thus leading to more flexibility.</p>
-<h1><a class="anchor" id="autotoc_md1"></a>
+<h1><a class="anchor" id="autotoc_md2"></a>
 Dependencies</h1>
 <ul>
 <li>pybind11(<a href="https://github.com/pybind/pybind11">https://github.com/pybind/pybind11</a>) &gt;= 2.9.0</li>
 <li>compatible with matplotlib(<a href="https://matplotlib.org/stable/index.html">https://matplotlib.org/stable/index.html</a>) == 3.5.1 as of now</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Usage</h1>
 <p >Just add include path to <code>include</code> directory of this project.</p>
-<h1><a class="anchor" id="autotoc_md3"></a>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Syntax</h1>
 <p >The user will need to capsulate <em>arguments</em> in <code>args_(arg1, arg2, ...) == pybind11:tuple</code> and <em>keyword arguments</em> in <code>kwargs_("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict</code>. The returned value is either a <code>pybind11::object</code> or a corresponding wrapper class. Please refer to the reference and examples below.</p><ul>
 <li>exception: <code>subplots</code>, <code>TBD</code>s</li>
 <li>conversion: Wrapper class of matplotlibcpp17 like <a href="https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h">::container::BarContainer</a> needs to be passed to python interpreter using <code>unwrap()</code> method in <em>args</em> and <em>kwargs</em>.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h1><a class="anchor" id="autotoc_md5"></a>
 Examples</h1>
-<h2><a class="anchor" id="autotoc_md5"></a>
+<h2><a class="anchor" id="autotoc_md6"></a>
 minimal example</h2>
 <div class="fragment"><div class="line">g++ hello_world.cpp -std=c++17 -I./include -I/usr/include/python3.x -I&lt;path to pybind11&gt; -lpython3.x</div>
 <div class="line">./a.out</div>
 </div><!-- fragment --><p >gives</p>
 <p ><img src="hello_world.png" alt="" class="inline" title="minimal example"/></p>
-<h2><a class="anchor" id="autotoc_md6"></a>
+<h2><a class="anchor" id="autotoc_md7"></a>
 example1 - subplots</h2>
 <p >From <a href="https://github.com/soblin/matplotlibcpp17/blob/master/gallery/subplots_axes_and_figures/align_labels_demo.cpp">gallery/subplots_axes_and_figures/align_labels_demo.cpp</a>.</p>
 <ul>
@@ -136,7 +138,7 @@ example1 - subplots</h2>
 <div class="line">ax.set_ylabel(args_(<span class="stringliteral">&quot;YLabel0&quot;</span>));</div>
 <div class="line">ax.set_xlabel(args_(<span class="stringliteral">&quot;XLabel0&quot;</span>));</div>
 </div><!-- fragment --><p ><img src="align_labels_demo.png" alt="" class="inline" title="subplots_axes_and_figures"/></p>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 example2 - bar plot</h2>
 <p >From <a href="https://github.com/soblin/matplotlibcpp17/blob/master/gallery/lines_bars_and_markers/bar_label_demo.cpp">gallery/lines_bars_and_markers/bar_label_demo.cpp</a>. Here <code>subplots()</code> returns <code>tuple&lt;Figure, Axes&gt;</code>.</p>
 <ul>
@@ -161,7 +163,7 @@ example2 - bar plot</h2>
 <div class="line">ax.bar_label(args_(p2.unwrap()));</div>
 <div class="line">plt.show();</div>
 </div><!-- fragment --><p ><img src="bar_label_demo1.png" alt="" class="inline" title="bar_label_demo1"/></p>
-<h2><a class="anchor" id="autotoc_md8"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 example3 - fill</h2>
 <p >Fucntions like <code>subplots</code>, <code>TBD</code>s are overloaded because they return different types depending on the arguments. Here <code>subplots()</code> returns <code>tuple&lt;Figure, vector&lt;Axes&gt;&gt;</code>.</p>
 <p >From <a href="https://github.com/soblin/matplotlibcpp17/blob/master/gallery/lines_bars_and_markers/fill.cpp">gallery/lines_bars_and_markers</a></p>
@@ -174,7 +176,7 @@ example3 - fill</h2>
 <div class="line">                         <span class="stringliteral">&quot;subplot_kw&quot;</span>_a = py::dict(<span class="stringliteral">&quot;aspect&quot;</span>_a = <span class="stringliteral">&quot;equal&quot;</span>)));</div>
 <div class="line"><span class="keyword">auto</span> ax1 = axes[0], ax2 = axes[1], ax3 = axes[2];</div>
 </div><!-- fragment --><p ><img src="fill.png" alt="" class="inline" title="fill"/></p>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 example4 - quiver</h2>
 <p >Use <code>.unwrap()</code> method to pass wrapper class of matplotlibcpp17 to plotting functions.</p>
 <p >From <a href="https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images_contours_and_fields/quiver_demo.cpp">gallery/images_contours_and_fields/quiver_demo.cpp</a></p>
@@ -192,7 +194,7 @@ example4 - quiver</h2>
 <div class="line"><span class="stringliteral">                  kwargs_(</span><span class="stringliteral">&quot;labelpos&quot;</span>_a = <span class="stringliteral">&quot;E&quot;</span>, <span class="stringliteral">&quot;coordinates&quot;</span>_a = <span class="stringliteral">&quot;figure&quot;</span>));</div>
 <div class="line">ax1.scatter(args_(X, Y), kwargs_(<span class="stringliteral">&quot;color&quot;</span>_a = <span class="stringliteral">&quot;0.5&quot;</span>, <span class="stringliteral">&quot;s&quot;</span>_a = 1));</div>
 </div><!-- fragment --><p ><img src="quiver_demo_3.png" alt="" class="inline" title="quiver_demo3"/></p>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 example5 - gif</h2>
 <p >Currently only <code>ArtistAnimation</code> is supported. <code>FuncAnimation</code> interface maybe implemented in the future.</p>
 <p >From <a href="https://github.com/soblin/matplotlibcpp17/blob/master/gallery/artist_animation/random_walk.cpp">gallery/artist_animation/random_walk.cpp</a></p>
@@ -200,16 +202,16 @@ example5 - gif</h2>
 <li><a href="https://matplotlib.org/stable/gallery/animation/random_walk.html">original python code</a></li>
 </ul>
 <p ><img src="random_walk.gif" alt="" class="inline" title="random_walk"/></p>
-<h1><a class="anchor" id="autotoc_md11"></a>
+<h1><a class="anchor" id="autotoc_md12"></a>
 Demos</h1>
 <p ><code>gallery</code> folder contains corresponding examples from <a href="https://matplotlib.org/stable/gallery">the official website of matplotlib</a> with the same structure.</p>
-<h2><a class="anchor" id="autotoc_md12"></a>
+<h2><a class="anchor" id="autotoc_md13"></a>
 build</h2>
 <div class="fragment"><div class="line">mkdir build; cd build; cmake .. ; make -j</div>
 </div><!-- fragment --><p >If you want to see the demo with <code>plt.show()</code>, add <code>-DUSE_GUI=1</code> (by default it is <code>0</code>). Otherwise the executables will <code>plt.savefig()</code> to <code>gallery/images</code> directory.</p>
 <p ><code>make &lt;gallery directory name&gt;</code> runs all executables under that directory.</p>
 <div class="fragment"><div class="line">make lines_bars_and_markers</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md13"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md14"></a>
 Contributing</h1>
 <p >Contributions to this project are welcome if you could add or want/need more modules :) </p>
 </div></div><!-- PageDoc -->

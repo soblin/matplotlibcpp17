@@ -25,21 +25,21 @@
 var NAVTREE =
 [
   [ "matplotlibcpp17", "index.html", [
-    [ "Dependencies", "index.html#autotoc_md1", null ],
-    [ "Usage", "index.html#autotoc_md2", null ],
-    [ "Syntax", "index.html#autotoc_md3", null ],
-    [ "Examples", "index.html#autotoc_md4", [
-      [ "minimal example", "index.html#autotoc_md5", null ],
-      [ "example1 - subplots", "index.html#autotoc_md6", null ],
-      [ "example2 - bar plot", "index.html#autotoc_md7", null ],
-      [ "example3 - fill", "index.html#autotoc_md8", null ],
-      [ "example4 - quiver", "index.html#autotoc_md9", null ],
-      [ "example5 - gif", "index.html#autotoc_md10", null ]
+    [ "Dependencies", "index.html#autotoc_md2", null ],
+    [ "Usage", "index.html#autotoc_md3", null ],
+    [ "Syntax", "index.html#autotoc_md4", null ],
+    [ "Examples", "index.html#autotoc_md5", [
+      [ "minimal example", "index.html#autotoc_md6", null ],
+      [ "example1 - subplots", "index.html#autotoc_md7", null ],
+      [ "example2 - bar plot", "index.html#autotoc_md8", null ],
+      [ "example3 - fill", "index.html#autotoc_md9", null ],
+      [ "example4 - quiver", "index.html#autotoc_md10", null ],
+      [ "example5 - gif", "index.html#autotoc_md11", null ]
     ] ],
-    [ "Demos", "index.html#autotoc_md11", [
-      [ "build", "index.html#autotoc_md12", null ]
+    [ "Demos", "index.html#autotoc_md12", [
+      [ "build", "index.html#autotoc_md13", null ]
     ] ],
-    [ "Contributing", "index.html#autotoc_md13", null ],
+    [ "Contributing", "index.html#autotoc_md14", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],
