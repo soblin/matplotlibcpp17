@@ -173,6 +173,10 @@ public:
   pybind11::object set_yticks(const pybind11::tuple &args = pybind11::tuple(),
                               const pybind11::dict &kwargs = pybind11::dict());
 
+  // set_zlabel
+  pybind11::object set_zlabel(const pybind11::tuple &args = pybind11::tuple(),
+                              const pybind11::dict &kwargs = pybind11::dict());
+
   // text
   pybind11::object text(const pybind11::tuple &args = pybind11::tuple(),
                         const pybind11::dict &kwargs = pybind11::dict());
@@ -216,6 +220,7 @@ private:
     LOAD_FUNC_ATTR(set_ylabel, self);
     LOAD_FUNC_ATTR(set_ylim, self);
     LOAD_FUNC_ATTR(set_yticks, self);
+    LOAD_FUNC_ATTR(set_zlabel, self);
     LOAD_FUNC_ATTR(text, self);
     LOAD_FUNC_ATTR(tick_params, self);
   }
@@ -252,6 +257,7 @@ private:
   pybind11::object set_ylabel_attr;
   pybind11::object set_ylim_attr;
   pybind11::object set_yticks_attr;
+  pybind11::object set_zlabel_attr;
   pybind11::object text_attr;
   pybind11::object tick_params_attr;
 };
@@ -498,6 +504,13 @@ pybind11::object Axes::set_ylim(const pybind11::tuple &args,
 pybind11::object Axes::set_yticks(const pybind11::tuple &args,
                                   const pybind11::dict &kwargs) {
   pybind11::object ret = set_yticks_attr(*args, **kwargs);
+  return ret;
+}
+
+// set_zlabel
+pybind11::object Axes::set_zlabel(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
+  pybind11::object ret = set_zlabel_attr(*args, **kwargs);
   return ret;
 }
 
