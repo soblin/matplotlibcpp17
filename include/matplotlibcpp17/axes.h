@@ -123,6 +123,16 @@ public:
   pybind11::object plot(const pybind11::tuple &args = pybind11::tuple(),
                         const pybind11::dict &kwargs = pybind11::dict());
 
+  // plot_surface
+  pybind11::object
+  plot_surface(const pybind11::tuple &args = pybind11::tuple(),
+               const pybind11::dict &kwargs = pybind11::dict());
+
+  // plot_wireframe
+  pybind11::object
+  plot_wireframe(const pybind11::tuple &args = pybind11::tuple(),
+                 const pybind11::dict &kwargs = pybind11::dict());
+
   // quiver
   quiver::Quiver quiver(const pybind11::tuple &args = pybind11::tuple(),
                         const pybind11::dict &kwargs = pybind11::dict());
@@ -212,6 +222,8 @@ private:
     LOAD_FUNC_ATTR(invert_yaxis, self);
     LOAD_FUNC_ATTR(legend, self);
     LOAD_FUNC_ATTR(plot, self);
+    LOAD_FUNC_ATTR(plot_surface, self);
+    LOAD_FUNC_ATTR(plot_wireframe, self);
     LOAD_FUNC_ATTR(quiver, self);
     LOAD_FUNC_ATTR(quiverkey, self);
     LOAD_FUNC_ATTR(scatter, self);
@@ -250,6 +262,8 @@ private:
   pybind11::object invert_yaxis_attr;
   pybind11::object legend_attr;
   pybind11::object plot_attr;
+  pybind11::object plot_surface_attr;
+  pybind11::object plot_wireframe_attr;
   pybind11::object quiver_attr;
   pybind11::object quiverkey_attr;
   pybind11::object scatter_attr;
@@ -426,6 +440,20 @@ legend::Legend Axes::legend(const pybind11::tuple &args,
 pybind11::object Axes::plot(const pybind11::tuple &args,
                             const pybind11::dict &kwargs) {
   pybind11::object ret = plot_attr(*args, **kwargs);
+  return ret;
+}
+
+// plot_surface
+pybind11::object Axes::plot_surface(const pybind11::tuple &args,
+                                    const pybind11::dict &kwargs) {
+  pybind11::object ret = plot_surface_attr(*args, **kwargs);
+  return ret;
+}
+
+// plot_wireframe
+pybind11::object Axes::plot_wireframe(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
+  pybind11::object ret = plot_wireframe_attr(*args, **kwargs);
   return ret;
 }
 
