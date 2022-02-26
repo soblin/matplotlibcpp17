@@ -222,8 +222,14 @@ private:
     LOAD_FUNC_ATTR(invert_yaxis, self);
     LOAD_FUNC_ATTR(legend, self);
     LOAD_FUNC_ATTR(plot, self);
-    LOAD_FUNC_ATTR(plot_surface, self);
-    LOAD_FUNC_ATTR(plot_wireframe, self);
+    // NOTE: only when called with projection='3d', `plot_surface`, `plot_wireframe`, `set_zlabel` prop exists.
+    try {
+      plot_surface_attr = self.attr("plot_surface");
+      plot_wireframe_attr = self.attr("plot_wireframe");
+      set_zlabel_attr = self.attr("set_zlabel");
+      std::cout << "Loaded Axes3D." << std::endl;
+    }
+    catch(...) {}
     LOAD_FUNC_ATTR(quiver, self);
     LOAD_FUNC_ATTR(quiverkey, self);
     LOAD_FUNC_ATTR(scatter, self);
@@ -237,7 +243,6 @@ private:
     LOAD_FUNC_ATTR(set_ylabel, self);
     LOAD_FUNC_ATTR(set_ylim, self);
     LOAD_FUNC_ATTR(set_yticks, self);
-    LOAD_FUNC_ATTR(set_zlabel, self);
     LOAD_FUNC_ATTR(text, self);
     LOAD_FUNC_ATTR(tick_params, self);
   }

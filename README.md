@@ -12,6 +12,7 @@ It is supposed to provide the user with almost full access to matplotlib feature
 
 - pybind11(https://github.com/pybind/pybind11) >= 2.9.0
 - compatible with matplotlib(https://matplotlib.org/stable/index.html) == 3.5.1 as of now
+- numpy(only for 3D-plotting)
 
 ## Usage
 

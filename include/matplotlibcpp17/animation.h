@@ -29,7 +29,6 @@ public:
 
 private:
   void load_attrs() { LOAD_FUNC_ATTR(save, self); }
-  pybind11::object self;
   pybind11::object save_attr;
 };
 
