@@ -29,6 +29,7 @@ if(${ADD_DEMO})
   add_subdirectory(gallery/images_contours_and_fields)
   add_subdirectory(gallery/shapes_and_collections)
   add_subdirectory(gallery/artist_animation)
+  add_subdirectory(gallery/mplot3d)
 endif()
 
 if(NOT DEFINED DO_TEST)
