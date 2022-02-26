@@ -41,6 +41,11 @@ public:
   pybind11::object clf(const pybind11::tuple &args = pybind11::tuple(),
                        const pybind11::dict &kwargs = pybind11::dict());
 
+  // figaspect
+  std::tuple<double, double>
+  figaspect(const pybind11::tuple &args = pybind11::tuple(),
+            const pybind11::dict &kwargs = pybind11::dict());
+
   // figure
   figure::Figure figure(const pybind11::tuple &args = pybind11::tuple(),
                         const pybind11::dict &kwargs = pybind11::dict());
@@ -113,6 +118,7 @@ private:
     LOAD_FUNC_ATTR(axis, mod);
     LOAD_FUNC_ATTR(cla, mod);
     LOAD_FUNC_ATTR(clf, mod);
+    LOAD_FUNC_ATTR(figaspect, mod);
     LOAD_FUNC_ATTR(figure, mod);
     LOAD_FUNC_ATTR(gca, mod);
     LOAD_FUNC_ATTR(gcf, mod);
@@ -135,6 +141,7 @@ private:
   pybind11::object axis_attr;
   pybind11::object cla_attr;
   pybind11::object clf_attr;
+  pybind11::object figaspect_attr;
   pybind11::object figure_attr;
   pybind11::object gca_attr;
   pybind11::object gcf_attr;
@@ -178,6 +185,15 @@ pybind11::object PyPlot::clf(const pybind11::tuple &args,
                              const pybind11::dict &kwargs) {
   pybind11::object ret = clf_attr(*args, **kwargs);
   return ret;
+}
+
+// figaspect
+std::tuple<double, double> PyPlot::figaspect(const pybind11::tuple &args,
+                                             const pybind11::dict &kwargs) {
+  pybind11::list l = figaspect_attr(*args, **kwargs);
+  double width = l[0].cast<double>();
+  double height = l[1].cast<double>();
+  return {width, height};
 }
 
 // figure
