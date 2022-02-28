@@ -429,7 +429,13 @@ $(document).ready(function(){initNavTree('pyplot_8h_source.html',''); initResiza
 <div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
 <div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>} <span class="comment">// namespace matplotlibcpp17::pyplot</span></div>
 <div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="preprocessor">#endif </span><span class="comment">/* MATPLOTLIBCPP17_PYPLOT_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt; pybind11::tuple args_(Args &amp;&amp;... args) {</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>  <span class="keywordflow">return</span> pybind11::make_tuple(std::forward&lt;Args&gt;(args)...);</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>}</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span> </div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span><span class="keyword">using</span> kwargs_ = pybind11::dict;</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="preprocessor">#endif </span><span class="comment">/* MATPLOTLIBCPP17_PYPLOT_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="astructmatplotlibcpp17_1_1axes_1_1_axes_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1axes_1_1_axes.html">matplotlibcpp17::axes::Axes</a></div><div class="ttdoc">A wrapper class for matplotlib.axes.Axes.</div><div class="ttdef"><b>Definition:</b> axes.h:32</div></div>
 <div class="ttc" id="astructmatplotlibcpp17_1_1figure_1_1_figure_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1figure_1_1_figure.html">matplotlibcpp17::figure::Figure</a></div><div class="ttdoc">A wrapper class for matplotlib.figure.Figure.</div><div class="ttdef"><b>Definition:</b> figure.h:20</div></div>
 <div class="ttc" id="astructmatplotlibcpp17_1_1pyplot_1_1_py_plot_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1pyplot_1_1_py_plot.html">matplotlibcpp17::pyplot::PyPlot</a></div><div class="ttdoc">A class corresponding to pyplot module.</div><div class="ttdef"><b>Definition:</b> pyplot.h:22</div></div>
