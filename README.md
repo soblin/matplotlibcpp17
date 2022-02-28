@@ -10,9 +10,10 @@ It is supposed to provide the user with almost full access to matplotlib feature
 
 ## Dependencies
 
-- pybind11(https://github.com/pybind/pybind11) >= 2.9.0
-- compatible with matplotlib(https://matplotlib.org/stable/index.html) == 3.5.1 as of now
-- numpy(only for 3D-plotting)
+- [pybind11](https://github.com/pybind/pybind11) >= 2.9.0
+- compatible with [matplotlib](https://matplotlib.org/stable/index.html) == 3.5.1 as of now
+- numpy for `mplot3d`
+- [xtensor](https://github.com/xtensor-stack/xtensor) == 0.24.0 (+ [xtl](https://github.com/xtensor-stack/xtl), only for compiling `gallery`
 
 ## Usage
 

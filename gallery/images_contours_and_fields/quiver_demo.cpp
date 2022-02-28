@@ -11,7 +11,6 @@
 #include <xtensor/xview.hpp>
 
 #include <vector>
-#include <algorithm>
 #include <string>
 
 namespace py = pybind11;
