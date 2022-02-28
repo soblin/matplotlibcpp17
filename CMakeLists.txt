@@ -26,6 +26,8 @@ function(add_demo name path)
 endfunction()
 
 if(${ADD_DEMO})
+  # https://stackoverflow.com/questions/61030335/how-to-convert-an-xarray-to-stdvector
+  find_package(xtensor REQUIRED)
   set(CMAKE_CXX_STANDARD 17)
   set(CMAKE_CXX_FLAGS "-Wall -g -DUSE_GUI=${USE_GUI}")
   add_subdirectory(gallery/lines_bars_and_markers)
