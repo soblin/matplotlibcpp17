@@ -340,4 +340,10 @@ PyPlot import() {
 
 } // namespace matplotlibcpp17::pyplot
 
+template <typename... Args> pybind11::tuple args_(Args &&... args) {
+  return pybind11::make_tuple(std::forward<Args>(args)...);
+}
+
+using kwargs_ = pybind11::dict;
+
 #endif /* MATPLOTLIBCPP17_PYPLOT_H */

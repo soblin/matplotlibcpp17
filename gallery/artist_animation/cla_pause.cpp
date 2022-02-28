@@ -1,7 +1,7 @@
 #include <pybind11/embed.h>
 #include <pybind11/stl.h>
 
-#include <matplotlibcpp17/matplotlibcpp17.h>
+#include <matplotlibcpp17/pyplot.h>
 
 #include <vector>
 #include <algorithm>

@@ -1,7 +1,7 @@
 #include <pybind11/embed.h>
 #include <pybind11/stl.h>
 
-#include <matplotlibcpp17/matplotlibcpp17.h>
+#include <matplotlibcpp17/pyplot.h>
 
 #include <vector>
 
@@ -11,7 +11,7 @@ int main() {
   pybind11::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
   /// user code
-  plt.plot(std::vector<int>({1, 3, 2, 4}), "color"_a = "blue",
-           "linewidth"_a = 1.0);
+  plt.plot(args_(std::vector<int>({1, 3, 2, 4})),
+           kwargs_("color"_a = "blue", "linewidth"_a = 1.0));
   plt.show();
 }
