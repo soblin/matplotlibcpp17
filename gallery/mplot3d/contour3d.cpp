@@ -2,8 +2,14 @@
 
 #include <pybind11/embed.h>
 #include <pybind11/stl.h>
+
 #include <matplotlibcpp17/pyplot.h>
-#include <algorithm>
+
+#include <xtensor/xbuilder.hpp>
+#include <xtensor/xmath.hpp>
+#include <xtensor/xio.hpp>
+#include <xtensor/xadapt.hpp>
+
 #include <vector>
 
 namespace py = pybind11;
@@ -15,40 +21,33 @@ using namespace matplotlibcpp17;
 // https://github.com/pybind/pybind11/issues/1071
 using mesh2D = vector<vector<double>>;
 
-template <typename T> std::vector<T> arange(T start, T end, T h) {
-  int N = static_cast<int>((end - start) / h);
-  std::vector<T> xs(N);
-  T val = start;
-  for (int i = 0; i < N; ++i) {
-    xs[i] = val;
-    val += h;
-  }
-  return xs;
-}
-
 // from mpl_toolkits.axes3d.py
 tuple<mesh2D, mesh2D, mesh2D> get_test_data(double delta = 0.05) {
-  const vector<double> xs = arange(-3.0, 3.0, delta);
-  const auto ys = xs;
-  mesh2D X(ys.size()), Y(ys.size()), Z(ys.size());
-  for (unsigned i = 0; i < ys.size(); ++i) {
-    X[i].resize(xs.size());
-    Y[i].resize(xs.size());
-    Z[i].resize(xs.size());
-  }
-  for (unsigned i = 0; i < ys.size(); ++i) {
-    for (unsigned j = 0; j < xs.size(); ++j) {
-      const double x = xs[j], y = ys[i];
-      const double z1 = exp(-(pow(x, 2) + pow(y, 2)) / 2.0) / (2 * M_PI);
-      const double z2 =
-          exp(-(pow((x - 1) / 1.5, 2) + pow((y - 1) / 0.5, 2)) / 2.0) /
-          (2 * M_PI * 0.5 * 1.5);
-      X[i][j] = x * 10;
-      Y[i][j] = y * 10;
-      Z[i][j] = (z2 - z1) * 500;
+  auto xs = xt::arange(-3.0, 3.0, delta);
+  auto ys = xt::arange(-3.0, 3.0, delta);
+  auto [X0, Y0] = xt::meshgrid(xs, ys); // 120x160
+  auto Z1 = xt::exp(-(xt::pow(X0, 2) + xt::pow(Y0, 2)) / 2.0) / (2 * M_PI);
+  auto Z2 =
+      xt::exp(-(xt::pow((X0 - 1.0) / 1.5, 2) + xt::pow((Y0 - 1.0) / 0.5, 2)) /
+              2) /
+      (2 * M_PI * 0.5 * 1.5);
+  auto Z0 = Z2 - Z1;
+  auto X = X0 * 10;
+  auto Y = Y0 * 10;
+  auto Z = Z0 * 500;
+  const int szx = xs.shape()[0], szy = ys.shape()[0];
+  mesh2D X_(szx), Y_(szx), Z_(szx);
+  for (int i = 0; i < szx; ++i) {
+    X_[i].resize(szy);
+    Y_[i].resize(szy);
+    Z_[i].resize(szy);
+    for (int j = 0; j < szy; ++j) {
+      X_[i][j] = X(i, j);
+      Y_[i][j] = Y(i, j);
+      Z_[i][j] = Z(i, j);
     }
   }
-  return {X, Y, Z};
+  return {X_, Y_, Z_};
 }
 
 int main() {
