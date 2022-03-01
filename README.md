@@ -21,7 +21,7 @@ Just add include path to `include` directory of this project.
 
 ## Syntax
 
-The user will need to capsulate *arguments* in `args_(arg1, arg2, ...) == pybind11:tuple` and *keyword arguments* in `kwargs_("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict`. The returned value is either a `pybind11::object` or a corresponding wrapper class. Please refer to the reference and examples below.
+The user will need to capsulate *arguments* in `Args(arg1, arg2, ...) == pybind11:tuple` and *keyword arguments* in `Kwargs("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict`. The returned value is either a `pybind11::object` or a corresponding wrapper class. Please refer to the reference and examples below.
 - exception: `subplots`, `TBD`s
 - conversion: Wrapper class of matplotlibcpp17 like [::container::BarContainer](https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h) needs to be passed to python interpreter using `unwrap()` method in *args* and *kwargs*.
 
@@ -52,11 +52,11 @@ From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.co
   auto gs = GridSpec(2, 2);
 
   /// pass wrapper class object like gs[0, :] of ::gridspec::SubplotSpec to the interpreter using .unwrap() method as python object
-  auto ax = fig.add_subplot(args_(gs(0, py::slice(0, 2, 1)).unwrap()));
+  auto ax = fig.add_subplot(Args(gs(0, py::slice(0, 2, 1)).unwrap()));
 
-  ax.plot(args_(arange(0, 1000000, 10000)));
-  ax.set_ylabel(args_("YLabel0"));
-  ax.set_xlabel(args_("XLabel0"));
+  ax.plot(Args(arange(0, 1000000, 10000)));
+  ax.set_ylabel(Args("YLabel0"));
+  ax.set_xlabel(Args("XLabel0"));
 ```
 
 ![subplots_axes_and_figures](./gallery/images/align_labels_demo.png)
@@ -69,22 +69,22 @@ From [gallery/lines_bars_and_markers/bar_label_demo.cpp](https://github.com/sobl
 
 ```cpp
   auto [fig, ax] = plt.subplots();
-  auto p1 = ax.bar(args_(ind, menMeans, width),
-                   kwargs_("yerr"_a = menStd, "label"_a = "Men"));
+  auto p1 = ax.bar(Args(ind, menMeans, width),
+                   Kwargs("yerr"_a = menStd, "label"_a = "Men"));
   auto p2 = ax.bar(
-      args_(ind, womenMeans, width),
-      kwargs_("bottom"_a = menMeans, "yerr"_a = womenStd, "label"_a = "Women"));
-  ax.axhline(args_(0), kwargs_("color"_a = "grey", "linewidth"_a = 0.8));
-  ax.set_ylabel(args_("Scores"));
-  ax.set_title(args_("Scores by group and gender"));
+      Args(ind, womenMeans, width),
+      Kwargs("bottom"_a = menMeans, "yerr"_a = womenStd, "label"_a = "Women"));
+  ax.axhline(Args(0), Kwargs("color"_a = "grey", "linewidth"_a = 0.8));
+  ax.set_ylabel(Args("Scores"));
+  ax.set_title(Args("Scores by group and gender"));
 
-  ax.set_xticks(args_(ind, py::make_tuple("G1", "G2", "G3", "G4", "G5")));
+  ax.set_xticks(Args(ind, py::make_tuple("G1", "G2", "G3", "G4", "G5")));
   ax.legend();
 
   // pass wrapper class object like p1 of ::container::BarContainer to the interpreter using .unwrap() method as python object
-  ax.bar_label(args_(p1.unwrap()), kwargs_("label_type"_a = "center"));
-  ax.bar_label(args_(p2.unwrap()), kwargs_("label_type"_a = "center"));
-  ax.bar_label(args_(p2.unwrap()));
+  ax.bar_label(Args(p1.unwrap()), Kwargs("label_type"_a = "center"));
+  ax.bar_label(Args(p2.unwrap()), Kwargs("label_type"_a = "center"));
+  ax.bar_label(Args(p2.unwrap()));
   plt.show();
 ```
 
@@ -101,7 +101,7 @@ From [gallery/lines_bars_and_markers](https://github.com/soblin/matplotlibcpp17/
 ```cpp
   auto [fig, axes] =
       plt.subplots(1, 3,
-                   kwargs_("figsize"_a = py::make_tuple(9, 3),
+                   Kwargs("figsize"_a = py::make_tuple(9, 3),
                            "subplot_kw"_a = py::dict("aspect"_a = "equal")));
   auto ax1 = axes[0], ax2 = axes[1], ax3 = axes[2];
 ```
@@ -119,14 +119,14 @@ From [gallery/images_contours_and_fields/quiver_demo.cpp](https://github.com/sob
 ```cpp
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig1, ax1] = plt.subplots();
-  ax1.set_title(args_("Arrows scale with plot width, not view"));
-  auto Q = ax1.quiver(args_(X, Y, U, V, M),
-                      kwargs_("units"_a = "x", "pivot"_a = "tip",
+  ax1.set_title(Args("Arrows scale with plot width, not view"));
+  auto Q = ax1.quiver(Args(X, Y, U, V, M),
+                      Kwargs("units"_a = "x", "pivot"_a = "tip",
                               "width"_a = 0.022, "scale"_a = 1.0 / 0.15));
   auto qk =
-      ax1.quiverkey(args_(Q.unwrap(), 0.9, 0.9, 1, R"($1 \frac{m}{s}$)"),
-                    kwargs_("labelpos"_a = "E", "coordinates"_a = "figure"));
-  ax1.scatter(args_(X, Y), kwargs_("color"_a = "0.5", "s"_a = 1));
+      ax1.quiverkey(Args(Q.unwrap(), 0.9, 0.9, 1, R"($1 \frac{m}{s}$)"),
+                    Kwargs("labelpos"_a = "E", "coordinates"_a = "figure"));
+  ax1.scatter(Args(X, Y), Kwargs("color"_a = "0.5", "s"_a = 1));
 ```
 
 ![quiver_demo3](./gallery/images/quiver_demo_3.png)

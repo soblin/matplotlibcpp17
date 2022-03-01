@@ -18,11 +18,11 @@ int main() {
   vector<int> data;
   const int N = 10;
   for (int i = 0; i <= N; ++i) {
-    plt.xlim(args_(0, 10));
-    plt.ylim(args_(0, 10));
+    plt.xlim(Args(0, 10));
+    plt.ylim(Args(0, 10));
     data.push_back(i);
-    plt.plot(args_(data));
-    plt.pause(args_(1));
+    plt.plot(Args(data));
+    plt.pause(Args(1));
     plt.cla();
   }
   return 0;

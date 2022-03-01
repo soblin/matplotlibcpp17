@@ -52,10 +52,10 @@ tuple<mesh2D, mesh2D, mesh2D> get_test_data(double delta = 0.05) {
 int main() {
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
-  auto [w, h] = plt.figaspect(args_(0.5));
-  auto fig = plt.figure(args_(), kwargs_("figsize"_a = py::make_tuple(w, h)));
+  auto [w, h] = plt.figaspect(Args(0.5));
+  auto fig = plt.figure(Args(), Kwargs("figsize"_a = py::make_tuple(w, h)));
   {
-    auto ax = fig.add_subplot(args_(1, 2, 1), kwargs_("projection"_a = "3d"));
+    auto ax = fig.add_subplot(Args(1, 2, 1), Kwargs("projection"_a = "3d"));
     auto xs = xt::arange(-5.0, 5.0, 0.25);
     auto [X0, Y0] = xt::meshgrid(xs, xs);
     auto R0 = xt::sqrt(xt::pow(X0, 2) + xt::pow(Y0, 2));
@@ -79,21 +79,21 @@ int main() {
     auto Y_ = py::array(py::cast(std::move(Y)));
     auto Z_ = py::array(py::cast(std::move(Z)));
     auto surf = ax.plot_surface(
-        args_(X_, Y_, Z_), kwargs_("rstride"_a = 1, "cstride"_a = 1,
-                                   "linewidth"_a = 0, "antialiased"_a = false));
+        Args(X_, Y_, Z_), Kwargs("rstride"_a = 1, "cstride"_a = 1,
+                                 "linewidth"_a = 0, "antialiased"_a = false));
   }
   {
-    auto ax = fig.add_subplot(args_(1, 2, 2), kwargs_("projection"_a = "3d"));
+    auto ax = fig.add_subplot(Args(1, 2, 2), Kwargs("projection"_a = "3d"));
     auto [X, Y, Z] = get_test_data(0.05);
     auto X_ = py::array(py::cast(std::move(X)));
     auto Y_ = py::array(py::cast(std::move(Y)));
     auto Z_ = py::array(py::cast(std::move(Z)));
-    ax.plot_wireframe(args_(X_, Y_, Z_),
-                      kwargs_("rstride"_a = 10, "cstride"_a = 10));
+    ax.plot_wireframe(Args(X_, Y_, Z_),
+                      Kwargs("rstride"_a = 10, "cstride"_a = 10));
   }
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("subplot3d.png"));
+  plt.savefig(Args("subplot3d.png"));
 #endif
 }

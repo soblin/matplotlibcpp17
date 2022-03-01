@@ -24,32 +24,32 @@ int main() {
   auto s2_ = xt::sin(4 * M_PI * x_);
   vector<double> x(x_.begin(), x_.end()), s1(s1_.begin(), s1_.end()),
       s2(s2_.begin(), s2_.end());
-  plt.figure(args_(1));
+  plt.figure(Args(1));
   plt.subplot(211);
-  plt.plot(args_(x, s1));
+  plt.plot(Args(x, s1));
   plt.subplot(212);
-  plt.plot(args_(x, s2));
+  plt.plot(Args(x, s2));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("multiple_figs_demo1.png"));
+  plt.savefig(Args("multiple_figs_demo1.png"));
 #endif
-  plt.figure(args_(2));
-  plt.plot(args_(x, s2));
+  plt.figure(Args(2));
+  plt.plot(Args(x, s2));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("multiple_figs_demo2.png"));
+  plt.savefig(Args("multiple_figs_demo2.png"));
 #endif
-  plt.figure(args_(2));
+  plt.figure(Args(2));
   plt.subplot(211);
-  plt.plot(args_(x, s2, "s"));
+  plt.plot(Args(x, s2, "s"));
   auto ax = plt.gca();
-  ax.set_xticklabels(args_(py::list()));
+  ax.set_xticklabels(Args(py::list()));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("multiple_figs_demo3.png"));
+  plt.savefig(Args("multiple_figs_demo3.png"));
 #endif
   return 0;
 }

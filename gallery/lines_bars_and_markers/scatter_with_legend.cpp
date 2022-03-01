@@ -26,16 +26,16 @@ int main1() {
     auto scale_ = xt::random::rand<double>({n}) * 200;
     vector<double> x(x_.begin(), x_.end()), y(y_.begin(), y_.end()),
         scale(scale_.begin(), scale_.end());
-    ax.scatter(args_(x, y),
-               kwargs_("s"_a = scale, "c"_a = color, "label"_a = color,
-                       "alpha"_a = 0.3, "edgecolors"_a = "none"));
+    ax.scatter(Args(x, y),
+               Kwargs("s"_a = scale, "c"_a = color, "label"_a = color,
+                      "alpha"_a = 0.3, "edgecolors"_a = "none"));
   }
   ax.legend();
-  ax.grid(args_(true));
+  ax.grid(Args(true));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("scatter_with_legend1.png"));
+  plt.savefig(Args("scatter_with_legend1.png"));
 #endif
   return 0;
 }
@@ -50,24 +50,25 @@ int main2() {
   vector<int> c(c_.begin(), c_.end()), s(s_.begin(), s_.end());
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, ax] = plt.subplots();
-  auto scatter = ax.scatter(args_(x, y), kwargs_("c"_a = c, "s"_a = s));
+  auto scatter = ax.scatter(Args(x, y), Kwargs("c"_a = c, "s"_a = s));
   {
     auto [handles, labels] = scatter.legend_elements();
     auto legend1 =
-        ax.legend(args_(handles, labels),
-                  kwargs_("loc"_a = "lower left", "title"_a = "Classes"));
-    ax.add_artist(args_(legend1.unwrap()));
+        ax.legend(Args(handles, labels),
+                  Kwargs("loc"_a = "lower left", "title"_a = "Classes"));
+    ax.add_artist(Args(legend1.unwrap()));
   }
   {
-    auto [handles, labels] = scatter.legend_elements(args_(), kwargs_("prop"_a = "sizes", "alpha"_a = 0.6));
+    auto [handles, labels] = scatter.legend_elements(
+        Args(), Kwargs("prop"_a = "sizes", "alpha"_a = 0.6));
     auto legend2 =
-        ax.legend(args_(handles, labels),
-                  kwargs_("loc"_a = "upper right", "title"_a = "Sizes"));
+        ax.legend(Args(handles, labels),
+                  Kwargs("loc"_a = "upper right", "title"_a = "Sizes"));
   }
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("scatter_with_legend2.png"));
+  plt.savefig(Args("scatter_with_legend2.png"));
 #endif
   return 0;
 }

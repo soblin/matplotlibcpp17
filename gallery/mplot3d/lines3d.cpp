@@ -19,7 +19,7 @@ int main() {
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
   auto fig = plt.figure();
-  auto ax = fig.add_subplot(args_(), kwargs_("projection"_a = "3d"));
+  auto ax = fig.add_subplot(Args(), Kwargs("projection"_a = "3d"));
   auto theta_ = xt::linspace(-4 * M_PI, 4 * M_PI, 100);
   auto z_ = xt::linspace(-2.0, 2.0, 100);
   auto r_ = 1.0 + xt::pow(z_, 2);
@@ -29,11 +29,11 @@ int main() {
   vector<double> r(r_.begin(), r_.end());
   vector<double> theta(theta_.begin(), theta_.end());
   vector<double> x(x_.begin(), x_.end()), y(y_.begin(), y_.end());
-  ax.plot(args_(x, y, z), kwargs_("label"_a = "parametric curve"));
+  ax.plot(Args(x, y, z), Kwargs("label"_a = "parametric curve"));
   ax.legend();
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("lines3d.png"));
+  plt.savefig(Args("lines3d.png"));
 #endif
 }

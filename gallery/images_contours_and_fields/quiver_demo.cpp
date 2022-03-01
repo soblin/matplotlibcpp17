@@ -29,15 +29,15 @@ int main1() {
 
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig1, ax1] = plt.subplots();
-  ax1.set_title(args_("Arrows scale with plot width, not view"));
-  auto Q = ax1.quiver(args_(X, Y, U, V), kwargs_("units"_a = "width"));
+  ax1.set_title(Args("Arrows scale with plot width, not view"));
+  auto Q = ax1.quiver(Args(X, Y, U, V), Kwargs("units"_a = "width"));
   auto qk =
-      ax1.quiverkey(args_(Q.unwrap(), 0.9, 0.9, 2, R"($2 \frac{m}{s}$)"),
-                    kwargs_("labelpos"_a = "E", "coordinates"_a = "figure"));
+      ax1.quiverkey(Args(Q.unwrap(), 0.9, 0.9, 2, R"($2 \frac{m}{s}$)"),
+                    Kwargs("labelpos"_a = "E", "coordinates"_a = "figure"));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("quiver_demo_1.png"));
+  plt.savefig(Args("quiver_demo_1.png"));
 #endif
   return 0;
 }
@@ -53,18 +53,18 @@ int main2() {
 
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig1, ax1] = plt.subplots();
-  ax1.set_title(args_("pivot='mid'; every third arrow; units='inches'"));
-  auto Q = ax1.quiver(args_(X, Y, U, V),
-                      kwargs_("pivot"_a = "mid", "units"_a = "inches"));
+  ax1.set_title(Args("pivot='mid'; every third arrow; units='inches'"));
+  auto Q = ax1.quiver(Args(X, Y, U, V),
+                      Kwargs("pivot"_a = "mid", "units"_a = "inches"));
   auto qk =
-      ax1.quiverkey(args_(Q.unwrap(), 0.9, 0.9, 1, R"($1 \frac{m}{s}$)"),
-                    kwargs_("labelpos"_a = "E", "coordinates"_a = "figure"));
-  ax1.scatter(args_(X, Y), kwargs_("color"_a = "r", "s"_a = 5));
+      ax1.quiverkey(Args(Q.unwrap(), 0.9, 0.9, 1, R"($1 \frac{m}{s}$)"),
+                    Kwargs("labelpos"_a = "E", "coordinates"_a = "figure"));
+  ax1.scatter(Args(X, Y), Kwargs("color"_a = "r", "s"_a = 5));
 
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("quiver_demo_2.png"));
+  plt.savefig(Args("quiver_demo_2.png"));
 #endif
   return 0;
 }
@@ -80,19 +80,19 @@ int main3() {
 
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig1, ax1] = plt.subplots();
-  ax1.set_title(args_("pivot='tip'; scales with x view"));
-  auto Q = ax1.quiver(args_(X, Y, U, V, M),
-                      kwargs_("units"_a = "x", "pivot"_a = "tip",
-                              "width"_a = 0.022, "scale"_a = 1.0 / 0.15));
+  ax1.set_title(Args("pivot='tip'; scales with x view"));
+  auto Q = ax1.quiver(Args(X, Y, U, V, M),
+                      Kwargs("units"_a = "x", "pivot"_a = "tip",
+                             "width"_a = 0.022, "scale"_a = 1.0 / 0.15));
   auto qk =
-      ax1.quiverkey(args_(Q.unwrap(), 0.9, 0.9, 1, R"($1 \frac{m}{s}$)"),
-                    kwargs_("labelpos"_a = "E", "coordinates"_a = "figure"));
-  ax1.scatter(args_(X, Y), kwargs_("color"_a = "0.5", "s"_a = 1));
+      ax1.quiverkey(Args(Q.unwrap(), 0.9, 0.9, 1, R"($1 \frac{m}{s}$)"),
+                    Kwargs("labelpos"_a = "E", "coordinates"_a = "figure"));
+  ax1.scatter(Args(X, Y), Kwargs("color"_a = "0.5", "s"_a = 1));
 
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("quiver_demo_3.png"));
+  plt.savefig(Args("quiver_demo_3.png"));
 #endif
 
   return 0;

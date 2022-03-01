@@ -45,15 +45,16 @@ int main() {
       1126.45270023, 1278.31780809, 886.56768427,  769.13688434, 953.93522899,
       538.35320778,  811.14962318,  1225.04291605, 628.81456741, 1094.89690779,
       1006.37932941, 759.34401418,  1237.90122592, 689.78115093, 1159.15645671};
-  plt.scatter(args_(x, y, s), kwargs_("c"_a = "g", "alpha"_a = 0.5,
-              "marker"_a = R"($\clubsuit$)", "label"_a = "Luck"));
-  plt.xlabel(args_("Leprechauns"));
-  plt.ylabel(args_("Gold"));
-  plt.legend(kwargs_("loc"_a = "upper left"));
+  plt.scatter(Args(x, y, s),
+              Kwargs("c"_a = "g", "alpha"_a = 0.5,
+                     "marker"_a = R"($\clubsuit$)", "label"_a = "Luck"));
+  plt.xlabel(Args("Leprechauns"));
+  plt.ylabel(Args("Gold"));
+  plt.legend(Kwargs("loc"_a = "upper left"));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("scatter_symbol.png"));
+  plt.savefig(Args("scatter_symbol.png"));
 #endif
   return 0;
 }

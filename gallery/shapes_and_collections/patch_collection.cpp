@@ -29,7 +29,7 @@ int main() {
   py::list patches; // instead of patches = []
   for (int i = 0; i < N; ++i) {
     const double x1 = x[i], y1 = y[i], r = radii[i];
-    auto circle = patches::Circle(args_(py::make_tuple(x1, y1), r));
+    auto circle = patches::Circle(Args(py::make_tuple(x1, y1), r));
     patches.append(circle.unwrap());
   }
   x = {0.71995667, 0.25774443, 0.34154678};
@@ -40,33 +40,32 @@ int main() {
   for (int i = 0; i < N; ++i) {
     const double x1 = x[i], y1 = y[i], r = radii[i], th1 = theta1[i],
                  th2 = theta2[i];
-    auto wedge = patches::Wedge(args_(py::make_tuple(x1, y1), r, th1, th2));
+    auto wedge = patches::Wedge(Args(py::make_tuple(x1, y1), r, th1, th2));
     patches.append(wedge.unwrap());
   }
   patches.append(
-      patches::Wedge(args_(py::make_tuple(0.3, 0.7), 0.1, 0, 360)).unwrap());
-  patches.append(patches::Wedge(args_(py::make_tuple(0.7, 0.8), 0.2, 0, 360),
-                                kwargs_("width"_a = 0.05))
+      patches::Wedge(Args(py::make_tuple(0.3, 0.7), 0.1, 0, 360)).unwrap());
+  patches.append(patches::Wedge(Args(py::make_tuple(0.7, 0.8), 0.2, 0, 360),
+                                Kwargs("width"_a = 0.05))
                      .unwrap());
   patches.append(
-      patches::Wedge(args_(py::make_tuple(0.8, 0.3), 0.2, 0, 45)).unwrap());
-  patches.append(patches::Wedge(args_(py::make_tuple(0.8, 0.3), 0.2, 45, 90),
-                                kwargs_("width"_a = 0.10))
+      patches::Wedge(Args(py::make_tuple(0.8, 0.3), 0.2, 0, 45)).unwrap());
+  patches.append(patches::Wedge(Args(py::make_tuple(0.8, 0.3), 0.2, 45, 90),
+                                Kwargs("width"_a = 0.10))
                      .unwrap());
   // NOTE: Polygon take numpy array as argument, so skip it
   vector<double> colors_ = {90.63036451, 16.10182093, 74.36211347, 63.29741618,
                             32.41800177, 92.23765324, 23.72264387, 82.39455709,
                             75.06071403, 11.37844527};
   py::list colors = py::cast(colors_);
-  auto p =
-      collections::PatchCollection(args_(patches), kwargs_("alpha"_a = 0.4));
-  p.set_array(args_(colors));
-  ax.add_collection(args_(p.unwrap()));
-  fig.colorbar(args_(p.unwrap()), kwargs_("ax"_a = ax.unwrap()));
+  auto p = collections::PatchCollection(Args(patches), Kwargs("alpha"_a = 0.4));
+  p.set_array(Args(colors));
+  ax.add_collection(Args(p.unwrap()));
+  fig.colorbar(Args(p.unwrap()), Kwargs("ax"_a = ax.unwrap()));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("patch_collection.png"));
+  plt.savefig(Args("patch_collection.png"));
 #endif
   return 0;
 }

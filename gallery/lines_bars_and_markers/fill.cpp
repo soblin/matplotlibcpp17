@@ -27,18 +27,18 @@ int main() {
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, axes] =
       plt.subplots(1, 3,
-                   kwargs_("figsize"_a = py::make_tuple(9, 3),
-                           "subplot_kw"_a = py::dict("aspect"_a = "equal")));
+                   Kwargs("figsize"_a = py::make_tuple(9, 3),
+                          "subplot_kw"_a = py::dict("aspect"_a = "equal")));
   auto ax1 = axes[0], ax2 = axes[1], ax3 = axes[2];
-  ax1.fill(args_(x, y));
-  ax2.fill(args_(x, y), kwargs_("facecolor"_a = "lightsalmon", "edgecolor"_a = "orangered",
-           "linewidth"_a = 3));
-  ax3.fill(args_(x, y), kwargs_("facecolor"_a = "none", "edgecolor"_a = "purple",
-           "linewidth"_a = 3));
+  ax1.fill(Args(x, y));
+  ax2.fill(Args(x, y), Kwargs("facecolor"_a = "lightsalmon",
+                              "edgecolor"_a = "orangered", "linewidth"_a = 3));
+  ax3.fill(Args(x, y), Kwargs("facecolor"_a = "none", "edgecolor"_a = "purple",
+                              "linewidth"_a = 3));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("fill.png"));
+  plt.savefig(Args("fill.png"));
 #endif
   return 0;
 }

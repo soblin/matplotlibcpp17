@@ -23,15 +23,15 @@ int main1() {
       dist2(dist2_.begin(), dist2_.end());
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, axs] =
-      plt.subplots(1, 2, kwargs_("sharey"_a = true, "tight_layout"_a = true));
+      plt.subplots(1, 2, Kwargs("sharey"_a = true, "tight_layout"_a = true));
   auto ax1 = axs[0], ax2 = axs[1];
-  auto [N, bins, patches] = ax1.hist(args_(dist1), kwargs_("bins"_a = n_bins));
+  auto [N, bins, patches] = ax1.hist(Args(dist1), Kwargs("bins"_a = n_bins));
   // TODO: patches.patches are list of patches::Rectangle.
-  ax2.hist(args_(dist2), kwargs_("bins"_a = n_bins));
+  ax2.hist(Args(dist2), Kwargs("bins"_a = n_bins));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("hist1.png"));
+  plt.savefig(Args("hist1.png"));
 #endif
   return 0;
 }
@@ -46,19 +46,19 @@ int main3() {
       dist2(dist2_.begin(), dist2_.end());
 
   auto plt = matplotlibcpp17::pyplot::import();
-  auto [fig, axs] = plt.subplots(1, 1,
-                                 kwargs_("figsize"_a = py::make_tuple(5, 5),
-                                         "sharex"_a = true, "sharey"_a = true,
-                                         "tight_layout"_a = true));
+  auto [fig, axs] =
+      plt.subplots(1, 1,
+                   Kwargs("figsize"_a = py::make_tuple(5, 5), "sharex"_a = true,
+                          "sharey"_a = true, "tight_layout"_a = true));
   auto ax1 = axs[0];
   ;
   // We can increase the number of bins on each axis
-  ax1.hist2d(args_(dist1, dist2), kwargs_("bins"_a = 40));
+  ax1.hist2d(Args(dist1, dist2), Kwargs("bins"_a = 40));
   // TODO: more examples
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("hist3.png"));
+  plt.savefig(Args("hist3.png"));
 #endif
   return 0;
 }

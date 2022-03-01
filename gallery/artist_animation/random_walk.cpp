@@ -38,7 +38,7 @@ int main() {
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
   auto fig = plt.figure();
-  auto ax = fig.add_subplot(py::make_tuple(), kwargs_("projection"_a = "3d"));
+  auto ax = fig.add_subplot(py::make_tuple(), Kwargs("projection"_a = "3d"));
   py::list artist_list;
   for (int j = 1; j <= num_steps; ++j) {
     for (int i = 0; i < M; ++i) {
@@ -49,16 +49,16 @@ int main() {
       vector<double> xs(xs0.begin(), xs0.end());
       vector<double> ys(ys0.begin(), ys0.end());
       vector<double> zs(zs0.begin(), zs0.end());
-      ax.plot(args_(xs, ys, zs), kwargs_("color"_a = colors[i]));
+      ax.plot(Args(xs, ys, zs), Kwargs("color"_a = colors[i]));
     }
     artist_list.append(ax.get_lines());
   }
-  auto ani = ArtistAnimation(args_(fig.unwrap(), artist_list),
-                             kwargs_("interval"_a = 100));
+  auto ani = ArtistAnimation(Args(fig.unwrap(), artist_list),
+                             Kwargs("interval"_a = 100));
 #if USE_GUI
   plt.show();
 #else
-  ani.save(args_("random_walk.gif"), kwargs_("writer"_a = "pillow"));
+  ani.save(Args("random_walk.gif"), Kwargs("writer"_a = "pillow"));
 #endif
   return 0;
 }

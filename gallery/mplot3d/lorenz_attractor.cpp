@@ -26,7 +26,7 @@ int main() {
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
   auto fig = plt.figure();
-  auto ax = fig.add_subplot(args_(), kwargs_("projection"_a = "3d"));
+  auto ax = fig.add_subplot(Args(), Kwargs("projection"_a = "3d"));
 
   const double dt = 0.01;
   const int num_steps = 10000;
@@ -40,13 +40,13 @@ int main() {
     ys.push_back(ys[i] + y_dot * dt);
     zs.push_back(zs[i] + z_dot * dt);
   }
-  ax.plot(args_(xs, ys, zs));
-  ax.set_xlabel(args_("X Axis"));
-  ax.set_ylabel(args_("Y Axis"));
-  ax.set_zlabel(args_("Z Axis"));
+  ax.plot(Args(xs, ys, zs));
+  ax.set_xlabel(Args("X Axis"));
+  ax.set_ylabel(Args("Y Axis"));
+  ax.set_zlabel(Args("Z Axis"));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("lorenz_attractor.png"));
+  plt.savefig(Args("lorenz_attractor.png"));
 #endif
 }

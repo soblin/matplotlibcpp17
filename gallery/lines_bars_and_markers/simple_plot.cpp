@@ -24,15 +24,15 @@ int main() {
   vector<double> t(t_.begin(), t_.end()), s(s_.begin(), s_.end());
 
   auto [fig, ax] = plt.subplots();
-  ax.plot(args_(t, s), kwargs_("color"_a = "blue", "linewidth"_a = 1.0));
-  ax.set(args_(), kwargs_("xlabel"_a = "time (s)", "ylabel"_a = "voltage (mV)",
-         "title"_a = "About as simple as it gets, folks"));
+  ax.plot(Args(t, s), Kwargs("color"_a = "blue", "linewidth"_a = 1.0));
+  ax.set(Args(), Kwargs("xlabel"_a = "time (s)", "ylabel"_a = "voltage (mV)",
+                        "title"_a = "About as simple as it gets, folks"));
   ax.grid();
 
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("simple_plot.png"));
+  plt.savefig(Args("simple_plot.png"));
 #endif
   return 0;
 }

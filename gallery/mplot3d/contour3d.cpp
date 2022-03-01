@@ -54,13 +54,13 @@ int main() {
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
   auto fig = plt.figure();
-  auto ax = fig.add_subplot(args_(), kwargs_("projection"_a = "3d"));
+  auto ax = fig.add_subplot(Args(), Kwargs("projection"_a = "3d"));
   auto [X, Y, Z] = get_test_data(0.05);
   // TODO: cmap=cm.coolwarm
-  ax.contour(args_(X, Y, Z));
+  ax.contour(Args(X, Y, Z));
 #if USE_GUI
   plt.show();
 #else
-  plt.savefig(args_("contour3d.png"));
+  plt.savefig(Args("contour3d.png"));
 #endif
 }
