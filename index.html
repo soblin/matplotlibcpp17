@@ -111,7 +111,7 @@ Usage</h1>
 <p >Just add include path to <code>include</code> directory of this project.</p>
 <h1><a class="anchor" id="autotoc_md4"></a>
 Syntax</h1>
-<p >The user will need to capsulate <em>arguments</em> in <code>args_(arg1, arg2, ...) == pybind11:tuple</code> and <em>keyword arguments</em> in <code>kwargs_("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict</code>. The returned value is either a <code>pybind11::object</code> or a corresponding wrapper class. Please refer to the reference and examples below.</p><ul>
+<p >The user will need to capsulate <em>arguments</em> in <code>Args(arg1, arg2, ...) == pybind11:tuple</code> and <em>keyword arguments</em> in <code>Kwargs("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict</code>. The returned value is either a <code>pybind11::object</code> or a corresponding wrapper class. Please refer to the reference and examples below.</p><ul>
 <li>exception: <code>subplots</code>, <code>TBD</code>s</li>
 <li>conversion: Wrapper class of matplotlibcpp17 like <a href="https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h">::container::BarContainer</a> needs to be passed to python interpreter using <code>unwrap()</code> method in <em>args</em> and <em>kwargs</em>.</li>
 </ul>
@@ -134,11 +134,11 @@ example1 - subplots</h2>
 <div class="line"><span class="comment">// corresponding wrapper class for returned value is implemented in this library</span></div>
 <div class="line"><span class="comment"></span><span class="keyword">auto</span> gs = GridSpec(2, 2);</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">auto</span> ax = fig.add_subplot(args_(gs(0, py::slice(0, 2, 1)).unwrap()));</div>
+<div class="line"><span class="keyword">auto</span> ax = fig.add_subplot(Args(gs(0, py::slice(0, 2, 1)).unwrap()));</div>
 <div class="line"> </div>
-<div class="line">ax.plot(args_(arange(0, 1000000, 10000)));</div>
-<div class="line">ax.set_ylabel(args_(<span class="stringliteral">&quot;YLabel0&quot;</span>));</div>
-<div class="line">ax.set_xlabel(args_(<span class="stringliteral">&quot;XLabel0&quot;</span>));</div>
+<div class="line">ax.plot(Args(arange(0, 1000000, 10000)));</div>
+<div class="line">ax.set_ylabel(Args(<span class="stringliteral">&quot;YLabel0&quot;</span>));</div>
+<div class="line">ax.set_xlabel(Args(<span class="stringliteral">&quot;XLabel0&quot;</span>));</div>
 </div><!-- fragment --><p ><img src="align_labels_demo.png" alt="" class="inline" title="subplots_axes_and_figures"/></p>
 <h2><a class="anchor" id="autotoc_md8"></a>
 example2 - bar plot</h2>
@@ -147,22 +147,22 @@ example2 - bar plot</h2>
 <li><a href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/bar_label_demo.html">original python code</a></li>
 </ul>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> [fig, ax] = plt.subplots();</div>
-<div class="line"><span class="keyword">auto</span> p1 = ax.bar(args_(ind, menMeans, width),</div>
-<div class="line">                 kwargs_(<span class="stringliteral">&quot;yerr&quot;</span>_a = menStd, <span class="stringliteral">&quot;label&quot;</span>_a = <span class="stringliteral">&quot;Men&quot;</span>));</div>
+<div class="line"><span class="keyword">auto</span> p1 = ax.bar(Args(ind, menMeans, width),</div>
+<div class="line">                 Kwargs(<span class="stringliteral">&quot;yerr&quot;</span>_a = menStd, <span class="stringliteral">&quot;label&quot;</span>_a = <span class="stringliteral">&quot;Men&quot;</span>));</div>
 <div class="line"><span class="keyword">auto</span> p2 = ax.bar(</div>
-<div class="line">    args_(ind, womenMeans, width),</div>
-<div class="line">    kwargs_(<span class="stringliteral">&quot;bottom&quot;</span>_a = menMeans, <span class="stringliteral">&quot;yerr&quot;</span>_a = womenStd, <span class="stringliteral">&quot;label&quot;</span>_a = <span class="stringliteral">&quot;Women&quot;</span>));</div>
-<div class="line">ax.axhline(args_(0), kwargs_(<span class="stringliteral">&quot;color&quot;</span>_a = <span class="stringliteral">&quot;grey&quot;</span>, <span class="stringliteral">&quot;linewidth&quot;</span>_a = 0.8));</div>
-<div class="line">ax.set_ylabel(args_(<span class="stringliteral">&quot;Scores&quot;</span>));</div>
-<div class="line">ax.set_title(args_(<span class="stringliteral">&quot;Scores by group and gender&quot;</span>));</div>
+<div class="line">    Args(ind, womenMeans, width),</div>
+<div class="line">    Kwargs(<span class="stringliteral">&quot;bottom&quot;</span>_a = menMeans, <span class="stringliteral">&quot;yerr&quot;</span>_a = womenStd, <span class="stringliteral">&quot;label&quot;</span>_a = <span class="stringliteral">&quot;Women&quot;</span>));</div>
+<div class="line">ax.axhline(Args(0), Kwargs(<span class="stringliteral">&quot;color&quot;</span>_a = <span class="stringliteral">&quot;grey&quot;</span>, <span class="stringliteral">&quot;linewidth&quot;</span>_a = 0.8));</div>
+<div class="line">ax.set_ylabel(Args(<span class="stringliteral">&quot;Scores&quot;</span>));</div>
+<div class="line">ax.set_title(Args(<span class="stringliteral">&quot;Scores by group and gender&quot;</span>));</div>
 <div class="line"> </div>
-<div class="line">ax.set_xticks(args_(ind, py::make_tuple(<span class="stringliteral">&quot;G1&quot;</span>, <span class="stringliteral">&quot;G2&quot;</span>, <span class="stringliteral">&quot;G3&quot;</span>, <span class="stringliteral">&quot;G4&quot;</span>, <span class="stringliteral">&quot;G5&quot;</span>)));</div>
+<div class="line">ax.set_xticks(Args(ind, py::make_tuple(<span class="stringliteral">&quot;G1&quot;</span>, <span class="stringliteral">&quot;G2&quot;</span>, <span class="stringliteral">&quot;G3&quot;</span>, <span class="stringliteral">&quot;G4&quot;</span>, <span class="stringliteral">&quot;G5&quot;</span>)));</div>
 <div class="line">ax.legend();</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// pass wrapper class object like p1 of ::container::BarContainer to the interpreter using .unwrap() method as python object</span></div>
-<div class="line">ax.bar_label(args_(p1.unwrap()), kwargs_(<span class="stringliteral">&quot;label_type&quot;</span>_a = <span class="stringliteral">&quot;center&quot;</span>));</div>
-<div class="line">ax.bar_label(args_(p2.unwrap()), kwargs_(<span class="stringliteral">&quot;label_type&quot;</span>_a = <span class="stringliteral">&quot;center&quot;</span>));</div>
-<div class="line">ax.bar_label(args_(p2.unwrap()));</div>
+<div class="line">ax.bar_label(Args(p1.unwrap()), Kwargs(<span class="stringliteral">&quot;label_type&quot;</span>_a = <span class="stringliteral">&quot;center&quot;</span>));</div>
+<div class="line">ax.bar_label(Args(p2.unwrap()), Kwargs(<span class="stringliteral">&quot;label_type&quot;</span>_a = <span class="stringliteral">&quot;center&quot;</span>));</div>
+<div class="line">ax.bar_label(Args(p2.unwrap()));</div>
 <div class="line">plt.show();</div>
 </div><!-- fragment --><p ><img src="bar_label_demo1.png" alt="" class="inline" title="bar_label_demo1"/></p>
 <h2><a class="anchor" id="autotoc_md9"></a>
@@ -174,7 +174,7 @@ example3 - fill</h2>
 </ul>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> [fig, axes] =</div>
 <div class="line">    plt.subplots(1, 3,</div>
-<div class="line">                 kwargs_(<span class="stringliteral">&quot;figsize&quot;</span>_a = py::make_tuple(9, 3),</div>
+<div class="line">                 Kwargs(<span class="stringliteral">&quot;figsize&quot;</span>_a = py::make_tuple(9, 3),</div>
 <div class="line">                         <span class="stringliteral">&quot;subplot_kw&quot;</span>_a = py::dict(<span class="stringliteral">&quot;aspect&quot;</span>_a = <span class="stringliteral">&quot;equal&quot;</span>)));</div>
 <div class="line"><span class="keyword">auto</span> ax1 = axes[0], ax2 = axes[1], ax3 = axes[2];</div>
 </div><!-- fragment --><p ><img src="fill.png" alt="" class="inline" title="fill"/></p>
@@ -187,14 +187,14 @@ example4 - quiver</h2>
 </ul>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> plt = matplotlibcpp17::pyplot::import();</div>
 <div class="line"><span class="keyword">auto</span> [fig1, ax1] = plt.subplots();</div>
-<div class="line">ax1.set_title(args_(<span class="stringliteral">&quot;Arrows scale with plot width, not view&quot;</span>));</div>
-<div class="line"><span class="keyword">auto</span> Q = ax1.quiver(args_(X, Y, U, V, M),</div>
-<div class="line">                    kwargs_(<span class="stringliteral">&quot;units&quot;</span>_a = <span class="stringliteral">&quot;x&quot;</span>, <span class="stringliteral">&quot;pivot&quot;</span>_a = <span class="stringliteral">&quot;tip&quot;</span>,</div>
+<div class="line">ax1.set_title(Args(<span class="stringliteral">&quot;Arrows scale with plot width, not view&quot;</span>));</div>
+<div class="line"><span class="keyword">auto</span> Q = ax1.quiver(Args(X, Y, U, V, M),</div>
+<div class="line">                    Kwargs(<span class="stringliteral">&quot;units&quot;</span>_a = <span class="stringliteral">&quot;x&quot;</span>, <span class="stringliteral">&quot;pivot&quot;</span>_a = <span class="stringliteral">&quot;tip&quot;</span>,</div>
 <div class="line">                            <span class="stringliteral">&quot;width&quot;</span>_a = 0.022, <span class="stringliteral">&quot;scale&quot;</span>_a = 1.0 / 0.15));</div>
 <div class="line"><span class="keyword">auto</span> qk =</div>
-<div class="line">    ax1.quiverkey(args_(Q.unwrap(), 0.9, 0.9, 1, R<span class="stringliteral">&quot;($1 \frac{m}{s}$)&quot;),</span></div>
-<div class="line"><span class="stringliteral">                  kwargs_(</span><span class="stringliteral">&quot;labelpos&quot;</span>_a = <span class="stringliteral">&quot;E&quot;</span>, <span class="stringliteral">&quot;coordinates&quot;</span>_a = <span class="stringliteral">&quot;figure&quot;</span>));</div>
-<div class="line">ax1.scatter(args_(X, Y), kwargs_(<span class="stringliteral">&quot;color&quot;</span>_a = <span class="stringliteral">&quot;0.5&quot;</span>, <span class="stringliteral">&quot;s&quot;</span>_a = 1));</div>
+<div class="line">    ax1.quiverkey(Args(Q.unwrap(), 0.9, 0.9, 1, R<span class="stringliteral">&quot;($1 \frac{m}{s}$)&quot;),</span></div>
+<div class="line"><span class="stringliteral">                  Kwargs(</span><span class="stringliteral">&quot;labelpos&quot;</span>_a = <span class="stringliteral">&quot;E&quot;</span>, <span class="stringliteral">&quot;coordinates&quot;</span>_a = <span class="stringliteral">&quot;figure&quot;</span>));</div>
+<div class="line">ax1.scatter(Args(X, Y), Kwargs(<span class="stringliteral">&quot;color&quot;</span>_a = <span class="stringliteral">&quot;0.5&quot;</span>, <span class="stringliteral">&quot;s&quot;</span>_a = 1));</div>
 </div><!-- fragment --><p ><img src="quiver_demo_3.png" alt="" class="inline" title="quiver_demo3"/></p>
 <h2><a class="anchor" id="autotoc_md11"></a>
 example5 - gif</h2>
