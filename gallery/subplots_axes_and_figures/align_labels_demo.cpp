@@ -6,26 +6,13 @@
 
 #include <matplotlibcpp17/pyplot.h>
 
-#include <algorithm>
-#include <iostream>
+#include <xtensor/xbuilder.hpp>
+
 #include <vector>
 
 namespace py = pybind11;
 using namespace py::literals;
-
-template <typename T> std::vector<T> arange(T start, T end, T h) {
-  int N = static_cast<int>((end - start) / h);
-  std::vector<T> xs(N);
-  T val = start;
-  for (int i = 0; i < N; ++i) {
-    xs[i] = val;
-    val += h;
-  }
-  return xs;
-}
-
 using namespace std;
-
 using matplotlibcpp17::gridspec::GridSpec;
 using namespace matplotlibcpp17;
 
@@ -36,15 +23,16 @@ int main() {
   auto gs = GridSpec(2, 2);
   // instead of gs[0, :]
   auto ax = fig.add_subplot(args_(gs(0, py::slice(0, 2, 1)).unwrap()));
-  ax.plot(args_(arange(0, 1000000, 10000)));
+  auto tmp_ = xt::arange(0, 1000000, 10000);
+  vector<double> tmp(tmp_.begin(), tmp_.end());
+  ax.plot(args_(tmp));
   ax.set_ylabel(args_("YLabel0"));
   ax.set_xlabel(args_("XLabel0"));
   for (auto i : {0, 1}) {
     ax = fig.add_subplot(args_(gs(1, i).unwrap()));
-    auto ys = arange(1.0, 0.0, -0.1);
-    decltype(ys) xs;
-    transform(ys.begin(), ys.end(), back_inserter(xs),
-              [](double x) { return x * 2000; });
+    auto ys_ = xt::arange(1.0, 0.0, -0.1);
+    auto xs_ = ys_ * 2000;
+    vector<double> xs(xs_.begin(), xs_.end()), ys(ys_.begin(), ys_.end());
     ax.plot(args_(xs, ys));
     ax.set_ylabel(args_(string("YLabel1 " + to_string(i))));
     ax.set_xlabel(args_(string("XLabel1 " + to_string(i))));
