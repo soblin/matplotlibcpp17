@@ -6,9 +6,10 @@
 
 #include <matplotlibcpp17/pyplot.h>
 
-#include <algorithm>
+#include <xtensor/xrandom.hpp>
+#include <xtensor/xview.hpp>
+
 #include <vector>
-#include <random>
 
 namespace py = pybind11;
 using namespace py::literals;
@@ -18,17 +19,13 @@ using namespace matplotlibcpp17;
 int main1() {
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, ax] = plt.subplots();
-  std::random_device seed_gen;
-  std::default_random_engine engine(seed_gen());
-  std::uniform_real_distribution<> dist(0.0, 1.0);
   for (auto &&color : {"tab:blue", "tab:orange", "tab:green"}) {
     int n = 750;
-    vector<double> x, y, scale;
-    for (int i = 0; i < n; ++i) {
-      x.push_back(dist(engine));
-      y.push_back(dist(engine));
-      scale.push_back(200 * dist(engine));
-    }
+    auto xy = xt::random::rand<double>({2, n});
+    auto x_ = xt::view(xy, 0, xt::all()), y_ = xt::view(xy, 1, xt::all());
+    auto scale_ = xt::random::rand<double>({n}) * 200;
+    vector<double> x(x_.begin(), x_.end()), y(y_.begin(), y_.end()),
+        scale(scale_.begin(), scale_.end());
     ax.scatter(args_(x, y),
                kwargs_("s"_a = scale, "c"_a = color, "label"_a = color,
                        "alpha"_a = 0.3, "edgecolors"_a = "none"));
@@ -45,29 +42,12 @@ int main1() {
 
 int main2() {
   int N = 45;
-  vector<double> x, y;
-  vector<int> c, s;
-  std::random_device seed_gen;
-  std::default_random_engine engine(seed_gen());
-  {
-    std::uniform_real_distribution<> dist(0.0, 1.0);
-    for (int i = 0; i < N; ++i) {
-      x.push_back(dist(engine));
-      y.push_back(dist(engine));
-    }
-  }
-  {
-    std::uniform_int_distribution<> dist(1, 5);
-    for (int i = 0; i < N; ++i) {
-      c.push_back(dist(engine));
-    }
-  }
-  {
-    std::uniform_int_distribution<> dist(10, 220);
-    for (int i = 0; i < N; ++i) {
-      s.push_back(dist(engine));
-    }
-  }
+  auto x_ = xt::random::rand<double>({N}, 0.0, 1.0);
+  auto y_ = xt::random::rand<double>({N}, 0.0, 1.0);
+  auto c_ = xt::random::randint({N}, 1, 5);
+  auto s_ = xt::random::randint({N}, 10, 220);
+  vector<double> x(x_.begin(), x_.end()), y(y_.begin(), y_.end());
+  vector<int> c(c_.begin(), c_.end()), s(s_.begin(), s_.end());
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, ax] = plt.subplots();
   auto scatter = ax.scatter(args_(x, y), kwargs_("c"_a = c, "s"_a = s));

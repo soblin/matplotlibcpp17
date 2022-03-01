@@ -6,36 +6,22 @@
 
 #include <matplotlibcpp17/pyplot.h>
 
-#include <algorithm>
+#include <xtensor/xrandom.hpp>
+#include <xtensor/xmath.hpp>
+
 #include <vector>
-#include <random>
+#include <algorithm>
 
 namespace py = pybind11;
 using namespace py::literals;
 using namespace std;
 using namespace matplotlibcpp17;
 
-template <typename T> std::vector<T> arange(T start, T end, T h) {
-  int N = static_cast<int>((end - start) / h);
-  std::vector<T> xs(N);
-  T val = start;
-  for (int i = 0; i < N; ++i) {
-    xs[i] = val;
-    val += h;
-  }
-  return xs;
-}
-
 int main() {
   int N = 1000;
-  vector<double> x, y;
-  std::random_device seed_gen;
-  std::default_random_engine engine(seed_gen());
-  std::normal_distribution<> dist(0.0, 1.0);
-  for (int i = 0; i < N; ++i) {
-    x.push_back(dist(engine));
-    y.push_back(dist(engine));
-  }
+  auto x_ = xt::random::randn<double>({N});
+  auto y_ = xt::random::randn<double>({N});
+  vector<double> x(x_.begin(), x_.end()), y(y_.begin(), y_.end());
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
   // cell1
@@ -58,15 +44,11 @@ int main() {
     ax_histy.tick_params(args_(), kwargs_("axis"_a = "y", "labelleft"_a = false));
     ax.scatter(args_(x, y));
     const double binwidth = 0.25;
-    auto abx_max = [](const vector<double> &v) -> double {
-      double ret = fabs(v[0]);
-      for (auto &&x : v)
-        ret = max<double>(ret, fabs(x));
-      return ret;
-    };
-    const double xymax = max<double>(abx_max(x), abx_max(y));
+    auto xi = xt::amax(xt::fabs(x_), {0}), yi = xt::amax(xt::fabs(y_), {0});
+    const double xymax = max(fabs(x_[xi]), fabs(y_[yi]));
     const double lim = (static_cast<int>(xymax / binwidth) + 1) * binwidth;
-    const vector<double> bins = arange(-lim, lim + binwidth, binwidth);
+    auto bins_ = xt::arange(-lim, lim + binwidth, binwidth);
+    vector<double> bins(bins_.begin(), bins_.end());
     ax_histx.hist(args_(x), kwargs_("bins"_a = bins));
     ax_histy.hist(args_(y),
                   kwargs_("bins"_a = bins, "orientation"_a = "horizontal"));
@@ -94,15 +76,11 @@ int main() {
     ax_histy.tick_params(args_(), kwargs_("axis"_a = "y", "labelleft"_a = false));
     ax.scatter(args_(x, y));
     const double binwidth = 0.25;
-    auto abx_max = [](const vector<double> &v) -> double {
-      double ret = fabs(v[0]);
-      for (auto &&x : v)
-        ret = max<double>(ret, fabs(x));
-      return ret;
-    };
-    const double xymax = max<double>(abx_max(x), abx_max(y));
+    auto xi = xt::amax(xt::fabs(x_), {0}), yi = xt::amax(xt::fabs(y_), {0});
+    const double xymax = max(fabs(x_[xi]), fabs(y_[yi]));
     const double lim = (static_cast<int>(xymax / binwidth) + 1) * binwidth;
-    const vector<double> bins = arange(-lim, lim + binwidth, binwidth);
+    auto bins_ = xt::arange(-lim, lim + binwidth, binwidth);
+    vector<double> bins(bins_.begin(), bins_.end());
     ax_histx.hist(args_(x), kwargs_("bins"_a = bins));
     ax_histy.hist(args_(y),
                   kwargs_("bins"_a = bins, "orientation"_a = "horizontal"));

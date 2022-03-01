@@ -6,36 +6,28 @@
 
 #include <matplotlibcpp17/pyplot.h>
 
-#include <algorithm>
+#include <xtensor/xbuilder.hpp>
+#include <xtensor/xarray.hpp>
+#include <xtensor/xio.hpp>
+
 #include <vector>
+#include <iostream>
+#include <iterator>
+#include <algorithm>
 
 namespace py = pybind11;
 using namespace py::literals;
-
-template <typename T> std::vector<T> arange(T start, T end, T h) {
-  int N = static_cast<int>((end - start) / h);
-  std::vector<T> xs(N);
-  T val = start;
-  for (int i = 0; i < N; ++i) {
-    xs[i] = val;
-    val += h;
-  }
-  return xs;
-}
-
 using namespace std;
-
 using namespace matplotlibcpp17;
 
 int main1() {
-  auto plt = matplotlibcpp17::pyplot::import();
+  auto x_ = xt::arange(0.0, 2.0, 0.01);
+  auto y1_ = xt::sin(2 * M_PI * x_);
+  auto y2_ = 0.8 * xt::sin(4 * M_PI * x_);
+  vector<double> x(x_.begin(), x_.end()), y1(y1_.begin(), y1_.end()),
+      y2(y2_.begin(), y2_.end());
 
-  vector<double> x = arange(0.0, 2.0, 0.01);
-  vector<double> y1, y2;
-  transform(x.begin(), x.end(), back_inserter(y1),
-            [](double t) { return sin(2 * M_PI * t); });
-  transform(x.begin(), x.end(), back_inserter(y2),
-            [](double t) { return 0.8 * sin(4 * M_PI * t); });
+  auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, axes] = plt.subplots(
       3, 1, kwargs_("sharex"_a = true, "figsize"_a = py::make_tuple(6, 6)));
   auto ax1 = axes[0], ax2 = axes[1], ax3 = axes[2];
@@ -97,18 +89,19 @@ int main2() {
 int main3() {
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, ax] = plt.subplots();
-  vector<double> x = arange(0.0, 4 * M_PI, 0.01);
-  vector<double> y;
-  transform(x.begin(), x.end(), back_inserter(y),
-            [](double x) { return sin(x); });
+
+  auto x0 = xt::arange(0.0, 4 * M_PI, 0.01);
+  auto y0 = xt::sin(x0);
+  vector<double> x(x0.begin(), x0.end()), y(y0.begin(), y0.end());
   ax.plot(args_(x, y), kwargs_("color"_a = "black"));
-  double threshold = 0.75;
-  ax.axhline(args_(threshold), kwargs_("color"_a = "green", "lw"_a = 2, "alpha"_a = 0.7));
+  const double threshold = 0.75;
   vector<bool> where;
   transform(y.begin(), y.end(), back_inserter(where),
             [&threshold](double y) { return y > threshold; });
-  ax.fill_between(args_(x, 0, 1), kwargs_("where"_a = where, "color"_a = "green",
-                  "alpha"_a = 0.5, "transform"_a = ax.get_xaxis_transform()));
+  ax.fill_between(args_(x, 0, 1),
+                  kwargs_("where"_a = where, "color"_a = "green",
+                          "alpha"_a = 0.5,
+                          "transform"_a = ax.get_xaxis_transform()));
 #if USE_GUI
   plt.show();
 #else
