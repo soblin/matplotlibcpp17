@@ -6,48 +6,36 @@
 
 #include <matplotlibcpp17/pyplot.h>
 
-#include <algorithm>
-#include <iostream>
+#include <xtensor/xbuilder.hpp>
+#include <xtensor/xmath.hpp>
+
 #include <vector>
 
 namespace py = pybind11;
 using namespace py::literals;
-
-template <typename T> std::vector<T> arange(T start, T end, T h) {
-  int N = static_cast<int>((end - start) / h);
-  std::vector<T> xs(N);
-  T val = start;
-  for (int i = 0; i < N; ++i) {
-    xs[i] = val;
-    val += h;
-  }
-  return xs;
-}
-
 using namespace std;
 using namespace matplotlibcpp17;
 
 int main() {
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
-  vector<double> t = arange(0.0, 2.0, 0.01);
-  vector<double> s1, s2;
-  transform(t.begin(), t.end(), back_inserter(s1),
-            [](double x) { return sin(2 * M_PI * x); });
-  transform(t.begin(), t.end(), back_inserter(s2),
-            [](double x) { return sin(4 * M_PI * x); });
+  auto x_ = xt::arange(0.0, 2.0, 0.01);
+  auto s1_ = xt::sin(2 * M_PI * x_);
+  auto s2_ = xt::sin(4 * M_PI * x_);
+  vector<double> x(x_.begin(), x_.end()), s1(s1_.begin(), s1_.end()),
+      s2(s2_.begin(), s2_.end());
   plt.figure(args_(1));
   plt.subplot(211);
-  plt.plot(args_(t, s1));
+  plt.plot(args_(x, s1));
   plt.subplot(212);
-  plt.plot(args_(t, s2));
+  plt.plot(args_(x, s2));
 #if USE_GUI
   plt.show();
 #else
   plt.savefig(args_("multiple_figs_demo1.png"));
 #endif
   plt.figure(args_(2));
-  plt.plot(args_(t, s2));
+  plt.plot(args_(x, s2));
 #if USE_GUI
   plt.show();
 #else
@@ -55,7 +43,7 @@ int main() {
 #endif
   plt.figure(args_(2));
   plt.subplot(211);
-  plt.plot(args_(t, s2, "s"));
+  plt.plot(args_(x, s2, "s"));
   auto ax = plt.gca();
   ax.set_xticklabels(args_(py::list()));
 #if USE_GUI

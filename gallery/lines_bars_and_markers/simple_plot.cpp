@@ -6,34 +6,22 @@
 
 #include <matplotlibcpp17/pyplot.h>
 
-#include <algorithm>
+#include <xtensor/xbuilder.hpp>
+#include <xtensor/xmath.hpp>
+
 #include <vector>
 
 namespace py = pybind11;
 using namespace py::literals;
-
-template <typename T> std::vector<T> arange(T start, T end, T h) {
-  int N = static_cast<int>((end - start) / h);
-  std::vector<T> xs(N);
-  T val = start;
-  for (int i = 0; i < N; ++i) {
-    xs[i] = val;
-    ;
-    val += h;
-  }
-  return xs;
-}
-
 using namespace std;
 using namespace matplotlibcpp17;
 
 int main() {
   py::scoped_interpreter guard{};
   auto plt = pyplot::import();
-  vector<double> t = arange(0.0, 2.0, 0.01);
-  decltype(t) s;
-  transform(t.begin(), t.end(), back_inserter(s),
-            [](double x) { return 1.0 + sin(2 * M_PI * x); });
+  auto t_ = xt::arange(0.0, 2.0, 0.01);
+  auto s_ = xt::sin(2 * M_PI * t_) + 1.0;
+  vector<double> t(t_.begin(), t_.end()), s(s_.begin(), s_.end());
 
   auto [fig, ax] = plt.subplots();
   ax.plot(args_(t, s), kwargs_("color"_a = "blue", "linewidth"_a = 1.0));

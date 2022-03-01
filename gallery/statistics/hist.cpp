@@ -5,6 +5,8 @@
 
 #include <matplotlibcpp17/pyplot.h>
 
+#include <xtensor/xrandom.hpp>
+
 #include <random>
 
 namespace py = pybind11;
@@ -15,14 +17,10 @@ using namespace matplotlibcpp17;
 int main1() {
   int N_points = 100000;
   int n_bins = 20;
-  std::random_device seed_gen;
-  std::default_random_engine engine(seed_gen());
-  std::normal_distribution<> dist(0.0, 1.0);
-  std::vector<double> dist1, dist2;
-  for (int i = 0; i < N_points; ++i) {
-    dist1.push_back(dist(engine));
-    dist2.push_back(0.4 * dist(engine) + 5);
-  }
+  auto dist1_ = xt::random::randn<double>({N_points});
+  auto dist2_ = 0.4 * xt::random::randn<double>({N_points}) + 5.0;
+  vector<double> dist1(dist1_.begin(), dist1_.end()),
+      dist2(dist2_.begin(), dist2_.end());
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, axs] =
       plt.subplots(1, 2, kwargs_("sharey"_a = true, "tight_layout"_a = true));
@@ -42,14 +40,10 @@ int main1() {
 
 int main3() {
   int N_points = 100000;
-  std::random_device seed_gen;
-  std::default_random_engine engine(seed_gen());
-  std::normal_distribution<> dist(0.0, 1.0);
-  std::vector<double> dist1, dist2;
-  for (int i = 0; i < N_points; ++i) {
-    dist1.push_back(dist(engine));
-    dist2.push_back(0.4 * dist(engine) + 5);
-  }
+  auto dist1_ = xt::random::randn<double>({N_points});
+  auto dist2_ = 0.4 * xt::random::randn<double>({N_points}) + 5.0;
+  vector<double> dist1(dist1_.begin(), dist1_.end()),
+      dist2(dist2_.begin(), dist2_.end());
 
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, axs] = plt.subplots(1, 1,

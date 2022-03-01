@@ -6,28 +6,22 @@
 
 #include <matplotlibcpp17/pyplot.h>
 
-#include <algorithm>
+#include <xtensor/xarray.hpp>
+
 #include <vector>
 
 namespace py = pybind11;
 using namespace py::literals;
-
 using namespace std;
 using namespace matplotlibcpp17;
 
 int main() {
   const double scale = 10;
-  const vector<double> angles = {90.0, 210.0, 330.0};
-  vector<double> x;
-  transform(angles.begin(), angles.end(), back_inserter(x),
-            [&scale](double angle) {
-              return scale / sqrt(3.0) * cos(angle / 360.0 * 2 * M_PI);
-            });
-  vector<double> y;
-  transform(angles.begin(), angles.end(), back_inserter(y),
-            [&scale](double angle) {
-              return scale / sqrt(3.0) * sin(angle / 360.0 * 2 * M_PI);
-            });
+  const xt::xarray<double> angles = {90.0, 210.0, 330.0};
+  auto x0 = scale / sqrt(3.0) * xt::cos(angles / 360.0 * 2 * M_PI);
+  auto y0 = scale / sqrt(3.0) * xt::sin(angles / 360.0 * 2 * M_PI);
+  vector<double> x(x0.begin(), x0.end());
+  vector<double> y(y0.begin(), y0.end());
 
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();

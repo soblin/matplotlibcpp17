@@ -7,8 +7,10 @@
 #include <matplotlibcpp17/pyplot.h>
 #include <matplotlibcpp17/quiver.h>
 
+#include <xtensor/xbuilder.hpp>
+#include <xtensor/xview.hpp>
+
 #include <vector>
-#include <algorithm>
 #include <string>
 
 namespace py = pybind11;
@@ -17,18 +19,14 @@ using namespace std;
 using namespace matplotlibcpp17;
 
 int main1() {
-  vector<double> X, Y;
-  for (double x = 0; x <= 2 * M_PI; x += 0.2) {
-    for (double y = 0; y <= 2 * M_PI; y += 0.2) {
-      X.push_back(x);
-      Y.push_back(y);
-    }
-  }
-  vector<double> U, V;
-  transform(X.begin(), X.end(), back_inserter(U),
-            [](double x) { return cos(x); });
-  transform(Y.begin(), Y.end(), back_inserter(V),
-            [](double y) { return sin(y); });
+  auto [X0, Y0] = xt::meshgrid(xt::arange<double>(0.0, 2 * M_PI, 0.2),
+                               xt::arange<double>(0.0, 2 * M_PI, 0.2));
+  auto U0 = xt::cos(X0);
+  auto V0 = xt::sin(Y0);
+  // to vector
+  vector<double> X(X0.begin(), X0.end()), Y(Y0.begin(), Y0.end()),
+      U(U0.begin(), U0.end()), V(V0.begin(), V0.end());
+
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig1, ax1] = plt.subplots();
   ax1.set_title(args_("Arrows scale with plot width, not view"));
@@ -45,18 +43,14 @@ int main1() {
 }
 
 int main2() {
-  vector<double> X, Y;
-  for (double x = 0; x <= 2 * M_PI; x += 0.6) {
-    for (double y = 0; y <= 2 * M_PI; y += 0.6) {
-      X.push_back(x);
-      Y.push_back(y);
-    }
-  }
-  vector<double> U, V;
-  transform(X.begin(), X.end(), back_inserter(U),
-            [](double x) { return cos(x); });
-  transform(Y.begin(), Y.end(), back_inserter(V),
-            [](double y) { return sin(y); });
+  auto [X0, Y0] = xt::meshgrid(xt::arange<double>(0.0, 2 * M_PI, 0.6),
+                               xt::arange<double>(0.0, 2 * M_PI, 0.6));
+  auto U0 = xt::cos(X0);
+  auto V0 = xt::sin(Y0);
+  // to vector
+  vector<double> X(X0.begin(), X0.end()), Y(Y0.begin(), Y0.end()),
+      U(U0.begin(), U0.end()), V(V0.begin(), V0.end());
+
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig1, ax1] = plt.subplots();
   ax1.set_title(args_("pivot='mid'; every third arrow; units='inches'"));
@@ -76,21 +70,14 @@ int main2() {
 }
 
 int main3() {
-  vector<double> X, Y;
-  for (double x = 0; x <= 2 * M_PI; x += 0.2) {
-    for (double y = 0; y <= 2 * M_PI; y += 0.2) {
-      X.push_back(x);
-      Y.push_back(y);
-    }
-  }
-  vector<double> U, V, M;
-  transform(X.begin(), X.end(), back_inserter(U),
-            [](double x) { return cos(x); });
-  transform(Y.begin(), Y.end(), back_inserter(V),
-            [](double y) { return sin(y); });
-  for (unsigned i = 0; i < U.size(); ++i) {
-    M.push_back(hypot(U[i], V[i]));
-  }
+  auto [X0, Y0] = xt::meshgrid(xt::arange<double>(0.0, 2 * M_PI, 0.2),
+                               xt::arange<double>(0.0, 2 * M_PI, 0.2));
+  auto U0 = xt::cos(X0);
+  auto V0 = xt::sin(Y0);
+  auto M0 = xt::hypot(U0, V0);
+  vector<double> X(X0.begin(), X0.end()), Y(Y0.begin(), Y0.end()),
+      U(U0.begin(), U0.end()), V(V0.begin(), V0.end()), M(M0.begin(), M0.end());
+
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig1, ax1] = plt.subplots();
   ax1.set_title(args_("pivot='tip'; scales with x view"));

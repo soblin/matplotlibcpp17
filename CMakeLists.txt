@@ -21,11 +21,13 @@ function(add_demo name path)
     ${Python3_NumPy_INCLUDE_DIRS}
     ${pybind11_INCLUDE_DIR} 
     ${matplotlibcpp17_INCLUDE_DIRS}
+    ${xtensor_INCLUDE_DIRS}
   )
   target_link_libraries(${name} ${Python3_LIBRARIES} pybind11::embed)
 endfunction()
 
 if(${ADD_DEMO})
+  find_package(xtensor REQUIRED)
   set(CMAKE_CXX_STANDARD 17)
   set(CMAKE_CXX_FLAGS "-Wall -g -DUSE_GUI=${USE_GUI}")
   add_subdirectory(gallery/lines_bars_and_markers)
