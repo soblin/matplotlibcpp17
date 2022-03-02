@@ -7,17 +7,17 @@ project(
   HOMEPAGE_URL "https://soblin.github.io/matplotlibcpp17/"
   )
 
-find_package(Python3 COMPONENTS Interpreter Development NumPy)
+find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 find_package(pybind11 REQUIRED)
 
 set(matplotlibcpp17_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 # gallery
 if(NOT DEFINED USE_GUI)
-  set(USE_GUI 0)
+  set(USE_GUI 1)
 endif()
 if(NOT DEFINED ADD_DEMO)
-  set(ADD_DEMO ON)
+  set(ADD_DEMO 1)
 endif()
 
 function(add_demo name path)
@@ -31,6 +31,7 @@ function(add_demo name path)
 endfunction()
 
 if(${ADD_DEMO})
+  find_package(Python3 COMPONENTS NumPy REQUIRED)
   find_package(xtensor REQUIRED)
   set(CMAKE_CXX_STANDARD 17)
   set(CMAKE_CXX_FLAGS "-Wall -g -DUSE_GUI=${USE_GUI}")
@@ -45,6 +46,7 @@ endif()
 
 
 # test
+enable_testing()
 if(NOT DEFINED DO_TEST)
   set(DO_TEST ON)
 endif()

@@ -11,14 +11,25 @@ It is supposed to provide the user with almost full access to matplotlib feature
 ## Dependencies
 
 - [pybind11](https://github.com/pybind/pybind11) >= 2.4.3
-  - `sudo apt install pybind11-dev`
+  - `sudo apt install pybind11-dev` (on Ubuntu20.04)
+  - or manual install
 - compatible with [matplotlib](https://matplotlib.org/stable/index.html) == 3.5.1
 - numpy for `mplot3d`
-- [xtensor](https://github.com/xtensor-stack/xtensor) == 0.24.0 (+ [xtl](https://github.com/xtensor-stack/xtl), for `gallery` demos)
+- ([xtensor](https://github.com/xtensor-stack/xtensor) == 0.24.0 + [xtl](https://github.com/xtensor-stack/xtl), only for `gallery` demos)
 
-## Usage
+## Installation
 
-Just add include path to `include` directory of this project.
+```bash
+$ mdkir build; cd build;
+$ cmake .. -DADD_DEMO=0 (-DCMAKE_INSTALL_PREFIX=<custom path>)
+$ make -j
+$ make install
+$ (make uninstall)
+```
+
+For using matplotlibcpp17 from CMakeLists.txt, see [hello_world](https://github.com/soblin/matplotlibcpp17/tree/master/hello_world) example.
+
+Or you could just add include path to `include` directory and compile your codes as descibed in [minimal example](#minimal-example).
 
 ## Syntax
 
@@ -148,13 +159,17 @@ From [gallery/artist_animation/random_walk.cpp](https://github.com/soblin/matplo
 
 ### build
 
+If you do not need to build the demos, use `-DADD_DEMO=0` (by default it is `1`).
+
 ```bash
-mkdir build; cd build; cmake .. ; make -j
+$ mkdir build; cd build
+$ cmake .. -DADD_DEMO={0, 1} -DUSE_GUI={0, 1}
+$ make -j
 ```
 
-If you want to see the demo with `plt.show()`, add `-DUSE_GUI=1` (by default it is `0`). Otherwise the executables will `plt.savefig()` to `gallery/images` directory.
+If you do not need to see the demo with `plt.show()`, use `-DUSE_GUI=0` (by default it is `1`). Otherwise the executables will `plt.savefig()` to `gallery/images` directory.
 
-`make <gallery directory name>` runs all executables under that directory.
+`make <gallery directory name>` runs all the executables under that directory.
 
 ```bash
 make lines_bars_and_markers
