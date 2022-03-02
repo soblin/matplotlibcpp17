@@ -24,8 +24,6 @@ function(add_demo name path)
   add_executable(${name} ${path})
   target_include_directories(${name} PUBLIC
     ${Python3_INCLUDE_DIRS}
-    ${Python3_NumPy_INCLUDE_DIRS}
-    ${pybind11_INCLUDE_DIR} 
     ${matplotlibcpp17_INCLUDE_DIRS}
     ${xtensor_INCLUDE_DIRS}
   )
@@ -79,17 +77,17 @@ configure_package_config_file(
   "${PROJECT_SOURCE_DIR}/cmake/${PROJECT_NAME}Config.cmake.in"
   "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
   INSTALL_DESTINATION
-  ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake
+  ${CMAKE_INSTALL_DATAROOTDIR}/cmake/${PROJECT_NAME}
   )
 install(EXPORT ${PROJECT_NAME}_Targets
   FILE ${PROJECT_NAME}Targets.cmake
   NAMESPACE ${PROJECT_NAME}::
-  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake
+  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/${PROJECT_NAME}
   )
 install(FILES
   "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
   "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
-  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake
+  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/${PROJECT_NAME}
   )
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}
   DESTINATION include

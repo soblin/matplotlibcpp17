@@ -31,7 +31,7 @@ The user will need to capsulate *arguments* in `Args(arg1, arg2, ...) == pybind1
 ### minimal example
 
 ```cpp
-g++ hello_world.cpp -std=c++17 -I./include -I/usr/include/python3.x -I<path to pybind11> -lpython3.x
+g++ ./hello_world/hello_world.cpp -std=c++17 -I./include -I/usr/include/python3.x -I<path to pybind11> -lpython3.x
 ./a.out
 ```
 
