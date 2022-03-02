@@ -102,16 +102,23 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 Dependencies</h1>
 <ul>
 <li><a href="https://github.com/pybind/pybind11">pybind11</a> &gt;= 2.4.3<ul>
-<li><code>sudo apt install pybind11-dev</code></li>
+<li><code>sudo apt install pybind11-dev</code> (on Ubuntu20.04)</li>
+<li>or manual install</li>
 </ul>
 </li>
 <li>compatible with <a href="https://matplotlib.org/stable/index.html">matplotlib</a> == 3.5.1</li>
 <li>numpy for <code>mplot3d</code></li>
-<li><a href="https://github.com/xtensor-stack/xtensor">xtensor</a> == 0.24.0 (+ <a href="https://github.com/xtensor-stack/xtl">xtl</a>, for <code>gallery</code> demos)</li>
+<li>(<a href="https://github.com/xtensor-stack/xtensor">xtensor</a> == 0.24.0 + <a href="https://github.com/xtensor-stack/xtl">xtl</a>, only for <code>gallery</code> demos)</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md3"></a>
-Usage</h1>
-<p >Just add include path to <code>include</code> directory of this project.</p>
+Installation</h1>
+<div class="fragment"><div class="line">$ mdkir build; cd build;</div>
+<div class="line">$ cmake .. -DADD_DEMO=0 (-DCMAKE_INSTALL_PREFIX=&lt;custom path&gt;)</div>
+<div class="line">$ make -j</div>
+<div class="line">$ make install</div>
+<div class="line">$ (make uninstall)</div>
+</div><!-- fragment --><p >For using matplotlibcpp17 from CMakeLists.txt, see <a href="https://github.com/soblin/matplotlibcpp17/tree/master/hello_world">hello_world</a> example.</p>
+<p >Or you could just add include path to <code>include</code> directory and compile your codes as descibed in <a href="#minimal-example">minimal example</a>.</p>
 <h1><a class="anchor" id="autotoc_md4"></a>
 Syntax</h1>
 <p >The user will need to capsulate <em>arguments</em> in <code>Args(arg1, arg2, ...) == pybind11:tuple</code> and <em>keyword arguments</em> in <code>Kwargs("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict</code>. The returned value is either a <code>pybind11::object</code> or a corresponding wrapper class. Please refer to the reference and examples below.</p><ul>
@@ -122,7 +129,7 @@ Syntax</h1>
 Examples</h1>
 <h2><a class="anchor" id="autotoc_md6"></a>
 minimal example</h2>
-<div class="fragment"><div class="line">g++ hello_world.cpp -std=c++17 -I./include -I/usr/include/python3.x -I&lt;path to pybind11&gt; -lpython3.x</div>
+<div class="fragment"><div class="line">g++ ./hello_world/hello_world.cpp -std=c++17 -I./include -I/usr/include/python3.x -I&lt;path to pybind11&gt; -lpython3.x</div>
 <div class="line">./a.out</div>
 </div><!-- fragment --><p >gives</p>
 <p ><img src="hello_world.png" alt="" class="inline" title="minimal example"/></p>
@@ -212,9 +219,12 @@ Demos</h1>
 <p ><code>gallery</code> folder contains corresponding examples from <a href="https://matplotlib.org/stable/gallery">the official website of matplotlib</a> with the same structure.</p>
 <h2><a class="anchor" id="autotoc_md13"></a>
 build</h2>
-<div class="fragment"><div class="line">mkdir build; cd build; cmake .. ; make -j</div>
-</div><!-- fragment --><p >If you want to see the demo with <code>plt.show()</code>, add <code>-DUSE_GUI=1</code> (by default it is <code>0</code>). Otherwise the executables will <code>plt.savefig()</code> to <code>gallery/images</code> directory.</p>
-<p ><code>make &lt;gallery directory name&gt;</code> runs all executables under that directory.</p>
+<p >If you do not need to build the demos, use <code>-DADD_DEMO=0</code> (by default it is <code>1</code>).</p>
+<div class="fragment"><div class="line">$ mkdir build; cd build</div>
+<div class="line">$ cmake .. -DADD_DEMO={0, 1} -DUSE_GUI={0, 1}</div>
+<div class="line">$ make -j</div>
+</div><!-- fragment --><p >If you do not need to see the demo with <code>plt.show()</code>, use <code>-DUSE_GUI=0</code> (by default it is <code>1</code>). Otherwise the executables will <code>plt.savefig()</code> to <code>gallery/images</code> directory.</p>
+<p ><code>make &lt;gallery directory name&gt;</code> runs all the executables under that directory.</p>
 <div class="fragment"><div class="line">make lines_bars_and_markers</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md14"></a>
 Contributing</h1>
