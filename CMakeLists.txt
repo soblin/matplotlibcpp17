@@ -96,6 +96,7 @@ install(EXPORT ${PROJECT_NAME}_Targets
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}
   DESTINATION include
   )
+set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
 
 # uninstall target
 ## actually it's just `xargs rm < install_manifest.txt`
