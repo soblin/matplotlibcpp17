@@ -206,7 +206,11 @@ private:
     LOAD_FUNC_ATTR(add_patch, self);
     LOAD_FUNC_ATTR(axhline, self);
     LOAD_FUNC_ATTR(bar, self);
+#if MATPLOTLIB_MINOR_VER_GTE_4
     LOAD_FUNC_ATTR(bar_label, self);
+#else
+    WARN_MSG("Not loading bar_label because matplotlib version is < 3.4.0");
+#endif
     LOAD_FUNC_ATTR(barh, self);
     LOAD_FUNC_ATTR(contour, self);
     LOAD_FUNC_ATTR(fill, self);
@@ -227,7 +231,7 @@ private:
       plot_surface_attr = self.attr("plot_surface");
       plot_wireframe_attr = self.attr("plot_wireframe");
       set_zlabel_attr = self.attr("set_zlabel");
-      std::cout << "Loaded Axes3D." << std::endl;
+      INFO_MSG("Loaded Axes3D");
     }
     catch(...) {}
     LOAD_FUNC_ATTR(quiver, self);
@@ -325,8 +329,14 @@ container::BarContainer Axes::bar(const pybind11::tuple &args,
 // bar_label
 pybind11::object Axes::bar_label(const pybind11::tuple &args,
                                  const pybind11::dict &kwargs) {
+#if MATPLOTLIB_MINOR_VER_GTE_4
   pybind11::object ret = bar_label_attr(*args, **kwargs);
   return ret;
+#else
+  ERROR_MSG(
+      "Call to bar_label is invalid because matplotlib version is < 3.4.0");
+  std::exit(0);
+#endif
 }
 
 // barh

@@ -60,6 +60,7 @@ int main() {
   py::list colors = py::cast(colors_);
   auto p = collections::PatchCollection(Args(patches), Kwargs("alpha"_a = 0.4));
   p.set_array(Args(colors));
+  // NOTE: error in python3.6.9 ?
   ax.add_collection(Args(p.unwrap()));
   fig.colorbar(Args(p.unwrap()), Kwargs("ax"_a = ax.unwrap()));
 #if USE_GUI
