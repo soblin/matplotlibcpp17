@@ -118,7 +118,10 @@ Installation</h1>
 <div class="line">$ make install</div>
 <div class="line">$ (make uninstall)</div>
 </div><!-- fragment --><p >For using matplotlibcpp17 from CMakeLists.txt, see <a href="https://github.com/soblin/matplotlibcpp17/tree/master/hello_world">hello_world</a> example.</p>
-<p >Or you could just add include path to <code>include</code> directory and compile your codes as descibed in <a href="#minimal-example">minimal example</a>.</p>
+<div class="fragment"><div class="line">find_package(matplotlibcpp17)</div>
+<div class="line">...</div>
+<div class="line">target_link_libraries(a.out matplotlibcpp17::matplotlibcpp17)</div>
+</div><!-- fragment --><p >Or you could just add include path to <code>include</code> directory and compile your codes as descibed in <a href="#minimal-example">minimal example</a>.</p>
 <h1><a class="anchor" id="autotoc_md4"></a>
 Syntax</h1>
 <p >The user will need to capsulate <em>arguments</em> in <code>Args(arg1, arg2, ...) == pybind11:tuple</code> and <em>keyword arguments</em> in <code>Kwargs("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict</code>. The returned value is either a <code>pybind11::object</code> or a corresponding wrapper class. Please refer to the reference and examples below.</p><ul>
