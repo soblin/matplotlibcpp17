@@ -8,7 +8,7 @@ project(
   )
 
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
-find_package(pybind11 REQUIRED)
+find_package(pybind11 2.4.3 REQUIRED)
 
 set(matplotlibcpp17_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
@@ -25,9 +25,8 @@ function(add_demo name path)
   target_include_directories(${name} PUBLIC
     ${Python3_INCLUDE_DIRS}
     ${matplotlibcpp17_INCLUDE_DIRS}
-    ${xtensor_INCLUDE_DIRS}
   )
-  target_link_libraries(${name} ${Python3_LIBRARIES} pybind11::embed)
+  target_link_libraries(${name} ${Python3_LIBRARIES} pybind11::embed xtensor)
 endfunction()
 
 if(${ADD_DEMO})

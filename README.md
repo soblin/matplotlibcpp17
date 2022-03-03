@@ -29,6 +29,12 @@ $ (make uninstall)
 
 For using matplotlibcpp17 from CMakeLists.txt, see [hello_world](https://github.com/soblin/matplotlibcpp17/tree/master/hello_world) example.
 
+```bash
+find_package(matplotlibcpp17)
+...
+target_link_libraries(a.out matplotlibcpp17::matplotlibcpp17)
+```
+
 Or you could just add include path to `include` directory and compile your codes as descibed in [minimal example](#minimal-example).
 
 ## Syntax
