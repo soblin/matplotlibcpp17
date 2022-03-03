@@ -80,16 +80,19 @@ configure_package_config_file(
   INSTALL_DESTINATION
   ${CMAKE_INSTALL_DATAROOTDIR}/cmake/${PROJECT_NAME}
   )
+# to /share/cmake/matplotlibcpp17
+install(FILES
+  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/${PROJECT_NAME}
+  )
+# to /share/cmake/matplotlibcpp17
 install(EXPORT ${PROJECT_NAME}_Targets
   FILE ${PROJECT_NAME}Targets.cmake
   NAMESPACE ${PROJECT_NAME}::
   DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/${PROJECT_NAME}
   )
-install(FILES
-  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
-  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
-  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/${PROJECT_NAME}
-  )
+# to /include/matplotlibcpp17
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}
   DESTINATION include
   )
