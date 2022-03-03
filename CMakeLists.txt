@@ -31,7 +31,7 @@ endfunction()
 
 if(${ADD_DEMO})
   find_package(Python3 COMPONENTS NumPy REQUIRED)
-  find_package(xtensor REQUIRED)
+  find_package(xtensor 0.24.0 REQUIRED)
   set(CMAKE_CXX_STANDARD 17)
   set(CMAKE_CXX_FLAGS "-Wall -g -DUSE_GUI=${USE_GUI}")
   add_subdirectory(gallery/lines_bars_and_markers)
@@ -97,6 +97,8 @@ install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}
   DESTINATION include
   )
 set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
+# create .deb
+include("${PROJECT_SOURCE_DIR}/cmake/package.cmake")
 
 # uninstall target
 ## actually it's just `xargs rm < install_manifest.txt`
