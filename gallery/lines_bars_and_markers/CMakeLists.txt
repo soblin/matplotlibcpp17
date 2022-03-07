@@ -6,10 +6,10 @@ add_demo(fill_between_demo fill_between_demo.cpp)
 add_demo(fill_betweenx_demo fill_betweenx_demo.cpp)
 add_demo(scatter_with_legend scatter_with_legend.cpp)
 add_demo(scatter_hist scatter_hist.cpp)
+add_demo(errorbar_limits_simple errorbar_limits_simple.cpp)
 
-# TODO: macro for this!
 add_custom_target(lines_bars_and_markers
-  DEPENDS bar_label_demo fill simple_plot scatter_symbol fill_between_demo fill_betweenx_demo scatter_with_legend scatter_hist
+  DEPENDS bar_label_demo fill simple_plot scatter_symbol fill_between_demo fill_betweenx_demo scatter_with_legend scatter_hist errorbar_limits_simple
   COMMAND bar_label_demo
   COMMAND fill
   COMMAND simple_plot
@@ -18,6 +18,7 @@ add_custom_target(lines_bars_and_markers
   COMMAND fill_betweenx_demo
   COMMAND scatter_with_legend
   COMMAND scatter_hist
+  COMMAND errorbar_limits_simple
   COMMENT "running lines_bars_and_markers"
   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../images"
 )
