@@ -10,7 +10,29 @@ project(
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 find_package(pybind11 2.4.3 REQUIRED)
 
-set(matplotlibcpp17_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include")
+
+# check matplotlib minor version
+execute_process(
+  COMMAND
+  "python3" "-c"
+  "import matplotlib;
+print(str(matplotlib.__version__))"
+  RESULT_VARIABLE MATPLOTLIB_VERSION_CHECKING
+  OUTPUT_VARIABLE MATPLOTLIB_VERSION
+  )
+
+if(NOT MATPLOTLIB_VERSION_CHECKING MATCHES 0)
+  message(FATAL_ERROR
+    "Could not check matplotlib.__version__")
+endif()
+message(STATUS "Detected matplotlib version is ${MATPLOTLIB_VERSION}")
+if(${MATPLOTLIB_VERSION} VERSION_LESS 3.4)
+  message(WARNING "Detected matplotlib version is < 3.4.0")
+  set(MATPLOTLIB_MINOR_VER_GTE_4 0)
+else()
+  set(MATPLOTLIB_MINOR_VER_GTE_4 1)
+endif()
+
 
 # gallery
 if(NOT DEFINED USE_GUI)
@@ -19,6 +41,8 @@ endif()
 if(NOT DEFINED ADD_DEMO)
   set(ADD_DEMO 1)
 endif()
+
+set(matplotlibcpp17_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 function(add_demo name path)
   add_executable(${name} ${path})
@@ -31,9 +55,9 @@ endfunction()
 
 if(${ADD_DEMO})
   find_package(Python3 COMPONENTS NumPy REQUIRED)
-  find_package(xtensor REQUIRED)
+  find_package(xtensor 0.24.0 REQUIRED)
   set(CMAKE_CXX_STANDARD 17)
-  set(CMAKE_CXX_FLAGS "-Wall -g -DUSE_GUI=${USE_GUI}")
+  set(CMAKE_CXX_FLAGS "-Wall -g -DUSE_GUI=${USE_GUI} -DMATPLOTLIB_MINOR_VER_GTE_4=${MATPLOTLIB_MINOR_VER_GTE_4}")
   add_subdirectory(gallery/lines_bars_and_markers)
   add_subdirectory(gallery/subplots_axes_and_figures)
   add_subdirectory(gallery/statistics)
@@ -96,6 +120,9 @@ install(EXPORT ${PROJECT_NAME}_Targets
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}
   DESTINATION include
   )
+set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
+# create .deb
+include("${PROJECT_SOURCE_DIR}/cmake/package.cmake")
 
 # uninstall target
 ## actually it's just `xargs rm < install_manifest.txt`
