@@ -25,7 +25,7 @@ if(NOT MATPLOTLIB_VERSION_CHECKING MATCHES 0)
   message(FATAL_ERROR
     "Could not check matplotlib.__version__")
 endif()
-message("Detected matplotlib version is ${MATPLOTLIB_VERSION}")
+message(STATUS "Detected matplotlib version is ${MATPLOTLIB_VERSION}")
 if(${MATPLOTLIB_VERSION} VERSION_LESS 3.4)
   message(WARNING "Detected matplotlib version is < 3.4.0")
   set(MATPLOTLIB_MINOR_VER_GTE_4 0)

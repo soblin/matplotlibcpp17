@@ -365,13 +365,18 @@ pybind11::object Axes::contour(const pybind11::tuple &args,
 // errorbar
 pybind11::object Axes::errorbar(const pybind11::tuple &args,
                                 const pybind11::dict &kwargs) {
-  if (not projection_3d) {
+  if (projection_3d) {
+#if MATPLOTLIB_MINOR_VER_GTE_4
     pybind11::object obj = errorbar_attr(*args, **kwargs);
     return obj;
-  } else {
+#else
     ERROR_MSG("Call to errorbar with projection='3d' is invalid because "
               "matplotlib version is < 3.4.0");
     std::exit(0);
+#endif
+  } else {
+    pybind11::object obj = errorbar_attr(*args, **kwargs);
+    return obj;
   }
 }
 

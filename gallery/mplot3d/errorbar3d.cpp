@@ -28,8 +28,8 @@ int main() {
       y(y_.begin(), y_.end()), z(z_.begin(), z_.end());
 
   const int estep = 15;
-  vector<int> i, zuplims, zlolims;
-  std::iota(i.begin(), i.end(), 0);
+  vector<int> i(t_.shape()[0]), zuplims, zlolims;
+  std::iota(i.begin(), i.end(), t_.shape()[0]);
   std::transform(i.begin(), i.end(), std::back_inserter(zuplims), [](int i) {
     return (i % 15 == 0) and ((i / estep) % 3 == 0);
   });
