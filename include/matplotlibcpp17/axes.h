@@ -237,8 +237,10 @@ private:
       plot_wireframe_attr = self.attr("plot_wireframe");
       set_zlabel_attr = self.attr("set_zlabel");
       INFO_MSG("Loaded Axes3D");
+      projection_3d = true;
+    } catch (...) {
+      projection_3d = false;
     }
-    catch(...) {}
     LOAD_FUNC_ATTR(quiver, self);
     LOAD_FUNC_ATTR(quiverkey, self);
     LOAD_FUNC_ATTR(scatter, self);
@@ -295,6 +297,7 @@ private:
   pybind11::object set_zlabel_attr;
   pybind11::object text_attr;
   pybind11::object tick_params_attr;
+  bool projection_3d;
 };
 
 // add_artist
@@ -362,8 +365,14 @@ pybind11::object Axes::contour(const pybind11::tuple &args,
 // errorbar
 pybind11::object Axes::errorbar(const pybind11::tuple &args,
                                 const pybind11::dict &kwargs) {
-  pybind11::object obj = errorbar_attr(*args, **kwargs);
-  return obj;
+  if (not projection_3d) {
+    pybind11::object obj = errorbar_attr(*args, **kwargs);
+    return obj;
+  } else {
+    ERROR_MSG("Call to errorbar with projection='3d' is invalid because "
+              "matplotlib version is < 3.4.0");
+    std::exit(0);
+  }
 }
 
 // fill
