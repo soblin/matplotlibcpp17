@@ -300,18 +300,28 @@ PyPlot::subplots(const pybind11::dict &kwargs) {
 
 std::tuple<figure::Figure, std::vector<axes::Axes>>
 PyPlot::subplots(int r, int c, const pybind11::dict &kwargs) {
+  // subplots() returns [][] (if r > 1 && c > 1) else []
+  // return []axes in row-major
   pybind11::tuple args = pybind11::make_tuple(r, c);
   pybind11::list ret = subplots_attr(*args, **kwargs);
   std::vector<axes::Axes> axes;
   pybind11::object fig = ret[0];
   figure::Figure figure(fig);
   if (r == 1 and c == 1) {
-    pybind11::object ax = ret[1];
-    axes.push_back(axes::Axes(ax));
+    // python returns Axes
+    axes.push_back(axes::Axes(ret[1]));
+  } else if (r == 1 or c == 1) {
+    // python returns []Axes
+    pybind11::list axs = ret[1];
+    for (int i = 0; i < r * c; ++i)
+      axes.push_back(axes::Axes(axs[i]));
   } else {
+    // python returns [][]Axes
     pybind11::list axs = ret[1];
     for (pybind11::size_t i = 0; i < axs.size(); ++i) {
-      axes.push_back(axes::Axes(axs[i]));
+      pybind11::list axsi = axs[i];
+      for (unsigned j = 0; j < axsi.size(); ++j)
+        axes.push_back(axes::Axes(axsi[j]));
     }
   }
   return {figure, axes};
