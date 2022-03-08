@@ -14,7 +14,7 @@ find_package(pybind11 2.4.3 REQUIRED)
 # check matplotlib minor version
 execute_process(
   COMMAND
-  "python3" "-c"
+  ${Python3_EXECUTABLE} "-c"
   "import matplotlib;
 print(str(matplotlib.__version__))"
   RESULT_VARIABLE MATPLOTLIB_VERSION_CHECKING
