@@ -124,8 +124,9 @@ public:
                         const pybind11::dict &kwargs = pybind11::dict());
 
   // pcolormesh
-  pybind11::object pcolormesh(const pybind11::tuple &args = pybind11::tuple(),
-                              const pybind11::dict &kwargs = pybind11::dict());
+  collections::QuadMesh
+  pcolormesh(const pybind11::tuple &args = pybind11::tuple(),
+             const pybind11::dict &kwargs = pybind11::dict());
 
   // plot
   pybind11::object plot(const pybind11::tuple &args = pybind11::tuple(),
@@ -485,10 +486,10 @@ legend::Legend Axes::legend(const pybind11::tuple &args,
 }
 
 // pcolormesh
-pybind11::object Axes::pcolormesh(const pybind11::tuple &args,
-                                  const pybind11::dict &kwargs) {
+collections::QuadMesh Axes::pcolormesh(const pybind11::tuple &args,
+                                       const pybind11::dict &kwargs) {
   pybind11::object ret = pcolormesh_attr(*args, **kwargs);
-  return ret;
+  return collections::QuadMesh(ret);
 }
 
 // plot

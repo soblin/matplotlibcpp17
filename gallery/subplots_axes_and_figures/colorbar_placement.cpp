@@ -15,8 +15,7 @@ using namespace py::literals;
 using namespace std;
 using namespace matplotlibcpp17;
 
-int main() {
-  py::scoped_interpreter guard{};
+int main1() {
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, axs] = plt.subplots(2, 2);
   const vector<string> cmaps = {"RdBu_r", "viridis"};
@@ -30,7 +29,20 @@ int main() {
           x[i][j] = x_(i, j);
       }
       auto &ax = axs[col + row * 2];
-      // auto pcm = ax.pcolormesh(Args(x), Kwargs("cmap"_a = cmaps[col]));
+      auto pcm = ax.pcolormesh(Args(x), Kwargs("cmap"_a = cmaps[col]));
+      fig.colorbar(Args(pcm.unwrap()),
+                   Kwargs("ax"_a = ax.unwrap(), "shrink"_a = 0.6));
     }
   }
+#if USE_GUI
+  plt.show();
+#else
+  plt.savefig(Args("colorbar_placement1.png"));
+#endif
+  return 0;
+}
+
+int main() {
+  py::scoped_interpreter guard{};
+  main1();
 }
