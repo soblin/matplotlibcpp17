@@ -389,66 +389,77 @@ $(document).ready(function(){initNavTree('pyplot_8h_source.html',''); initResiza
 <div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
 <div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>std::tuple&lt;figure::Figure, std::vector&lt;axes::Axes&gt;&gt;</div>
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>PyPlot::subplots(<span class="keywordtype">int</span> r, <span class="keywordtype">int</span> c, <span class="keyword">const</span> pybind11::dict &amp;kwargs) {</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>  pybind11::tuple args = pybind11::make_tuple(r, c);</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>  pybind11::list ret = subplots_attr(*args, **kwargs);</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>  std::vector&lt;axes::Axes&gt; axes;</div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>  pybind11::object fig = ret[0];</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>  figure::Figure figure(fig);</div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>  <span class="keywordflow">if</span> (r == 1 and c == 1) {</div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    pybind11::object ax = ret[1];</div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    axes.push_back(axes::Axes(ax));</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    pybind11::list axs = ret[1];</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <span class="keywordflow">for</span> (pybind11::size_t i = 0; i &lt; axs.size(); ++i) {</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>      axes.push_back(axes::Axes(axs[i]));</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    }</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>  }</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>  <span class="keywordflow">return</span> {figure, axes};</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>}</div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="comment">// xlabel</span></div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>pybind11::object PyPlot::xlabel(<span class="keyword">const</span> pybind11::tuple &amp;args,</div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>                                <span class="keyword">const</span> pybind11::dict &amp;kwargs) {</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>  pybind11::object ret = xlabel_attr(*args, **kwargs);</div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>  <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>}</div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span> </div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span><span class="comment">// xlim</span></div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>pybind11::object PyPlot::xlim(<span class="keyword">const</span> pybind11::tuple &amp;args,</div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>                              <span class="keyword">const</span> pybind11::dict &amp;kwargs) {</div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>  pybind11::object ret = xlim_attr(*args, **kwargs);</div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>  <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>}</div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="comment">// ylabel</span></div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>pybind11::object PyPlot::ylabel(<span class="keyword">const</span> pybind11::tuple &amp;args,</div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>                                <span class="keyword">const</span> pybind11::dict &amp;kwargs) {</div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>  pybind11::object ret = ylabel_attr(*args, **kwargs);</div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>  <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>}</div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="comment">// ylim</span></div>
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>pybind11::object PyPlot::ylim(<span class="keyword">const</span> pybind11::tuple &amp;args,</div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>                              <span class="keyword">const</span> pybind11::dict &amp;kwargs) {</div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>  pybind11::object ret = ylim_attr(*args, **kwargs);</div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>  <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>}</div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span> </div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>PyPlot <span class="keyword">import</span>() {</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>  <span class="keyword">auto</span> mod = pybind11::module::import(<span class="stringliteral">&quot;matplotlib.pyplot&quot;</span>);</div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>  <span class="keyword">auto</span> g_pyplot = PyPlot(mod);</div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>  <span class="keywordflow">return</span> g_pyplot;</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>}</div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>} <span class="comment">// namespace matplotlibcpp17::pyplot</span></div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span>... ArgsT&gt; pybind11::tuple Args(ArgsT &amp;&amp;... args) {</div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>  <span class="keywordflow">return</span> pybind11::make_tuple(std::forward&lt;ArgsT&gt;(args)...);</div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>}</div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="keyword">using</span> Kwargs = pybind11::dict;</div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> </div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="preprocessor">#endif </span><span class="comment">/* MATPLOTLIBCPP17_PYPLOT_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>  <span class="comment">// subplots() returns [][] (if r &gt; 1 &amp;&amp; c &gt; 1) else []</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>  <span class="comment">// return []axes in row-major</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>  <span class="comment">// NOTE: equal to Axes.flat</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>  pybind11::tuple args = pybind11::make_tuple(r, c);</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>  pybind11::list ret = subplots_attr(*args, **kwargs);</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>  std::vector&lt;axes::Axes&gt; axes;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>  pybind11::object fig = ret[0];</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>  figure::Figure figure(fig);</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>  <span class="keywordflow">if</span> (r == 1 and c == 1) {</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    <span class="comment">// python returns Axes</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    axes.push_back(axes::Axes(ret[1]));</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (r == 1 or c == 1) {</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="comment">// python returns []Axes</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    pybind11::list axs = ret[1];</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; r * c; ++i)</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>      axes.push_back(axes::Axes(axs[i]));</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <span class="comment">// python returns [][]Axes</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    pybind11::list axs = ret[1];</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="keywordflow">for</span> (pybind11::size_t i = 0; i &lt; axs.size(); ++i) {</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>      pybind11::list axsi = axs[i];</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; axsi.size(); ++j)</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>        axes.push_back(axes::Axes(axsi[j]));</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    }</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>  }</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>  <span class="keywordflow">return</span> {figure, axes};</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>}</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="comment">// xlabel</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>pybind11::object PyPlot::xlabel(<span class="keyword">const</span> pybind11::tuple &amp;args,</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>                                <span class="keyword">const</span> pybind11::dict &amp;kwargs) {</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>  pybind11::object ret = xlabel_attr(*args, **kwargs);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>  <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>}</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="comment">// xlim</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>pybind11::object PyPlot::xlim(<span class="keyword">const</span> pybind11::tuple &amp;args,</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>                              <span class="keyword">const</span> pybind11::dict &amp;kwargs) {</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>  pybind11::object ret = xlim_attr(*args, **kwargs);</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>  <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>}</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="comment">// ylabel</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>pybind11::object PyPlot::ylabel(<span class="keyword">const</span> pybind11::tuple &amp;args,</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>                                <span class="keyword">const</span> pybind11::dict &amp;kwargs) {</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>  pybind11::object ret = ylabel_attr(*args, **kwargs);</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>  <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>}</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span> </div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="comment">// ylim</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>pybind11::object PyPlot::ylim(<span class="keyword">const</span> pybind11::tuple &amp;args,</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>                              <span class="keyword">const</span> pybind11::dict &amp;kwargs) {</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>  pybind11::object ret = ylim_attr(*args, **kwargs);</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>  <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>}</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span> </div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>PyPlot <span class="keyword">import</span>() {</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>  <span class="keyword">auto</span> mod = pybind11::module::import(<span class="stringliteral">&quot;matplotlib.pyplot&quot;</span>);</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>  <span class="keyword">auto</span> g_pyplot = PyPlot(mod);</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>  <span class="keywordflow">return</span> g_pyplot;</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>}</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>} <span class="comment">// namespace matplotlibcpp17::pyplot</span></div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> </div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span>... ArgsT&gt; pybind11::tuple Args(ArgsT &amp;&amp;... args) {</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>  <span class="keywordflow">return</span> pybind11::make_tuple(std::forward&lt;ArgsT&gt;(args)...);</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>}</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span> </div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span><span class="keyword">using</span> Kwargs = pybind11::dict;</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span> </div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="preprocessor">#endif </span><span class="comment">/* MATPLOTLIBCPP17_PYPLOT_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="astructmatplotlibcpp17_1_1axes_1_1_axes_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1axes_1_1_axes.html">matplotlibcpp17::axes::Axes</a></div><div class="ttdoc">A wrapper class for matplotlib.axes.Axes.</div><div class="ttdef"><b>Definition:</b> axes.h:32</div></div>
 <div class="ttc" id="astructmatplotlibcpp17_1_1figure_1_1_figure_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1figure_1_1_figure.html">matplotlibcpp17::figure::Figure</a></div><div class="ttdoc">A wrapper class for matplotlib.figure.Figure.</div><div class="ttdef"><b>Definition:</b> figure.h:20</div></div>
 <div class="ttc" id="astructmatplotlibcpp17_1_1pyplot_1_1_py_plot_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1pyplot_1_1_py_plot.html">matplotlibcpp17::pyplot::PyPlot</a></div><div class="ttdoc">A class corresponding to pyplot module.</div><div class="ttdef"><b>Definition:</b> pyplot.h:22</div></div>

@@ -9,7 +9,8 @@ var namespaces_dup =
       ] ],
       [ "collections", null, [
         [ "PatchCollection", "structmatplotlibcpp17_1_1collections_1_1_patch_collection.html", null ],
-        [ "PathCollection", "structmatplotlibcpp17_1_1collections_1_1_path_collection.html", "structmatplotlibcpp17_1_1collections_1_1_path_collection" ]
+        [ "PathCollection", "structmatplotlibcpp17_1_1collections_1_1_path_collection.html", "structmatplotlibcpp17_1_1collections_1_1_path_collection" ],
+        [ "QuadMesh", "structmatplotlibcpp17_1_1collections_1_1_quad_mesh.html", null ]
       ] ],
       [ "container", null, [
         [ "BarContainer", "structmatplotlibcpp17_1_1container_1_1_bar_container.html", null ]
@@ -27,6 +28,7 @@ var namespaces_dup =
       [ "patches", null, [
         [ "Circle", "structmatplotlibcpp17_1_1patches_1_1_circle.html", null ],
         [ "Ellipse", "structmatplotlibcpp17_1_1patches_1_1_ellipse.html", null ],
+        [ "Polygon", "structmatplotlibcpp17_1_1patches_1_1_polygon.html", null ],
         [ "Rectangle", "structmatplotlibcpp17_1_1patches_1_1_rectangle.html", null ],
         [ "Wedge", "structmatplotlibcpp17_1_1patches_1_1_wedge.html", null ]
       ] ],
