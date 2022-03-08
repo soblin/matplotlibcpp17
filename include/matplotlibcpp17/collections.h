@@ -73,6 +73,15 @@ pybind11::object PatchCollection::set_array(const pybind11::tuple &args,
   pybind11::object ret = set_array_attr(*args, **kwargs);
   return ret;
 }
+
+/**
+ * @brief A wrapper class for matplotlib.collections.QuadMesh
+ **/
+struct DECL_STRUCT_ATTR QuadMesh : public BaseWrapper {
+public:
+  QuadMesh(pybind11::object quadmesh) { self = quadmesh; }
+};
+
 } // namespace matplotlibcpp17::collections
 
 #endif /* MATPLOTLIBCPP17_COLLECTIONS_H */

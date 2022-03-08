@@ -74,6 +74,22 @@ private:
   pybind11::object wedge_attr;
 };
 
+/**
+ * @brief A wrapper class for matplotlib.patches.Polygon
+ **/
+struct DECL_STRUCT_ATTR Polygon : public BaseWrapper {
+public:
+  Polygon(const pybind11::tuple &args = pybind11::tuple(),
+          const pybind11::dict &kwargs = pybind11::dict()) {
+    polygon_attr =
+        pybind11::module::import("matplotlib.patches").attr("Polygon");
+    self = polygon_attr(*args, **kwargs);
+  }
+
+private:
+  pybind11::object polygon_attr;
+};
+
 } // namespace matplotlibcpp17::patches
 
 #endif /* MATPLOTLIBCPP17_PATCHES_H */
