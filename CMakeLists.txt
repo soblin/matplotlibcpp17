@@ -16,7 +16,7 @@ execute_process(
   COMMAND
   ${Python3_EXECUTABLE} "-c"
   "import matplotlib;
-print(str(matplotlib.__version__))"
+print(str(matplotlib.__version__), end='')"
   RESULT_VARIABLE MATPLOTLIB_VERSION_CHECKING
   OUTPUT_VARIABLE MATPLOTLIB_VERSION
   )
@@ -30,6 +30,7 @@ if(${MATPLOTLIB_VERSION} VERSION_LESS 3.4)
   message(WARNING "Detected matplotlib version is < 3.4.0")
   set(MATPLOTLIB_MINOR_VER_GTE_4 0)
 else()
+  message(STATUS "Detected matplotlib version is >= 3.4.0")
   set(MATPLOTLIB_MINOR_VER_GTE_4 1)
 endif()
 
@@ -37,9 +38,20 @@ endif()
 # gallery
 if(NOT DEFINED USE_GUI)
   set(USE_GUI 1)
+  message(STATUS "USE_GUI = ON")
 endif()
 if(NOT DEFINED ADD_DEMO)
   set(ADD_DEMO 1)
+endif()
+if(USE_GUI)
+  message(STATUS "USE_GUI = ON")
+else()
+  message(STATUS "USE_GUI = OFF")
+endif()
+if(ADD_DEMO)
+  message(STATUS "ADD_DEMO = ON")
+else()
+  message(STATUS "ADD_DEMO = OFF")
 endif()
 
 set(matplotlibcpp17_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include")
