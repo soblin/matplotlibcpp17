@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.12)
 
 project(
   "matplotlibcpp17"
-  VERSION 0.0.0
+  VERSION 1.0.0
   DESCRIPTION
     "A C++ header-only plotting library based on pybind11 and matplotlib, featuring more flexibility than matplotlibcpp"
   HOMEPAGE_URL "https://soblin.github.io/matplotlibcpp17/")
