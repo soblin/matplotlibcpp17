@@ -1,14 +1,12 @@
 /**
  * @file cm.h
- * @brief corresponding header for matplotlib.animation
+ * @brief corresponding header for matplotlib.cm
  **/
 
 #ifndef MATPLOTLIBCPP17_CM_H
 #define MATPLOTLIBCPP17_CM_H
 
 #include <pybind11/pybind11.h>
-
-#include <matplotlibcpp17/common.h>
 
 namespace matplotlibcpp17::cm {
 
