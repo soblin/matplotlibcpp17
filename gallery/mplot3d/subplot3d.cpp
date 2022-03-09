@@ -81,6 +81,8 @@ int main() {
     auto surf = ax.plot_surface(
         Args(X_, Y_, Z_), Kwargs("rstride"_a = 1, "cstride"_a = 1,
                                  "linewidth"_a = 0, "antialiased"_a = false));
+    ax.set_zlim(Args(-1.01, 1.01));
+    fig.colorbar(Args(surf), Kwargs("shrink"_a = 0.5, "aspect"_a = 10));
   }
   {
     auto ax = fig.add_subplot(Args(1, 2, 2), Kwargs("projection"_a = "3d"));
