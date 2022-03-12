@@ -1,9 +1,6 @@
 // example from
 // https://matplotlib.org/stable/gallery/images_contours_and_fields/quiver_demo.html
 
-#include <pybind11/embed.h>
-#include <pybind11/stl.h>
-
 #include <matplotlibcpp17/pyplot.h>
 #include <matplotlibcpp17/quiver.h>
 
@@ -13,8 +10,6 @@
 #include <vector>
 #include <string>
 
-namespace py = pybind11;
-using namespace py::literals;
 using namespace std;
 using namespace matplotlibcpp17;
 

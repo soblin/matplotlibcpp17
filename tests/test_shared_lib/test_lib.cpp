@@ -1,15 +1,10 @@
 // example from
 // https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html
 
-#include <pybind11/stl.h>
-
 #include <matplotlibcpp17/pyplot.h>
 
 #include <algorithm>
 #include <vector>
-
-namespace py = pybind11;
-using namespace py::literals;
 
 template <typename T> std::vector<T> arange(T start, T end, T h) {
   int N = static_cast<int>((end - start) / h);

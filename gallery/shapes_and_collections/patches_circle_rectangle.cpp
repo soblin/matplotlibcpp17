@@ -1,17 +1,11 @@
 // example from https://note.nkmk.me/python-matplotlib-patches-circle-rectangle
 
-#include <pybind11/embed.h>
-#include <pybind11/stl.h>
-
 #include <matplotlibcpp17/pyplot.h>
 #include <matplotlibcpp17/patches.h>
 
 #include <algorithm>
-#include <iostream>
 #include <vector>
 
-namespace py = pybind11;
-using namespace py::literals;
 using namespace std;
 using namespace matplotlibcpp17;
 using namespace matplotlibcpp17::patches;

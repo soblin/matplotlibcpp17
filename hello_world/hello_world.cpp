@@ -1,11 +1,6 @@
-#include <pybind11/embed.h>
-#include <pybind11/stl.h>
-
 #include <matplotlibcpp17/pyplot.h>
 
 #include <vector>
-
-using namespace pybind11::literals;
 
 int main() {
   pybind11::scoped_interpreter guard{};
