@@ -123,6 +123,11 @@ public:
   legend::Legend legend(const pybind11::tuple &args = pybind11::tuple(),
                         const pybind11::dict &kwargs = pybind11::dict());
 
+  // pcolormesh
+  collections::QuadMesh
+  pcolormesh(const pybind11::tuple &args = pybind11::tuple(),
+             const pybind11::dict &kwargs = pybind11::dict());
+
   // plot
   pybind11::object plot(const pybind11::tuple &args = pybind11::tuple(),
                         const pybind11::dict &kwargs = pybind11::dict());
@@ -234,6 +239,7 @@ private:
     LOAD_FUNC_ATTR(hist2d, self);
     LOAD_FUNC_ATTR(invert_yaxis, self);
     LOAD_FUNC_ATTR(legend, self);
+    LOAD_FUNC_ATTR(pcolormesh, self);
     LOAD_FUNC_ATTR(plot, self);
     // NOTE: only when called with projection='3d', `plot_surface`, `plot_wireframe`, `set_zlabel` prop exists.
     try {
@@ -283,6 +289,7 @@ private:
   pybind11::object hist2d_attr;
   pybind11::object invert_yaxis_attr;
   pybind11::object legend_attr;
+  pybind11::object pcolormesh_attr;
   pybind11::object plot_attr;
   pybind11::object plot_surface_attr;
   pybind11::object plot_wireframe_attr;
@@ -482,6 +489,13 @@ legend::Legend Axes::legend(const pybind11::tuple &args,
                             const pybind11::dict &kwargs) {
   pybind11::object obj = legend_attr(*args, **kwargs);
   return legend::Legend(obj);
+}
+
+// pcolormesh
+collections::QuadMesh Axes::pcolormesh(const pybind11::tuple &args,
+                                       const pybind11::dict &kwargs) {
+  pybind11::object ret = pcolormesh_attr(*args, **kwargs);
+  return collections::QuadMesh(ret);
 }
 
 // plot

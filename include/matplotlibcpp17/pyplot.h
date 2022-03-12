@@ -302,6 +302,7 @@ std::tuple<figure::Figure, std::vector<axes::Axes>>
 PyPlot::subplots(int r, int c, const pybind11::dict &kwargs) {
   // subplots() returns [][] (if r > 1 && c > 1) else []
   // return []axes in row-major
+  // NOTE: equal to Axes.flat
   pybind11::tuple args = pybind11::make_tuple(r, c);
   pybind11::list ret = subplots_attr(*args, **kwargs);
   std::vector<axes::Axes> axes;
