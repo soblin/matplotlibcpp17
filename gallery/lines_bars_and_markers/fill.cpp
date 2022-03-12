@@ -1,17 +1,12 @@
 // example from
 // https://matplotlib.org/stable/gallery/lines_bars_and_markers/fill.html
 
-#include <pybind11/embed.h>
-#include <pybind11/stl.h>
-
 #include <matplotlibcpp17/pyplot.h>
 
 #include <xtensor/xarray.hpp>
 
 #include <vector>
 
-namespace py = pybind11;
-using namespace py::literals;
 using namespace std;
 using namespace matplotlibcpp17;
 

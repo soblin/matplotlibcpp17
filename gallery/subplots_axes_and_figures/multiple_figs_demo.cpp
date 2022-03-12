@@ -1,9 +1,6 @@
 // example from
 // https://matplotlib.org/stable/gallery/subplots_axes_and_figures/multiple_figs_demo.html
 
-#include <pybind11/embed.h>
-#include <pybind11/stl.h>
-
 #include <matplotlibcpp17/pyplot.h>
 
 #include <xtensor/xbuilder.hpp>
@@ -11,8 +8,6 @@
 
 #include <vector>
 
-namespace py = pybind11;
-using namespace py::literals;
 using namespace std;
 using namespace matplotlibcpp17;
 

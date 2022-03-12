@@ -1,17 +1,10 @@
 // example from
 // https://matplotlib.org/stable/gallery/lines_bars_and_markers/scatter_symbol.html
 
-#include <pybind11/embed.h>
-#include <pybind11/stl.h>
-
 #include <matplotlibcpp17/pyplot.h>
 
-#include <algorithm>
 #include <vector>
 #include <string>
-
-namespace py = pybind11;
-using namespace py::literals;
 
 template <typename T> std::vector<T> arange(T start, T end, T h) {
   int N = static_cast<int>((end - start) / h);

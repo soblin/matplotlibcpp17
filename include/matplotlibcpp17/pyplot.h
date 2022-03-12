@@ -13,6 +13,9 @@
 #include <matplotlibcpp17/figure.h>
 
 #include <pybind11/pybind11.h>
+#include <pybind11/embed.h>
+#include <pybind11/stl.h>
+#include <pybind11/numpy.h>
 
 namespace matplotlibcpp17::pyplot {
 
@@ -364,10 +367,15 @@ PyPlot import() {
 
 } // namespace matplotlibcpp17::pyplot
 
+// Args & Kwargs
 template <typename... ArgsT> pybind11::tuple Args(ArgsT &&... args) {
   return pybind11::make_tuple(std::forward<ArgsT>(args)...);
 }
 
 using Kwargs = pybind11::dict;
+
+// Export this
+namespace py = pybind11;
+using namespace py::literals;
 
 #endif /* MATPLOTLIBCPP17_PYPLOT_H */

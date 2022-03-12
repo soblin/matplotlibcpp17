@@ -1,15 +1,10 @@
 // example from
 // https://matplotlib.org/stable/gallery/mplot3d/lorenz_attractor.html
 
-#include <pybind11/embed.h>
-#include <pybind11/stl.h>
 #include <matplotlibcpp17/pyplot.h>
-#include <algorithm>
-#include <vector>
-#include <tuple>
 
-namespace py = pybind11;
-using namespace py::literals;
+#include <vector>
+
 using namespace std;
 using namespace matplotlibcpp17;
 

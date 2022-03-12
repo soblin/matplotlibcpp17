@@ -1,18 +1,11 @@
 // example from
 // https://matplotlib.org/stable/gallery/animation/animate_decay.html
 
-#include <pybind11/embed.h>
-#include <pybind11/stl.h>
-
 #include <matplotlibcpp17/pyplot.h>
 #include <matplotlibcpp17/animation.h>
 
 #include <vector>
-#include <algorithm>
-#include <string>
 
-namespace py = pybind11;
-using namespace py::literals;
 using namespace std;
 using namespace matplotlibcpp17;
 using matplotlibcpp17::animation::ArtistAnimation;

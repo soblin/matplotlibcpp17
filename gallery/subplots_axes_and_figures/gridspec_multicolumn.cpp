@@ -1,18 +1,11 @@
 // example from
 // https://matplotlib.org/stable/gallery/subplots_axes_and_figures/gridspec_multicolumn.html
 
-#include <pybind11/embed.h>
-#include <pybind11/stl.h>
-
 #include <matplotlibcpp17/pyplot.h>
 
 #include <vector>
 
-namespace py = pybind11;
-using namespace py::literals;
-
 using namespace std;
-
 using matplotlibcpp17::gridspec::GridSpec;
 using namespace matplotlibcpp17;
 
