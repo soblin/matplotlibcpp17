@@ -159,6 +159,11 @@ public:
   pybind11::object set(const pybind11::tuple &args = pybind11::tuple(),
                        const pybind11::dict &kwargs = pybind11::dict());
 
+  // set_adjustable
+  pybind11::object
+  set_adjustable(const pybind11::tuple &args = pybind11::tuple(),
+                 const pybind11::dict &kwargs = pybind11::dict());
+
   // set_aspect
   pybind11::object set_aspect(const pybind11::tuple &args = pybind11::tuple(),
                               const pybind11::dict &kwargs = pybind11::dict());
@@ -174,6 +179,10 @@ public:
   // set_xlim
   pybind11::object set_xlim(const pybind11::tuple &args = pybind11::tuple(),
                             const pybind11::dict &kwargs = pybind11::dict());
+
+  // set_xscale
+  pybind11::object set_xscale(const pybind11::tuple &args = pybind11::tuple(),
+                              const pybind11::dict &kwargs = pybind11::dict());
 
   // set_xticks
   pybind11::object set_xticks(const pybind11::tuple &args = pybind11::tuple(),
@@ -191,6 +200,10 @@ public:
   // set_ylim
   pybind11::object set_ylim(const pybind11::tuple &args = pybind11::tuple(),
                             const pybind11::dict &kwargs = pybind11::dict());
+
+  // set_yscale
+  pybind11::object set_yscale(const pybind11::tuple &args = pybind11::tuple(),
+                              const pybind11::dict &kwargs = pybind11::dict());
 
   // set_yticks
   pybind11::object set_yticks(const pybind11::tuple &args = pybind11::tuple(),
@@ -256,14 +269,17 @@ private:
     LOAD_FUNC_ATTR(quiverkey, self);
     LOAD_FUNC_ATTR(scatter, self);
     LOAD_FUNC_ATTR(set, self);
+    LOAD_FUNC_ATTR(set_adjustable, self);
     LOAD_FUNC_ATTR(set_aspect, self);
     LOAD_FUNC_ATTR(set_title, self);
     LOAD_FUNC_ATTR(set_xlabel, self);
     LOAD_FUNC_ATTR(set_xlim, self);
+    LOAD_FUNC_ATTR(set_xscale, self);
     LOAD_FUNC_ATTR(set_xticks, self);
     LOAD_FUNC_ATTR(set_xticklabels, self);
     LOAD_FUNC_ATTR(set_ylabel, self);
     LOAD_FUNC_ATTR(set_ylim, self);
+    LOAD_FUNC_ATTR(set_yscale, self);
     LOAD_FUNC_ATTR(set_yticks, self);
     LOAD_FUNC_ATTR(text, self);
     LOAD_FUNC_ATTR(tick_params, self);
@@ -297,14 +313,17 @@ private:
   pybind11::object quiverkey_attr;
   pybind11::object scatter_attr;
   pybind11::object set_attr;
+  pybind11::object set_adjustable_attr;
   pybind11::object set_aspect_attr;
   pybind11::object set_title_attr;
   pybind11::object set_xlabel_attr;
   pybind11::object set_xlim_attr;
+  pybind11::object set_xscale_attr;
   pybind11::object set_xticks_attr;
   pybind11::object set_xticklabels_attr;
   pybind11::object set_ylabel_attr;
   pybind11::object set_ylim_attr;
+  pybind11::object set_yscale_attr;
   pybind11::object set_yticks_attr;
   pybind11::object set_zlabel_attr;
   pybind11::object set_zlim_attr;
@@ -547,6 +566,13 @@ pybind11::object Axes::set(const pybind11::tuple &args,
   return ret;
 }
 
+// set_adjustable
+pybind11::object Axes::set_adjustable(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
+  pybind11::object ret = set_adjustable_attr(*args, **kwargs);
+  return ret;
+}
+
 // set_aspect
 pybind11::object Axes::set_aspect(const pybind11::tuple &args,
                                   const pybind11::dict &kwargs) {
@@ -575,6 +601,13 @@ pybind11::object Axes::set_xlim(const pybind11::tuple &args,
   return ret;
 }
 
+// set_xscale
+pybind11::object Axes::set_xscale(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
+  pybind11::object ret = set_xscale_attr(*args, **kwargs);
+  return ret;
+}
+
 // set_xticks
 pybind11::object Axes::set_xticks(const pybind11::tuple &args,
                                   const pybind11::dict &kwargs) {
@@ -600,6 +633,13 @@ pybind11::object Axes::set_ylabel(const pybind11::tuple &args,
 pybind11::object Axes::set_ylim(const pybind11::tuple &args,
                                 const pybind11::dict &kwargs) {
   pybind11::object ret = set_ylim_attr(*args, **kwargs);
+  return ret;
+}
+
+// set_yscale
+pybind11::object Axes::set_yscale(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
+  pybind11::object ret = set_yscale_attr(*args, **kwargs);
   return ret;
 }
 
