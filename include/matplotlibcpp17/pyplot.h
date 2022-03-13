@@ -65,6 +65,10 @@ public:
   figure::Figure gcf(const pybind11::tuple &args = pybind11::tuple(),
                      const pybind11::dict &kwargs = pybind11::dict());
 
+  // grid
+  pybind11::object grid(const pybind11::tuple &args = pybind11::tuple(),
+                        const pybind11::dict &kwargs = pybind11::dict());
+
   // legend
   pybind11::object legend(const pybind11::tuple &args = pybind11::tuple(),
                           const pybind11::dict &kwargs = pybind11::dict());
@@ -93,6 +97,10 @@ public:
   pybind11::object show(const pybind11::tuple &args = pybind11::tuple(),
                         const pybind11::dict &kwargs = pybind11::dict());
 
+  // step
+  pybind11::object step(const pybind11::tuple &args = pybind11::tuple(),
+                        const pybind11::dict &kwargs = pybind11::dict());
+
   // subplot
   axes::Axes subplot(const pybind11::dict &kwargs = pybind11::dict());
   axes::Axes subplot(int cri);
@@ -102,6 +110,10 @@ public:
   subplots(const pybind11::dict &kwargs = pybind11::dict());
   std::tuple<figure::Figure, std::vector<axes::Axes>>
   subplots(int r, int c, const pybind11::dict &kwargs = pybind11::dict());
+
+  // title
+  pybind11::object title(const pybind11::tuple &args = pybind11::tuple(),
+                         const pybind11::dict &kwargs = pybind11::dict());
 
   // xlabel
   pybind11::object xlabel(const pybind11::tuple &args = pybind11::tuple(),
@@ -130,6 +142,7 @@ private:
     LOAD_FUNC_ATTR(figure, mod);
     LOAD_FUNC_ATTR(gca, mod);
     LOAD_FUNC_ATTR(gcf, mod);
+    LOAD_FUNC_ATTR(grid, mod);
     LOAD_FUNC_ATTR(legend, mod);
     LOAD_FUNC_ATTR(pause, mod);
     LOAD_FUNC_ATTR(plot, mod);
@@ -137,8 +150,10 @@ private:
     LOAD_FUNC_ATTR(savefig, mod);
     LOAD_FUNC_ATTR(scatter, mod);
     LOAD_FUNC_ATTR(show, mod);
+    LOAD_FUNC_ATTR(step, mod);
     LOAD_FUNC_ATTR(subplot, mod);
     LOAD_FUNC_ATTR(subplots, mod);
+    LOAD_FUNC_ATTR(title, mod);
     LOAD_FUNC_ATTR(xlabel, mod);
     LOAD_FUNC_ATTR(xlim, mod);
     LOAD_FUNC_ATTR(ylabel, mod);
@@ -154,6 +169,7 @@ private:
   pybind11::object figure_attr;
   pybind11::object gca_attr;
   pybind11::object gcf_attr;
+  pybind11::object grid_attr;
   pybind11::object legend_attr;
   pybind11::object pause_attr;
   pybind11::object plot_attr;
@@ -161,8 +177,10 @@ private:
   pybind11::object savefig_attr;
   pybind11::object scatter_attr;
   pybind11::object show_attr;
+  pybind11::object step_attr;
   pybind11::object subplot_attr;
   pybind11::object subplots_attr;
+  pybind11::object title_attr;
   pybind11::object xlabel_attr;
   pybind11::object xlim_attr;
   pybind11::object ylabel_attr;
@@ -233,6 +251,13 @@ figure::Figure PyPlot::gcf(const pybind11::tuple &args,
   return figure::Figure(obj);
 }
 
+// grid
+pybind11::object PyPlot::grid(const pybind11::tuple &args,
+                              const pybind11::dict &kwargs) {
+  pybind11::object obj = grid_attr(*args, **kwargs);
+  return obj;
+}
+
 // legend
 pybind11::object PyPlot::legend(const pybind11::tuple &args,
                                 const pybind11::dict &kwargs) {
@@ -279,6 +304,13 @@ pybind11::object PyPlot::savefig(const pybind11::tuple &args,
 pybind11::object PyPlot::show(const pybind11::tuple &args,
                               const pybind11::dict &kwargs) {
   pybind11::object ret = show_attr(*args, **kwargs);
+  return ret;
+}
+
+// step
+pybind11::object PyPlot::step(const pybind11::tuple &args,
+                              const pybind11::dict &kwargs) {
+  pybind11::object ret = step_attr(*args, **kwargs);
   return ret;
 }
 
@@ -329,6 +361,13 @@ PyPlot::subplots(int r, int c, const pybind11::dict &kwargs) {
     }
   }
   return {figure, axes};
+}
+
+// title
+pybind11::object PyPlot::title(const pybind11::tuple &args,
+                               const pybind11::dict &kwargs) {
+  pybind11::object ret = title_attr(*args, **kwargs);
+  return ret;
 }
 
 // xlabel

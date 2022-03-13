@@ -35,10 +35,11 @@ endif()
 # gallery
 if(NOT DEFINED USE_GUI)
   set(USE_GUI 1)
-  message(STATUS "USE_GUI = ON")
+  message(STATUS "set USE_GUI = ON")
 endif()
 if(NOT DEFINED ADD_DEMO)
   set(ADD_DEMO 1)
+  message(STATUS "set ADD_DEMO = ON")
 endif()
 if(USE_GUI)
   message(STATUS "USE_GUI = ON")
@@ -77,6 +78,7 @@ if(${ADD_DEMO})
   add_subdirectory(gallery/shapes_and_collections)
   add_subdirectory(gallery/artist_animation)
   add_subdirectory(gallery/mplot3d)
+  add_subdirectory(gallery/scales)
 endif()
 
 # test
@@ -127,7 +129,6 @@ set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
 # create .deb
 include("${PROJECT_SOURCE_DIR}/cmake/package.cmake")
 
-# uninstall target. actually it's just `xargs rm < install_manifest.txt`
 # https://gitlab.kitware.com/cmake/community/-/wikis/FAQ#can-i-do-make-uninstall-with-cmake
 if(NOT TARGET uninstall)
   configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/uninstall.cmake.in"

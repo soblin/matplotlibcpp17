@@ -69,6 +69,10 @@ public:
   pybind11::object contour(const pybind11::tuple &args = pybind11::tuple(),
                            const pybind11::dict &kwargs = pybind11::dict());
 
+  // contourf
+  pybind11::object contourf(const pybind11::tuple &args = pybind11::tuple(),
+                            const pybind11::dict &kwargs = pybind11::dict());
+
   // errorbar
   pybind11::object errorbar(const pybind11::tuple &args = pybind11::tuple(),
                             const pybind11::dict &kwargs = pybind11::dict());
@@ -159,6 +163,11 @@ public:
   pybind11::object set(const pybind11::tuple &args = pybind11::tuple(),
                        const pybind11::dict &kwargs = pybind11::dict());
 
+  // set_adjustable
+  pybind11::object
+  set_adjustable(const pybind11::tuple &args = pybind11::tuple(),
+                 const pybind11::dict &kwargs = pybind11::dict());
+
   // set_aspect
   pybind11::object set_aspect(const pybind11::tuple &args = pybind11::tuple(),
                               const pybind11::dict &kwargs = pybind11::dict());
@@ -174,6 +183,10 @@ public:
   // set_xlim
   pybind11::object set_xlim(const pybind11::tuple &args = pybind11::tuple(),
                             const pybind11::dict &kwargs = pybind11::dict());
+
+  // set_xscale
+  pybind11::object set_xscale(const pybind11::tuple &args = pybind11::tuple(),
+                              const pybind11::dict &kwargs = pybind11::dict());
 
   // set_xticks
   pybind11::object set_xticks(const pybind11::tuple &args = pybind11::tuple(),
@@ -191,6 +204,10 @@ public:
   // set_ylim
   pybind11::object set_ylim(const pybind11::tuple &args = pybind11::tuple(),
                             const pybind11::dict &kwargs = pybind11::dict());
+
+  // set_yscale
+  pybind11::object set_yscale(const pybind11::tuple &args = pybind11::tuple(),
+                              const pybind11::dict &kwargs = pybind11::dict());
 
   // set_yticks
   pybind11::object set_yticks(const pybind11::tuple &args = pybind11::tuple(),
@@ -212,6 +229,10 @@ public:
   pybind11::object tick_params(const pybind11::tuple &args = pybind11::tuple(),
                                const pybind11::dict &kwargs = pybind11::dict());
 
+  // twinx
+  Axes twinx(const pybind11::tuple &args = pybind11::tuple(),
+             const pybind11::dict &kwargs = pybind11::dict());
+
 private:
   void load_attrs() {
     LOAD_FUNC_ATTR(add_artist, self);
@@ -226,6 +247,7 @@ private:
 #endif
     LOAD_FUNC_ATTR(barh, self);
     LOAD_FUNC_ATTR(contour, self);
+    LOAD_FUNC_ATTR(contourf, self);
     LOAD_FUNC_ATTR(errorbar, self);
     LOAD_FUNC_ATTR(fill, self);
     LOAD_FUNC_ATTR(fill_between, self);
@@ -256,17 +278,21 @@ private:
     LOAD_FUNC_ATTR(quiverkey, self);
     LOAD_FUNC_ATTR(scatter, self);
     LOAD_FUNC_ATTR(set, self);
+    LOAD_FUNC_ATTR(set_adjustable, self);
     LOAD_FUNC_ATTR(set_aspect, self);
     LOAD_FUNC_ATTR(set_title, self);
     LOAD_FUNC_ATTR(set_xlabel, self);
     LOAD_FUNC_ATTR(set_xlim, self);
+    LOAD_FUNC_ATTR(set_xscale, self);
     LOAD_FUNC_ATTR(set_xticks, self);
     LOAD_FUNC_ATTR(set_xticklabels, self);
     LOAD_FUNC_ATTR(set_ylabel, self);
     LOAD_FUNC_ATTR(set_ylim, self);
+    LOAD_FUNC_ATTR(set_yscale, self);
     LOAD_FUNC_ATTR(set_yticks, self);
     LOAD_FUNC_ATTR(text, self);
     LOAD_FUNC_ATTR(tick_params, self);
+    LOAD_FUNC_ATTR(twinx, self);
   }
   pybind11::object add_artist_attr;
   pybind11::object add_collection_attr;
@@ -276,6 +302,7 @@ private:
   pybind11::object bar_label_attr;
   pybind11::object barh_attr;
   pybind11::object contour_attr;
+  pybind11::object contourf_attr;
   pybind11::object errorbar_attr;
   pybind11::object fill_attr;
   pybind11::object fill_between_attr;
@@ -297,19 +324,23 @@ private:
   pybind11::object quiverkey_attr;
   pybind11::object scatter_attr;
   pybind11::object set_attr;
+  pybind11::object set_adjustable_attr;
   pybind11::object set_aspect_attr;
   pybind11::object set_title_attr;
   pybind11::object set_xlabel_attr;
   pybind11::object set_xlim_attr;
+  pybind11::object set_xscale_attr;
   pybind11::object set_xticks_attr;
   pybind11::object set_xticklabels_attr;
   pybind11::object set_ylabel_attr;
   pybind11::object set_ylim_attr;
+  pybind11::object set_yscale_attr;
   pybind11::object set_yticks_attr;
   pybind11::object set_zlabel_attr;
   pybind11::object set_zlim_attr;
   pybind11::object text_attr;
   pybind11::object tick_params_attr;
+  pybind11::object twinx_attr;
   bool projection_3d;
 };
 
@@ -372,6 +403,13 @@ container::BarContainer Axes::barh(const pybind11::tuple &args,
 pybind11::object Axes::contour(const pybind11::tuple &args,
                                const pybind11::dict &kwargs) {
   pybind11::object obj = contour_attr(*args, **kwargs);
+  return obj;
+}
+
+// contourf
+pybind11::object Axes::contourf(const pybind11::tuple &args,
+                                const pybind11::dict &kwargs) {
+  pybind11::object obj = contourf_attr(*args, **kwargs);
   return obj;
 }
 
@@ -547,6 +585,13 @@ pybind11::object Axes::set(const pybind11::tuple &args,
   return ret;
 }
 
+// set_adjustable
+pybind11::object Axes::set_adjustable(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
+  pybind11::object ret = set_adjustable_attr(*args, **kwargs);
+  return ret;
+}
+
 // set_aspect
 pybind11::object Axes::set_aspect(const pybind11::tuple &args,
                                   const pybind11::dict &kwargs) {
@@ -575,6 +620,13 @@ pybind11::object Axes::set_xlim(const pybind11::tuple &args,
   return ret;
 }
 
+// set_xscale
+pybind11::object Axes::set_xscale(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
+  pybind11::object ret = set_xscale_attr(*args, **kwargs);
+  return ret;
+}
+
 // set_xticks
 pybind11::object Axes::set_xticks(const pybind11::tuple &args,
                                   const pybind11::dict &kwargs) {
@@ -600,6 +652,13 @@ pybind11::object Axes::set_ylabel(const pybind11::tuple &args,
 pybind11::object Axes::set_ylim(const pybind11::tuple &args,
                                 const pybind11::dict &kwargs) {
   pybind11::object ret = set_ylim_attr(*args, **kwargs);
+  return ret;
+}
+
+// set_yscale
+pybind11::object Axes::set_yscale(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
+  pybind11::object ret = set_yscale_attr(*args, **kwargs);
   return ret;
 }
 
@@ -636,6 +695,12 @@ pybind11::object Axes::tick_params(const pybind11::tuple &args,
                                    const pybind11::dict &kwargs) {
   pybind11::object ret = tick_params_attr(*args, **kwargs);
   return ret;
+}
+
+// twinx
+Axes Axes::twinx(const pybind11::tuple &args, const pybind11::dict &kwargs) {
+  pybind11::object ret = twinx_attr(*args, **kwargs);
+  return Axes(ret);
 }
 
 } // namespace matplotlibcpp17::axes
