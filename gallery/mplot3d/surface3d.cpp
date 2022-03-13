@@ -45,6 +45,10 @@ int main() {
                                      "linewidth"_a = 0, "antialiased"_a = false,
                                      "cmap"_a = cm::coolwarm()));
   ax.set_zlim(Args(-1.01, 1.01));
+  // TODO
+  // auto locator = ticker::LinearLocator(Args(10));
+  // ax.zaxis.set_major_locator(Args(locator.unwrap()));
+  // ax.zaxis.set_major_formatter(Args("{x:.02f}"));
   fig.colorbar(Args(surf), Kwargs("shrink"_a = 0.5, "aspect"_a = 5));
   plt.show();
 }
