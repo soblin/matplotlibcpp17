@@ -42,6 +42,9 @@ var annotated_dup =
       [ "text", "namespacematplotlibcpp17_1_1text.html", [
         [ "Text", "structmatplotlibcpp17_1_1text_1_1_text.html", null ]
       ] ],
+      [ "ticker", null, [
+        [ "LogLocator", "structmatplotlibcpp17_1_1ticker_1_1_log_locator.html", null ]
+      ] ],
       [ "BaseWrapper", "structmatplotlibcpp17_1_1_base_wrapper.html", null ]
     ] ]
 ];

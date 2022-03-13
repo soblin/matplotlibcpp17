@@ -18,7 +18,8 @@ var hierarchy =
       [ "matplotlibcpp17::patches::Wedge", "structmatplotlibcpp17_1_1patches_1_1_wedge.html", null ],
       [ "matplotlibcpp17::quiver::Quiver", "structmatplotlibcpp17_1_1quiver_1_1_quiver.html", null ],
       [ "matplotlibcpp17::quiver::QuiverKey", "structmatplotlibcpp17_1_1quiver_1_1_quiver_key.html", null ],
-      [ "matplotlibcpp17::text::Text", "structmatplotlibcpp17_1_1text_1_1_text.html", null ]
+      [ "matplotlibcpp17::text::Text", "structmatplotlibcpp17_1_1text_1_1_text.html", null ],
+      [ "matplotlibcpp17::ticker::LogLocator", "structmatplotlibcpp17_1_1ticker_1_1_log_locator.html", null ]
     ] ],
     [ "matplotlibcpp17::pyplot::PyPlot", "structmatplotlibcpp17_1_1pyplot_1_1_py_plot.html", null ]
 ];

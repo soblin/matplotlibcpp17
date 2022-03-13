@@ -40,6 +40,9 @@ var namespaces_dup =
         [ "QuiverKey", "structmatplotlibcpp17_1_1quiver_1_1_quiver_key.html", null ]
       ] ],
       [ "text", "namespacematplotlibcpp17_1_1text.html", "namespacematplotlibcpp17_1_1text" ],
+      [ "ticker", null, [
+        [ "LogLocator", "structmatplotlibcpp17_1_1ticker_1_1_log_locator.html", null ]
+      ] ],
       [ "BaseWrapper", "structmatplotlibcpp17_1_1_base_wrapper.html", null ]
     ] ]
 ];
