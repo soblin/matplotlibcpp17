@@ -10,8 +10,19 @@ add_demo(errorbar_limits_simple errorbar_limits_simple.cpp)
 add_demo(errorbar_subsample errorbar_subsample.cpp)
 add_demo(step_demo step_demo.cpp)
 
-add_custom_target(lines_bars_and_markers
-  DEPENDS bar_label_demo fill simple_plot scatter_symbol fill_between_demo fill_betweenx_demo scatter_with_legend scatter_hist errorbar_limits_simple errorbar_subsample step_demo
+add_custom_target(
+  lines_bars_and_markers
+  DEPENDS bar_label_demo
+          fill
+          simple_plot
+          scatter_symbol
+          fill_between_demo
+          fill_betweenx_demo
+          scatter_with_legend
+          scatter_hist
+          errorbar_limits_simple
+          errorbar_subsample
+          step_demo
   COMMAND bar_label_demo
   COMMAND fill
   COMMAND simple_plot
@@ -24,5 +35,4 @@ add_custom_target(lines_bars_and_markers
   COMMAND errorbar_subsample
   COMMAND step_demo
   COMMENT "running lines_bars_and_markers"
-  WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../images"
-)
+  WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../images")

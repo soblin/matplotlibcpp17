@@ -129,7 +129,6 @@ set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
 # create .deb
 include("${PROJECT_SOURCE_DIR}/cmake/package.cmake")
 
-# uninstall target. actually it's just `xargs rm < install_manifest.txt`
 # https://gitlab.kitware.com/cmake/community/-/wikis/FAQ#can-i-do-make-uninstall-with-cmake
 if(NOT TARGET uninstall)
   configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/uninstall.cmake.in"
