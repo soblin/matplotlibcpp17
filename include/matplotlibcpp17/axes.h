@@ -69,6 +69,10 @@ public:
   pybind11::object contour(const pybind11::tuple &args = pybind11::tuple(),
                            const pybind11::dict &kwargs = pybind11::dict());
 
+  // contourf
+  pybind11::object contourf(const pybind11::tuple &args = pybind11::tuple(),
+                            const pybind11::dict &kwargs = pybind11::dict());
+
   // errorbar
   pybind11::object errorbar(const pybind11::tuple &args = pybind11::tuple(),
                             const pybind11::dict &kwargs = pybind11::dict());
@@ -226,6 +230,7 @@ private:
 #endif
     LOAD_FUNC_ATTR(barh, self);
     LOAD_FUNC_ATTR(contour, self);
+    LOAD_FUNC_ATTR(contourf, self);
     LOAD_FUNC_ATTR(errorbar, self);
     LOAD_FUNC_ATTR(fill, self);
     LOAD_FUNC_ATTR(fill_between, self);
@@ -276,6 +281,7 @@ private:
   pybind11::object bar_label_attr;
   pybind11::object barh_attr;
   pybind11::object contour_attr;
+  pybind11::object contourf_attr;
   pybind11::object errorbar_attr;
   pybind11::object fill_attr;
   pybind11::object fill_between_attr;
@@ -372,6 +378,13 @@ container::BarContainer Axes::barh(const pybind11::tuple &args,
 pybind11::object Axes::contour(const pybind11::tuple &args,
                                const pybind11::dict &kwargs) {
   pybind11::object obj = contour_attr(*args, **kwargs);
+  return obj;
+}
+
+// contourf
+pybind11::object Axes::contourf(const pybind11::tuple &args,
+                                const pybind11::dict &kwargs) {
+  pybind11::object obj = contourf_attr(*args, **kwargs);
   return obj;
 }
 
