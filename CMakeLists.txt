@@ -70,13 +70,13 @@ if(${ADD_DEMO})
   set(CMAKE_CXX_FLAGS
       "-Wall -g -DUSE_GUI=${USE_GUI} -DMATPLOTLIB_MINOR_VER_GTE_4=${MATPLOTLIB_MINOR_VER_GTE_4}"
   )
-  add_subdirectory(gallery/lines_bars_and_markers)
+  # add_subdirectory(gallery/lines_bars_and_markers)
   add_subdirectory(gallery/subplots_axes_and_figures)
-  add_subdirectory(gallery/statistics)
-  add_subdirectory(gallery/images_contours_and_fields)
-  add_subdirectory(gallery/shapes_and_collections)
-  add_subdirectory(gallery/artist_animation)
-  add_subdirectory(gallery/mplot3d)
+  # add_subdirectory(gallery/statistics)
+  # add_subdirectory(gallery/images_contours_and_fields)
+  # add_subdirectory(gallery/shapes_and_collections)
+  # add_subdirectory(gallery/artist_animation)
+  # add_subdirectory(gallery/mplot3d)
 endif()
 
 # test

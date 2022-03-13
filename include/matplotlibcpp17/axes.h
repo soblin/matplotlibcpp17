@@ -212,6 +212,10 @@ public:
   pybind11::object tick_params(const pybind11::tuple &args = pybind11::tuple(),
                                const pybind11::dict &kwargs = pybind11::dict());
 
+  // twinx
+  Axes twinx(const pybind11::tuple &args = pybind11::tuple(),
+             const pybind11::dict &kwargs = pybind11::dict());
+
 private:
   void load_attrs() {
     LOAD_FUNC_ATTR(add_artist, self);
@@ -267,6 +271,7 @@ private:
     LOAD_FUNC_ATTR(set_yticks, self);
     LOAD_FUNC_ATTR(text, self);
     LOAD_FUNC_ATTR(tick_params, self);
+    LOAD_FUNC_ATTR(twinx, self);
   }
   pybind11::object add_artist_attr;
   pybind11::object add_collection_attr;
@@ -310,6 +315,7 @@ private:
   pybind11::object set_zlim_attr;
   pybind11::object text_attr;
   pybind11::object tick_params_attr;
+  pybind11::object twinx_attr;
   bool projection_3d;
 };
 
@@ -636,6 +642,12 @@ pybind11::object Axes::tick_params(const pybind11::tuple &args,
                                    const pybind11::dict &kwargs) {
   pybind11::object ret = tick_params_attr(*args, **kwargs);
   return ret;
+}
+
+// twinx
+Axes Axes::twinx(const pybind11::tuple &args, const pybind11::dict &kwargs) {
+  pybind11::object ret = twinx_attr(*args, **kwargs);
+  return Axes(ret);
 }
 
 } // namespace matplotlibcpp17::axes
