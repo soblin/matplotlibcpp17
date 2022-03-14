@@ -71,6 +71,7 @@ if(${ADD_DEMO})
   set(CMAKE_CXX_FLAGS
       "-Wall -g -DUSE_GUI=${USE_GUI} -DMATPLOTLIB_MINOR_VER_GTE_4=${MATPLOTLIB_MINOR_VER_GTE_4}"
   )
+  add_subdirectory(gallery/tests)
   add_subdirectory(gallery/lines_bars_and_markers)
   add_subdirectory(gallery/subplots_axes_and_figures)
   add_subdirectory(gallery/statistics)
@@ -79,15 +80,6 @@ if(${ADD_DEMO})
   add_subdirectory(gallery/artist_animation)
   add_subdirectory(gallery/mplot3d)
   add_subdirectory(gallery/scales)
-endif()
-
-# test
-enable_testing()
-if(NOT DEFINED DO_TEST)
-  set(DO_TEST ON)
-endif()
-if(${DO_TEST})
-  add_subdirectory(tests)
 endif()
 
 # install https://dominikberner.ch/cmake-interface-lib/
