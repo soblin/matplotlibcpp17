@@ -34,12 +34,12 @@ endif()
 
 # gallery
 if(NOT DEFINED USE_GUI)
-  set(USE_GUI 1)
-  message(STATUS "set USE_GUI = ON")
+  set(USE_GUI 0)
+  message(STATUS "set USE_GUI = OFF")
 endif()
 if(NOT DEFINED ADD_DEMO)
-  set(ADD_DEMO 1)
-  message(STATUS "set ADD_DEMO = ON")
+  set(ADD_DEMO 0)
+  message(STATUS "set ADD_DEMO = OFF")
 endif()
 if(USE_GUI)
   message(STATUS "USE_GUI = ON")
@@ -51,8 +51,6 @@ if(ADD_DEMO)
 else()
   message(STATUS "ADD_DEMO = OFF")
 endif()
-
-set(matplotlibcpp17_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 function(add_demo name path)
   add_executable(${name} ${path})
@@ -81,6 +79,11 @@ if(${ADD_DEMO})
   add_subdirectory(gallery/mplot3d)
   add_subdirectory(gallery/scales)
 endif()
+
+# for add_subdirectory
+add_library(matplotlibcpp17::matplotlibcpp17 INTERFACE IMPORTED GLOBAL)
+set_property(TARGET matplotlibcpp17::matplotlibcpp17 PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/include ${Python3_INCLUDE_DIRS})
+set_property(TARGET matplotlibcpp17::matplotlibcpp17 PROPERTY INTERFACE_LINK_LIBRARIES ${Python3_LIBRARIES} pybind11::embed)
 
 # install https://dominikberner.ch/cmake-interface-lib/
 include(GNUInstallDirs)
