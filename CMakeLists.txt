@@ -82,8 +82,13 @@ endif()
 
 # for add_subdirectory
 add_library(matplotlibcpp17::matplotlibcpp17 INTERFACE IMPORTED GLOBAL)
-set_property(TARGET matplotlibcpp17::matplotlibcpp17 PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/include ${Python3_INCLUDE_DIRS})
-set_property(TARGET matplotlibcpp17::matplotlibcpp17 PROPERTY INTERFACE_LINK_LIBRARIES ${Python3_LIBRARIES} pybind11::embed)
+set_property(
+  TARGET matplotlibcpp17::matplotlibcpp17
+  PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/include
+           ${Python3_INCLUDE_DIRS})
+set_property(
+  TARGET matplotlibcpp17::matplotlibcpp17
+  PROPERTY INTERFACE_LINK_LIBRARIES ${Python3_LIBRARIES} pybind11::embed)
 
 # install https://dominikberner.ch/cmake-interface-lib/
 include(GNUInstallDirs)

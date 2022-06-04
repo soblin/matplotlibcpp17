@@ -17,7 +17,9 @@ It is supposed to provide the user with almost full access to matplotlib feature
 - numpy for `mplot3d`
 - ([xtensor](https://github.com/xtensor-stack/xtensor) == 0.24.0 + [xtl](https://github.com/xtensor-stack/xtl), only for `gallery` demos)
 
-## Installation
+## Usage
+
+### Installation
 
 ```bash
 $ mdkir build; cd build;
@@ -35,7 +37,17 @@ find_package(matplotlibcpp17)
 target_link_libraries(a.out matplotlibcpp17::matplotlibcpp17)
 ```
 
-Or you could just add include path to `include` directory and compile your codes as descibed in [minimal example](#minimal-example).
+### Use by add_subdirectory
+
+```bash
+add_subdirectory(path to matplotlibcpp17)
+...
+target_link_libraries(a.out matplotlibcpp17::matplotlibcpp17)
+```
+
+### Include matplotlibcpp17 directly
+
+descibed in [minimal example](#minimal-example).
 
 ## Syntax
 
@@ -165,7 +177,7 @@ From [gallery/artist_animation/random_walk.cpp](https://github.com/soblin/matplo
 
 ### build
 
-If you do not need to build the demos, use `-DADD_DEMO=0` (by default it is `1`).
+If you want to build the demos, use `-DADD_DEMO=1` (by default it is `0`).
 
 ```bash
 $ mkdir build; cd build
@@ -173,7 +185,7 @@ $ cmake .. -DADD_DEMO={0, 1} -DUSE_GUI={0, 1}
 $ make -j
 ```
 
-If you do not need to see the demo with `plt.show()`, use `-DUSE_GUI=0` (by default it is `1`). Otherwise the executables will `plt.savefig()` to `gallery/images` directory.
+If you do not need to see the demo with `plt.show()`, use `-DUSE_GUI=1` (by default it is `0`). Otherwise the executables will `plt.savefig()` to `gallery/images` directory.
 
 `make <gallery directory name>` runs all the executables under that directory.
 
