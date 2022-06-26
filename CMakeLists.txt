@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.12)
 
 project(
   "matplotlibcpp17"
-  VERSION 1.0.0
+  VERSION 1.0.4
   DESCRIPTION
     "A C++ header-only plotting library based on pybind11 and matplotlib, featuring more flexibility than matplotlibcpp"
   HOMEPAGE_URL "https://soblin.github.io/matplotlibcpp17/")
@@ -13,13 +13,14 @@ find_package(
   REQUIRED)
 find_package(pybind11 2.4.3 REQUIRED)
 
-# check matplotlib minor version
+# ##############################################################################
+# (1) check matplotlib minor version
+# ##############################################################################
 execute_process(
   COMMAND ${Python3_EXECUTABLE} "-c" "import matplotlib;
 print(str(matplotlib.__version__), end='')"
   RESULT_VARIABLE MATPLOTLIB_VERSION_CHECKING
   OUTPUT_VARIABLE MATPLOTLIB_VERSION)
-
 if(NOT MATPLOTLIB_VERSION_CHECKING MATCHES 0)
   message(FATAL_ERROR "Could not check matplotlib.__version__")
 endif()
@@ -32,7 +33,77 @@ else()
   set(MATPLOTLIB_MINOR_VER_GTE_4 1)
 endif()
 
-# gallery
+target_include_directories(
+  ${PROJECT_NAME}
+  INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+            $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
+
+# ##############################################################################
+# (2) for add_subdirectory
+# ##############################################################################
+add_library(matplotlibcpp17::matplotlibcpp17 INTERFACE IMPORTED GLOBAL)
+set_property(
+  TARGET matplotlibcpp17::matplotlibcpp17
+  PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/include
+           ${Python3_INCLUDE_DIRS})
+set_property(
+  TARGET matplotlibcpp17::matplotlibcpp17
+  PROPERTY INTERFACE_LINK_LIBRARIES ${Python3_LIBRARIES} pybind11::embed)
+
+# ##############################################################################
+# (3) install
+# ##############################################################################
+# https://dominikberner.ch/cmake-interface-lib/
+include(GNUInstallDirs)
+# header-only library(INTERFACE)
+add_library(${PROJECT_NAME} INTERFACE)
+install(
+  TARGETS ${PROJECT_NAME}
+  EXPORT ${PROJECT_NAME}_Targets
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+  "${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${PROJECT_VERSION}
+  COMPATIBILITY SameMajorVersion)
+configure_package_config_file(
+  "${PROJECT_SOURCE_DIR}/cmake/${PROJECT_NAME}Config.cmake.in"
+  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+  INSTALL_DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/${PROJECT_NAME})
+# to /share/cmake/matplotlibcpp17
+install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+              "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/${PROJECT_NAME})
+# to /share/cmake/matplotlibcpp17
+install(
+  EXPORT ${PROJECT_NAME}_Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  NAMESPACE ${PROJECT_NAME}::
+  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/${PROJECT_NAME})
+# to /include/matplotlibcpp17
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}
+        DESTINATION include)
+set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
+# create .deb
+include("${PROJECT_SOURCE_DIR}/cmake/package.cmake")
+
+# ##############################################################################
+# (4) uninstall
+# ##############################################################################
+# https://gitlab.kitware.com/cmake/community/-/wikis/FAQ#can-i-do-make-uninstall-with-cmake
+if(NOT TARGET uninstall)
+  configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/uninstall.cmake.in"
+                 "${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake" IMMEDIATE @ONLY)
+  add_custom_target(
+    uninstall COMMAND ${CMAKE_COMMAND} -P
+                      ${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake)
+endif()
+
+# ##############################################################################
+# (5) gallery
+# ##############################################################################
 if(NOT DEFINED USE_GUI)
   set(USE_GUI 0)
   message(STATUS "set USE_GUI = OFF")
@@ -78,62 +149,4 @@ if(${ADD_DEMO})
   add_subdirectory(gallery/artist_animation)
   add_subdirectory(gallery/mplot3d)
   add_subdirectory(gallery/scales)
-endif()
-
-# for add_subdirectory
-add_library(matplotlibcpp17::matplotlibcpp17 INTERFACE IMPORTED GLOBAL)
-set_property(
-  TARGET matplotlibcpp17::matplotlibcpp17
-  PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/include
-           ${Python3_INCLUDE_DIRS})
-set_property(
-  TARGET matplotlibcpp17::matplotlibcpp17
-  PROPERTY INTERFACE_LINK_LIBRARIES ${Python3_LIBRARIES} pybind11::embed)
-
-# install https://dominikberner.ch/cmake-interface-lib/
-include(GNUInstallDirs)
-add_library(${PROJECT_NAME} INTERFACE)
-target_include_directories(
-  ${PROJECT_NAME}
-  INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-            $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
-install(
-  TARGETS ${PROJECT_NAME}
-  EXPORT ${PROJECT_NAME}_Targets
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
-include(CMakePackageConfigHelpers)
-write_basic_package_version_file(
-  "${PROJECT_NAME}ConfigVersion.cmake"
-  VERSION ${PROJECT_VERSION}
-  COMPATIBILITY SameMajorVersion)
-configure_package_config_file(
-  "${PROJECT_SOURCE_DIR}/cmake/${PROJECT_NAME}Config.cmake.in"
-  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
-  INSTALL_DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/${PROJECT_NAME})
-# to /share/cmake/matplotlibcpp17
-install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
-              "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
-        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/${PROJECT_NAME})
-# to /share/cmake/matplotlibcpp17
-install(
-  EXPORT ${PROJECT_NAME}_Targets
-  FILE ${PROJECT_NAME}Targets.cmake
-  NAMESPACE ${PROJECT_NAME}::
-  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/${PROJECT_NAME})
-# to /include/matplotlibcpp17
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}
-        DESTINATION include)
-set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
-# create .deb
-include("${PROJECT_SOURCE_DIR}/cmake/package.cmake")
-
-# https://gitlab.kitware.com/cmake/community/-/wikis/FAQ#can-i-do-make-uninstall-with-cmake
-if(NOT TARGET uninstall)
-  configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/uninstall.cmake.in"
-                 "${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake" IMMEDIATE @ONLY)
-  add_custom_target(
-    uninstall COMMAND ${CMAKE_COMMAND} -P
-                      ${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake)
 endif()
