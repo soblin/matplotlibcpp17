@@ -44,6 +44,10 @@ public:
   pybind11::object clf(const pybind11::tuple &args = pybind11::tuple(),
                        const pybind11::dict &kwargs = pybind11::dict());
 
+  // clim
+  pybind11::object clim(const pybind11::tuple &args = pybind11::tuple(),
+                        const pybind11::dict &kwargs = pybind11::dict());
+
   // errorbar
   pybind11::object errorbar(const pybind11::tuple &args = pybind11::tuple(),
                             const pybind11::dict &kwargs = pybind11::dict());
@@ -141,6 +145,7 @@ private:
     LOAD_FUNC_ATTR(axis, mod);
     LOAD_FUNC_ATTR(cla, mod);
     LOAD_FUNC_ATTR(clf, mod);
+    LOAD_FUNC_ATTR(clim, mod);
     LOAD_FUNC_ATTR(errorbar, mod);
     LOAD_FUNC_ATTR(figaspect, mod);
     LOAD_FUNC_ATTR(figure, mod);
@@ -169,6 +174,7 @@ private:
   pybind11::object axis_attr;
   pybind11::object cla_attr;
   pybind11::object clf_attr;
+  pybind11::object clim_attr;
   pybind11::object errorbar_attr;
   pybind11::object figaspect_attr;
   pybind11::object figure_attr;
@@ -217,6 +223,13 @@ pybind11::object PyPlot::cla(const pybind11::tuple &args,
 pybind11::object PyPlot::clf(const pybind11::tuple &args,
                              const pybind11::dict &kwargs) {
   pybind11::object ret = clf_attr(*args, **kwargs);
+  return ret;
+}
+
+// clim
+pybind11::object PyPlot::clim(const pybind11::tuple &args,
+                              const pybind11::dict &kwargs) {
+  pybind11::object ret = clim_attr(*args, **kwargs);
   return ret;
 }
 
