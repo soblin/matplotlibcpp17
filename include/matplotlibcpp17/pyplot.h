@@ -44,6 +44,14 @@ public:
   pybind11::object clf(const pybind11::tuple &args = pybind11::tuple(),
                        const pybind11::dict &kwargs = pybind11::dict());
 
+  // clim
+  pybind11::object clim(const pybind11::tuple &args = pybind11::tuple(),
+                        const pybind11::dict &kwargs = pybind11::dict());
+
+  // colorbar
+  pybind11::object colorbar(const pybind11::tuple &args = pybind11::tuple(),
+                            const pybind11::dict &kwargs = pybind11::dict());
+
   // errorbar
   pybind11::object errorbar(const pybind11::tuple &args = pybind11::tuple(),
                             const pybind11::dict &kwargs = pybind11::dict());
@@ -65,9 +73,17 @@ public:
   figure::Figure gcf(const pybind11::tuple &args = pybind11::tuple(),
                      const pybind11::dict &kwargs = pybind11::dict());
 
+  // gci
+  pybind11::object gci(const pybind11::tuple &args = pybind11::tuple(),
+                       const pybind11::dict &kwargs = pybind11::dict());
+
   // grid
   pybind11::object grid(const pybind11::tuple &args = pybind11::tuple(),
                         const pybind11::dict &kwargs = pybind11::dict());
+
+  // imshow
+  pybind11::object imshow(const pybind11::tuple &args = pybind11::tuple(),
+                          const pybind11::dict &kwargs = pybind11::dict());
 
   // legend
   pybind11::object legend(const pybind11::tuple &args = pybind11::tuple(),
@@ -137,12 +153,16 @@ private:
     LOAD_FUNC_ATTR(axis, mod);
     LOAD_FUNC_ATTR(cla, mod);
     LOAD_FUNC_ATTR(clf, mod);
+    LOAD_FUNC_ATTR(clim, mod);
+    LOAD_FUNC_ATTR(colorbar, mod);
     LOAD_FUNC_ATTR(errorbar, mod);
     LOAD_FUNC_ATTR(figaspect, mod);
     LOAD_FUNC_ATTR(figure, mod);
     LOAD_FUNC_ATTR(gca, mod);
     LOAD_FUNC_ATTR(gcf, mod);
+    LOAD_FUNC_ATTR(gci, mod);
     LOAD_FUNC_ATTR(grid, mod);
+    LOAD_FUNC_ATTR(imshow, mod);
     LOAD_FUNC_ATTR(legend, mod);
     LOAD_FUNC_ATTR(pause, mod);
     LOAD_FUNC_ATTR(plot, mod);
@@ -164,12 +184,16 @@ private:
   pybind11::object axis_attr;
   pybind11::object cla_attr;
   pybind11::object clf_attr;
+  pybind11::object clim_attr;
+  pybind11::object colorbar_attr;
   pybind11::object errorbar_attr;
   pybind11::object figaspect_attr;
   pybind11::object figure_attr;
   pybind11::object gca_attr;
   pybind11::object gcf_attr;
+  pybind11::object gci_attr;
   pybind11::object grid_attr;
+  pybind11::object imshow_attr;
   pybind11::object legend_attr;
   pybind11::object pause_attr;
   pybind11::object plot_attr;
@@ -214,6 +238,20 @@ pybind11::object PyPlot::clf(const pybind11::tuple &args,
   return ret;
 }
 
+// clim
+pybind11::object PyPlot::clim(const pybind11::tuple &args,
+                              const pybind11::dict &kwargs) {
+  pybind11::object ret = clim_attr(*args, **kwargs);
+  return ret;
+}
+
+// colorbar
+pybind11::object PyPlot::colorbar(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
+  pybind11::object ret = colorbar_attr(*args, **kwargs);
+  return ret;
+}
+
 // errorbar
 pybind11::object PyPlot::errorbar(const pybind11::tuple &args,
                                   const pybind11::dict &kwargs) {
@@ -251,10 +289,24 @@ figure::Figure PyPlot::gcf(const pybind11::tuple &args,
   return figure::Figure(obj);
 }
 
+// gci
+pybind11::object PyPlot::gci(const pybind11::tuple &args,
+                             const pybind11::dict &kwargs) {
+  pybind11::object obj = gci_attr(*args, **kwargs);
+  return obj;
+}
+
 // grid
 pybind11::object PyPlot::grid(const pybind11::tuple &args,
                               const pybind11::dict &kwargs) {
   pybind11::object obj = grid_attr(*args, **kwargs);
+  return obj;
+}
+
+// imshow
+pybind11::object PyPlot::imshow(const pybind11::tuple &args,
+                                const pybind11::dict &kwargs) {
+  pybind11::object obj = imshow_attr(*args, **kwargs);
   return obj;
 }
 
