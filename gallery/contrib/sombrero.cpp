@@ -1,8 +1,7 @@
 #include <matplotlibcpp17/pyplot.h>
 #include <NumCpp.hpp>
 
-int main()
-{
+int main() {
   pybind11::scoped_interpreter guard{};
 
   const int size = 1000;
@@ -11,9 +10,11 @@ int main()
   const auto i = nc::arange<double>(size) - (0.5 * size);
   const auto [x, y] = nc::meshgrid<double>(i, i);
 
-  const auto xy = (nc::power(x, 2) + nc::power(y, 2)) / (-2.0 * nc::power(sigma, 2));
+  const auto xy =
+      (nc::power(x, 2) + nc::power(y, 2)) / (-2.0 * nc::power(sigma, 2));
 
-  const auto sombrero = nc::exp(xy) * (xy + 1.0) / (std::acos(-1.0) * nc::power(sigma, 4));
+  const auto sombrero =
+      nc::exp(xy) * (xy + 1.0) / (std::acos(-1.0) * nc::power(sigma, 4));
   const auto pysombrero = nc::pybindInterface::nc2pybind(sombrero);
 
   const auto min = nc::min(sombrero)[0];
@@ -21,9 +22,9 @@ int main()
 
   auto plt = matplotlibcpp17::pyplot::import();
 
-  plt.imshow(Args(pysombrero), Kwargs(
-    "extent"_a = pybind11::make_tuple(-1, +1, -1, +1),
-    "cmap"_a = "inferno"));
+  plt.imshow(Args(pysombrero),
+             Kwargs("extent"_a = pybind11::make_tuple(-1, +1, -1, +1),
+                    "cmap"_a = "inferno"));
 
   plt.colorbar();
 
