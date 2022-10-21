@@ -33,12 +33,6 @@ else()
   set(MATPLOTLIB_MINOR_VER_GTE_4 1)
 endif()
 
-target_include_directories(
-  ${PROJECT_NAME}
-  INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-            $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
-
 # ##############################################################################
 # (2) for add_subdirectory
 # ##############################################################################
@@ -89,6 +83,12 @@ set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
 # create .deb
 include("${PROJECT_SOURCE_DIR}/cmake/package.cmake")
 
+target_include_directories(
+  ${PROJECT_NAME}
+  INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+            $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
+
 # ##############################################################################
 # (4) uninstall
 # ##############################################################################
@@ -125,9 +125,7 @@ endif()
 
 function(add_demo name path)
   add_executable(${name} ${path})
-  target_include_directories(${name} PUBLIC ${Python3_INCLUDE_DIRS}
-                                            ${matplotlibcpp17_INCLUDE_DIRS})
-  target_link_libraries(${name} ${Python3_LIBRARIES} pybind11::embed xtensor)
+  target_link_libraries(${name} xtensor matplotlibcpp17::matplotlibcpp17)
 endfunction()
 
 if(${ADD_DEMO})
