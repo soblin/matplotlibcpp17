@@ -16,11 +16,8 @@ pybind11::object coolwarm() {
   return ret;
 }
 
-pybind11::object PuBu_r() {
-  pybind11::object ret =
-      pybind11::module::import("matplotlib.cm").attr("PuBu_r");
-  return ret;
-}
+static const char *PuBu_r = "PuBu_r";
+static const char *RdYlGn = "RdYlGn";
 
 } // namespace matplotlibcpp17::cm
 

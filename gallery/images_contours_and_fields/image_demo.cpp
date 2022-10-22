@@ -2,6 +2,7 @@
 // https://matplotlib.org/stable/gallery/images_contours_and_fields/image_demo.html
 
 #include <matplotlibcpp17/pyplot.h>
+#include <matplotlibcpp17/cm.h>
 
 #include <xtensor/xbuilder.hpp>
 #include <xtensor/xview.hpp>
@@ -43,7 +44,7 @@ int main() {
                vmin = *min_element(Z_.begin(), Z_.end());
   auto Zpy = py::array(py::cast(std::move(Z2D)));
   ax.imshow(Args(Zpy), Kwargs("interpolation"_a = "bilinear",
-                              "cmap"_a = "RdYlGn", "origin"_a = "lower",
+                              "cmap"_a = cm::RdYlGn, "origin"_a = "lower",
                               "extent"_a = py::make_tuple(-3, 3, -3, 3),
                               "vmax"_a = vmax, "vmin"_a = vmin));
 #if USE_GUI

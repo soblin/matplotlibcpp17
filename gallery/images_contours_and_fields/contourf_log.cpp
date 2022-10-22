@@ -52,7 +52,7 @@ int main() {
   auto [fig, ax] = plt.subplots();
   auto cs = ax.contourf(Args(Xpy, Ypy, zpy),
                         Kwargs("locator"_a = ticker::LogLocator().unwrap(),
-                               "cmap"_a = cm::PuBu_r()));
+                               "cmap"_a = cm::PuBu_r));
   fig.colorbar(Args(cs));
   plt.show();
 }
