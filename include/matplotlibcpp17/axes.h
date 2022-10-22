@@ -118,6 +118,10 @@ public:
   pybind11::object hist2d(const pybind11::tuple &args = pybind11::tuple(),
                           const pybind11::dict &kwargs = pybind11::dict());
 
+  // imshow
+  pybind11::object imshow(const pybind11::tuple &args = pybind11::tuple(),
+                          const pybind11::dict &kwargs = pybind11::dict());
+
   // invert_yaxis
   pybind11::object
   invert_yaxis(const pybind11::tuple &args = pybind11::tuple(),
@@ -260,10 +264,12 @@ private:
     LOAD_FUNC_ATTR(hist, self);
     LOAD_FUNC_ATTR(hist2d, self);
     LOAD_FUNC_ATTR(invert_yaxis, self);
+    LOAD_FUNC_ATTR(imshow, self);
     LOAD_FUNC_ATTR(legend, self);
     LOAD_FUNC_ATTR(pcolormesh, self);
     LOAD_FUNC_ATTR(plot, self);
-    // NOTE: only when called with projection='3d', `plot_surface`, `plot_wireframe`, `set_zlabel` prop exists.
+    // NOTE: only when called with projection='3d', `plot_surface`,
+    // `plot_wireframe`, `set_zlabel` prop exists.
     try {
       LOAD_FUNC_ATTR(plot_surface, self);
       LOAD_FUNC_ATTR(plot_wireframe, self);
@@ -315,6 +321,7 @@ private:
   pybind11::object hist_attr;
   pybind11::object hist2d_attr;
   pybind11::object invert_yaxis_attr;
+  pybind11::object imshow_attr;
   pybind11::object legend_attr;
   pybind11::object pcolormesh_attr;
   pybind11::object plot_attr;
@@ -463,7 +470,7 @@ pybind11::object Axes::get_lines(const pybind11::tuple &args,
 pybind11::object Axes::get_xaxis_transform(const pybind11::tuple &args,
                                            const pybind11::dict &kwargs) {
   pybind11::object ret = get_xaxis_transform_attr(*args, **kwargs);
-  return ret;  
+  return ret;
 }
 
 // get_xlim
@@ -519,6 +526,13 @@ pybind11::object Axes::hist2d(const pybind11::tuple &args,
 pybind11::object Axes::invert_yaxis(const pybind11::tuple &args,
                                     const pybind11::dict &kwargs) {
   pybind11::object ret = invert_yaxis_attr(*args, **kwargs);
+  return ret;
+}
+
+// imshow
+pybind11::object Axes::imshow(const pybind11::tuple &args,
+                              const pybind11::dict &kwargs) {
+  pybind11::object ret = imshow_attr(*args, **kwargs);
   return ret;
 }
 

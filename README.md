@@ -68,7 +68,7 @@ gives
 
 ![minimal example](./gallery/images/hello_world.png)
 
-### example1 - subplots
+### subplots
 
 From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/subplots_axes_and_figures/align_labels_demo.cpp).
 
@@ -91,7 +91,7 @@ From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.co
 
 ![subplots_axes_and_figures](./gallery/images/align_labels_demo.png)
 
-### example2 - bar plot
+### bar plot
 
 From [gallery/lines_bars_and_markers/bar_label_demo.cpp](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/lines_bars_and_markers/bar_label_demo.cpp). Here `subplots()` returns `tuple<Figure, Axes>`.
 
@@ -120,7 +120,26 @@ From [gallery/lines_bars_and_markers/bar_label_demo.cpp](https://github.com/sobl
 
 ![bar_label_demo1](./gallery/images/bar_label_demo1.png)
 
-### example3 - fill
+### image
+
+2D-style pybind11 array can be plotted as an image using `imshow()` function.
+
+From [images_contours_and_fields/image_demo](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images_contours_and_fields/image_demo.cpp)
+
+- [original python code](https://matplotlib.org/stable/gallery/images_contours_and_fields/image_demo.html)
+
+```cpp
+  vector<vector<double>> Z2D{...};
+  auto Zpy = py::array(py::cast(std::move(Z2D)));
+  ax.imshow(Args(Zpy), Kwargs("interpolation"_a = "bilinear",
+                              "cmap"_a = "RdYlGn", "origin"_a = "lower",
+                              "extent"_a = py::make_tuple(-3, 3, -3, 3),
+                              "vmax"_a = vmax, "vmin"_a = vmin));
+```
+
+![image_demo](./gallery/images/image_demo.png)
+
+### fill
 
 Fucntions like `subplots`, `TBD`s are overloaded because they return different types depending on the arguments. Here `subplots()` returns `tuple<Figure, vector<Axes>>`.
 
@@ -138,7 +157,7 @@ From [gallery/lines_bars_and_markers](https://github.com/soblin/matplotlibcpp17/
 
 ![fill](./gallery/images/fill.png)
 
-### example4 - quiver
+### quiver
 
 Use `.unwrap()` method to pass wrapper class of matplotlibcpp17 to plotting functions.
 
@@ -161,7 +180,7 @@ From [gallery/images_contours_and_fields/quiver_demo.cpp](https://github.com/sob
 
 ![quiver_demo3](./gallery/images/quiver_demo_3.png)
 
-### example5 - gif
+### gif
 
 Currently only `ArtistAnimation` is supported. `FuncAnimation` interface maybe implemented in the future.
 
