@@ -34,16 +34,17 @@ var NAVTREE =
     [ "Syntax", "index.html#autotoc_md7", null ],
     [ "Examples", "index.html#autotoc_md8", [
       [ "minimal example", "index.html#autotoc_md9", null ],
-      [ "example1 - subplots", "index.html#autotoc_md10", null ],
-      [ "example2 - bar plot", "index.html#autotoc_md11", null ],
-      [ "example3 - fill", "index.html#autotoc_md12", null ],
-      [ "example4 - quiver", "index.html#autotoc_md13", null ],
-      [ "example5 - gif", "index.html#autotoc_md14", null ]
+      [ "subplots", "index.html#autotoc_md10", null ],
+      [ "bar plot", "index.html#autotoc_md11", null ],
+      [ "image", "index.html#autotoc_md12", null ],
+      [ "fill", "index.html#autotoc_md13", null ],
+      [ "quiver", "index.html#autotoc_md14", null ],
+      [ "gif", "index.html#autotoc_md15", null ]
     ] ],
-    [ "Demos", "index.html#autotoc_md15", [
-      [ "build", "index.html#autotoc_md16", null ]
+    [ "Demos", "index.html#autotoc_md16", [
+      [ "build", "index.html#autotoc_md17", null ]
     ] ],
-    [ "Contributing", "index.html#autotoc_md17", null ],
+    [ "Contributing", "index.html#autotoc_md18", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],

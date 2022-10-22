@@ -146,7 +146,7 @@ minimal example</h2>
 </div><!-- fragment --><p >gives</p>
 <p ><img src="hello_world.png" alt="" class="inline" title="minimal example"/></p>
 <h2><a class="anchor" id="autotoc_md10"></a>
-example1 - subplots</h2>
+subplots</h2>
 <p >From <a href="https://github.com/soblin/matplotlibcpp17/blob/master/gallery/subplots_axes_and_figures/align_labels_demo.cpp">gallery/subplots_axes_and_figures/align_labels_demo.cpp</a>.</p>
 <ul>
 <li><a href="https://matplotlib.org/stable/gallery/subplots_axes_and_figures/align_labels_demo.html">original python code</a></li>
@@ -163,7 +163,7 @@ example1 - subplots</h2>
 <div class="line">ax.set_xlabel(Args(<span class="stringliteral">&quot;XLabel0&quot;</span>));</div>
 </div><!-- fragment --><p ><img src="align_labels_demo.png" alt="" class="inline" title="subplots_axes_and_figures"/></p>
 <h2><a class="anchor" id="autotoc_md11"></a>
-example2 - bar plot</h2>
+bar plot</h2>
 <p >From <a href="https://github.com/soblin/matplotlibcpp17/blob/master/gallery/lines_bars_and_markers/bar_label_demo.cpp">gallery/lines_bars_and_markers/bar_label_demo.cpp</a>. Here <code>subplots()</code> returns <code>tuple&lt;Figure, Axes&gt;</code>.</p>
 <ul>
 <li><a href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/bar_label_demo.html">original python code</a></li>
@@ -188,7 +188,21 @@ example2 - bar plot</h2>
 <div class="line">plt.show();</div>
 </div><!-- fragment --><p ><img src="bar_label_demo1.png" alt="" class="inline" title="bar_label_demo1"/></p>
 <h2><a class="anchor" id="autotoc_md12"></a>
-example3 - fill</h2>
+image</h2>
+<p >2D-style pybind11 array can be plotted as an image using <code>imshow()</code> function.</p>
+<p >From <a href="https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images_contours_and_fields/image_demo.cpp">images_contours_and_fields/image_demo</a></p>
+<ul>
+<li><a href="https://matplotlib.org/stable/gallery/images_contours_and_fields/image_demo.html">original python code</a></li>
+</ul>
+<div class="fragment"><div class="line">vector&lt;vector&lt;double&gt;&gt; Z2D{...};</div>
+<div class="line"><span class="keyword">auto</span> Zpy = py::array(py::cast(std::move(Z2D)));</div>
+<div class="line">ax.imshow(Args(Zpy), Kwargs(<span class="stringliteral">&quot;interpolation&quot;</span>_a = <span class="stringliteral">&quot;bilinear&quot;</span>,</div>
+<div class="line">                            <span class="stringliteral">&quot;cmap&quot;</span>_a = <span class="stringliteral">&quot;RdYlGn&quot;</span>, <span class="stringliteral">&quot;origin&quot;</span>_a = <span class="stringliteral">&quot;lower&quot;</span>,</div>
+<div class="line">                            <span class="stringliteral">&quot;extent&quot;</span>_a = py::make_tuple(-3, 3, -3, 3),</div>
+<div class="line">                            <span class="stringliteral">&quot;vmax&quot;</span>_a = vmax, <span class="stringliteral">&quot;vmin&quot;</span>_a = vmin));</div>
+</div><!-- fragment --><p ><img src="image_demo.png" alt="" class="inline" title="image_demo"/></p>
+<h2><a class="anchor" id="autotoc_md13"></a>
+fill</h2>
 <p >Fucntions like <code>subplots</code>, <code>TBD</code>s are overloaded because they return different types depending on the arguments. Here <code>subplots()</code> returns <code>tuple&lt;Figure, vector&lt;Axes&gt;&gt;</code>.</p>
 <p >From <a href="https://github.com/soblin/matplotlibcpp17/blob/master/gallery/lines_bars_and_markers/fill.cpp">gallery/lines_bars_and_markers</a></p>
 <ul>
@@ -200,8 +214,8 @@ example3 - fill</h2>
 <div class="line">                         <span class="stringliteral">&quot;subplot_kw&quot;</span>_a = py::dict(<span class="stringliteral">&quot;aspect&quot;</span>_a = <span class="stringliteral">&quot;equal&quot;</span>)));</div>
 <div class="line"><span class="keyword">auto</span> ax1 = axes[0], ax2 = axes[1], ax3 = axes[2];</div>
 </div><!-- fragment --><p ><img src="fill.png" alt="" class="inline" title="fill"/></p>
-<h2><a class="anchor" id="autotoc_md13"></a>
-example4 - quiver</h2>
+<h2><a class="anchor" id="autotoc_md14"></a>
+quiver</h2>
 <p >Use <code>.unwrap()</code> method to pass wrapper class of matplotlibcpp17 to plotting functions.</p>
 <p >From <a href="https://github.com/soblin/matplotlibcpp17/blob/master/gallery/images_contours_and_fields/quiver_demo.cpp">gallery/images_contours_and_fields/quiver_demo.cpp</a></p>
 <ul>
@@ -218,18 +232,18 @@ example4 - quiver</h2>
 <div class="line"><span class="stringliteral">                  Kwargs(</span><span class="stringliteral">&quot;labelpos&quot;</span>_a = <span class="stringliteral">&quot;E&quot;</span>, <span class="stringliteral">&quot;coordinates&quot;</span>_a = <span class="stringliteral">&quot;figure&quot;</span>));</div>
 <div class="line">ax1.scatter(Args(X, Y), Kwargs(<span class="stringliteral">&quot;color&quot;</span>_a = <span class="stringliteral">&quot;0.5&quot;</span>, <span class="stringliteral">&quot;s&quot;</span>_a = 1));</div>
 </div><!-- fragment --><p ><img src="quiver_demo_3.png" alt="" class="inline" title="quiver_demo3"/></p>
-<h2><a class="anchor" id="autotoc_md14"></a>
-example5 - gif</h2>
+<h2><a class="anchor" id="autotoc_md15"></a>
+gif</h2>
 <p >Currently only <code>ArtistAnimation</code> is supported. <code>FuncAnimation</code> interface maybe implemented in the future.</p>
 <p >From <a href="https://github.com/soblin/matplotlibcpp17/blob/master/gallery/artist_animation/random_walk.cpp">gallery/artist_animation/random_walk.cpp</a></p>
 <ul>
 <li><a href="https://matplotlib.org/stable/gallery/animation/random_walk.html">original python code</a></li>
 </ul>
 <p ><img src="random_walk.gif" alt="" class="inline" title="random_walk"/></p>
-<h1><a class="anchor" id="autotoc_md15"></a>
+<h1><a class="anchor" id="autotoc_md16"></a>
 Demos</h1>
 <p ><code>gallery</code> folder contains corresponding examples from <a href="https://matplotlib.org/stable/gallery">the official website of matplotlib</a> with the same structure.</p>
-<h2><a class="anchor" id="autotoc_md16"></a>
+<h2><a class="anchor" id="autotoc_md17"></a>
 build</h2>
 <p >If you want to build the demos, use <code>-DADD_DEMO=1</code> (by default it is <code>0</code>).</p>
 <div class="fragment"><div class="line">$ mkdir build; cd build</div>
@@ -238,7 +252,7 @@ build</h2>
 </div><!-- fragment --><p >If you do not need to see the demo with <code>plt.show()</code>, use <code>-DUSE_GUI=1</code> (by default it is <code>0</code>). Otherwise the executables will <code>plt.savefig()</code> to <code>gallery/images</code> directory.</p>
 <p ><code>make &lt;gallery directory name&gt;</code> runs all the executables under that directory.</p>
 <div class="fragment"><div class="line">make lines_bars_and_markers</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md17"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md18"></a>
 Contributing</h1>
 <p >Contributions to this project are welcome if you could add or want/need more modules :) </p>
 </div></div><!-- PageDoc -->
