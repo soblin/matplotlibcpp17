@@ -14,10 +14,10 @@ using namespace std;
 using namespace matplotlibcpp17;
 
 int main1() {
-  auto [X0, Y0] = xt::meshgrid(xt::arange<double>(0.0, 2 * M_PI, 0.2),
-                               xt::arange<double>(0.0, 2 * M_PI, 0.2));
-  auto U0 = xt::cos(X0);
-  auto V0 = xt::sin(Y0);
+  const auto [X0, Y0] = xt::meshgrid(xt::arange<double>(0.0, 2 * M_PI, 0.2),
+                                     xt::arange<double>(0.0, 2 * M_PI, 0.2));
+  const auto U0 = xt::cos(X0);
+  const auto V0 = xt::sin(Y0);
   // to vector
   vector<double> X(X0.begin(), X0.end()), Y(Y0.begin(), Y0.end()),
       U(U0.begin(), U0.end()), V(V0.begin(), V0.end());
@@ -38,10 +38,10 @@ int main1() {
 }
 
 int main2() {
-  auto [X0, Y0] = xt::meshgrid(xt::arange<double>(0.0, 2 * M_PI, 0.6),
-                               xt::arange<double>(0.0, 2 * M_PI, 0.6));
-  auto U0 = xt::cos(X0);
-  auto V0 = xt::sin(Y0);
+  const auto [X0, Y0] = xt::meshgrid(xt::arange<double>(0.0, 2 * M_PI, 0.6),
+                                     xt::arange<double>(0.0, 2 * M_PI, 0.6));
+  const auto U0 = xt::cos(X0);
+  const auto V0 = xt::sin(Y0);
   // to vector
   vector<double> X(X0.begin(), X0.end()), Y(Y0.begin(), Y0.end()),
       U(U0.begin(), U0.end()), V(V0.begin(), V0.end());
@@ -65,11 +65,11 @@ int main2() {
 }
 
 int main3() {
-  auto [X0, Y0] = xt::meshgrid(xt::arange<double>(0.0, 2 * M_PI, 0.2),
-                               xt::arange<double>(0.0, 2 * M_PI, 0.2));
-  auto U0 = xt::cos(X0);
-  auto V0 = xt::sin(Y0);
-  auto M0 = xt::hypot(U0, V0);
+  const auto [X0, Y0] = xt::meshgrid(xt::arange<double>(0.0, 2 * M_PI, 0.2),
+                                     xt::arange<double>(0.0, 2 * M_PI, 0.2));
+  const auto U0 = xt::cos(X0);
+  const auto V0 = xt::sin(Y0);
+  const auto M0 = xt::hypot(U0, V0);
   vector<double> X(X0.begin(), X0.end()), Y(Y0.begin(), Y0.end()),
       U(U0.begin(), U0.end()), V(V0.begin(), V0.end()), M(M0.begin(), M0.end());
 

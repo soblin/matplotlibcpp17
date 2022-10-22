@@ -16,7 +16,7 @@ int main1() {
   const vector<string> cmaps = {"RdBu_r", "viridis"};
   for (auto col : {0, 1}) {
     for (auto row : {0, 1}) {
-      auto x_ = xt::random::randn<double>({20, 20}) * (col + 1.0);
+      const auto x_ = xt::random::randn<double>({20, 20}) * (col + 1.0);
       vector<vector<double>> x(20);
       for (int i = 0; i < 20; ++i) {
         x[i].resize(20);

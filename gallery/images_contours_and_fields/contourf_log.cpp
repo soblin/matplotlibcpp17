@@ -19,12 +19,12 @@ using mesh2D = vector<vector<double>>;
 
 int main() {
   const int N = 100;
-  auto x_ = xt::linspace(-3.0, 3.0, N);
-  auto y_ = xt::linspace(-2.0, 2.0, N);
+  const auto x_ = xt::linspace(-3.0, 3.0, N);
+  const auto y_ = xt::linspace(-2.0, 2.0, N);
 
-  auto [X_, Y_] = xt::meshgrid(x_, y_);
-  auto Z1_ = xt::exp(-xt::pow(X_, 2) - xt::pow(Y_, 2));
-  auto Z2_ = xt::exp(-xt::pow(X_ * 10, 2) - xt::pow(Y_ * 10, 2));
+  const auto [X_, Y_] = xt::meshgrid(x_, y_);
+  const auto Z1_ = xt::exp(-xt::pow(X_, 2) - xt::pow(Y_, 2));
+  const auto Z2_ = xt::exp(-xt::pow(X_ * 10, 2) - xt::pow(Y_ * 10, 2));
   xt::xarray<double> z_ = Z1_ + 50 * Z2_;
   // instead of x[:5, :5] = -1.0
   auto v = xt::view(z_, xt::range(_, 5), xt::range(_, 5));
@@ -45,14 +45,14 @@ int main() {
 
   py::scoped_interpreter guard{};
   // to numpy array
-  auto Xpy = py::array(py::cast(std::move(X)));
-  auto Ypy = py::array(py::cast(std::move(Y)));
-  auto zpy = py::array(py::cast(std::move(z)));
+  const auto Xpy = py::array(py::cast(std::move(X)));
+  const auto Ypy = py::array(py::cast(std::move(Y)));
+  const auto zpy = py::array(py::cast(std::move(z)));
   auto plt = pyplot::import();
   auto [fig, ax] = plt.subplots();
   auto cs = ax.contourf(Args(Xpy, Ypy, zpy),
                         Kwargs("locator"_a = ticker::LogLocator().unwrap(),
                                "cmap"_a = cm::PuBu_r));
-  fig.colorbar(Args(cs));
+  fig.colorbar(Args(cs.unwrap()));
   plt.show();
 }

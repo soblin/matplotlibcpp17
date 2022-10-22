@@ -1,6 +1,7 @@
 // example from https://matplotlib.org/stable/gallery/mplot3d/errorbar3d.html
 
 #include <matplotlibcpp17/pyplot.h>
+#include <matplotlibcpp17/mplot3d.h>
 
 #include <xtensor/xbuilder.hpp>
 #include <xtensor/xmath.hpp>
@@ -14,11 +15,13 @@ using namespace matplotlibcpp17;
 int main() {
   py::scoped_interpreter guard{};
   auto plt = pyplot::import();
+  // this is required for "projection = 3d"
+  matplotlibcpp17::mplot3d::import();
   auto ax = plt.figure().add_subplot(Args(), Kwargs("projection"_a = "3d"));
-  auto t_ = xt::arange(0.0, 2 * M_PI + 0.1, 0.01);
-  auto x_ = xt::sin(1.0 * t_);
-  auto y_ = xt::cos(3.0 * t_);
-  auto z_ = xt::sin(5.0 * t_);
+  const auto t_ = xt::arange(0.0, 2 * M_PI + 0.1, 0.01);
+  const auto x_ = xt::sin(1.0 * t_);
+  const auto y_ = xt::cos(3.0 * t_);
+  const auto z_ = xt::sin(5.0 * t_);
   vector<double> t(t_.begin(), t_.end()), x(x_.begin(), x_.end()),
       y(y_.begin(), y_.end()), z(z_.begin(), z_.end());
 

@@ -11,11 +11,11 @@ using namespace std;
 using namespace matplotlibcpp17;
 
 int main1() {
-  vector<int> menMeans = {20, 35, 30, 35, -27};
-  vector<int> womenMeans = {25, 32, 34, 20, -25};
-  vector<int> menStd = {2, 3, 4, 1, 2};
-  vector<int> womenStd = {3, 5, 2, 3, 3};
-  vector<int> ind = {0, 1, 2, 3, 4}; // the x locations for the groups
+  const vector<int> menMeans = {20, 35, 30, 35, -27};
+  const vector<int> womenMeans = {25, 32, 34, 20, -25};
+  const vector<int> menStd = {2, 3, 4, 1, 2};
+  const vector<int> womenStd = {3, 5, 2, 3, 3};
+  const vector<int> ind = {0, 1, 2, 3, 4}; // the x locations for the groups
   const double width =
       0.35; // the width of the bars: can also be len(x) sequence
   auto plt = matplotlibcpp17::pyplot::import();
@@ -44,12 +44,12 @@ int main1() {
 }
 
 int main2() {
-  vector<string> people = {"Tom", "Dick", "Harry", "Slim", "Jim"};
-  vector<int> y_pos = {0, 1, 2, 3, 4};
-  vector<double> performance = {10.00367304, 10.42750809, 10.09280011,
-                                8.66745522, 12.77785333};
-  vector<double> error = {0.70633485, 0.24791576, 0.15788335, 0.69769852,
-                          0.71995667};
+  const vector<string> people = {"Tom", "Dick", "Harry", "Slim", "Jim"};
+  const vector<int> y_pos = {0, 1, 2, 3, 4};
+  const vector<double> performance = {10.00367304, 10.42750809, 10.09280011,
+                                      8.66745522, 12.77785333};
+  const vector<double> error = {0.70633485, 0.24791576, 0.15788335, 0.69769852,
+                                0.71995667};
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, ax] = plt.subplots();
   auto hbars = ax.barh(Args(y_pos, performance),
@@ -71,12 +71,12 @@ int main2() {
 }
 
 int main3() {
-  vector<string> people = {"Tom", "Dick", "Harry", "Slim", "Jim"};
-  vector<int> y_pos = {0, 1, 2, 3, 4};
-  vector<double> performance = {10.00367304, 10.42750809, 10.09280011,
-                                8.66745522, 12.77785333};
-  vector<double> error = {0.70633485, 0.24791576, 0.15788335, 0.69769852,
-                          0.71995667};
+  const vector<string> people = {"Tom", "Dick", "Harry", "Slim", "Jim"};
+  const vector<int> y_pos = {0, 1, 2, 3, 4};
+  const vector<double> performance = {10.00367304, 10.42750809, 10.09280011,
+                                      8.66745522, 12.77785333};
+  const vector<double> error = {0.70633485, 0.24791576, 0.15788335, 0.69769852,
+                                0.71995667};
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, ax] = plt.subplots();
   auto hbars = ax.barh(Args(y_pos, performance),

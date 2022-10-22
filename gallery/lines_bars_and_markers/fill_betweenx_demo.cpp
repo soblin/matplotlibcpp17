@@ -13,10 +13,10 @@ using namespace matplotlibcpp17;
 
 int main1() {
   auto plt = matplotlibcpp17::pyplot::import();
-  auto y_ = xt::arange(0.0, 2.0, 0.01);
-  auto x1_ = xt::sin(2 * M_PI * y_);
-  auto x2_ = 1.2 * xt::sin(4 * M_PI * y_);
-  vector<double> y(y_.begin(), y_.end()), x1(x1_.begin(), x1_.end()),
+  const auto y_ = xt::arange(0.0, 2.0, 0.01);
+  const auto x1_ = xt::sin(2 * M_PI * y_);
+  const auto x2_ = 1.2 * xt::sin(4 * M_PI * y_);
+  const vector<double> y(y_.begin(), y_.end()), x1(x1_.begin(), x1_.end()),
       x2(x2_.begin(), x2_.end());
 
   auto [fig, axes] = plt.subplots(

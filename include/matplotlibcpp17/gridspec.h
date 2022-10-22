@@ -17,7 +17,8 @@ namespace matplotlibcpp17::gridspec {
  **/
 struct DECL_STRUCT_ATTR SubplotSpec : public BaseWrapper {
 public:
-  SubplotSpec(pybind11::object subplotspec) { self = subplotspec; }
+  SubplotSpec(const pybind11::object &subplotspec) { self = subplotspec; }
+  SubplotSpec(pybind11::object &&subplotspec) { self = std::move(subplotspec); }
 };
 
 /**
@@ -36,7 +37,7 @@ public:
   template <typename Rows, typename Cols>
   SubplotSpec operator()(const Rows &r, const Cols &c) {
     pybind11::object obj = self[pybind11::make_tuple(r, c)];
-    return SubplotSpec(obj);
+    return SubplotSpec(std::move(obj));
   }
 
 private:

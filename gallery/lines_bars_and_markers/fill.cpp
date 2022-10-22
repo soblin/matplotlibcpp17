@@ -13,10 +13,10 @@ using namespace matplotlibcpp17;
 int main() {
   const double scale = 10;
   const xt::xarray<double> angles = {90.0, 210.0, 330.0};
-  auto x0 = scale / sqrt(3.0) * xt::cos(angles / 360.0 * 2 * M_PI);
-  auto y0 = scale / sqrt(3.0) * xt::sin(angles / 360.0 * 2 * M_PI);
-  vector<double> x(x0.begin(), x0.end());
-  vector<double> y(y0.begin(), y0.end());
+  const auto x0 = scale / sqrt(3.0) * xt::cos(angles / 360.0 * 2 * M_PI);
+  const auto y0 = scale / sqrt(3.0) * xt::sin(angles / 360.0 * 2 * M_PI);
+  const vector<double> x(x0.begin(), x0.end());
+  const vector<double> y(y0.begin(), y0.end());
 
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();

@@ -17,7 +17,10 @@ namespace matplotlibcpp17::container {
  **/
 struct DECL_STRUCT_ATTR BarContainer : public BaseWrapper {
 public:
-  BarContainer(pybind11::object bar_container) { self = bar_container; }
+  BarContainer(const pybind11::object &bar_container) { self = bar_container; }
+  BarContainer(pybind11::object &&bar_container) {
+    self = std::move(bar_container);
+  }
 };
 
 } // namespace matplotlibcpp17::container

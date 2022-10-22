@@ -10,12 +10,7 @@
 
 namespace matplotlibcpp17::cm {
 
-pybind11::object coolwarm() {
-  pybind11::object ret =
-      pybind11::module::import("matplotlib.cm").attr("coolwarm");
-  return ret;
-}
-
+static const char *coolwarm = "coolwarm";
 static const char *PuBu_r = "PuBu_r";
 static const char *RdYlGn = "RdYlGn";
 

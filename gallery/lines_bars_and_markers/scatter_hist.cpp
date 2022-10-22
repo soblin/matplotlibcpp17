@@ -14,9 +14,9 @@ using namespace matplotlibcpp17;
 
 int main() {
   int N = 1000;
-  auto x_ = xt::random::randn<double>({N});
-  auto y_ = xt::random::randn<double>({N});
-  vector<double> x(x_.begin(), x_.end()), y(y_.begin(), y_.end());
+  const auto x_ = xt::random::randn<double>({N});
+  const auto y_ = xt::random::randn<double>({N});
+  const vector<double> x(x_.begin(), x_.end()), y(y_.begin(), y_.end());
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
   // cell1
@@ -40,7 +40,8 @@ int main() {
     ax_histy.tick_params(Args(), Kwargs("axis"_a = "y", "labelleft"_a = false));
     ax.scatter(Args(x, y));
     const double binwidth = 0.25;
-    auto xi = xt::amax(xt::fabs(x_), {0}), yi = xt::amax(xt::fabs(y_), {0});
+    const auto xi = xt::amax(xt::fabs(x_), {0}),
+               yi = xt::amax(xt::fabs(y_), {0});
     const double xymax = max(fabs(x_[xi]), fabs(y_[yi]));
     const double lim = (static_cast<int>(xymax / binwidth) + 1) * binwidth;
     auto bins_ = xt::arange(-lim, lim + binwidth, binwidth);
@@ -73,7 +74,8 @@ int main() {
     ax_histy.tick_params(Args(), Kwargs("axis"_a = "y", "labelleft"_a = false));
     ax.scatter(Args(x, y));
     const double binwidth = 0.25;
-    auto xi = xt::amax(xt::fabs(x_), {0}), yi = xt::amax(xt::fabs(y_), {0});
+    const auto xi = xt::amax(xt::fabs(x_), {0}),
+               yi = xt::amax(xt::fabs(y_), {0});
     const double xymax = max(fabs(x_[xi]), fabs(y_[yi]));
     const double lim = (static_cast<int>(xymax / binwidth) + 1) * binwidth;
     auto bins_ = xt::arange(-lim, lim + binwidth, binwidth);

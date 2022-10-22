@@ -19,10 +19,10 @@ using mesh2D = vector<vector<double>>;
 int main() {
   const double delta = 0.025;
   const auto x = xt::arange<double>(-3.0, 3.0, delta);
-  auto [X_, Y_] = xt::meshgrid(x, x);
-  auto Z1_ = xt::exp(-xt::pow(X_, 2) - xt::pow(Y_, 2));
-  auto Z2_ = xt::exp(-xt::pow(X_ - 1, 2) - xt::pow(Y_ - 1, 2));
-  auto Z_ = (Z1_ - Z2_) * 2.0;
+  const auto [X_, Y_] = xt::meshgrid(x, x);
+  const auto Z1_ = xt::exp(-xt::pow(X_, 2) - xt::pow(Y_, 2));
+  const auto Z2_ = xt::exp(-xt::pow(X_ - 1, 2) - xt::pow(Y_ - 1, 2));
+  const auto Z_ = (Z1_ - Z2_) * 2.0;
 
   // to vector
   vector<double> X(X_.begin(), X_.end()), Y(Y_.begin(), Y_.end()),
@@ -42,7 +42,7 @@ int main() {
   auto [fig, ax] = plt.subplots();
   const double vmax = *max_element(Z_.begin(), Z_.end()),
                vmin = *min_element(Z_.begin(), Z_.end());
-  auto Zpy = py::array(py::cast(std::move(Z2D)));
+  const auto Zpy = py::array(py::cast(std::move(Z2D)));
   ax.imshow(Args(Zpy), Kwargs("interpolation"_a = "bilinear",
                               "cmap"_a = cm::RdYlGn, "origin"_a = "lower",
                               "extent"_a = py::make_tuple(-3, 3, -3, 3),

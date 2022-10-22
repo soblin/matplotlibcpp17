@@ -14,9 +14,9 @@ using namespace matplotlibcpp17;
 int main() {
   py::scoped_interpreter guard{};
   auto plt = pyplot::import();
-  auto t_ = xt::arange(0.0, 2.0, 0.01);
-  auto s_ = xt::sin(2 * M_PI * t_) + 1.0;
-  vector<double> t(t_.begin(), t_.end()), s(s_.begin(), s_.end());
+  const auto t_ = xt::arange(0.0, 2.0, 0.01);
+  const auto s_ = xt::sin(2 * M_PI * t_) + 1.0;
+  const vector<double> t(t_.begin(), t_.end()), s(s_.begin(), s_.end());
 
   auto [fig, ax] = plt.subplots();
   ax.plot(Args(t, s), Kwargs("color"_a = "blue", "linewidth"_a = 1.0));

@@ -14,9 +14,9 @@ using namespace matplotlibcpp17;
 int main() {
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
-  auto x_ = xt::arange(0.0, 2.0, 0.01);
-  auto s1_ = xt::sin(2 * M_PI * x_);
-  auto s2_ = xt::sin(4 * M_PI * x_);
+  const auto x_ = xt::arange(0.0, 2.0, 0.01);
+  const auto s1_ = xt::sin(2 * M_PI * x_);
+  const auto s2_ = xt::sin(4 * M_PI * x_);
   vector<double> x(x_.begin(), x_.end()), s1(s1_.begin(), s1_.end()),
       s2(s2_.begin(), s2_.end());
   plt.figure(Args(1));

@@ -37,19 +37,19 @@ int main1() {
 
 int main2() {
   int N = 45;
-  auto x_ = xt::random::rand<double>({N}, 0.0, 1.0);
-  auto y_ = xt::random::rand<double>({N}, 0.0, 1.0);
-  auto c_ = xt::random::randint({N}, 1, 5);
-  auto s_ = xt::random::randint({N}, 10, 220);
-  vector<double> x(x_.begin(), x_.end()), y(y_.begin(), y_.end());
-  vector<int> c(c_.begin(), c_.end()), s(s_.begin(), s_.end());
+  const auto x_ = xt::random::rand<double>({N}, 0.0, 1.0);
+  const auto y_ = xt::random::rand<double>({N}, 0.0, 1.0);
+  const auto c_ = xt::random::randint({N}, 1, 5);
+  const auto s_ = xt::random::randint({N}, 10, 220);
+  const vector<double> x(x_.begin(), x_.end()), y(y_.begin(), y_.end());
+  const vector<int> c(c_.begin(), c_.end()), s(s_.begin(), s_.end());
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, ax] = plt.subplots();
   auto scatter = ax.scatter(Args(x, y), Kwargs("c"_a = c, "s"_a = s));
   {
     auto [handles, labels] = scatter.legend_elements();
     auto legend1 =
-        ax.legend(Args(handles, labels),
+        ax.legend(Args(handles.unwrap(), labels.unwrap()),
                   Kwargs("loc"_a = "lower left", "title"_a = "Classes"));
     ax.add_artist(Args(legend1.unwrap()));
   }
@@ -57,7 +57,7 @@ int main2() {
     auto [handles, labels] = scatter.legend_elements(
         Args(), Kwargs("prop"_a = "sizes", "alpha"_a = 0.6));
     auto legend2 =
-        ax.legend(Args(handles, labels),
+        ax.legend(Args(handles.unwrap(), labels.unwrap()),
                   Kwargs("loc"_a = "upper right", "title"_a = "Sizes"));
   }
 #if USE_GUI

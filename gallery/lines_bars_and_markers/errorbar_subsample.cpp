@@ -12,12 +12,12 @@ using namespace std;
 using namespace matplotlibcpp17;
 
 int main() {
-  auto x_ = xt::arange(0.1, 4.0, 0.1);
-  auto y1_ = xt::exp(-1.0 * x_);
-  auto y2_ = xt::exp(-0.5 * x_);
-  auto y1err_ = 0.1 + 0.1 * xt::sqrt(x_);
-  auto y2err_ = 0.1 + 0.1 * xt::sqrt(x_ / 2.0);
-  vector<double> x(x_.begin(), x_.end()), y1(y1_.begin(), y1_.end()),
+  const auto x_ = xt::arange(0.1, 4.0, 0.1);
+  const auto y1_ = xt::exp(-1.0 * x_);
+  const auto y2_ = xt::exp(-0.5 * x_);
+  const auto y1err_ = 0.1 + 0.1 * xt::sqrt(x_);
+  const auto y2err_ = 0.1 + 0.1 * xt::sqrt(x_ / 2.0);
+  const vector<double> x(x_.begin(), x_.end()), y1(y1_.begin(), y1_.end()),
       y2(y2_.begin(), y2_.end()), y1err(y1err_.begin(), y1err_.end()),
       y2err(y2err_.begin(), y2err_.end());
 
@@ -34,11 +34,14 @@ int main() {
   ax1.errorbar(Args(x, y1), Kwargs("yerr"_a = y1err, "errorevery"_a = 6));
   ax1.errorbar(Args(x, y2), Kwargs("yerr"_a = y2err, "errorevery"_a = 6));
 
+  // TODO: TypeError: '<' not supported between instances of 'tuple' and 'int'
+  /*
   ax2.set_title(Args("second seris shifted by 3"));
   ax2.errorbar(Args(x, y1),
                Kwargs("yerr"_a = y1err, "errorevery"_a = py::make_tuple(0, 6)));
   ax2.errorbar(Args(x, y2),
                Kwargs("yerr"_a = y2err, "errorevery"_a = py::make_tuple(3, 6)));
+  */
 
   fig.suptitle(Args("Errorbar subsampling"));
 #if USE_GUI
