@@ -2,6 +2,7 @@
 
 #include <matplotlibcpp17/pyplot.h>
 #include <matplotlibcpp17/cm.h>
+#include <matplotlibcpp17/mplot3d.h>
 
 #include <xtensor/xbuilder.hpp>
 #include <xtensor/xmath.hpp>
@@ -16,6 +17,8 @@ using mesh2D = vector<vector<double>>;
 int main() {
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
+  // this is required for "projection = 3d"
+  matplotlibcpp17::mplot3d::import();
   auto [fig, ax] =
       plt.subplots(Kwargs("subplot_kw"_a = py::dict("projection"_a = "3d")));
 
@@ -49,6 +52,6 @@ int main() {
   // auto locator = ticker::LinearLocator(Args(10));
   // ax.zaxis.set_major_locator(Args(locator.unwrap()));
   // ax.zaxis.set_major_formatter(Args("{x:.02f}"));
-  fig.colorbar(Args(surf), Kwargs("shrink"_a = 0.5, "aspect"_a = 5));
+  fig.colorbar(Args(surf.unwrap()), Kwargs("shrink"_a = 0.5, "aspect"_a = 5));
   plt.show();
 }

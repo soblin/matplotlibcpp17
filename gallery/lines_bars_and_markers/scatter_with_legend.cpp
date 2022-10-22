@@ -49,7 +49,7 @@ int main2() {
   {
     auto [handles, labels] = scatter.legend_elements();
     auto legend1 =
-        ax.legend(Args(handles, labels),
+        ax.legend(Args(handles.unwrap(), labels.unwrap()),
                   Kwargs("loc"_a = "lower left", "title"_a = "Classes"));
     ax.add_artist(Args(legend1.unwrap()));
   }
@@ -57,7 +57,7 @@ int main2() {
     auto [handles, labels] = scatter.legend_elements(
         Args(), Kwargs("prop"_a = "sizes", "alpha"_a = 0.6));
     auto legend2 =
-        ax.legend(Args(handles, labels),
+        ax.legend(Args(handles.unwrap(), labels.unwrap()),
                   Kwargs("loc"_a = "upper right", "title"_a = "Sizes"));
   }
 #if USE_GUI

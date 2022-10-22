@@ -34,11 +34,14 @@ int main() {
   ax1.errorbar(Args(x, y1), Kwargs("yerr"_a = y1err, "errorevery"_a = 6));
   ax1.errorbar(Args(x, y2), Kwargs("yerr"_a = y2err, "errorevery"_a = 6));
 
+  // TODO: TypeError: '<' not supported between instances of 'tuple' and 'int'
+  /*
   ax2.set_title(Args("second seris shifted by 3"));
   ax2.errorbar(Args(x, y1),
                Kwargs("yerr"_a = y1err, "errorevery"_a = py::make_tuple(0, 6)));
   ax2.errorbar(Args(x, y2),
                Kwargs("yerr"_a = y2err, "errorevery"_a = py::make_tuple(3, 6)));
+  */
 
   fig.suptitle(Args("Errorbar subsampling"));
 #if USE_GUI

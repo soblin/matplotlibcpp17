@@ -2,6 +2,7 @@
 
 #include <matplotlibcpp17/pyplot.h>
 #include <matplotlibcpp17/cm.h>
+#include <matplotlibcpp17/mplot3d.h>
 
 #include <xtensor/xbuilder.hpp>
 #include <xtensor/xmath.hpp>
@@ -47,6 +48,8 @@ tuple<mesh2D, mesh2D, mesh2D> get_test_data(double delta = 0.05) {
 int main() {
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
+  // this is required for "projection = 3d"
+  matplotlibcpp17::mplot3d::import();
   auto [w, h] = plt.figaspect(Args(0.5));
   auto fig = plt.figure(Args(), Kwargs("figsize"_a = py::make_tuple(w, h)));
   {
@@ -78,7 +81,8 @@ int main() {
         Kwargs("rstride"_a = 1, "cstride"_a = 1, "linewidth"_a = 0,
                "antialiased"_a = false, "cmap"_a = cm::coolwarm));
     ax.set_zlim(Args(-1.01, 1.01));
-    fig.colorbar(Args(surf), Kwargs("shrink"_a = 0.5, "aspect"_a = 10));
+    fig.colorbar(Args(surf.unwrap()),
+                 Kwargs("shrink"_a = 0.5, "aspect"_a = 10));
   }
   {
     auto ax = fig.add_subplot(Args(1, 2, 2), Kwargs("projection"_a = "3d"));

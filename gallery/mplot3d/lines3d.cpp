@@ -1,6 +1,7 @@
 // example from https://matplotlib.org/stable/gallery/mplot3d/lines3d.html
 
 #include <matplotlibcpp17/pyplot.h>
+#include <matplotlibcpp17/mplot3d.h>
 
 #include <xtensor/xbuilder.hpp>
 #include <xtensor/xmath.hpp>
@@ -13,6 +14,8 @@ using namespace matplotlibcpp17;
 int main() {
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
+  // this is required for "projection = 3d"
+  matplotlibcpp17::mplot3d::import();
   auto fig = plt.figure();
   auto ax = fig.add_subplot(Args(), Kwargs("projection"_a = "3d"));
   auto theta_ = xt::linspace(-4 * M_PI, 4 * M_PI, 100);

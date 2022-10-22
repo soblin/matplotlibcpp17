@@ -53,6 +53,6 @@ int main() {
   auto cs = ax.contourf(Args(Xpy, Ypy, zpy),
                         Kwargs("locator"_a = ticker::LogLocator().unwrap(),
                                "cmap"_a = cm::PuBu_r));
-  fig.colorbar(Args(cs));
+  fig.colorbar(Args(cs.unwrap()));
   plt.show();
 }

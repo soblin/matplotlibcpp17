@@ -96,7 +96,7 @@ int main3() {
   ax.fill_between(Args(x, 0, 1),
                   Kwargs("where"_a = where, "color"_a = "green",
                          "alpha"_a = 0.5,
-                         "transform"_a = ax.get_xaxis_transform()));
+                         "transform"_a = ax.get_xaxis_transform().unwrap()));
 #if USE_GUI
   plt.show();
 #else
