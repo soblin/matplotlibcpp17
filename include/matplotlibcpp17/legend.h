@@ -17,9 +17,8 @@ namespace matplotlibcpp17::legend {
  **/
 struct DECL_STRUCT_ATTR Legend : public BaseWrapper {
 public:
-  Legend(pybind11::object obj) {
-    self = obj;
-  }
+  Legend(const pybind11::object &obj) { self = obj; }
+  Legend(pybind11::object &&obj) { self = std::move(obj); }
 };
 
 } // namespace matplotlibcpp17::legend

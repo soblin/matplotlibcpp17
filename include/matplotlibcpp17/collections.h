@@ -19,13 +19,17 @@ namespace matplotlibcpp17::collections {
  **/
 struct DECL_STRUCT_ATTR PathCollection : public BaseWrapper {
 public:
-  PathCollection(pybind11::object pathcollection) {
+  PathCollection(const pybind11::object &pathcollection) {
     self = pathcollection;
+    load_attrs();
+  }
+  PathCollection(pybind11::object &&pathcollection) {
+    self = std::move(pathcollection);
     load_attrs();
   }
 
   // legend_elements
-  std::pair<pybind11::object, pybind11::object>
+  std::pair<ObjectWrapper, ObjectWrapper>
   legend_elements(const pybind11::tuple &args = pybind11::tuple(),
                   const pybind11::dict &kwargs = pybind11::dict());
 
@@ -37,13 +41,13 @@ private:
 // legend_elements
 /// NOTE: this func does not return list of Line2Ds(handles) and list of
 /// strs(labels) unlike original python func
-std::pair<pybind11::object, pybind11::object>
+std::pair<ObjectWrapper, ObjectWrapper>
 PathCollection::legend_elements(const pybind11::tuple &args,
                                 const pybind11::dict &kwargs) {
   pybind11::list ret = legend_elements_attr(*args, **kwargs);
   pybind11::object handles = ret[0];
   pybind11::object labels = ret[1];
-  return {handles, labels};
+  return {ObjectWrapper(std::move(handles)), ObjectWrapper(std::move(labels))};
 }
 
 /**
@@ -60,18 +64,18 @@ public:
   }
 
   // set_array
-  pybind11::object set_array(const pybind11::tuple &args = pybind11::tuple(),
-                             const pybind11::dict &kwargs = pybind11::dict());
+  ObjectWrapper set_array(const pybind11::tuple &args = pybind11::tuple(),
+                          const pybind11::dict &kwargs = pybind11::dict());
 
 private:
   void load_attrs() { LOAD_FUNC_ATTR(set_array, self); }
   pybind11::object set_array_attr;
 };
 
-pybind11::object PatchCollection::set_array(const pybind11::tuple &args,
-                                            const pybind11::dict &kwargs) {
+ObjectWrapper PatchCollection::set_array(const pybind11::tuple &args,
+                                         const pybind11::dict &kwargs) {
   pybind11::object ret = set_array_attr(*args, **kwargs);
-  return ret;
+  return ObjectWrapper(std::move(ret));
 }
 
 /**
@@ -79,7 +83,8 @@ pybind11::object PatchCollection::set_array(const pybind11::tuple &args,
  **/
 struct DECL_STRUCT_ATTR QuadMesh : public BaseWrapper {
 public:
-  QuadMesh(pybind11::object quadmesh) { self = quadmesh; }
+  QuadMesh(const pybind11::object &quadmesh) { self = quadmesh; }
+  QuadMesh(pybind11::object &&quadmesh) { self = std::move(quadmesh); }
 };
 
 } // namespace matplotlibcpp17::collections

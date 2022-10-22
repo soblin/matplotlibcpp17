@@ -50,7 +50,7 @@ int main() {
   auto fig = plt.figure();
   auto ax = fig.add_subplot(Args(), Kwargs("projection"_a = "3d"));
   auto [X, Y, Z] = get_test_data(0.05);
-  ax.contour(Args(X, Y, Z), Kwargs("cmap"_a = cm::coolwarm()));
+  ax.contour(Args(X, Y, Z), Kwargs("cmap"_a = cm::coolwarm));
 #if USE_GUI
   plt.show();
 #else

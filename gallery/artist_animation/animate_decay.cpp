@@ -27,9 +27,8 @@ int main() {
     auto [xmin, xmax] = ax.get_xlim();
     if (t >= xmax)
       ax.set_xlim(Args(xmin, 2 * xmax));
-    py::object line =
-        ax.plot(Args(ts, ys), Kwargs("color"_a = "blue", "lw"_a = 1));
-    artist_list.append(line);
+    auto line = ax.plot(Args(ts, ys), Kwargs("color"_a = "blue", "lw"_a = 1));
+    artist_list.append(line.unwrap());
   }
   auto ani = ArtistAnimation(Args(fig.unwrap(), artist_list),
                              Kwargs("interval"_a = 10));

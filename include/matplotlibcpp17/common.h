@@ -9,6 +9,7 @@
 #define DECL_STRUCT_ATTR __attribute__((visibility("hidden")))
 
 #include <iostream>
+#include <utility>
 
 #define INFO_MSG(msg)                                                          \
   do {                                                                         \
@@ -41,6 +42,15 @@ public:
 
 protected:
   pybind11::object self;
+};
+
+/**
+ * @brief A proxy class for pybind object
+ **/
+struct ObjectWrapper : public BaseWrapper {
+public:
+  ObjectWrapper(const pybind11::object &object) { self = object; }
+  ObjectWrapper(pybind11::object &&object) { self = std::move(object); }
 };
 
 } // namespace matplotlibcpp17

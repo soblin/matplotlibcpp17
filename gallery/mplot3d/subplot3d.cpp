@@ -76,7 +76,7 @@ int main() {
     auto surf = ax.plot_surface(
         Args(X_, Y_, Z_),
         Kwargs("rstride"_a = 1, "cstride"_a = 1, "linewidth"_a = 0,
-               "antialiased"_a = false, "cmap"_a = cm::coolwarm()));
+               "antialiased"_a = false, "cmap"_a = cm::coolwarm));
     ax.set_zlim(Args(-1.01, 1.01));
     fig.colorbar(Args(surf), Kwargs("shrink"_a = 0.5, "aspect"_a = 10));
   }

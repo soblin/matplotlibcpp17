@@ -1,7 +1,9 @@
 // example from https://matplotlib.org/stable/gallery/animation/random_walk.html
 
+#include <matplotlibcpp17/axes.h>
 #include <matplotlibcpp17/pyplot.h>
 #include <matplotlibcpp17/animation.h>
+#include <matplotlibcpp17/mplot3d.h>
 
 #include <xtensor/xrandom.hpp>
 #include <xtensor/xbuilder.hpp>
@@ -32,6 +34,8 @@ int main() {
   }
   py::scoped_interpreter guard{};
   auto plt = matplotlibcpp17::pyplot::import();
+  // this is required for "projection = 3d"
+  matplotlibcpp17::mplot3d::import();
   auto fig = plt.figure();
   auto ax = fig.add_subplot(py::make_tuple(), Kwargs("projection"_a = "3d"));
   py::list artist_list;
@@ -46,7 +50,7 @@ int main() {
       vector<double> zs(zs0.begin(), zs0.end());
       ax.plot(Args(xs, ys, zs), Kwargs("color"_a = colors[i]));
     }
-    artist_list.append(ax.get_lines());
+    artist_list.append(ax.get_lines().unwrap());
   }
   auto ani = ArtistAnimation(Args(fig.unwrap(), artist_list),
                              Kwargs("interval"_a = 100));

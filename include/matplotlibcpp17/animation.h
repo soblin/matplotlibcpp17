@@ -24,8 +24,8 @@ public:
     load_attrs();
   }
   // save
-  pybind11::object save(const pybind11::tuple &args = pybind11::tuple(),
-                        const pybind11::dict &kwargs = pybind11::dict());
+  ObjectWrapper save(const pybind11::tuple &args = pybind11::tuple(),
+                     const pybind11::dict &kwargs = pybind11::dict());
 
 private:
   void load_attrs() { LOAD_FUNC_ATTR(save, self); }
@@ -33,10 +33,10 @@ private:
 };
 
 // save
-pybind11::object ArtistAnimation::save(const pybind11::tuple &args,
-                                       const pybind11::dict &kwargs) {
+ObjectWrapper ArtistAnimation::save(const pybind11::tuple &args,
+                                    const pybind11::dict &kwargs) {
   pybind11::object ret = save_attr(*args, **kwargs);
-  return ret;
+  return ObjectWrapper(std::move(ret));
 }
 
 } // namespace matplotlibcpp17::animation

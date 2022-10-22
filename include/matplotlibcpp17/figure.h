@@ -19,11 +19,14 @@ namespace matplotlibcpp17::figure {
  **/
 struct DECL_STRUCT_ATTR Figure : public BaseWrapper {
 public:
-  Figure(pybind11::object figure) {
+  Figure(const pybind11::object &figure) {
     self = figure;
     load_attrs();
   }
-
+  Figure(pybind11::object &&figure) {
+    self = std::move(figure);
+    load_attrs();
+  }
   // add_axes
   axes::Axes add_axes(const pybind11::tuple &args = pybind11::tuple(),
                       const pybind11::dict &kwargs = pybind11::dict());
@@ -38,26 +41,24 @@ public:
                          const pybind11::dict &kwargs = pybind11::dict());
 
   // align_labels
-  pybind11::object
-  align_labels(const pybind11::tuple &args = pybind11::tuple(),
-               const pybind11::dict &kwargs = pybind11::dict());
+  ObjectWrapper align_labels(const pybind11::tuple &args = pybind11::tuple(),
+                             const pybind11::dict &kwargs = pybind11::dict());
 
   // colorbar
-  pybind11::object colorbar(const pybind11::tuple &args = pybind11::tuple(),
-                            const pybind11::dict &kwargs = pybind11::dict());
+  ObjectWrapper colorbar(const pybind11::tuple &args = pybind11::tuple(),
+                         const pybind11::dict &kwargs = pybind11::dict());
 
   // savefig
-  pybind11::object savefig(const pybind11::tuple &args = pybind11::tuple(),
-                           const pybind11::dict &kwargs = pybind11::dict());
+  ObjectWrapper savefig(const pybind11::tuple &args = pybind11::tuple(),
+                        const pybind11::dict &kwargs = pybind11::dict());
 
   // suptitle
-  pybind11::object suptitle(const pybind11::tuple &args = pybind11::tuple(),
-                            const pybind11::dict &kwargs = pybind11::dict());
+  ObjectWrapper suptitle(const pybind11::tuple &args = pybind11::tuple(),
+                         const pybind11::dict &kwargs = pybind11::dict());
 
   // tight_layout
-  pybind11::object
-  tight_layout(const pybind11::tuple &args = pybind11::tuple(),
-               const pybind11::dict &kwargs = pybind11::dict());
+  ObjectWrapper tight_layout(const pybind11::tuple &args = pybind11::tuple(),
+                             const pybind11::dict &kwargs = pybind11::dict());
 
 private:
   void load_attrs() {
@@ -101,38 +102,38 @@ axes::Axes Figure::add_subplot(const pybind11::tuple &args,
 }
 
 // align_labels
-pybind11::object Figure::align_labels(const pybind11::tuple &args,
-                                      const pybind11::dict &kwargs) {
+ObjectWrapper Figure::align_labels(const pybind11::tuple &args,
+                                   const pybind11::dict &kwargs) {
   pybind11::object ret = align_labels_attr(*args, **kwargs);
-  return ret;
+  return ObjectWrapper(std::move(ret));
 }
 
 // colorbar
-pybind11::object Figure::colorbar(const pybind11::tuple &args,
-                                  const pybind11::dict &kwargs) {
+ObjectWrapper Figure::colorbar(const pybind11::tuple &args,
+                               const pybind11::dict &kwargs) {
   pybind11::object ret = colorbar_attr(*args, **kwargs);
-  return ret;
+  return ObjectWrapper(std::move(ret));
 }
 
 // savefig
-pybind11::object Figure::savefig(const pybind11::tuple &args,
-                                 const pybind11::dict &kwargs) {
+ObjectWrapper Figure::savefig(const pybind11::tuple &args,
+                              const pybind11::dict &kwargs) {
   pybind11::object ret = savefig_attr(*args, **kwargs);
-  return ret;
+  return ObjectWrapper(std::move(ret));
 }
 
 // suptitle
-pybind11::object Figure::suptitle(const pybind11::tuple &args,
-                                  const pybind11::dict &kwargs) {
+ObjectWrapper Figure::suptitle(const pybind11::tuple &args,
+                               const pybind11::dict &kwargs) {
   pybind11::object ret = suptitle_attr(*args, **kwargs);
-  return ret;
+  return ObjectWrapper(std::move(ret));
 }
 
 // tight_layout
-pybind11::object Figure::tight_layout(const pybind11::tuple &args,
-                                      const pybind11::dict &kwargs) {
+ObjectWrapper Figure::tight_layout(const pybind11::tuple &args,
+                                   const pybind11::dict &kwargs) {
   pybind11::object ret = tight_layout_attr(*args, **kwargs);
-  return ret;
+  return ObjectWrapper(std::move(ret));
 }
 
 } // namespace matplotlibcpp17::figure

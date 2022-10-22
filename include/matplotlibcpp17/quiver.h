@@ -17,14 +17,16 @@ namespace matplotlibcpp17::quiver {
  **/
 struct DECL_STRUCT_ATTR Quiver : public BaseWrapper {
 public:
-  Quiver(pybind11::object q) { self = q; }
+  Quiver(const pybind11::object &q) { self = q; }
+  Quiver(pybind11::object &&q) { self = std::move(q); }
 };
 
 /**
  * @brief A wrapper class for matplotlib.quiver.QuiverKey
  **/
 struct DECL_STRUCT_ATTR QuiverKey : public BaseWrapper {
-  QuiverKey(pybind11::object qk) { self = qk; }
+  QuiverKey(const pybind11::object &qk) { self = qk; }
+  QuiverKey(pybind11::object &&qk) { self = std::move(qk); }
 };
 
 } // namespace matplotlibcpp17::quiver
