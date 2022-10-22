@@ -133,7 +133,7 @@ Include matplotlibcpp17 directly</h2>
 <p >descibed in <a href="#minimal-example">minimal example</a>.</p>
 <h1><a class="anchor" id="autotoc_md7"></a>
 Syntax</h1>
-<p >The user will need to capsulate <em>arguments</em> in <code>Args(arg1, arg2, ...) == pybind11:tuple</code> and <em>keyword arguments</em> in <code>Kwargs("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict</code>. The returned value is either a <code>pybind11::object</code> or a corresponding wrapper class. Please refer to the reference and examples below.</p><ul>
+<p >The user will need to capsulate <em>arguments</em> in <code>Args(arg1, arg2, ...) == pybind11:tuple</code> and <em>keyword arguments</em> in <code>Kwargs("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict</code>. The returned value is a wrapper class for pybind. Please refer to the reference and examples below.</p><ul>
 <li>exception: <code>subplots</code>, <code>TBD</code>s</li>
 <li>conversion: Wrapper class of matplotlibcpp17 like <a href="https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h">::container::BarContainer</a> needs to be passed to python interpreter using <code>unwrap()</code> method in <em>args</em> and <em>kwargs</em>.</li>
 </ul>
@@ -233,6 +233,12 @@ quiver</h2>
 <div class="line">ax1.scatter(Args(X, Y), Kwargs(<span class="stringliteral">&quot;color&quot;</span>_a = <span class="stringliteral">&quot;0.5&quot;</span>, <span class="stringliteral">&quot;s&quot;</span>_a = 1));</div>
 </div><!-- fragment --><p ><img src="quiver_demo_3.png" alt="" class="inline" title="quiver_demo3"/></p>
 <h2><a class="anchor" id="autotoc_md15"></a>
+3D</h2>
+<p >To plot 3D graph with <code>projection = "3d"</code>, following code is required.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;matplotlibcpp17/mplot3d.h&gt;</span></div>
+<div class="line"> </div>
+<div class="line">matplotlibcpp17::mplot3d::import();</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md16"></a>
 gif</h2>
 <p >Currently only <code>ArtistAnimation</code> is supported. <code>FuncAnimation</code> interface maybe implemented in the future.</p>
 <p >From <a href="https://github.com/soblin/matplotlibcpp17/blob/master/gallery/artist_animation/random_walk.cpp">gallery/artist_animation/random_walk.cpp</a></p>
@@ -240,10 +246,10 @@ gif</h2>
 <li><a href="https://matplotlib.org/stable/gallery/animation/random_walk.html">original python code</a></li>
 </ul>
 <p ><img src="random_walk.gif" alt="" class="inline" title="random_walk"/></p>
-<h1><a class="anchor" id="autotoc_md16"></a>
+<h1><a class="anchor" id="autotoc_md17"></a>
 Demos</h1>
 <p ><code>gallery</code> folder contains corresponding examples from <a href="https://matplotlib.org/stable/gallery">the official website of matplotlib</a> with the same structure.</p>
-<h2><a class="anchor" id="autotoc_md17"></a>
+<h2><a class="anchor" id="autotoc_md18"></a>
 build</h2>
 <p >If you want to build the demos, use <code>-DADD_DEMO=1</code> (by default it is <code>0</code>).</p>
 <div class="fragment"><div class="line">$ mkdir build; cd build</div>
@@ -252,7 +258,7 @@ build</h2>
 </div><!-- fragment --><p >If you do not need to see the demo with <code>plt.show()</code>, use <code>-DUSE_GUI=1</code> (by default it is <code>0</code>). Otherwise the executables will <code>plt.savefig()</code> to <code>gallery/images</code> directory.</p>
 <p ><code>make &lt;gallery directory name&gt;</code> runs all the executables under that directory.</p>
 <div class="fragment"><div class="line">make lines_bars_and_markers</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md18"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md19"></a>
 Contributing</h1>
 <p >Contributions to this project are welcome if you could add or want/need more modules :) </p>
 </div></div><!-- PageDoc -->

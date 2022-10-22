@@ -39,12 +39,13 @@ var NAVTREE =
       [ "image", "index.html#autotoc_md12", null ],
       [ "fill", "index.html#autotoc_md13", null ],
       [ "quiver", "index.html#autotoc_md14", null ],
-      [ "gif", "index.html#autotoc_md15", null ]
+      [ "3D", "index.html#autotoc_md15", null ],
+      [ "gif", "index.html#autotoc_md16", null ]
     ] ],
-    [ "Demos", "index.html#autotoc_md16", [
-      [ "build", "index.html#autotoc_md17", null ]
+    [ "Demos", "index.html#autotoc_md17", [
+      [ "build", "index.html#autotoc_md18", null ]
     ] ],
-    [ "Contributing", "index.html#autotoc_md18", null ],
+    [ "Contributing", "index.html#autotoc_md19", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],
