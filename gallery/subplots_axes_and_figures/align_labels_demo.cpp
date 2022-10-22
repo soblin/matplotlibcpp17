@@ -18,16 +18,16 @@ int main() {
   auto gs = GridSpec(2, 2);
   // instead of gs[0, :]
   auto ax = fig.add_subplot(Args(gs(0, py::slice(0, 2, 1)).unwrap()));
-  auto tmp_ = xt::arange(0, 1000000, 10000);
+  const auto tmp_ = xt::arange(0, 1000000, 10000);
   vector<double> tmp(tmp_.begin(), tmp_.end());
   ax.plot(Args(tmp));
   ax.set_ylabel(Args("YLabel0"));
   ax.set_xlabel(Args("XLabel0"));
   for (auto i : {0, 1}) {
     ax = fig.add_subplot(Args(gs(1, i).unwrap()));
-    auto ys_ = xt::arange(1.0, 0.0, -0.1);
-    auto xs_ = ys_ * 2000;
-    vector<double> xs(xs_.begin(), xs_.end()), ys(ys_.begin(), ys_.end());
+    const auto ys_ = xt::arange(1.0, 0.0, -0.1);
+    const auto xs_ = ys_ * 2000;
+    const vector<double> xs(xs_.begin(), xs_.end()), ys(ys_.begin(), ys_.end());
     ax.plot(Args(xs, ys));
     ax.set_ylabel(Args(string("YLabel1 " + to_string(i))));
     ax.set_xlabel(Args(string("XLabel1 " + to_string(i))));

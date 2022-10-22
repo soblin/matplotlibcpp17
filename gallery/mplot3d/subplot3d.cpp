@@ -86,8 +86,7 @@ int main() {
                  Kwargs("shrink"_a = 0.5, "aspect"_a = 10));
   }
   {
-    const auto ax =
-        fig.add_subplot(Args(1, 2, 2), Kwargs("projection"_a = "3d"));
+    auto ax = fig.add_subplot(Args(1, 2, 2), Kwargs("projection"_a = "3d"));
     const auto [X, Y, Z] = get_test_data(0.05);
     const auto X_ = py::array(py::cast(std::move(X)));
     const auto Y_ = py::array(py::cast(std::move(Y)));

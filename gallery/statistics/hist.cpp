@@ -10,9 +10,9 @@ using namespace matplotlibcpp17;
 int main1() {
   int N_points = 100000;
   int n_bins = 20;
-  auto dist1_ = xt::random::randn<double>({N_points});
-  auto dist2_ = 0.4 * xt::random::randn<double>({N_points}) + 5.0;
-  vector<double> dist1(dist1_.begin(), dist1_.end()),
+  const auto dist1_ = xt::random::randn<double>({N_points});
+  const auto dist2_ = 0.4 * xt::random::randn<double>({N_points}) + 5.0;
+  const vector<double> dist1(dist1_.begin(), dist1_.end()),
       dist2(dist2_.begin(), dist2_.end());
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, axs] =
@@ -32,10 +32,10 @@ int main1() {
 // int main2() // pass
 
 int main3() {
-  int N_points = 100000;
-  auto dist1_ = xt::random::randn<double>({N_points});
-  auto dist2_ = 0.4 * xt::random::randn<double>({N_points}) + 5.0;
-  vector<double> dist1(dist1_.begin(), dist1_.end()),
+  const int N_points = 100000;
+  const auto dist1_ = xt::random::randn<double>({N_points});
+  const auto dist2_ = 0.4 * xt::random::randn<double>({N_points}) + 5.0;
+  const vector<double> dist1(dist1_.begin(), dist1_.end()),
       dist2(dist2_.begin(), dist2_.end());
 
   auto plt = matplotlibcpp17::pyplot::import();

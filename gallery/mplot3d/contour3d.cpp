@@ -18,18 +18,19 @@ using mesh2D = vector<vector<double>>;
 
 // from mpl_toolkits.axes3d.py
 tuple<mesh2D, mesh2D, mesh2D> get_test_data(double delta = 0.05) {
-  auto xs = xt::arange(-3.0, 3.0, delta);
-  auto ys = xt::arange(-3.0, 3.0, delta);
-  auto [X0, Y0] = xt::meshgrid(xs, ys); // 120x160
-  auto Z1 = xt::exp(-(xt::pow(X0, 2) + xt::pow(Y0, 2)) / 2.0) / (2 * M_PI);
-  auto Z2 =
+  const auto xs = xt::arange(-3.0, 3.0, delta);
+  const auto ys = xt::arange(-3.0, 3.0, delta);
+  const auto [X0, Y0] = xt::meshgrid(xs, ys); // 120x160
+  const auto Z1 =
+      xt::exp(-(xt::pow(X0, 2) + xt::pow(Y0, 2)) / 2.0) / (2 * M_PI);
+  const auto Z2 =
       xt::exp(-(xt::pow((X0 - 1.0) / 1.5, 2) + xt::pow((Y0 - 1.0) / 0.5, 2)) /
               2) /
       (2 * M_PI * 0.5 * 1.5);
-  auto Z0 = Z2 - Z1;
-  auto X = X0 * 10;
-  auto Y = Y0 * 10;
-  auto Z = Z0 * 500;
+  const auto Z0 = Z2 - Z1;
+  const auto X = X0 * 10;
+  const auto Y = Y0 * 10;
+  const auto Z = Z0 * 500;
   const int szx = xs.shape()[0], szy = ys.shape()[0];
   mesh2D X_(szx), Y_(szx), Z_(szx);
   for (int i = 0; i < szx; ++i) {
@@ -52,7 +53,7 @@ int main() {
   matplotlibcpp17::mplot3d::import();
   auto fig = plt.figure();
   auto ax = fig.add_subplot(Args(), Kwargs("projection"_a = "3d"));
-  auto [X, Y, Z] = get_test_data(0.05);
+  const auto [X, Y, Z] = get_test_data(0.05);
   ax.contour(Args(X, Y, Z), Kwargs("cmap"_a = cm::coolwarm));
 #if USE_GUI
   plt.show();

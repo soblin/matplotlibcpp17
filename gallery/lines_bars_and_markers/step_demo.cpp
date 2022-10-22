@@ -15,10 +15,10 @@ int main() {
   py::scoped_interpreter guard{};
   auto plt = pyplot::import();
 
-  auto x_ = xt::arange(14) * 1.0;
-  auto y_ = xt::sin(x_ / 2.0);
-  auto y1_ = y_ + 1.0, y2_ = y_ + 2.0;
-  vector<double> x(x_.begin(), x_.end()), y(y_.begin(), y_.end()),
+  const auto x_ = xt::arange(14) * 1.0;
+  const auto y_ = xt::sin(x_ / 2.0);
+  const auto y1_ = y_ + 1.0, y2_ = y_ + 2.0;
+  const vector<double> x(x_.begin(), x_.end()), y(y_.begin(), y_.end()),
       y1(y1_.begin(), y1_.end()), y2(y2_.begin(), y2_.end());
 
   plt.step(Args(x, y2), Kwargs("label"_a = "pre (default)"));

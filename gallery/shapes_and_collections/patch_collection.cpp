@@ -17,7 +17,6 @@ int main() {
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, ax] = plt.subplots();
 
-  const int resolution = 50;
   const int N = 3;
   xt::xarray<double> x = xt::random::rand<double>({N});
   xt::xarray<double> y = xt::random::rand<double>({N});
@@ -32,8 +31,8 @@ int main() {
   x = xt::random::rand<double>({N});
   y = xt::random::rand<double>({N});
   radii = 0.1 * xt::random::rand<double>({N});
-  xt::xarray<double> theta1 = 360.0 * xt::random::rand<double>({N});
-  xt::xarray<double> theta2 = 360.0 * xt::random::rand<double>({N});
+  const xt::xarray<double> theta1 = 360.0 * xt::random::rand<double>({N});
+  const xt::xarray<double> theta2 = 360.0 * xt::random::rand<double>({N});
   for (int i = 0; i < N; ++i) {
     const double x1 = x[i], y1 = y[i], r = radii[i], th1 = theta1[i],
                  th2 = theta2[i];
@@ -68,7 +67,7 @@ int main() {
   }
 
   auto colors__ = 100.0 * xt::random::rand<double>({patches.size()});
-  vector<double> colors_(colors__.begin(), colors__.end());
+  const vector<double> colors_(colors__.begin(), colors__.end());
   py::array colors = py::cast(colors_);
   auto p = collections::PatchCollection(Args(patches), Kwargs("alpha"_a = 0.4));
   p.set_array(Args(colors));

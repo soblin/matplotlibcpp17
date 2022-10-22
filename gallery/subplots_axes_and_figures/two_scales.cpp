@@ -13,10 +13,10 @@ using namespace matplotlibcpp17;
 
 int main() {
   auto t_ = xt::arange(0.01, 10.0, 0.01);
-  auto data1_ = xt::exp(t_);
-  auto data2_ = xt::sin(2 * M_PI * t_);
-  vector<double> t(t_.begin(), t_.end()), data1(data1_.begin(), data1_.end()),
-      data2(data2_.begin(), data2_.end());
+  const auto data1_ = xt::exp(t_);
+  const auto data2_ = xt::sin(2 * M_PI * t_);
+  const vector<double> t(t_.begin(), t_.end()),
+      data1(data1_.begin(), data1_.end()), data2(data2_.begin(), data2_.end());
 
   py::scoped_interpreter guard{};
   auto plt = pyplot::import();

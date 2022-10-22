@@ -14,10 +14,10 @@ using namespace std;
 using namespace matplotlibcpp17;
 
 int main1() {
-  auto x_ = xt::arange(0.0, 2.0, 0.01);
-  auto y1_ = xt::sin(2 * M_PI * x_);
-  auto y2_ = 0.8 * xt::sin(4 * M_PI * x_);
-  vector<double> x(x_.begin(), x_.end()), y1(y1_.begin(), y1_.end()),
+  const auto x_ = xt::arange(0.0, 2.0, 0.01);
+  const auto y1_ = xt::sin(2 * M_PI * x_);
+  const auto y2_ = 0.8 * xt::sin(4 * M_PI * x_);
+  const vector<double> x(x_.begin(), x_.end()), y1(y1_.begin(), y1_.end()),
       y2(y2_.begin(), y2_.end());
 
   auto plt = matplotlibcpp17::pyplot::import();
@@ -45,9 +45,9 @@ int main1() {
 int main2() {
   auto plt = matplotlibcpp17::pyplot::import();
 
-  vector<double> x = {0, 1, 2, 3};
-  vector<double> y1 = {0.8, 0.8, 0.2, 0.2};
-  vector<double> y2 = {0, 0, 1, 1};
+  const vector<double> x = {0, 1, 2, 3};
+  const vector<double> y1 = {0.8, 0.8, 0.2, 0.2};
+  const vector<double> y2 = {0, 0, 1, 1};
   auto [fig, axs] = plt.subplots(2, 1, Kwargs("sharex"_a = true));
   auto ax1 = axs[0], ax2 = axs[1];
 
@@ -85,8 +85,8 @@ int main3() {
   auto plt = matplotlibcpp17::pyplot::import();
   auto [fig, ax] = plt.subplots();
 
-  auto x0 = xt::arange(0.0, 4 * M_PI, 0.01);
-  auto y0 = xt::sin(x0);
+  const auto x0 = xt::arange(0.0, 4 * M_PI, 0.01);
+  const auto y0 = xt::sin(x0);
   vector<double> x(x0.begin(), x0.end()), y(y0.begin(), y0.end());
   ax.plot(Args(x, y), Kwargs("color"_a = "black"));
   const double threshold = 0.75;

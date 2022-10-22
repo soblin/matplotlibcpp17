@@ -41,9 +41,9 @@ int main() {
   py::list artist_list;
   for (int j = 1; j <= num_steps; ++j) {
     for (int i = 0; i < M; ++i) {
-      auto xs0 = xt::view(walks, i, 0, xt::range(1, j + 1));
-      auto ys0 = xt::view(walks, i, 1, xt::range(1, j + 1));
-      auto zs0 = xt::view(walks, i, 2, xt::range(1, j + 1));
+      const auto xs0 = xt::view(walks, i, 0, xt::range(1, j + 1));
+      const auto ys0 = xt::view(walks, i, 1, xt::range(1, j + 1));
+      const auto zs0 = xt::view(walks, i, 2, xt::range(1, j + 1));
       // to vector
       vector<double> xs(xs0.begin(), xs0.end());
       vector<double> ys(ys0.begin(), ys0.end());

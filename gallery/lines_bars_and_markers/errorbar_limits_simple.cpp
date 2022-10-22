@@ -15,11 +15,11 @@ int main() {
   py::scoped_interpreter guard{};
   auto plt = pyplot::import();
   auto fig = plt.figure();
-  auto x_ = xt::arange(0.0, 10.0, 1.0);
-  auto y_ = 2.5 * xt::sin(x_ / 20 * M_PI);
-  auto y1_ = y_ + 1.0, y2_ = y_ + 2.0, y3_ = y_ + 3.0;
-  auto yerr_ = xt::linspace(0.05, 0.2, 10);
-  vector<double> x(x_.begin(), x_.end()), y(y_.begin(), y_.end()),
+  const auto x_ = xt::arange(0.0, 10.0, 1.0);
+  const auto y_ = 2.5 * xt::sin(x_ / 20 * M_PI);
+  const auto y1_ = y_ + 1.0, y2_ = y_ + 2.0, y3_ = y_ + 3.0;
+  const auto yerr_ = xt::linspace(0.05, 0.2, 10);
+  const vector<double> x(x_.begin(), x_.end()), y(y_.begin(), y_.end()),
       yerr(yerr_.begin(), yerr_.end()), y3(y3_.begin(), y3_.end()),
       y2(y2_.begin(), y2_.end()), y1(y1_.begin(), y1_.end());
   plt.errorbar(Args(x, y3),
