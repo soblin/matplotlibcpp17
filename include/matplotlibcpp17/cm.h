@@ -10,6 +10,7 @@
 
 namespace matplotlibcpp17::cm {
 
+// TODO: more colors
 static const char *coolwarm = "coolwarm";
 static const char *PuBu_r = "PuBu_r";
 static const char *RdYlGn = "RdYlGn";

@@ -51,7 +51,7 @@ descibed in [minimal example](#minimal-example).
 
 ## Syntax
 
-The user will need to capsulate *arguments* in `Args(arg1, arg2, ...) == pybind11:tuple` and *keyword arguments* in `Kwargs("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict`. The returned value is either a `pybind11::object` or a corresponding wrapper class. Please refer to the reference and examples below.
+The user will need to capsulate *arguments* in `Args(arg1, arg2, ...) == pybind11:tuple` and *keyword arguments* in `Kwargs("k1"_a = v1, "k2"_a = v2, ...) == pybind11::dict`. The returned value is a wrapper class for pybind. Please refer to the reference and examples below.
 - exception: `subplots`, `TBD`s
 - conversion: Wrapper class of matplotlibcpp17 like [::container::BarContainer](https://github.com/soblin/matplotlibcpp17/blob/master/include/matplotlibcpp17/container.h) needs to be passed to python interpreter using `unwrap()` method in *args* and *kwargs*.
 
@@ -179,6 +179,16 @@ From [gallery/images_contours_and_fields/quiver_demo.cpp](https://github.com/sob
 ```
 
 ![quiver_demo3](./gallery/images/quiver_demo_3.png)
+
+### 3D
+
+To plot 3D graph with `projection = "3d"`, following code is required.
+
+```cpp
+#include <matplotlibcpp17/mplot3d.h>
+
+matplotlibcpp17::mplot3d::import();
+```
 
 ### gif
 
