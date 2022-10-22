@@ -38,7 +38,7 @@ namespace matplotlibcpp17 {
  **/
 struct DECL_STRUCT_ATTR BaseWrapper {
 public:
-  pybind11::object unwrap() { return self; }
+  pybind11::object unwrap() const { return self; }
 
 protected:
   pybind11::object self;
