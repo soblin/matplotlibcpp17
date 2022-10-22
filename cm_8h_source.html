@@ -102,18 +102,13 @@ $(document).ready(function(){initNavTree('cm_8h_source.html',''); initResizable(
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span>matplotlibcpp17::cm {</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>pybind11::object coolwarm() {</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  pybind11::object ret =</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>      pybind11::module::import(<span class="stringliteral">&quot;matplotlib.cm&quot;</span>).attr(<span class="stringliteral">&quot;coolwarm&quot;</span>);</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>}</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *coolwarm = <span class="stringliteral">&quot;coolwarm&quot;</span>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *PuBu_r = <span class="stringliteral">&quot;PuBu_r&quot;</span>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *RdYlGn = <span class="stringliteral">&quot;RdYlGn&quot;</span>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>} <span class="comment">// namespace matplotlibcpp17::cm</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *PuBu_r = <span class="stringliteral">&quot;PuBu_r&quot;</span>;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *RdYlGn = <span class="stringliteral">&quot;RdYlGn&quot;</span>;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>} <span class="comment">// namespace matplotlibcpp17::cm</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif </span><span class="comment">/* MATPLOTLIBCPP17_CM_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#endif </span><span class="comment">/* MATPLOTLIBCPP17_CM_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.17-->

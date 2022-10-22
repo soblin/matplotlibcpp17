@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['text_0',['Text',['../structmatplotlibcpp17_1_1text_1_1_text.html',1,'matplotlibcpp17::text']]]
+  ['subplotspec_0',['SubplotSpec',['../structmatplotlibcpp17_1_1gridspec_1_1_subplot_spec.html',1,'matplotlibcpp17::gridspec']]]
 ];

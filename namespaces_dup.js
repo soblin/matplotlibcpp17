@@ -43,6 +43,7 @@ var namespaces_dup =
       [ "ticker", null, [
         [ "LogLocator", "structmatplotlibcpp17_1_1ticker_1_1_log_locator.html", null ]
       ] ],
-      [ "BaseWrapper", "structmatplotlibcpp17_1_1_base_wrapper.html", null ]
+      [ "BaseWrapper", "structmatplotlibcpp17_1_1_base_wrapper.html", null ],
+      [ "ObjectWrapper", "structmatplotlibcpp17_1_1_object_wrapper.html", null ]
     ] ]
 ];
