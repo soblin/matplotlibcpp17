@@ -214,6 +214,13 @@ public:
   ObjectWrapper set_yticks(const pybind11::tuple &args = pybind11::tuple(),
                            const pybind11::dict &kwargs = pybind11::dict());
 
+  // set_rticks
+  ObjectWrapper set_rticks(const pybind11::tuple &args = pybind11::tuple(),
+                         const pybind11::dict &kwargs = pybind11::dict());
+
+  // set_rmax
+  ObjectWrapper set_rmax(const pybind11::tuple &args);
+  
   // set_zlabel
   ObjectWrapper set_zlabel(const pybind11::tuple &args = pybind11::tuple(),
                            const pybind11::dict &kwargs = pybind11::dict());
@@ -293,6 +300,8 @@ private:
     LOAD_FUNC_ATTR(set_ylim, self);
     LOAD_FUNC_ATTR(set_yscale, self);
     LOAD_FUNC_ATTR(set_yticks, self);
+    LOAD_FUNC_ATTR(set_rticks, self);
+    LOAD_FUNC_ATTR(set_rmax, self);
     LOAD_FUNC_ATTR(text, self);
     LOAD_FUNC_ATTR(tick_params, self);
     LOAD_FUNC_ATTR(twinx, self);
@@ -340,6 +349,8 @@ private:
   pybind11::object set_ylim_attr;
   pybind11::object set_yscale_attr;
   pybind11::object set_yticks_attr;
+  pybind11::object set_rticks_attr;
+  pybind11::object set_rmax_attr;
   pybind11::object set_zlabel_attr;
   pybind11::object set_zlim_attr;
   pybind11::object text_attr;
@@ -681,6 +692,19 @@ ObjectWrapper Axes::set_yticks(const pybind11::tuple &args,
   return ObjectWrapper(std::move(ret));
 }
 
+  // set_rticks
+ObjectWrapper Axes::set_rticks(const pybind11::tuple &args,
+										 const pybind11::dict &kwargs) {
+	pybind11::object ret = set_rticks_attr(*args, **kwargs);
+	return ObjectWrapper(std::move(ret));
+}
+
+// set_rmax
+ObjectWrapper Axes::set_rmax(const pybind11::tuple &args) {
+  pybind11::object ret = set_rmax_attr(*args);
+  return ObjectWrapper(std::move(ret));
+}
+  
 // set_zlabel
 ObjectWrapper Axes::set_zlabel(const pybind11::tuple &args,
                                const pybind11::dict &kwargs) {
