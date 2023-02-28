@@ -68,6 +68,10 @@ public:
   container::BarContainer barh(const pybind11::tuple &args = pybind11::tuple(),
                                const pybind11::dict &kwargs = pybind11::dict());
 
+  // cla
+  ObjectWrapper cla(const pybind11::tuple &args = pybind11::tuple(),
+                    const pybind11::dict &kwargs = pybind11::dict());
+
   // contour
   ObjectWrapper contour(const pybind11::tuple &args = pybind11::tuple(),
                         const pybind11::dict &kwargs = pybind11::dict());
@@ -259,6 +263,7 @@ private:
     WARN_MSG("Not loading bar_label because matplotlib version is < 3.4.0");
 #endif
     LOAD_FUNC_ATTR(barh, self);
+    LOAD_FUNC_ATTR(cla, self);
     LOAD_FUNC_ATTR(contour, self);
     LOAD_FUNC_ATTR(contourf, self);
     LOAD_FUNC_ATTR(errorbar, self);
@@ -304,6 +309,7 @@ private:
   pybind11::object bar_attr;
   pybind11::object bar_label_attr;
   pybind11::object barh_attr;
+  pybind11::object cla_attr;
   pybind11::object contour_attr;
   pybind11::object contourf_attr;
   pybind11::object errorbar_attr;
@@ -402,6 +408,13 @@ container::BarContainer Axes::barh(const pybind11::tuple &args,
                                    const pybind11::dict &kwargs) {
   pybind11::object obj = barh_attr(*args, **kwargs);
   return container::BarContainer(obj);
+}
+
+// cla
+ObjectWrapper Axes::cla(const pybind11::tuple &args,
+                        const pybind11::dict &kwargs) {
+  pybind11::object ret = cla_attr(*args, **kwargs);
+  return ObjectWrapper(std::move(ret));
 }
 
 // contour
