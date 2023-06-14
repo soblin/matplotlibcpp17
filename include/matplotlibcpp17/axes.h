@@ -55,6 +55,9 @@ public:
   // axhline
   ObjectWrapper axhline(const pybind11::tuple &args = pybind11::tuple(),
                         const pybind11::dict &kwargs = pybind11::dict());
+  // axvline
+  ObjectWrapper axvline(const pybind11::tuple &args = pybind11::tuple(),
+                        const pybind11::dict &kwargs = pybind11::dict());
 
   // bar
   container::BarContainer bar(const pybind11::tuple &args = pybind11::tuple(),
@@ -256,6 +259,7 @@ private:
     LOAD_FUNC_ATTR(add_collection, self);
     LOAD_FUNC_ATTR(add_patch, self);
     LOAD_FUNC_ATTR(axhline, self);
+    LOAD_FUNC_ATTR(axvline, self);
     LOAD_FUNC_ATTR(bar, self);
 #if MATPLOTLIB_MINOR_VER_GTE_4
     LOAD_FUNC_ATTR(bar_label, self);
@@ -306,6 +310,7 @@ private:
   pybind11::object add_collection_attr;
   pybind11::object add_patch_attr;
   pybind11::object axhline_attr;
+  pybind11::object axvline_attr;
   pybind11::object bar_attr;
   pybind11::object bar_label_attr;
   pybind11::object barh_attr;
@@ -380,6 +385,13 @@ ObjectWrapper Axes::add_patch(const pybind11::tuple &args,
 ObjectWrapper Axes::axhline(const pybind11::tuple &args,
                             const pybind11::dict &kwargs) {
   pybind11::object ret = axhline_attr(*args, **kwargs);
+  return ObjectWrapper(std::move(ret));
+}
+
+// axvline
+ObjectWrapper Axes::axvline(const pybind11::tuple &args,
+                            const pybind11::dict &kwargs) {
+  pybind11::object ret = axvline_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
