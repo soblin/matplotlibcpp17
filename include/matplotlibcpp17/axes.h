@@ -2,15 +2,13 @@
  * @file axes.h
  * @brief corresponding header for matplotlib.axes
  **/
+#pragma once
 
-#ifndef MATPLOTLIBCPP17_AXES_H
-#define MATPLOTLIBCPP17_AXES_H
-
-#include <vector>
 #include <tuple>
+#include <vector>
 
-#include <matplotlibcpp17/common.h>
 #include <matplotlibcpp17/collections.h>
+#include <matplotlibcpp17/common.h>
 #include <matplotlibcpp17/container.h>
 #include <matplotlibcpp17/legend.h>
 #include <matplotlibcpp17/quiver.h>
@@ -361,50 +359,50 @@ private:
 };
 
 // add_artist
-ObjectWrapper Axes::add_artist(const pybind11::tuple &args,
-                               const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::add_artist(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
   pybind11::object ret = add_artist_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // add_collection
-ObjectWrapper Axes::add_collection(const pybind11::tuple &args,
-                                   const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::add_collection(const pybind11::tuple &args,
+                                          const pybind11::dict &kwargs) {
   pybind11::object ret = add_collection_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // add_patch
-ObjectWrapper Axes::add_patch(const pybind11::tuple &args,
-                              const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::add_patch(const pybind11::tuple &args,
+                                     const pybind11::dict &kwargs) {
   pybind11::object ret = add_patch_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // axhline
-ObjectWrapper Axes::axhline(const pybind11::tuple &args,
-                            const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::axhline(const pybind11::tuple &args,
+                                   const pybind11::dict &kwargs) {
   pybind11::object ret = axhline_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // axvline
-ObjectWrapper Axes::axvline(const pybind11::tuple &args,
-                            const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::axvline(const pybind11::tuple &args,
+                                   const pybind11::dict &kwargs) {
   pybind11::object ret = axvline_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // bar
-container::BarContainer Axes::bar(const pybind11::tuple &args,
-                                  const pybind11::dict &kwargs) {
+inline container::BarContainer Axes::bar(const pybind11::tuple &args,
+                                         const pybind11::dict &kwargs) {
   pybind11::object obj = bar_attr(*args, **kwargs);
   return container::BarContainer(obj);
 }
 
 // bar_label
-ObjectWrapper Axes::bar_label(const pybind11::tuple &args,
-                              const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::bar_label(const pybind11::tuple &args,
+                                     const pybind11::dict &kwargs) {
 #if MATPLOTLIB_MINOR_VER_GTE_4
   pybind11::object ret = bar_label_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
@@ -416,36 +414,36 @@ ObjectWrapper Axes::bar_label(const pybind11::tuple &args,
 }
 
 // barh
-container::BarContainer Axes::barh(const pybind11::tuple &args,
-                                   const pybind11::dict &kwargs) {
+inline container::BarContainer Axes::barh(const pybind11::tuple &args,
+                                          const pybind11::dict &kwargs) {
   pybind11::object obj = barh_attr(*args, **kwargs);
   return container::BarContainer(obj);
 }
 
 // cla
-ObjectWrapper Axes::cla(const pybind11::tuple &args,
-                        const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::cla(const pybind11::tuple &args,
+                               const pybind11::dict &kwargs) {
   pybind11::object ret = cla_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // contour
-ObjectWrapper Axes::contour(const pybind11::tuple &args,
-                            const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::contour(const pybind11::tuple &args,
+                                   const pybind11::dict &kwargs) {
   pybind11::object ret = contour_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // contourf
-ObjectWrapper Axes::contourf(const pybind11::tuple &args,
-                             const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::contourf(const pybind11::tuple &args,
+                                    const pybind11::dict &kwargs) {
   pybind11::object ret = contourf_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // errorbar
-ObjectWrapper Axes::errorbar(const pybind11::tuple &args,
-                             const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::errorbar(const pybind11::tuple &args,
+                                    const pybind11::dict &kwargs) {
   if (projection_3d) {
 #if MATPLOTLIB_MINOR_VER_GTE_4
     pybind11::object obj = errorbar_attr(*args, **kwargs);
@@ -462,42 +460,42 @@ ObjectWrapper Axes::errorbar(const pybind11::tuple &args,
 }
 
 // fill
-ObjectWrapper Axes::fill(const pybind11::tuple &args,
-                         const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::fill(const pybind11::tuple &args,
+                                const pybind11::dict &kwargs) {
   pybind11::object ret = fill_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // fill_between
-ObjectWrapper Axes::fill_between(const pybind11::tuple &args,
-                                 const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::fill_between(const pybind11::tuple &args,
+                                        const pybind11::dict &kwargs) {
   pybind11::object ret = fill_between_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // fill_betweenx
-ObjectWrapper Axes::fill_betweenx(const pybind11::tuple &args,
-                                  const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::fill_betweenx(const pybind11::tuple &args,
+                                         const pybind11::dict &kwargs) {
   pybind11::object ret = fill_betweenx_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // get_lines
-ObjectWrapper Axes::get_lines(const pybind11::tuple &args,
-                              const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::get_lines(const pybind11::tuple &args,
+                                     const pybind11::dict &kwargs) {
   pybind11::object ret = get_lines_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // get_xaxis_transform
-ObjectWrapper Axes::get_xaxis_transform(const pybind11::tuple &args,
-                                        const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::get_xaxis_transform(const pybind11::tuple &args,
+                                               const pybind11::dict &kwargs) {
   pybind11::object ret = get_xaxis_transform_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // get_xlim
-std::tuple<double, double> Axes::get_xlim() {
+inline std::tuple<double, double> Axes::get_xlim() {
   pybind11::list ret = get_xlim_attr();
   double x1 = ret[0].cast<double>();
   double x2 = ret[1].cast<double>();
@@ -505,7 +503,7 @@ std::tuple<double, double> Axes::get_xlim() {
 }
 
 // get_xticklabels
-std::vector<text::Text> Axes::get_xticklabels() {
+inline std::vector<text::Text> Axes::get_xticklabels() {
   pybind11::list ret = get_xticklabels_attr();
   std::vector<text::Text> texts;
   for (pybind11::size_t i = 0; i < ret.size(); ++i) {
@@ -515,14 +513,15 @@ std::vector<text::Text> Axes::get_xticklabels() {
 }
 
 // grid
-ObjectWrapper Axes::grid(const pybind11::tuple &args,
-                         const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::grid(const pybind11::tuple &args,
+                                const pybind11::dict &kwargs) {
   pybind11::object ret = grid_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // hist
-std::tuple<std::vector<double>, std::vector<double>, container::BarContainer>
+inline std::tuple<std::vector<double>, std::vector<double>,
+                  container::BarContainer>
 Axes::hist(const pybind11::tuple &args, const pybind11::dict &kwargs) {
   pybind11::list ret = hist_attr(*args, **kwargs);
   // parse N, bins, patches
@@ -539,207 +538,206 @@ Axes::hist(const pybind11::tuple &args, const pybind11::dict &kwargs) {
 }
 
 // hist2d
-ObjectWrapper Axes::hist2d(const pybind11::tuple &args,
-                           const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::hist2d(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
   pybind11::object ret = hist2d_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // invert_yaxis
-ObjectWrapper Axes::invert_yaxis(const pybind11::tuple &args,
-                                 const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::invert_yaxis(const pybind11::tuple &args,
+                                        const pybind11::dict &kwargs) {
   pybind11::object ret = invert_yaxis_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // imshow
-ObjectWrapper Axes::imshow(const pybind11::tuple &args,
-                           const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::imshow(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
   pybind11::object ret = imshow_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // legend
-legend::Legend Axes::legend(const pybind11::tuple &args,
-                            const pybind11::dict &kwargs) {
+inline legend::Legend Axes::legend(const pybind11::tuple &args,
+                                   const pybind11::dict &kwargs) {
   pybind11::object obj = legend_attr(*args, **kwargs);
   return legend::Legend(obj);
 }
 
 // pcolormesh
-collections::QuadMesh Axes::pcolormesh(const pybind11::tuple &args,
-                                       const pybind11::dict &kwargs) {
+inline collections::QuadMesh Axes::pcolormesh(const pybind11::tuple &args,
+                                              const pybind11::dict &kwargs) {
   pybind11::object ret = pcolormesh_attr(*args, **kwargs);
   return collections::QuadMesh(ret);
 }
 
 // plot
-ObjectWrapper Axes::plot(const pybind11::tuple &args,
-                         const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::plot(const pybind11::tuple &args,
+                                const pybind11::dict &kwargs) {
   pybind11::object ret = plot_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // plot_surface
-ObjectWrapper Axes::plot_surface(const pybind11::tuple &args,
-                                 const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::plot_surface(const pybind11::tuple &args,
+                                        const pybind11::dict &kwargs) {
   pybind11::object ret = plot_surface_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // plot_wireframe
-ObjectWrapper Axes::plot_wireframe(const pybind11::tuple &args,
-                                   const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::plot_wireframe(const pybind11::tuple &args,
+                                          const pybind11::dict &kwargs) {
   pybind11::object ret = plot_wireframe_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // quiver
-quiver::Quiver Axes::quiver(const pybind11::tuple &args,
-                            const pybind11::dict &kwargs) {
+inline quiver::Quiver Axes::quiver(const pybind11::tuple &args,
+                                   const pybind11::dict &kwargs) {
   pybind11::object obj = quiver_attr(*args, **kwargs);
   return quiver::Quiver(obj);
 }
 
 // quiverkey
-quiver::QuiverKey Axes::quiverkey(const pybind11::tuple &args,
-                                  const pybind11::dict &kwargs) {
+inline quiver::QuiverKey Axes::quiverkey(const pybind11::tuple &args,
+                                         const pybind11::dict &kwargs) {
   pybind11::object obj = quiverkey_attr(*args, **kwargs);
   return quiver::QuiverKey(obj);
 }
 
 // scatter
-collections::PathCollection Axes::scatter(const pybind11::tuple &args,
-                                          const pybind11::dict &kwargs) {
+inline collections::PathCollection Axes::scatter(const pybind11::tuple &args,
+                                                 const pybind11::dict &kwargs) {
   pybind11::object obj = scatter_attr(*args, **kwargs);
   return collections::PathCollection(obj);
 }
 
 // set
-ObjectWrapper Axes::set(const pybind11::tuple &args,
-                        const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::set(const pybind11::tuple &args,
+                               const pybind11::dict &kwargs) {
   pybind11::object ret = set_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // set_adjustable
-ObjectWrapper Axes::set_adjustable(const pybind11::tuple &args,
-                                   const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::set_adjustable(const pybind11::tuple &args,
+                                          const pybind11::dict &kwargs) {
   pybind11::object ret = set_adjustable_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // set_aspect
-ObjectWrapper Axes::set_aspect(const pybind11::tuple &args,
-                               const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::set_aspect(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
   pybind11::object ret = set_aspect_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // set_title
-ObjectWrapper Axes::set_title(const pybind11::tuple &args,
-                              const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::set_title(const pybind11::tuple &args,
+                                     const pybind11::dict &kwargs) {
   pybind11::object ret = set_title_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // set_xlabel
-ObjectWrapper Axes::set_xlabel(const pybind11::tuple &args,
-                               const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::set_xlabel(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
   pybind11::object ret = set_xlabel_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // set_xlim
-ObjectWrapper Axes::set_xlim(const pybind11::tuple &args,
-                             const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::set_xlim(const pybind11::tuple &args,
+                                    const pybind11::dict &kwargs) {
   pybind11::object ret = set_xlim_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // set_xscale
-ObjectWrapper Axes::set_xscale(const pybind11::tuple &args,
-                               const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::set_xscale(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
   pybind11::object ret = set_xscale_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // set_xticks
-ObjectWrapper Axes::set_xticks(const pybind11::tuple &args,
-                               const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::set_xticks(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
   pybind11::object ret = set_xticks_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // set_xticklabels
-ObjectWrapper Axes::set_xticklabels(const pybind11::tuple &args,
-                                    const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::set_xticklabels(const pybind11::tuple &args,
+                                           const pybind11::dict &kwargs) {
   pybind11::object ret = set_xticklabels_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // set_ylabel
-ObjectWrapper Axes::set_ylabel(const pybind11::tuple &args,
-                               const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::set_ylabel(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
   pybind11::object ret = set_ylabel_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // set_ylim
-ObjectWrapper Axes::set_ylim(const pybind11::tuple &args,
-                             const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::set_ylim(const pybind11::tuple &args,
+                                    const pybind11::dict &kwargs) {
   pybind11::object ret = set_ylim_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // set_yscale
-ObjectWrapper Axes::set_yscale(const pybind11::tuple &args,
-                               const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::set_yscale(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
   pybind11::object ret = set_yscale_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // set_yticks
-ObjectWrapper Axes::set_yticks(const pybind11::tuple &args,
-                               const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::set_yticks(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
   pybind11::object ret = set_yticks_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // set_zlabel
-ObjectWrapper Axes::set_zlabel(const pybind11::tuple &args,
-                               const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::set_zlabel(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
   pybind11::object ret = set_zlabel_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // set_zlim
-ObjectWrapper Axes::set_zlim(const pybind11::tuple &args,
-                             const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::set_zlim(const pybind11::tuple &args,
+                                    const pybind11::dict &kwargs) {
   pybind11::object ret = set_zlim_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // text
-ObjectWrapper Axes::text(const pybind11::tuple &args,
-                         const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::text(const pybind11::tuple &args,
+                                const pybind11::dict &kwargs) {
   pybind11::object ret = text_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // tick_params
-ObjectWrapper Axes::tick_params(const pybind11::tuple &args,
-                                const pybind11::dict &kwargs) {
+inline ObjectWrapper Axes::tick_params(const pybind11::tuple &args,
+                                       const pybind11::dict &kwargs) {
   pybind11::object ret = tick_params_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // twinx
-Axes Axes::twinx(const pybind11::tuple &args, const pybind11::dict &kwargs) {
+inline Axes Axes::twinx(const pybind11::tuple &args,
+                        const pybind11::dict &kwargs) {
   pybind11::object ret = twinx_attr(*args, **kwargs);
   return Axes(ret);
 }
 
 } // namespace matplotlibcpp17::axes
-
-#endif /* MATPLOTLIBCPP17_AXES_H */

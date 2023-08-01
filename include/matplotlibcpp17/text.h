@@ -2,9 +2,7 @@
  * @file text.h
  * @brief corresponding header for matplotlib.text
  **/
-
-#ifndef MATPLOTLIBCPP17_TEXT_H
-#define MATPLOTLIBCPP17_TEXT_H
+#pragma once
 
 #include <matplotlibcpp17/common.h>
 
@@ -34,12 +32,10 @@ private:
   pybind11::object set_rotation_attr;
 };
 
-ObjectWrapper Text::set_rotation(const pybind11::tuple &args,
-                                 const pybind11::dict &kwargs) {
+inline ObjectWrapper Text::set_rotation(const pybind11::tuple &args,
+                                        const pybind11::dict &kwargs) {
   pybind11::object ret = set_rotation_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 } // namespace matplotlibcpp17::text
-
-#endif /* MATPLOTLIBCPP17_TEXT_H */

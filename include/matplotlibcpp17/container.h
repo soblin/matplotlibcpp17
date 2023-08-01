@@ -2,9 +2,7 @@
  * @file container.h
  * @brief corresponding header for matplotlib.axes
  **/
-
-#ifndef MATPLOTLIBCPP17_CONTAINER_H
-#define MATPLOTLIBCPP17_CONTAINER_H
+#pragma once
 
 #include <matplotlibcpp17/common.h>
 
@@ -24,5 +22,3 @@ public:
 };
 
 } // namespace matplotlibcpp17::container
-
-#endif /* MATPLOTLIBCPP17_CONTAINER_H */

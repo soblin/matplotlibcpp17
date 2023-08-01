@@ -2,9 +2,7 @@
  * @file quiver.h
  * @brief corresponding header for matplotlib.quiver
  **/
-
-#ifndef MATPLOTLIBCPP17_QUIVER_H
-#define MATPLOTLIBCPP17_QUIVER_H
+#pragma once
 
 #include <matplotlibcpp17/common.h>
 
@@ -30,5 +28,3 @@ struct DECL_STRUCT_ATTR QuiverKey : public BaseWrapper {
 };
 
 } // namespace matplotlibcpp17::quiver
-
-#endif /* MATPLOTLIBCPP17_QUIVER_H */

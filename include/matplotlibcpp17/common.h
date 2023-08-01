@@ -1,5 +1,5 @@
-#ifndef MATPLOTLIBCPP17_COMMON_H
-#define MATPLOTLIBCPP17_COMMON_H
+#pragma once
+
 
 #define LOAD_FUNC_ATTR(obj, mod)                                               \
   do {                                                                         \
@@ -54,5 +54,3 @@ public:
 };
 
 } // namespace matplotlibcpp17
-
-#endif /* MATPLOTLIBCPP17_COMMON_H */

@@ -2,9 +2,7 @@
  * @file collections.h
  * @brief corresponding header for matplotlib.collections
  **/
-
-#ifndef MATPLOTLIBCPP17_COLLECTIONS_H
-#define MATPLOTLIBCPP17_COLLECTIONS_H
+#pragma once
 
 #include <utility>
 
@@ -41,7 +39,7 @@ private:
 // legend_elements
 /// NOTE: this func does not return list of Line2Ds(handles) and list of
 /// strs(labels) unlike original python func
-std::pair<ObjectWrapper, ObjectWrapper>
+inline std::pair<ObjectWrapper, ObjectWrapper>
 PathCollection::legend_elements(const pybind11::tuple &args,
                                 const pybind11::dict &kwargs) {
   pybind11::list ret = legend_elements_attr(*args, **kwargs);
@@ -72,8 +70,8 @@ private:
   pybind11::object set_array_attr;
 };
 
-ObjectWrapper PatchCollection::set_array(const pybind11::tuple &args,
-                                         const pybind11::dict &kwargs) {
+inline ObjectWrapper PatchCollection::set_array(const pybind11::tuple &args,
+                                                const pybind11::dict &kwargs) {
   pybind11::object ret = set_array_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
@@ -88,5 +86,3 @@ public:
 };
 
 } // namespace matplotlibcpp17::collections
-
-#endif /* MATPLOTLIBCPP17_COLLECTIONS_H */

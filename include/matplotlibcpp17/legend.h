@@ -2,9 +2,7 @@
  * @file legend.h
  * @brief corresponding header for matplotlib.legend
  **/
-
-#ifndef MATPLOTLIBCPP17_LEGEND_H
-#define MATPLOTLIBCPP17_LEGEND_H
+#pragma once
 
 #include <matplotlibcpp17/common.h>
 
@@ -22,5 +20,3 @@ public:
 };
 
 } // namespace matplotlibcpp17::legend
-
-#endif /* MATPLOTLIBCPP17_LEGEND_H */

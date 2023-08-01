@@ -2,9 +2,7 @@
  * @file ticker.h
  * @brief corresponding header for matplotlib.ticker
  **/
-
-#ifndef MATPLOTLIBCPP17_TICKER_H
-#define MATPLOTLIBCPP17_TICKER_H
+#pragma once
 
 #include <pybind11/pybind11.h>
 
@@ -22,5 +20,3 @@ public:
 };
 
 } // namespace matplotlibcpp17::ticker
-
-#endif /* MATPLOTLIBCPP17_ANIMATION_H */

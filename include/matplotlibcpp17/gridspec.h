@@ -2,9 +2,7 @@
  * @file gridspec.h
  * @brief corresponding header for matplotlib.axes
  **/
-
-#ifndef MATPLOTLIBCPP17_GRIDSPEC_H
-#define MATPLOTLIBCPP17_GRIDSPEC_H
+#pragma once
 
 #include <matplotlibcpp17/common.h>
 
@@ -46,5 +44,3 @@ private:
 };
 
 } // namespace matplotlibcpp17::gridspec
-
-#endif /* MATPLOTLIBCPP17_GRIDSPEC_H */
