@@ -95,87 +95,84 @@ $(document).ready(function(){initNavTree('patches_8h_source.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef MATPLOTLIBCPP17_PATCHES_H</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define MATPLOTLIBCPP17_PATCHES_H</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;matplotlibcpp17/common.h&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;matplotlibcpp17/common.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;pybind11/pybind11.h&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;pybind11/pybind11.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span>matplotlibcpp17::patches {</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span>matplotlibcpp17::patches {</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structmatplotlibcpp17_1_1patches_1_1_circle.html">   18</a></span><span class="keyword">struct </span>DECL_STRUCT_ATTR <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_circle.html">Circle</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structmatplotlibcpp17_1_1_base_wrapper.html">BaseWrapper</a> {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_circle.html">Circle</a>(<span class="keyword">const</span> pybind11::tuple &amp;args = pybind11::tuple(),</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>         <span class="keyword">const</span> pybind11::dict &amp;kwargs = pybind11::dict()) {</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    circle_attr = pybind11::module::import(<span class="stringliteral">&quot;matplotlib.patches&quot;</span>).attr(<span class="stringliteral">&quot;Circle&quot;</span>);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">self</span> = circle_attr(*args, **kwargs);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  }</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  pybind11::object circle_attr;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structmatplotlibcpp17_1_1patches_1_1_ellipse.html">   33</a></span><span class="keyword">struct </span>DECL_STRUCT_ATTR <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_ellipse.html">Ellipse</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structmatplotlibcpp17_1_1_base_wrapper.html">BaseWrapper</a> {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_ellipse.html">Ellipse</a>(<span class="keyword">const</span> pybind11::tuple &amp;args = pybind11::tuple(),</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>          <span class="keyword">const</span> pybind11::dict &amp;kwargs = pybind11::dict()) {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    ellipse_attr =</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        pybind11::module::import(<span class="stringliteral">&quot;matplotlib.patches&quot;</span>).attr(<span class="stringliteral">&quot;Ellipse&quot;</span>);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">self</span> = ellipse_attr(*args, **kwargs);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  }</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  pybind11::object ellipse_attr;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structmatplotlibcpp17_1_1patches_1_1_rectangle.html">   49</a></span><span class="keyword">struct </span>DECL_STRUCT_ATTR <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_rectangle.html">Rectangle</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structmatplotlibcpp17_1_1_base_wrapper.html">BaseWrapper</a> {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_rectangle.html">Rectangle</a>(<span class="keyword">const</span> pybind11::tuple &amp;args = pybind11::tuple(),</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="keyword">const</span> pybind11::dict &amp;kwargs = pybind11::dict()) {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    rectangle_attr =</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        pybind11::module::import(<span class="stringliteral">&quot;matplotlib.patches&quot;</span>).attr(<span class="stringliteral">&quot;Rectangle&quot;</span>);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">self</span> = rectangle_attr(*args, **kwargs);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  }</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  pybind11::object rectangle_attr;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>};</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structmatplotlibcpp17_1_1patches_1_1_wedge.html">   65</a></span><span class="keyword">struct </span>DECL_STRUCT_ATTR <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_wedge.html">Wedge</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structmatplotlibcpp17_1_1_base_wrapper.html">BaseWrapper</a> {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_wedge.html">Wedge</a>(<span class="keyword">const</span> pybind11::tuple &amp;args = pybind11::tuple(),</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keyword">const</span> pybind11::dict &amp;kwargs = pybind11::dict()) {</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    wedge_attr = pybind11::module::import(<span class="stringliteral">&quot;matplotlib.patches&quot;</span>).attr(<span class="stringliteral">&quot;Wedge&quot;</span>);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">self</span> = wedge_attr(*args, **kwargs);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  }</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  pybind11::object wedge_attr;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>};</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structmatplotlibcpp17_1_1patches_1_1_polygon.html">   80</a></span><span class="keyword">struct </span>DECL_STRUCT_ATTR <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_polygon.html">Polygon</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structmatplotlibcpp17_1_1_base_wrapper.html">BaseWrapper</a> {</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_polygon.html">Polygon</a>(<span class="keyword">const</span> pybind11::tuple &amp;args = pybind11::tuple(),</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>          <span class="keyword">const</span> pybind11::dict &amp;kwargs = pybind11::dict()) {</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    polygon_attr =</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        pybind11::module::import(<span class="stringliteral">&quot;matplotlib.patches&quot;</span>).attr(<span class="stringliteral">&quot;Polygon&quot;</span>);</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">self</span> = polygon_attr(*args, **kwargs);</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  }</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  pybind11::object polygon_attr;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>};</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>} <span class="comment">// namespace matplotlibcpp17::patches</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="preprocessor">#endif </span><span class="comment">/* MATPLOTLIBCPP17_PATCHES_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structmatplotlibcpp17_1_1patches_1_1_circle.html">   16</a></span><span class="keyword">struct </span>DECL_STRUCT_ATTR <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_circle.html">Circle</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structmatplotlibcpp17_1_1_base_wrapper.html">BaseWrapper</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_circle.html">Circle</a>(<span class="keyword">const</span> pybind11::tuple &amp;args = pybind11::tuple(),</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>         <span class="keyword">const</span> pybind11::dict &amp;kwargs = pybind11::dict()) {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    circle_attr = pybind11::module::import(<span class="stringliteral">&quot;matplotlib.patches&quot;</span>).attr(<span class="stringliteral">&quot;Circle&quot;</span>);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">self</span> = circle_attr(*args, **kwargs);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  }</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  pybind11::object circle_attr;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>};</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structmatplotlibcpp17_1_1patches_1_1_ellipse.html">   31</a></span><span class="keyword">struct </span>DECL_STRUCT_ATTR <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_ellipse.html">Ellipse</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structmatplotlibcpp17_1_1_base_wrapper.html">BaseWrapper</a> {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_ellipse.html">Ellipse</a>(<span class="keyword">const</span> pybind11::tuple &amp;args = pybind11::tuple(),</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>          <span class="keyword">const</span> pybind11::dict &amp;kwargs = pybind11::dict()) {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    ellipse_attr =</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        pybind11::module::import(<span class="stringliteral">&quot;matplotlib.patches&quot;</span>).attr(<span class="stringliteral">&quot;Ellipse&quot;</span>);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">self</span> = ellipse_attr(*args, **kwargs);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  pybind11::object ellipse_attr;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structmatplotlibcpp17_1_1patches_1_1_rectangle.html">   47</a></span><span class="keyword">struct </span>DECL_STRUCT_ATTR <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_rectangle.html">Rectangle</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structmatplotlibcpp17_1_1_base_wrapper.html">BaseWrapper</a> {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_rectangle.html">Rectangle</a>(<span class="keyword">const</span> pybind11::tuple &amp;args = pybind11::tuple(),</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            <span class="keyword">const</span> pybind11::dict &amp;kwargs = pybind11::dict()) {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    rectangle_attr =</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        pybind11::module::import(<span class="stringliteral">&quot;matplotlib.patches&quot;</span>).attr(<span class="stringliteral">&quot;Rectangle&quot;</span>);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">self</span> = rectangle_attr(*args, **kwargs);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  pybind11::object rectangle_attr;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>};</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structmatplotlibcpp17_1_1patches_1_1_wedge.html">   63</a></span><span class="keyword">struct </span>DECL_STRUCT_ATTR <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_wedge.html">Wedge</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structmatplotlibcpp17_1_1_base_wrapper.html">BaseWrapper</a> {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_wedge.html">Wedge</a>(<span class="keyword">const</span> pybind11::tuple &amp;args = pybind11::tuple(),</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keyword">const</span> pybind11::dict &amp;kwargs = pybind11::dict()) {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    wedge_attr = pybind11::module::import(<span class="stringliteral">&quot;matplotlib.patches&quot;</span>).attr(<span class="stringliteral">&quot;Wedge&quot;</span>);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keyword">self</span> = wedge_attr(*args, **kwargs);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  pybind11::object wedge_attr;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>};</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structmatplotlibcpp17_1_1patches_1_1_polygon.html">   78</a></span><span class="keyword">struct </span>DECL_STRUCT_ATTR <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_polygon.html">Polygon</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structmatplotlibcpp17_1_1_base_wrapper.html">BaseWrapper</a> {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <a class="code hl_struct" href="structmatplotlibcpp17_1_1patches_1_1_polygon.html">Polygon</a>(<span class="keyword">const</span> pybind11::tuple &amp;args = pybind11::tuple(),</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>          <span class="keyword">const</span> pybind11::dict &amp;kwargs = pybind11::dict()) {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    polygon_attr =</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        pybind11::module::import(<span class="stringliteral">&quot;matplotlib.patches&quot;</span>).attr(<span class="stringliteral">&quot;Polygon&quot;</span>);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">self</span> = polygon_attr(*args, **kwargs);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  }</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  pybind11::object polygon_attr;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>};</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>} <span class="comment">// namespace matplotlibcpp17::patches</span></div>
 <div class="ttc" id="astructmatplotlibcpp17_1_1_base_wrapper_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1_base_wrapper.html">matplotlibcpp17::BaseWrapper</a></div><div class="ttdoc">A base class for python wrapper classes.</div><div class="ttdef"><b>Definition:</b> common.h:39</div></div>
-<div class="ttc" id="astructmatplotlibcpp17_1_1patches_1_1_circle_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1patches_1_1_circle.html">matplotlibcpp17::patches::Circle</a></div><div class="ttdoc">A wrapper class for matplotlib.patches.Circle.</div><div class="ttdef"><b>Definition:</b> patches.h:18</div></div>
-<div class="ttc" id="astructmatplotlibcpp17_1_1patches_1_1_ellipse_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1patches_1_1_ellipse.html">matplotlibcpp17::patches::Ellipse</a></div><div class="ttdoc">A wrapper class for matplotlib.patches.Ellipse.</div><div class="ttdef"><b>Definition:</b> patches.h:33</div></div>
-<div class="ttc" id="astructmatplotlibcpp17_1_1patches_1_1_polygon_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1patches_1_1_polygon.html">matplotlibcpp17::patches::Polygon</a></div><div class="ttdoc">A wrapper class for matplotlib.patches.Polygon.</div><div class="ttdef"><b>Definition:</b> patches.h:80</div></div>
-<div class="ttc" id="astructmatplotlibcpp17_1_1patches_1_1_rectangle_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1patches_1_1_rectangle.html">matplotlibcpp17::patches::Rectangle</a></div><div class="ttdoc">A wrapper class for matplotlib.patches.Rectangle.</div><div class="ttdef"><b>Definition:</b> patches.h:49</div></div>
-<div class="ttc" id="astructmatplotlibcpp17_1_1patches_1_1_wedge_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1patches_1_1_wedge.html">matplotlibcpp17::patches::Wedge</a></div><div class="ttdoc">A wrapper class for matplotlib.patches.Wedge.</div><div class="ttdef"><b>Definition:</b> patches.h:65</div></div>
+<div class="ttc" id="astructmatplotlibcpp17_1_1patches_1_1_circle_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1patches_1_1_circle.html">matplotlibcpp17::patches::Circle</a></div><div class="ttdoc">A wrapper class for matplotlib.patches.Circle.</div><div class="ttdef"><b>Definition:</b> patches.h:16</div></div>
+<div class="ttc" id="astructmatplotlibcpp17_1_1patches_1_1_ellipse_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1patches_1_1_ellipse.html">matplotlibcpp17::patches::Ellipse</a></div><div class="ttdoc">A wrapper class for matplotlib.patches.Ellipse.</div><div class="ttdef"><b>Definition:</b> patches.h:31</div></div>
+<div class="ttc" id="astructmatplotlibcpp17_1_1patches_1_1_polygon_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1patches_1_1_polygon.html">matplotlibcpp17::patches::Polygon</a></div><div class="ttdoc">A wrapper class for matplotlib.patches.Polygon.</div><div class="ttdef"><b>Definition:</b> patches.h:78</div></div>
+<div class="ttc" id="astructmatplotlibcpp17_1_1patches_1_1_rectangle_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1patches_1_1_rectangle.html">matplotlibcpp17::patches::Rectangle</a></div><div class="ttdoc">A wrapper class for matplotlib.patches.Rectangle.</div><div class="ttdef"><b>Definition:</b> patches.h:47</div></div>
+<div class="ttc" id="astructmatplotlibcpp17_1_1patches_1_1_wedge_html"><div class="ttname"><a href="structmatplotlibcpp17_1_1patches_1_1_wedge.html">matplotlibcpp17::patches::Wedge</a></div><div class="ttdoc">A wrapper class for matplotlib.patches.Wedge.</div><div class="ttdef"><b>Definition:</b> patches.h:63</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.17-->
