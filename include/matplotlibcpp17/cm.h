@@ -2,9 +2,7 @@
  * @file cm.h
  * @brief corresponding header for matplotlib.cm
  **/
-
-#ifndef MATPLOTLIBCPP17_CM_H
-#define MATPLOTLIBCPP17_CM_H
+#pragma once
 
 #include <pybind11/pybind11.h>
 
@@ -16,5 +14,3 @@ static const char *PuBu_r = "PuBu_r";
 static const char *RdYlGn = "RdYlGn";
 
 } // namespace matplotlibcpp17::cm
-
-#endif /* MATPLOTLIBCPP17_CM_H */

@@ -2,20 +2,18 @@
  * @file pyplot.h
  * @brief corresponding header for matplotlib.pyplot
  **/
-
-#ifndef MATPLOTLIBCPP17_PYPLOT_H
-#define MATPLOTLIBCPP17_PYPLOT_H
+#pragma once
 
 #include <tuple>
 
-#include <matplotlibcpp17/common.h>
 #include <matplotlibcpp17/axes.h>
+#include <matplotlibcpp17/common.h>
 #include <matplotlibcpp17/figure.h>
 
-#include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
-#include <pybind11/stl.h>
 #include <pybind11/numpy.h>
+#include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 namespace matplotlibcpp17::pyplot {
 
@@ -212,56 +210,56 @@ private:
 };
 
 // axes
-axes::Axes PyPlot::axes(const pybind11::dict &kwargs) {
+inline axes::Axes PyPlot::axes(const pybind11::dict &kwargs) {
   pybind11::object ax_obj = axes_attr(**kwargs);
   return axes::Axes(ax_obj);
 }
 
 // axis
-ObjectWrapper PyPlot::axis(const pybind11::tuple &args,
-                           const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::axis(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
   pybind11::object ret = axis_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // cla
-ObjectWrapper PyPlot::cla(const pybind11::tuple &args,
-                          const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::cla(const pybind11::tuple &args,
+                                 const pybind11::dict &kwargs) {
   pybind11::object ret = cla_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // clf
-ObjectWrapper PyPlot::clf(const pybind11::tuple &args,
-                          const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::clf(const pybind11::tuple &args,
+                                 const pybind11::dict &kwargs) {
   pybind11::object ret = clf_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // clim
-ObjectWrapper PyPlot::clim(const pybind11::tuple &args,
-                           const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::clim(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
   pybind11::object ret = clim_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // colorbar
-ObjectWrapper PyPlot::colorbar(const pybind11::tuple &args,
-                               const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::colorbar(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
   pybind11::object ret = colorbar_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // errorbar
-ObjectWrapper PyPlot::errorbar(const pybind11::tuple &args,
-                               const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::errorbar(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
   pybind11::object ret = errorbar_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // figaspect
-std::tuple<double, double> PyPlot::figaspect(const pybind11::tuple &args,
-                                             const pybind11::dict &kwargs) {
+inline std::tuple<double, double>
+PyPlot::figaspect(const pybind11::tuple &args, const pybind11::dict &kwargs) {
   pybind11::list l = figaspect_attr(*args, **kwargs);
   double width = l[0].cast<double>();
   double height = l[1].cast<double>();
@@ -269,115 +267,115 @@ std::tuple<double, double> PyPlot::figaspect(const pybind11::tuple &args,
 }
 
 // figure
-figure::Figure PyPlot::figure(const pybind11::tuple &args,
-                              const pybind11::dict &kwargs) {
+inline figure::Figure PyPlot::figure(const pybind11::tuple &args,
+                                     const pybind11::dict &kwargs) {
   pybind11::object fig_obj = figure_attr(*args, **kwargs);
   return figure::Figure(fig_obj);
 }
 
 // gca
-axes::Axes PyPlot::gca(const pybind11::tuple &args,
-                       const pybind11::dict &kwargs) {
+inline axes::Axes PyPlot::gca(const pybind11::tuple &args,
+                              const pybind11::dict &kwargs) {
   pybind11::object obj = gca_attr(*args, **kwargs);
   return axes::Axes(obj);
 }
 
 // gcf
-figure::Figure PyPlot::gcf(const pybind11::tuple &args,
-                           const pybind11::dict &kwargs) {
+inline figure::Figure PyPlot::gcf(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
   pybind11::object obj = gcf_attr(*args, **kwargs);
   return figure::Figure(obj);
 }
 
 // gci
-ObjectWrapper PyPlot::gci(const pybind11::tuple &args,
-                          const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::gci(const pybind11::tuple &args,
+                                 const pybind11::dict &kwargs) {
   pybind11::object obj = gci_attr(*args, **kwargs);
   return obj;
 }
 
 // grid
-ObjectWrapper PyPlot::grid(const pybind11::tuple &args,
-                           const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::grid(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
   pybind11::object obj = grid_attr(*args, **kwargs);
   return obj;
 }
 
 // imshow
-ObjectWrapper PyPlot::imshow(const pybind11::tuple &args,
-                             const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::imshow(const pybind11::tuple &args,
+                                    const pybind11::dict &kwargs) {
   pybind11::object obj = imshow_attr(*args, **kwargs);
   return obj;
 }
 
 // legend
-ObjectWrapper PyPlot::legend(const pybind11::tuple &args,
-                             const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::legend(const pybind11::tuple &args,
+                                    const pybind11::dict &kwargs) {
   pybind11::object ret = legend_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // pause
-ObjectWrapper PyPlot::pause(const pybind11::tuple &args,
-                            const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::pause(const pybind11::tuple &args,
+                                   const pybind11::dict &kwargs) {
   pybind11::object ret = pause_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // plot
-ObjectWrapper PyPlot::plot(const pybind11::tuple &args,
-                           const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::plot(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
   pybind11::object ret = plot_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // quiver
-ObjectWrapper PyPlot::quiver(const pybind11::tuple &args,
-                             const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::quiver(const pybind11::tuple &args,
+                                    const pybind11::dict &kwargs) {
   pybind11::object ret = quiver_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // scatter
-ObjectWrapper PyPlot::scatter(const pybind11::tuple &args,
-                              const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::scatter(const pybind11::tuple &args,
+                                     const pybind11::dict &kwargs) {
   pybind11::object ret = scatter_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // savefig
-ObjectWrapper PyPlot::savefig(const pybind11::tuple &args,
-                              const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::savefig(const pybind11::tuple &args,
+                                     const pybind11::dict &kwargs) {
   pybind11::object ret = savefig_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // show
-ObjectWrapper PyPlot::show(const pybind11::tuple &args,
-                           const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::show(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
   pybind11::object ret = show_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // step
-ObjectWrapper PyPlot::step(const pybind11::tuple &args,
-                           const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::step(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
   pybind11::object ret = step_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // subplot
-axes::Axes PyPlot::subplot(const pybind11::dict &kwargs) {
+inline axes::Axes PyPlot::subplot(const pybind11::dict &kwargs) {
   return axes::Axes(subplot_attr(**kwargs));
 }
 
-axes::Axes PyPlot::subplot(int cri) {
+inline axes::Axes PyPlot::subplot(int cri) {
   pybind11::object obj = subplot_attr(cri);
   return axes::Axes(obj);
 }
 
 // subplots
-std::tuple<figure::Figure, axes::Axes>
+inline std::tuple<figure::Figure, axes::Axes>
 PyPlot::subplots(const pybind11::dict &kwargs) {
   pybind11::list ret = subplots_attr(**kwargs);
   pybind11::object fig = ret[0];
@@ -385,7 +383,7 @@ PyPlot::subplots(const pybind11::dict &kwargs) {
   return {figure::Figure(fig), axes::Axes(ax)};
 }
 
-std::tuple<figure::Figure, std::vector<axes::Axes>>
+inline std::tuple<figure::Figure, std::vector<axes::Axes>>
 PyPlot::subplots(int r, int c, const pybind11::dict &kwargs) {
   // subplots() returns [][] (if r > 1 && c > 1) else []
   // return []axes in row-major
@@ -416,41 +414,41 @@ PyPlot::subplots(int r, int c, const pybind11::dict &kwargs) {
 }
 
 // title
-ObjectWrapper PyPlot::title(const pybind11::tuple &args,
-                            const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::title(const pybind11::tuple &args,
+                                   const pybind11::dict &kwargs) {
   pybind11::object ret = title_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // xlabel
-ObjectWrapper PyPlot::xlabel(const pybind11::tuple &args,
-                             const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::xlabel(const pybind11::tuple &args,
+                                    const pybind11::dict &kwargs) {
   pybind11::object ret = xlabel_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // xlim
-ObjectWrapper PyPlot::xlim(const pybind11::tuple &args,
-                           const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::xlim(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
   pybind11::object ret = xlim_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // ylabel
-ObjectWrapper PyPlot::ylabel(const pybind11::tuple &args,
-                             const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::ylabel(const pybind11::tuple &args,
+                                    const pybind11::dict &kwargs) {
   pybind11::object ret = ylabel_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // ylim
-ObjectWrapper PyPlot::ylim(const pybind11::tuple &args,
-                           const pybind11::dict &kwargs) {
+inline ObjectWrapper PyPlot::ylim(const pybind11::tuple &args,
+                                  const pybind11::dict &kwargs) {
   pybind11::object ret = ylim_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
-PyPlot import() {
+inline PyPlot import() {
   auto mod = pybind11::module::import("matplotlib.pyplot");
   auto g_pyplot = PyPlot(mod);
   return g_pyplot;
@@ -468,5 +466,3 @@ using Kwargs = pybind11::dict;
 // Export this
 namespace py = pybind11;
 using namespace py::literals;
-
-#endif /* MATPLOTLIBCPP17_PYPLOT_H */

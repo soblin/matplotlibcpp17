@@ -2,9 +2,7 @@
  * @file animation.h
  * @brief corresponding header for matplotlib.animation
  **/
-
-#ifndef MATPLOTLIBCPP17_ANIMATION_H
-#define MATPLOTLIBCPP17_ANIMATION_H
+#pragma once
 
 #include <pybind11/pybind11.h>
 
@@ -40,5 +38,3 @@ ObjectWrapper ArtistAnimation::save(const pybind11::tuple &args,
 }
 
 } // namespace matplotlibcpp17::animation
-
-#endif /* MATPLOTLIBCPP17_ANIMATION_H */

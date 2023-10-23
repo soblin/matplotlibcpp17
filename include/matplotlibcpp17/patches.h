@@ -2,9 +2,7 @@
  * @file pathces.h
  * @brief corresponding header for matplotlib.patches
  **/
-
-#ifndef MATPLOTLIBCPP17_PATCHES_H
-#define MATPLOTLIBCPP17_PATCHES_H
+#pragma once
 
 #include <matplotlibcpp17/common.h>
 
@@ -91,5 +89,3 @@ private:
 };
 
 } // namespace matplotlibcpp17::patches
-
-#endif /* MATPLOTLIBCPP17_PATCHES_H */

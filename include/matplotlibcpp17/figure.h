@@ -2,12 +2,10 @@
  * @file figure.h
  * @brief corresponding header for matplotlib.figure
  **/
+#pragma once
 
-#ifndef MATPLOTLIBCPP17_FIGURE_H
-#define MATPLOTLIBCPP17_FIGURE_H
-
-#include <matplotlibcpp17/common.h>
 #include <matplotlibcpp17/axes.h>
+#include <matplotlibcpp17/common.h>
 #include <matplotlibcpp17/gridspec.h>
 
 #include <pybind11/pybind11.h>
@@ -82,60 +80,58 @@ private:
 };
 
 // add_axes
-axes::Axes Figure::add_axes(const pybind11::tuple &args,
-                            const pybind11::dict &kwargs) {
+inline axes::Axes Figure::add_axes(const pybind11::tuple &args,
+                                   const pybind11::dict &kwargs) {
   pybind11::object obj = add_axes_attr(*args, **kwargs);
   return axes::Axes(obj);
 }
 
 // add_gridspec
-gridspec::GridSpec Figure::add_gridspec(int nrow, int ncol,
-                                        const pybind11::dict &kwargs) {
+inline gridspec::GridSpec Figure::add_gridspec(int nrow, int ncol,
+                                               const pybind11::dict &kwargs) {
   return gridspec::GridSpec(nrow, ncol, kwargs);
 }
 
 // add_subplot
-axes::Axes Figure::add_subplot(const pybind11::tuple &args,
-                               const pybind11::dict &kwargs) {
+inline axes::Axes Figure::add_subplot(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
   pybind11::object obj = add_subplot_attr(*args, **kwargs);
   return axes::Axes(obj);
 }
 
 // align_labels
-ObjectWrapper Figure::align_labels(const pybind11::tuple &args,
-                                   const pybind11::dict &kwargs) {
+inline ObjectWrapper Figure::align_labels(const pybind11::tuple &args,
+                                          const pybind11::dict &kwargs) {
   pybind11::object ret = align_labels_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // colorbar
-ObjectWrapper Figure::colorbar(const pybind11::tuple &args,
-                               const pybind11::dict &kwargs) {
+inline ObjectWrapper Figure::colorbar(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
   pybind11::object ret = colorbar_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // savefig
-ObjectWrapper Figure::savefig(const pybind11::tuple &args,
-                              const pybind11::dict &kwargs) {
+inline ObjectWrapper Figure::savefig(const pybind11::tuple &args,
+                                     const pybind11::dict &kwargs) {
   pybind11::object ret = savefig_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // suptitle
-ObjectWrapper Figure::suptitle(const pybind11::tuple &args,
-                               const pybind11::dict &kwargs) {
+inline ObjectWrapper Figure::suptitle(const pybind11::tuple &args,
+                                      const pybind11::dict &kwargs) {
   pybind11::object ret = suptitle_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 // tight_layout
-ObjectWrapper Figure::tight_layout(const pybind11::tuple &args,
-                                   const pybind11::dict &kwargs) {
+inline ObjectWrapper Figure::tight_layout(const pybind11::tuple &args,
+                                          const pybind11::dict &kwargs) {
   pybind11::object ret = tight_layout_attr(*args, **kwargs);
   return ObjectWrapper(std::move(ret));
 }
 
 } // namespace matplotlibcpp17::figure
-
-#endif /* MATPLOTLIBCPP17_FIGURE_H */

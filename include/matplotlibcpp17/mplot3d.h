@@ -2,9 +2,7 @@
  * @file mplot3d.h
  * @brief header file for mplot3d
  **/
-
-#ifndef MATPLOTLIBCPP17_MPLOT3D_H
-#define MATPLOTLIBCPP17_MPLOT3D_H
+#pragma once
 
 #include <pybind11/pybind11.h>
 
@@ -15,4 +13,3 @@ pybind11::object import() {
 }
 
 } // namespace matplotlibcpp17::mplot3d
-#endif
