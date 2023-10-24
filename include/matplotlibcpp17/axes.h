@@ -219,6 +219,22 @@ public:
   ObjectWrapper set_yticks(const pybind11::tuple &args = pybind11::tuple(),
                            const pybind11::dict &kwargs = pybind11::dict());
 
+  // set_rticks
+  ObjectWrapper set_rticks(const pybind11::tuple &args = pybind11::tuple(),
+                         const pybind11::dict &kwargs = pybind11::dict());
+
+  // set_rmax
+  ObjectWrapper set_rmax(const pybind11::tuple &args);
+  
+  // set_theta_direction
+  ObjectWrapper set_theta_direction(const pybind11::tuple &args);
+
+  // set_rlabel_position
+  ObjectWrapper set_rlabel_position(const pybind11::tuple &args);
+
+  // minorticks_on
+  ObjectWrapper minorticks_on();
+	
   // set_zlabel
   ObjectWrapper set_zlabel(const pybind11::tuple &args = pybind11::tuple(),
                            const pybind11::dict &kwargs = pybind11::dict());
@@ -300,6 +316,11 @@ private:
     LOAD_FUNC_ATTR(set_ylim, self);
     LOAD_FUNC_ATTR(set_yscale, self);
     LOAD_FUNC_ATTR(set_yticks, self);
+    LOAD_FUNC_ATTR(set_rticks, self);
+    LOAD_FUNC_ATTR(set_rmax, self);
+    LOAD_FUNC_ATTR(set_theta_direction, self);
+    LOAD_FUNC_ATTR(set_rlabel_position, self);
+    LOAD_FUNC_ATTR(minorticks_on, self);
     LOAD_FUNC_ATTR(text, self);
     LOAD_FUNC_ATTR(tick_params, self);
     LOAD_FUNC_ATTR(twinx, self);
@@ -349,6 +370,11 @@ private:
   pybind11::object set_ylim_attr;
   pybind11::object set_yscale_attr;
   pybind11::object set_yticks_attr;
+  pybind11::object set_rticks_attr;
+  pybind11::object set_rmax_attr;
+  pybind11::object set_theta_direction_attr;
+  pybind11::object set_rlabel_position_attr;
+  pybind11::object minorticks_on_attr;
   pybind11::object set_zlabel_attr;
   pybind11::object set_zlim_attr;
   pybind11::object text_attr;
@@ -705,6 +731,37 @@ inline ObjectWrapper Axes::set_yticks(const pybind11::tuple &args,
   return ObjectWrapper(std::move(ret));
 }
 
+  // set_rticks
+ObjectWrapper Axes::set_rticks(const pybind11::tuple &args,
+										 const pybind11::dict &kwargs) {
+	pybind11::object ret = set_rticks_attr(*args, **kwargs);
+	return ObjectWrapper(std::move(ret));
+}
+
+// set_rmax
+ObjectWrapper Axes::set_rmax(const pybind11::tuple &args) {
+  pybind11::object ret = set_rmax_attr(*args);
+  return ObjectWrapper(std::move(ret));
+}
+
+// set_theta_direction
+ObjectWrapper Axes::set_theta_direction(const pybind11::tuple &args) {
+  pybind11::object ret = set_theta_direction_attr(*args);
+  return ObjectWrapper(std::move(ret));
+}
+
+// set_rlabel_position
+   ObjectWrapper Axes::set_rlabel_position(const pybind11::tuple &args) {
+  pybind11::object ret = set_rlabel_position_attr(*args);
+  return ObjectWrapper(std::move(ret));
+}
+
+// minorticks_on
+ObjectWrapper Axes::minorticks_on() {
+  pybind11::object ret = minorticks_on_attr();
+  return ObjectWrapper(std::move(ret));
+}
+	
 // set_zlabel
 inline ObjectWrapper Axes::set_zlabel(const pybind11::tuple &args,
                                       const pybind11::dict &kwargs) {

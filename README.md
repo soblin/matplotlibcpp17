@@ -91,6 +91,28 @@ From [gallery/subplots_axes_and_figures/align_labels_demo.cpp](https://github.co
 
 ![subplots_axes_and_figures](./gallery/images/align_labels_demo.png)
 
+### polar plot
+-[original python code](https://matplotlib.org/devdocs/gallery/pie_and_polar_charts/polar_demo.html#sphx-glr-gallery-pie-and-polar-charts-polar-demo-py)
+
+```cpp
+vector<double> r(200),theta(200);
+	for (int i = 0; i < 200; ++i)
+		{
+			r[i]=i*0.01;
+			theta[i]=2 * 3.1415 * r[i];
+		}
+	auto plt = matplotlibcpp17::pyplot::import();
+	auto [fig, ax] = plt.subplots(Kwargs("subplot_kw"_a=py::dict("projection"_a = "polar")));
+	ax.plot(Args(theta,r));
+	ax.set_rmax(Args(2));
+	ax.set_rticks(Args(py::make_tuple(0.5, 1, 1.5, 2)));
+	ax.grid(Args(true));
+	ax.set_title(Args("A line plot on a polar axis"), Kwargs("va"_a="bottom"));
+	plt.savefig(Args("./PolarPlot.jpg"));
+	plt.show();
+```
+![polarplot_demo](./gallery/images/PolarPlot.jpg)
+
 ### bar plot
 
 From [gallery/lines_bars_and_markers/bar_label_demo.cpp](https://github.com/soblin/matplotlibcpp17/blob/master/gallery/lines_bars_and_markers/bar_label_demo.cpp). Here `subplots()` returns `tuple<Figure, Axes>`.
